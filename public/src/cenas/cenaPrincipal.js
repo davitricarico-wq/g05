@@ -5,18 +5,168 @@ import { gameState } from "../main.js"
 import { GerenciadorCachorros } from "../componentes/controleCachorro/gerenciadorCachorros.js"
 import { cachorrosBase } from "../componentes/controleCachorro/cachorrosBase.js"
 
-// Define a cena principal
+// ====================================================================
+// NOVA CENA: Gerencia apenas os Popups (Fica acima da HUD e do Jogo)
+// ====================================================================
+class CenaPopups extends Phaser.Scene {
+    constructor() {
+        super({ key: "CenaPopups" });
+    }
+
+    create() {
+        // Decide qual popup mostrar
+        if (gameState.aguardandoEvolucao) {
+            this.exibirPopupEvolucao();
+        } else if (!gameState.instrucaoMissaoVista) {
+            this.mostrarFicha();
+        }
+
+        // Lógica de Resize exclusiva para os Popups
+        const handleResizePopups = () => {
+            if (!this.scene.isActive() || !this.cameras || !this.cameras.main) return;
+
+            const novaLargura = this.scale.width;
+            const novaAltura = this.scale.height;
+            const novaAreaUtilLargura = novaLargura * 0.8;
+            const novoCentroX = novaAreaUtilLargura / 2;
+            const novoCentroY = novaAltura / 2;
+
+            if (this.imgEvolucao && this.imgEvolucao.active) this.imgEvolucao.setPosition(novoCentroX, novoCentroY);
+            if (this.txtEvolucao && this.txtEvolucao.active) this.txtEvolucao.setPosition(novoCentroX, novoCentroY + 180);
+
+            if (this.containerFicha && this.containerFicha.active) this.containerFicha.setPosition(novoCentroX, novoCentroY);
+            if (this.txtContinuarFicha && this.txtContinuarFicha.active) this.txtContinuarFicha.setPosition(novoCentroX, novoCentroY + 200);
+            
+            if (this.imgInstrucao && this.imgInstrucao.active) {
+                this.imgInstrucao.setPosition(novoCentroX, novoCentroY);
+                if (this.txtContinuarInstrucao && this.txtContinuarInstrucao.active) {
+                    const novoPosicaoTextoY = novoCentroY + (this.imgInstrucao.displayHeight / 2) + 30;
+                    this.txtContinuarInstrucao.setPosition(novoCentroX, novoPosicaoTextoY);
+                }
+            }
+        };
+
+        this.scale.on("resize", handleResizePopups);
+        this.events.on('shutdown', () => {
+            this.scale.off("resize", handleResizePopups);
+        });
+    }
+
+    exibirPopupEvolucao() {
+        const areaUtilLargura = this.scale.width * 0.8; 
+        const centroX = areaUtilLargura / 2;
+        const centroY = this.scale.height / 2;
+
+        this.imgEvolucao = this.add.image(centroX, centroY, "conclusaoPrimeiroRound")
+            .setScale(0.6)
+            .setInteractive({ useHandCursor: true }); 
+        
+        this.txtEvolucao = this.add.text(centroX, centroY + 180, "[ Clique para Evoluir! ]", {
+            fontFamily: '"Press Start 2P"', 
+            fontSize: "16px", 
+            fill: "#ffffff"
+        }).setOrigin(0.5);
+
+        this.imgEvolucao.on('pointerdown', () => {
+            gameState.pets.cachorroCaramelo = false;
+            gameState.pets.cachorroHeroi = true;
+            gameState.progressoCachorro = 1;
+            gameState.aguardandoEvolucao = false;
+            gameState.barras = { comida: 11, lazer: 11, limpeza: 11, saude: 11 };
+            gameState.pulga = true;
+
+            // Para a cena de popups e reinicia a cena principal
+            this.scene.stop();
+            this.scene.get("cenaPrincipal").scene.restart();
+        });
+    }
+
+    mostrarFicha() {
+        const areaUtilLargura = this.scale.width * 0.8;
+        const centroX = areaUtilLargura / 2;
+        const centroY = this.scale.height / 2;
+
+        const pet = cachorrosBase[gameState.pets.cachorroHeroi ? 1 : 0];
+        
+        this.containerFicha = this.add.container(centroX, centroY)
+            .setSize(500, 350) 
+            .setInteractive({ useHandCursor: true }); 
+
+        const fundoFicha = this.add.rectangle(0, 0, 500, 350, 0xf0e8bb).setOrigin(0.5);
+        const estiloPixel = { fontFamily: '"Press Start 2P", Arial', fontSize: "14px", color: "#000000" };
+
+        this.containerFicha.add([
+            fundoFicha,
+            this.add.text(-220, -120, `Ficha do Animal`, estiloPixel).setOrigin(0, 0.5),
+            this.add.text(-220, -80, `Nome: ${pet.nome}`, estiloPixel).setOrigin(0, 0.5),
+            this.add.text(-220, -40, `Peso: ${pet.peso}`, estiloPixel).setOrigin(0, 0.5),
+            this.add.text(-220, 0, `Idade: ${pet.idade}`, estiloPixel).setOrigin(0, 0.5),
+            this.add.text(-220, 40, `Porte: ${pet.porte}`, estiloPixel).setOrigin(0, 0.5),
+            this.add.text(-220, 80, `Estado: ${pet.estado}`, estiloPixel).setOrigin(0, 0.5),
+            this.add.text(-220, 120, `Historia: ${pet.historia}`, { ...estiloPixel, align: "left", wordWrap: { width: 420 } }).setOrigin(0, 0)
+        ]);
+
+        this.txtContinuarFicha = this.add.text(centroX, centroY + 200, "[ Clique para continuar ]", {
+            fontFamily: '"Press Start 2P"', fontSize: "15px", color: "#ffffff", stroke: "#000000", strokeThickness: 4
+        }).setOrigin(0.5);
+
+        this.containerFicha.on("pointerdown", () => {
+            this.containerFicha.destroy();
+            this.txtContinuarFicha.destroy();
+            this.mostrarInstrucao(); 
+        });
+    }
+
+    mostrarInstrucao() {
+        const areaUtilLargura = this.scale.width * 0.8;
+        const centroX = areaUtilLargura / 2;
+        const centroY = this.scale.height / 2;
+
+        this.imgInstrucao = this.add.image(centroX, centroY, "instrucaoMissao")
+            .setScale(0.5)
+            .setInteractive({ useHandCursor: true }); 
+
+        this.txtContinuarInstrucao = this.add.text(centroX, centroY + (this.imgInstrucao.displayHeight / 2) + 30, "[ Clique para comecar ]", {
+            fontFamily: '"Press Start 2P"', fontSize: "15px", color: "#ffffff", stroke: "#000000", strokeThickness: 4
+        }).setOrigin(0.5);
+
+        this.imgInstrucao.on("pointerdown", () => {
+            this.imgInstrucao.destroy();
+            this.txtContinuarInstrucao.destroy();
+            gameState.instrucaoMissaoVista = true;
+            
+            // Fecha a cena de popups quando o jogador começa
+            this.scene.stop();
+        });
+    }
+}
+
+// ====================================================================
+// CENA PRINCIPAL: Gerencia o Cachorro, Cenário e invoca a HUD e Popups
+// ====================================================================
 export class cenaPrincipal extends Phaser.Scene {
     constructor() {
         super({ key: "cenaPrincipal" })
     }
 
     create() {
-        // HUD
+        // 1. Inicia e traz a HUD para o topo da cenaPrincipal
         if (!this.scene.isActive("HUD")) {
             this.scene.launch("HUD")
         }
         this.scene.bringToTop("HUD")
+
+        // 2. Registra dinamicamente e lança a Cena de Popups por cima da HUD
+        if (!this.scene.get("CenaPopups")) {
+            this.scene.add("CenaPopups", CenaPopups, false);
+        }
+        
+        if (gameState.aguardandoEvolucao || !gameState.instrucaoMissaoVista) {
+            if (!this.scene.isActive("CenaPopups")) {
+                this.scene.launch("CenaPopups");
+            }
+            this.scene.bringToTop("CenaPopups"); // Garante que fica ACIMA de tudo
+        }
 
         // Música de fundo
         if (!gameState.musicaMenuPrincipal) {
@@ -72,16 +222,7 @@ export class cenaPrincipal extends Phaser.Scene {
         const escalaBase = alturaTotal * 0.0006;
         this.containerCachorro.setScale(escalaBase);
 
-        // --- NOVA LÓGICA DE EVOLUÇÃO ---
-        if (gameState.aguardandoEvolucao) {
-            this.exibirPopupEvolucao();
-        } 
-        // --- FLUXO DE POPUPS INICIAIS ---
-        else if (!gameState.instrucaoMissaoVista) {
-            this.mostrarFicha();
-        }
-
-        // --- SEU RESIZE DINÂMICO ORIGINAL ---
+        // --- SEU RESIZE DINÂMICO ---
         const handleResizePrincipal = () => {
             if (!this.scene.isActive() || !this.cameras || !this.cameras.main) return;
 
@@ -99,23 +240,6 @@ export class cenaPrincipal extends Phaser.Scene {
                 const novaEscala = novaAltura * 0.0006;
                 this.containerCachorro.setPosition(novoCentroX, novaAltura * 0.7).setScale(novaEscala);
             }
-
-            if (this.fundoEscuroFicha && this.fundoEscuroFicha.active) {
-                this.fundoEscuroFicha.setSize(novaAreaUtilLargura, novaAltura).setPosition(novoCentroX, novoCentroY);
-                if (this.containerFicha && this.containerFicha.active) this.containerFicha.setPosition(novoCentroX, novoCentroY);
-                if (this.txtContinuarFicha && this.txtContinuarFicha.active) this.txtContinuarFicha.setPosition(novoCentroX, novoCentroY + 200);
-            }
-
-            if (this.fundoEscuroInstrucao && this.fundoEscuroInstrucao.active) {
-                this.fundoEscuroInstrucao.setSize(novaAreaUtilLargura, novaAltura).setPosition(novoCentroX, novoCentroY);
-                if (this.imgInstrucao && this.imgInstrucao.active) {
-                    this.imgInstrucao.setPosition(novoCentroX, novoCentroY);
-                    if (this.txtContinuarInstrucao && this.txtContinuarInstrucao.active) {
-                        const novoPosicaoTextoY = novoCentroY + (this.imgInstrucao.displayHeight / 2) + 30;
-                        this.txtContinuarInstrucao.setPosition(novoCentroX, novoPosicaoTextoY);
-                    }
-                }
-            }
         };
 
         this.scale.on("resize", handleResizePrincipal);
@@ -127,7 +251,6 @@ export class cenaPrincipal extends Phaser.Scene {
         this.cameras.main.fadeIn(200, 0, 0, 0);
     }
 
-    // --- SEU UPDATE ORIGINAL (MANTIDO!) ---
     update() {
         if (this.gerenciadorCachorros) {
             this.gerenciadorCachorros.verificarCompletude()
@@ -135,117 +258,5 @@ export class cenaPrincipal extends Phaser.Scene {
         if (this.pulgas) {
             this.pulgas.setVisible(gameState.pulga)
         }
-    }
-
-    // --- MÉTODO DE EVOLUÇÃO ---
-// --- MÉTODO DE EVOLUÇÃO ---
-    exibirPopupEvolucao() {
-        // 1. ESCONDER A HUD (Para o popup reinar sozinho na tela)
-        if (this.scene.isActive("HUD")) {
-            this.scene.get("HUD").scene.setVisible(false);
-        }
-
-        const larguraArea = this.scale.width * 0.8;
-        const centroX = larguraArea / 2;
-        const centroY = this.scale.height / 2;
-
-        // 2. Criar o fundo (Overlay) - Ele bloqueia cliques no fundo
-        const overlay = this.add.rectangle(centroX, centroY, larguraArea, this.scale.height, 0x000000, 0.8)
-            .setDepth(5000)
-            .setInteractive();
-
-        // 3. Criar a imagem do Popup
-        const popupImg = this.add.image(0, 0, "conclusaoPrimeiroRound")
-            .setScale(0.6);
-        
-        // 4. Criar o texto
-        const txt = this.add.text(0, 180, "[ Clique para Evoluir! ]", {
-            fontFamily: '"Press Start 2P"', 
-            fontSize: "16px", 
-            fill: "#ffffff"
-        }).setOrigin(0.5);
-
-        // 5. Agrupar em um Container (Isso facilita MUITO a vida)
-        const containerPopup = this.add.container(centroX, centroY, [popupImg, txt])
-            .setDepth(5001);
-
-        // 6. GARANTIR QUE TUDO ESTÁ NO TOPO DA CENA ATUAL
-        this.children.bringToTop(overlay);
-        this.children.bringToTop(containerPopup);
-
-        // Animação opcional: faz o popup dar uma "puladinha" ao aparecer
-        containerPopup.setScale(0.5);
-        this.tweens.add({
-            targets: containerPopup,
-            scale: 1,
-            duration: 300,
-            ease: 'Back.easeOut'
-        });
-
-        overlay.on('pointerdown', () => {
-            gameState.pets.cachorroCaramelo = false;
-            gameState.pets.cachorroHeroi = true;
-            gameState.progressoCachorro = 1;
-            gameState.aguardandoEvolucao = false;
-            gameState.barras = { comida: 11, lazer: 11, limpeza: 11, saude: 11 };
-            gameState.pulga = true;
-
-            // Antes de reiniciar, garantir que a HUD voltaria (embora o restart limpe tudo)
-            this.scene.restart();
-        });
-    }
-
-    // --- SUAS FUNÇÕES DE INTERFACE ORIGINAIS (MANTIDAS!) ---
-    mostrarFicha() {
-        const areaUtilLargura = this.scale.width * 0.8;
-        const centroX = areaUtilLargura / 2;
-        const centroY = this.scale.height / 2;
-
-        this.fundoEscuroFicha = this.add.rectangle(centroX, centroY, areaUtilLargura, this.scale.height, 0x000000, 0.7).setDepth(1000).setInteractive();
-        const pet = cachorrosBase[gameState.pets.cachorroHeroi ? 1 : 0];
-        this.containerFicha = this.add.container(centroX, centroY).setDepth(1001);
-        const fundoFicha = this.add.rectangle(0, 0, 500, 350, 0xf0e8bb).setOrigin(0.5);
-        const estiloPixel = { fontFamily: '"Press Start 2P", Arial', fontSize: "14px", color: "#000000" };
-
-        this.containerFicha.add([
-            fundoFicha,
-            this.add.text(-220, -120, `Ficha do Animal`, estiloPixel).setOrigin(0, 0.5),
-            this.add.text(-220, -80, `Nome: ${pet.nome}`, estiloPixel).setOrigin(0, 0.5),
-            this.add.text(-220, -40, `Peso: ${pet.peso}`, estiloPixel).setOrigin(0, 0.5),
-            this.add.text(-220, 0, `Idade: ${pet.idade}`, estiloPixel).setOrigin(0, 0.5),
-            this.add.text(-220, 40, `Porte: ${pet.porte}`, estiloPixel).setOrigin(0, 0.5),
-            this.add.text(-220, 80, `Estado: ${pet.estado}`, estiloPixel).setOrigin(0, 0.5),
-            this.add.text(-220, 120, `Historia: ${pet.historia}`, { ...estiloPixel, align: "left", wordWrap: { width: 420 } }).setOrigin(0, 0)
-        ]);
-
-        this.txtContinuarFicha = this.add.text(centroX, centroY + 200, "[ Clique para continuar ]", {
-            fontFamily: '"Press Start 2P"', fontSize: "15px", color: "#ffffff", stroke: "#000000", strokeThickness: 4
-        }).setOrigin(0.5).setDepth(1001);
-
-        this.fundoEscuroFicha.on("pointerdown", () => {
-            this.fundoEscuroFicha.destroy();
-            this.containerFicha.destroy();
-            this.txtContinuarFicha.destroy();
-            this.mostrarInstrucao(); 
-        });
-    }
-
-    mostrarInstrucao() {
-        const areaUtilLargura = this.scale.width * 0.8;
-        const centroX = areaUtilLargura / 2;
-        const centroY = this.scale.height / 2;
-
-        this.fundoEscuroInstrucao = this.add.rectangle(centroX, centroY, areaUtilLargura, this.scale.height, 0x000000, 0.7).setDepth(1000).setInteractive(); 
-        this.imgInstrucao = this.add.image(centroX, centroY, "instrucaoMissao").setDepth(1001).setScale(0.5);
-        this.txtContinuarInstrucao = this.add.text(centroX, centroY + (this.imgInstrucao.displayHeight / 2) + 30, "[ Clique para comecar ]", {
-            fontFamily: '"Press Start 2P"', fontSize: "15px", color: "#ffffff", stroke: "#000000", strokeThickness: 4
-        }).setOrigin(0.5).setDepth(1001);
-
-        this.fundoEscuroInstrucao.on("pointerdown", () => {
-            this.fundoEscuroInstrucao.destroy();
-            this.imgInstrucao.destroy();
-            this.txtContinuarInstrucao.destroy();
-            gameState.instrucaoMissaoVista = true;
-        });
     }
 }
