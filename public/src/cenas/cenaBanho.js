@@ -92,23 +92,36 @@ export class cenaBanho extends Phaser.Scene {
 
         gameState.sabao = this.add.sprite(this.posicaoInicialSabao.x, this.posicaoInicialSabao.y, "sabao")
             .setInteractive({ useHandCursor: true }).setDepth(3);
-        gameState.sabao.escalaOriginal = escalaFerramentas * 0.4;
-        gameState.sabao.setScale(gameState.sabao.escalaOriginal * 0.7);
+        gameState.sabao.escalaOriginal = escalaFerramentas * 0.28; 
+        gameState.sabao.setScale(gameState.sabao.escalaOriginal);
         
         gameState.chuveiro = this.add.sprite(this.posicaoInicialChuveiro.x, this.posicaoInicialChuveiro.y, "chuveiro")
             .setInteractive({ useHandCursor: true }).setDepth(3);
-        gameState.chuveiro.escalaOriginal = escalaFerramentas * 0.6;
-        gameState.chuveiro.setScale(gameState.chuveiro.escalaOriginal * 0.6);
+        gameState.chuveiro.escalaOriginal = escalaFerramentas * 0.36; 
+        gameState.chuveiro.setScale(gameState.chuveiro.escalaOriginal);
         
         gameState.toalha = this.add.sprite(this.posicaoInicialToalha.x, this.posicaoInicialToalha.y, "toalha")
             .setInteractive({ useHandCursor: true }).setDepth(3);
-        gameState.toalha.escalaOriginal = escalaFerramentas * 0.6;
-        gameState.toalha.setScale(gameState.toalha.escalaOriginal * 0.6);
+        gameState.toalha.escalaOriginal = escalaFerramentas * 0.36; 
+        gameState.toalha.setScale(gameState.toalha.escalaOriginal);
 
         [gameState.sabao, gameState.chuveiro, gameState.toalha].forEach(tool => {
             this.physics.add.existing(tool);
             tool.body.setAllowGravity(false);
         });
+
+        // --- Ajustando Hitboxes (Tamanho Físico) do Sabão e Toalha ---
+        const reduzirHitbox = (ferramenta, fator) => {
+            const w = ferramenta.width;
+            const h = ferramenta.height;
+            // Define o tamanho reduzido e centraliza usando o offset
+            ferramenta.body.setSize(w * fator, h * fator);
+            ferramenta.body.setOffset(w * ((1 - fator) / 2), h * ((1 - fator) / 2));
+        };
+
+        reduzirHitbox(gameState.sabao, 0.3);  // Deixa a hitbox com 30% do tamanho
+        reduzirHitbox(gameState.toalha, 0.3); // Deixa a hitbox com 30% do tamanho
+
 
         // ================= FÍSICA E PARTÍCULAS =================
         gameState.bolhas = this.physics.add.group({ maxSize: 80 });
@@ -138,7 +151,8 @@ export class cenaBanho extends Phaser.Scene {
     }
 
     update(tempo, delta) {
-        const raioHitboxCachorro = (this.containerCachorro.getBounds().width / 2) * 1.2; 
+        // Reduzimos o multiplicador de 1.2 para 0.8 para exigir que a ferramenta chegue mais perto
+        const raioHitboxCachorro = (this.containerCachorro.getBounds().width / 2) * 0.8; 
 
         this.atualizarSabao(raioHitboxCachorro);
         this.atualizarChuveiro(delta, raioHitboxCachorro);
@@ -362,10 +376,6 @@ export class cenaBanho extends Phaser.Scene {
             ease: "Quad.easeInOut"
         });
     }
-
-    // ========================================================
-    // MÉTODOS ORIGINAIS (Integrados para não dar mais erro!)
-    // ========================================================
 
     atualizarEstadoCachorroAnimacao() {
         if (!this.cachorro) return;
