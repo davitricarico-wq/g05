@@ -128,8 +128,8 @@ export class cenaCarregamento extends Phaser.Scene {
         //Cenas feedback
         this.load.image("avisoConclusao", "assets/Feedback/avisoConclusao.png");
         this.load.image("feeedback3estrelas", "assets/Feedback/feedbackMineGame.png");
-        this.load.image("feedback2estrelas", "assets/Feedback/feedbackMinegame2.png");
-        this.load.image("feedback1estrela", "assets/Feedback/feedbackMinegame3.png");
+        this.load.image("feedback2estrelas", "assets/Feedback/feedbackMineGame2.png");
+        this.load.image("feedback1estrela", "assets/Feedback/feedbackMineGame3.png");
         this.load.image("instrucaoDescricaoBanho", "assets/Feedback/instrucaoBanho.png");
         this.load.image("instrucaoDescricaoRacao", "assets/Feedback/instrucaoDescricaoRacao.png");
         this.load.image("instrucaoLazer", "assets/Feedback/instrucaoLazer.png");
