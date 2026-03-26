@@ -32,9 +32,13 @@ export class GerenciadorCachorros {
       gameState.barras.limpeza <= 0 &&
       gameState.barras.saude <= 0
 
-    // Se todas as barras estão em 0 e ainda é Caramelo, muda para Herói
-    if (barrasZero && gameState.pets.cachorroCaramelo === true) {
-      this.mudarParaCachorroHeroi()
+    // Se todas as barras estão em 0, alterna o cachorro ativo
+    if (barrasZero) {
+      if (gameState.pets.cachorroCaramelo) {
+        this.mudarParaCachorroHeroi()
+      } else if (gameState.pets.cachorroHeroi) {
+        this.mudarParaCachorroCaramelo()
+      }
     }
   }
 
@@ -55,6 +59,8 @@ export class GerenciadorCachorros {
       // Atualiza os dados para o Herói
       this.cachorroAtual.dados = { ...cachorrosBase[1] }
       this.cachorroAtual.mudarSprite("cachorroHeroi")
+      this.cachorroAtual.dados.estado = "sujo"
+      this.cachorroAtual.atualizarAnimacao()
     }
   }
 
@@ -66,6 +72,8 @@ export class GerenciadorCachorros {
       // Atualiza os dados para o Caramelo
       this.cachorroAtual.dados = { ...cachorrosBase[0] }
       this.cachorroAtual.mudarSprite("cachorroCaramelo")
+      this.cachorroAtual.dados.estado = "sujo"
+      this.cachorroAtual.atualizarAnimacao()
     }
   }
 }

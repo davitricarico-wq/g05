@@ -43,7 +43,8 @@ export class cenaPrincipal extends Phaser.Scene {
 
         // Criar cachorro
         this.gerenciadorCachorros = new GerenciadorCachorros(this)
-        this.cachorro = this.gerenciadorCachorros.criarCachorro(0, 0, cachorrosBase[0])
+        const indiceAtivo = gameState.pets.cachorroHeroi ? 1 : 0
+        this.cachorro = this.gerenciadorCachorros.criarCachorro(0, 0, cachorrosBase[indiceAtivo])
 
         // Configuração das pulgas
         if (!this.anims.exists("pulgaAnim")) {
