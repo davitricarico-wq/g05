@@ -99,9 +99,6 @@ export class cenaCuidado extends Phaser.Scene {
             }
         });
 
-        // Chama o painel de instruções
-        this.mostrarInstrucoes();
-
         // --- LÓGICA DE RESPONSIVIDADE (RESIZE) ---
         const handleResize = (gameSize) => {
             const novaLargura = gameSize.width;
@@ -130,13 +127,28 @@ export class cenaCuidado extends Phaser.Scene {
                     pulga.y = Phaser.Math.Clamp(pulga.y, 80, novaAltura - 80);
                 }
             });
+
+            // Resize das instruções, se estiverem abertas
+            if (this.fundoInstrucao && this.fundoInstrucao.active) {
+                this.fundoInstrucao.setPosition(novaLargura / 2, novaAltura / 2).setSize(novaLargura, novaAltura);
+                if (this.imgInstrucao && this.imgInstrucao.active) {
+                    this.imgInstrucao.setPosition(novaLargura / 2, novaAltura / 2);
+                    if (this.textoIniciar && this.textoIniciar.active) {
+                        this.textoIniciar.setPosition(novaLargura / 2, novaAltura / 2 + (this.imgInstrucao.displayHeight / 2) + 40);
+                    }
+                }
+            }
         };
 
         this.scale.on("resize", handleResize);
 
         this.events.on('shutdown', () => {
             this.scale.off("resize", handleResize);
+            this.input.keyboard.removeListener('keydown-SPACE'); 
         });
+
+        // Chama o painel de instruções substituindo o código antigo
+        this.mostrarInstrucoes();
     }
 
     update() {
@@ -153,35 +165,53 @@ export class cenaCuidado extends Phaser.Scene {
         }
     }
 
+    // ==========================================
+    //       FUNÇÕES DE INÍCIO / INSTRUÇÕES
+    // ==========================================
     mostrarInstrucoes() {
         const cx = this.scale.width / 2;
         const cy = this.scale.height / 2;
-        const grupoInstrucoes = this.add.group();
 
-        const fundo = this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.85)
-            .setDepth(100).setInteractive(); 
+        // Fundo escurecido
+        this.fundoInstrucao = this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.85)
+            .setDepth(200)
+            .setScrollFactor(0)
+            .setInteractive(); 
 
-        const titulo = this.add.text(cx, cy - 120, "COMO JOGAR", {
-            fontFamily: '"Press Start 2P", Arial', fontSize: "35px", color: "#ffd166", align: "center"
-        }).setOrigin(0.5).setDepth(101);
+        // Imagem de instrução
+        this.imgInstrucao = this.add.image(cx, cy, "comoJogarPulgas")
+            .setDepth(201)
+            .setScrollFactor(0)
+            .setInteractive();
 
-        const texto = this.add.text(cx, cy + 20, 
-            "Clique e arraste as pulgas\numa a uma ate a bandeja\nna parte inferior para coleta-las.", 
-            { fontFamily: '"Press Start 2P", Arial', fontSize: "18px", color: "#ffffff", align: "center", lineSpacing: 15 }
-        ).setOrigin(0.5).setDepth(101);
+        // Ajuste de escala responsiva
+        const limiteLargura = this.scale.width * 0.8;
+        const limiteAltura = this.scale.height * 0.8;
+        const escalaX = limiteLargura / this.imgInstrucao.width;
+        const escalaY = limiteAltura / this.imgInstrucao.height;
+        this.imgInstrucao.setScale(Math.min(escalaX, escalaY));
 
-        const textoBotao = this.add.text(cx, cy + 180, "[ Clique para Comecar ]", {
-            fontFamily: '"Press Start 2P", Arial', fontSize: "15px", color: "#9be564"
-        }).setOrigin(0.5).setDepth(101);
+        // Texto pulsante
+        this.textoIniciar = this.add.text(cx, cy + (this.imgInstrucao.displayHeight / 2) + 40, "[ Clique ou aperte ESPAÇO para começar ]", {
+            fontFamily: '"Press Start 2P", Arial',
+            fontSize: "15px",
+            color: "#ffffff"
+        }).setOrigin(0.5).setDepth(201).setScrollFactor(0);
         
-        this.tweens.add({ targets: textoBotao, alpha: 0.5, duration: 600, yoyo: true, loop: -1 });
-
-        grupoInstrucoes.addMultiple([fundo, titulo, texto, textoBotao]);
-
-        fundo.on('pointerdown', () => {
-            grupoInstrucoes.destroy(true); 
-            this.iniciarMinigameAposInstrucoes();
+        this.tweens.add({
+            targets: this.textoIniciar, alpha: 0.5, duration: 600, yoyo: true, loop: -1
         });
+
+        const comecarJogo = () => {
+            this.fundoInstrucao.destroy();
+            this.imgInstrucao.destroy();
+            this.textoIniciar.destroy();
+            this.iniciarMinigameAposInstrucoes();
+        };
+
+        this.fundoInstrucao.on('pointerdown', comecarJogo);
+        this.imgInstrucao.on('pointerdown', comecarJogo);
+        this.input.keyboard.once('keydown-SPACE', comecarJogo);
     }
     
     iniciarMinigameAposInstrucoes() {
@@ -198,6 +228,9 @@ export class cenaCuidado extends Phaser.Scene {
         this.mostrarPopupInstrucaoPinca();
     }
 
+    // ==========================================
+    //           MECÂNICAS DO JOGO
+    // ==========================================
     mostrarPopupInstrucaoPinca() {
         const cx = this.scale.width / 2;
         const cy = this.scale.height / 2;
@@ -301,6 +334,9 @@ export class cenaCuidado extends Phaser.Scene {
         this.textoTempo.setText(`Tempo: ${segundos}s`);
     }
 
+    // ==========================================
+    //        FUNÇÕES DE TELA FINAL
+    // ==========================================
     finalizarMinigame() {
         if (this.minigameFinalizado) return;
         this.minigameFinalizado = true;

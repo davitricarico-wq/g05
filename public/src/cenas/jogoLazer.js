@@ -126,6 +126,17 @@ export class jogoLazer extends Phaser.Scene {
             
             this.textoPontos.setPosition(w - 30, 30);
             this.botaoVoltar.setPosition(60, 50);
+
+            // Resize das instruções, se estiverem abertas
+            if (this.fundoInstrucao && this.fundoInstrucao.active) {
+                this.fundoInstrucao.setPosition(w / 2, h / 2).setSize(w, h);
+                if (this.imgInstrucao && this.imgInstrucao.active) {
+                    this.imgInstrucao.setPosition(w / 2, h / 2);
+                    if (this.textoIniciar && this.textoIniciar.active) {
+                        this.textoIniciar.setPosition(w / 2, h / 2 + (this.imgInstrucao.displayHeight / 2) + 40);
+                    }
+                }
+            }
         };
 
         this.scale.on("resize", handleResizeLazer);
@@ -192,54 +203,49 @@ export class jogoLazer extends Phaser.Scene {
         const cx = this.scale.width / 2;
         const cy = this.scale.height / 2;
 
-        const grupoInstrucoes = this.add.group();
-
-        const fundo = this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.85)
-            .setDepth(100)
+        // Fundo escurecido
+        this.fundoInstrucao = this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.85)
+            .setDepth(200)
             .setScrollFactor(0)
             .setInteractive(); 
 
-        const titulo = this.add.text(cx, cy - 180, "COMO JOGAR", {
-            fontFamily: '"Press Start 2P", Arial', 
-            fontSize: "35px",
-            color: "#ffd166",
-            align: "center"
-        }).setOrigin(0.5).setDepth(101).setScrollFactor(0);
+        // Imagem de instrução
+        this.imgInstrucao = this.add.image(cx, cy, "comoJogarLazer")
+            .setDepth(201)
+            .setScrollFactor(0)
+            .setInteractive();
 
-        const texto = this.add.text(cx, cy, 
-            "Seta para CIMA ou ESPACO: Pular\n" +
-            "Seta para BAIXO: Abaixar\n\n" +
-            "Colete petiscos normais para pontuar.\n" +
-            "Evite os estragados (imagem diferente)!\n\n" +
-            "Pegue o Petiscao Dourado no\nfinal para vencer.", 
-        {
-            fontFamily: '"Press Start 2P", Arial', 
-            fontSize: "18px",
-            color: "#ffffff",
-            align: "center",
-            lineSpacing: 15
-        }).setOrigin(0.5).setDepth(101).setScrollFactor(0);
+        // Ajuste de escala responsiva
+        const limiteLargura = this.scale.width * 0.8;
+        const limiteAltura = this.scale.height * 0.8;
+        const escalaX = limiteLargura / this.imgInstrucao.width;
+        const escalaY = limiteAltura / this.imgInstrucao.height;
+        this.imgInstrucao.setScale(Math.min(escalaX, escalaY));
 
-        const textoBotao = this.add.text(cx, cy + 180, "[ Clique ou aperte ESPACO para Comecar ]", {
+        // Texto pulsante
+        this.textoIniciar = this.add.text(cx, cy + (this.imgInstrucao.displayHeight / 2) + 40, "[ Clique ou aperte ESPAÇO para começar ]", {
             fontFamily: '"Press Start 2P", Arial',
             fontSize: "15px",
-            color: "#9be564"
-        }).setOrigin(0.5).setDepth(101).setScrollFactor(0);
+            color: "#ffffff"
+        }).setOrigin(0.5).setDepth(201).setScrollFactor(0);
         
         this.tweens.add({
-            targets: textoBotao, alpha: 0.5, duration: 600, yoyo: true, loop: -1
+            targets: this.textoIniciar, alpha: 0.5, duration: 600, yoyo: true, loop: -1
         });
-
-        grupoInstrucoes.addMultiple([fundo, titulo, texto, textoBotao]);
 
         const iniciar = () => {
             if(!this.instrucoesLidas) {
-                grupoInstrucoes.destroy(true); 
+                this.fundoInstrucao.destroy();
+                this.imgInstrucao.destroy();
+                this.textoIniciar.destroy();
                 this.iniciarMinigameAposInstrucoes();
             }
         };
 
-        fundo.on('pointerdown', iniciar);
+        this.fundoInstrucao.on('pointerdown', iniciar);
+        this.imgInstrucao.on('pointerdown', iniciar);
+        
+        // Delay rápido para evitar que o clique na tela anterior acione o pulo das instruções sem querer
         this.time.delayedCall(200, () => {
             this.input.keyboard.once('keydown-SPACE', iniciar);
         });

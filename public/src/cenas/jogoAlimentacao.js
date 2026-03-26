@@ -14,6 +14,8 @@ export class jogoAlimentacao extends Phaser.Scene {
         this.intervaloSpawn = 1200;
         this.intervaloMinimoSpawn = 420;
         this.partidaEncerrada = false;
+        // Nova flag para pausar o jogo enquanto as instruções são exibidas
+        this.mostrandoInstrucoes = true; 
     }
 
     preload() {
@@ -90,19 +92,6 @@ export class jogoAlimentacao extends Phaser.Scene {
         this.teclaW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         this.teclaEspaco = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
-        this.criarEventoSpawn();
-
-        this.eventoDificuldade = this.time.addEvent({
-            delay: 8000,
-            loop: true,
-            callback: () => {
-                if (this.partidaEncerrada) return;
-                this.velocidadeQueda = Math.min(this.velocidadeQueda + 30, 700);
-                this.intervaloSpawn = Math.max(this.intervaloSpawn - 90, this.intervaloMinimoSpawn);
-                this.criarEventoSpawn();
-            }
-        });
-
         // >>> Listener de resize <<<
         const handleResizeAlimentacao = (gameSize) => {
             this.larguraTela = gameSize.width;
@@ -121,6 +110,17 @@ export class jogoAlimentacao extends Phaser.Scene {
 
             this.botaoVoltar.setPosition(60, 50);
             this.physics.world.setBounds(0, 0, this.larguraTela, this.alturaTela);
+            
+            // Resize das instruções, se estiverem abertas
+            if (this.fundoInstrucao && this.fundoInstrucao.active) {
+                this.fundoInstrucao.setPosition(this.larguraTela / 2, this.alturaTela / 2).setSize(this.larguraTela, this.alturaTela);
+                if (this.imgInstrucao && this.imgInstrucao.active) {
+                    this.imgInstrucao.setPosition(this.larguraTela / 2, this.alturaTela / 2);
+                    if (this.textoIniciar && this.textoIniciar.active) {
+                        this.textoIniciar.setPosition(this.larguraTela / 2, this.alturaTela / 2 + (this.imgInstrucao.displayHeight / 2) + 40);
+                    }
+                }
+            }
         };
 
         this.scale.on("resize", handleResizeAlimentacao);
@@ -129,10 +129,14 @@ export class jogoAlimentacao extends Phaser.Scene {
             this.scale.off("resize", handleResizeAlimentacao);
             this.input.keyboard.removeListener('keydown-SPACE'); 
         });
+
+        // Chama a tela de como jogar em vez de iniciar o jogo direto
+        this.mostrarComoJogar();
     }
 
     update() {
-        if (this.partidaEncerrada) return;
+        // Bloqueia a movimentação e física se a partida encerrou ou se está nas instruções
+        if (this.partidaEncerrada || this.mostrandoInstrucoes) return;
 
         // Lógica de Pulo e colisão com o chão
         if (this.jogador.y >= this.chaoY) {
@@ -173,6 +177,77 @@ export class jogoAlimentacao extends Phaser.Scene {
         });
     }
 
+    // ==========================================
+    //       FUNÇÕES DE INÍCIO / INSTRUÇÕES
+    // ==========================================
+    mostrarComoJogar() {
+        const cx = this.larguraTela / 2;
+        const cy = this.alturaTela / 2;
+
+        // Fundo escurecido
+        this.fundoInstrucao = this.add.rectangle(cx, cy, this.larguraTela, this.alturaTela, 0x000000, 0.8)
+            .setDepth(200)
+            .setScrollFactor(0)
+            .setInteractive(); 
+
+        // Imagem de instrução
+        this.imgInstrucao = this.add.image(cx, cy, "comoJogarRacao")
+            .setDepth(201)
+            .setScrollFactor(0)
+            .setInteractive();
+
+        // Ajuste de escala responsiva
+        const limiteLargura = this.larguraTela * 0.8;
+        const limiteAltura = this.alturaTela * 0.8;
+        const escalaX = limiteLargura / this.imgInstrucao.width;
+        const escalaY = limiteAltura / this.imgInstrucao.height;
+        this.imgInstrucao.setScale(Math.min(escalaX, escalaY));
+
+        // Texto pulsante
+        this.textoIniciar = this.add.text(cx, cy + (this.imgInstrucao.displayHeight / 2) + 40, "[ Clique ou aperte ESPAÇO para começar ]", {
+            fontFamily: '"Press Start 2P", Arial',
+            fontSize: "15px",
+            color: "#ffffff"
+        }).setOrigin(0.5).setDepth(201).setScrollFactor(0);
+        
+        this.tweens.add({
+            targets: this.textoIniciar, alpha: 0.5, duration: 600, yoyo: true, loop: -1
+        });
+
+        const comecarJogo = () => {
+            this.fundoInstrucao.destroy();
+            this.imgInstrucao.destroy();
+            this.textoIniciar.destroy();
+            this.iniciarPartida();
+        };
+
+        this.fundoInstrucao.on('pointerdown', comecarJogo);
+        this.imgInstrucao.on('pointerdown', comecarJogo);
+        this.input.keyboard.once('keydown-SPACE', comecarJogo);
+    }
+
+    iniciarPartida() {
+        this.mostrandoInstrucoes = false; // Libera o jogador no update()
+
+        // Inicia a chuva de ração
+        this.criarEventoSpawn();
+
+        // Inicia o aumento de dificuldade
+        this.eventoDificuldade = this.time.addEvent({
+            delay: 8000,
+            loop: true,
+            callback: () => {
+                if (this.partidaEncerrada) return;
+                this.velocidadeQueda = Math.min(this.velocidadeQueda + 30, 700);
+                this.intervaloSpawn = Math.max(this.intervaloSpawn - 90, this.intervaloMinimoSpawn);
+                this.criarEventoSpawn();
+            }
+        });
+    }
+
+    // ==========================================
+    //           MECÂNICAS DO JOGO
+    // ==========================================
     criarEventoSpawn() {
         if (this.eventoSpawn) {
             this.eventoSpawn.remove(false);
@@ -186,7 +261,7 @@ export class jogoAlimentacao extends Phaser.Scene {
     }
 
     spawnarItem() {
-        if (this.partidaEncerrada) return;
+        if (this.partidaEncerrada || this.mostrandoInstrucoes) return;
 
         const tipoSorteado = this.sortearTipoItem();
         const x = Phaser.Math.Between(40, this.larguraTela - 40);
@@ -268,9 +343,8 @@ export class jogoAlimentacao extends Phaser.Scene {
     }
 
     // ==========================================
-    //       FUNÇÕES DE TELA FINAL
+    //        FUNÇÕES DE TELA FINAL
     // ==========================================
-
     finalizarMinigame() {
         if (this.partidaEncerrada) return;
         this.partidaEncerrada = true;
