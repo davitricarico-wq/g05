@@ -300,6 +300,12 @@ export class cenaRacaoSuperPremium extends Phaser.Scene {
             });
         });
 
+        // --- CHAMA O POPUP DE INSTRUÇÃO ---
+        if (!gameState.instrucaoDescricaoRacaoVista) {
+            this.mostrarInstrucaoDescricaoRacao(largura, altura);
+        }
+        // ----------------------------------
+
         // ==========================================
         // RESIZE: REPOSICIONAMENTO E ATUALIZAÇÃO TOTAL DAS ESCALAS
         // ==========================================
@@ -379,12 +385,75 @@ export class cenaRacaoSuperPremium extends Phaser.Scene {
                     index++;
                 }
             }
+
+            // Ajusta o popup de instrução se estiver aberto
+            if (this.fundoEscuroInstrucao && this.fundoEscuroInstrucao.active) {
+                this.fundoEscuroInstrucao.setSize(w, h);
+                this.fundoEscuroInstrucao.setPosition(w / 2, h / 2);
+                
+                if (this.imgInstrucao && this.imgInstrucao.active) {
+                    this.imgInstrucao.setPosition(w / 2, h / 2);
+                    
+                    if (this.txtContinuarInstrucao && this.txtContinuarInstrucao.active) {
+                        const novoPosicaoTextoY = (h / 2) + (this.imgInstrucao.displayHeight / 2) + 30;
+                        this.txtContinuarInstrucao.setPosition(w / 2, novoPosicaoTextoY);
+                    }
+                }
+            }
         };
 
         this.scale.on("resize", handleResizeRacaoSuperPremium);
 
         this.events.on('shutdown', () => {
             this.scale.off("resize", handleResizeRacaoSuperPremium);
+        });
+    }
+
+    // --- FUNÇÃO PARA MOSTRAR INSTRUÇÃO DA DESCRIÇÃO DA RAÇÃO ---
+    mostrarInstrucaoDescricaoRacao(largura, altura) {
+        const centroX = largura / 2;
+        const centroY = altura / 2;
+
+        // Fundo semi-transparente
+        this.fundoEscuroInstrucao = this.add.rectangle(centroX, centroY, largura, altura, 0x000000, 0.7)
+            .setDepth(1000)
+            .setInteractive(); 
+
+        // Imagem de instrução (usando o asset "instrucaoDescricaoRacao")
+        this.imgInstrucao = this.add.image(centroX, centroY, "instrucaoDescricaoRacao")
+            .setDepth(1001)
+            .setScale(0.5); // Ajuste a escala conforme necessário dependendo do tamanho real da imagem
+
+        // Texto piscante para continuar
+        const posicaoTextoY = centroY + (this.imgInstrucao.displayHeight / 2) + 30;
+
+        this.txtContinuarInstrucao = this.add.text(centroX, posicaoTextoY, "[ Clique para continuar ]", {
+            fontFamily: '"Press Start 2P", Arial',
+            fontSize: "15px",
+            color: "#ffffff",
+            stroke: "#000000",
+            strokeThickness: 4
+        }).setOrigin(0.5).setDepth(1001);
+
+        this.tweens.add({
+            targets: this.txtContinuarInstrucao, 
+            alpha: 0.4, 
+            duration: 800, 
+            yoyo: true, 
+            loop: -1
+        });
+
+        // Evento de clique para fechar a instrução
+        this.fundoEscuroInstrucao.on("pointerdown", () => {
+            this.fundoEscuroInstrucao.destroy();
+            this.imgInstrucao.destroy();
+            this.txtContinuarInstrucao.destroy();
+            
+            this.fundoEscuroInstrucao = null;
+            this.imgInstrucao = null;
+            this.txtContinuarInstrucao = null;
+            
+            gameState.instrucaoDescricaoRacaoVista = true; // Salva para não abrir novamente no reload da cena
         });
     }
 
