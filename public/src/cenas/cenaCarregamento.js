@@ -47,11 +47,14 @@ export class cenaCarregamento extends Phaser.Scene {
         this.load.image("cobasiCoin", "assets/moeda.png"); 
 
         
+        
+
+        
         // Tela de Cuidado
         this.load.image("bgCuidado", "assets/tela-cuidado/bgCuidado.png");
         this.load.image("pulga1", "assets/tela-cuidado/pulga1.png");
         this.load.image("bandeja", "assets/tela-cuidado/bandeja.png");
-
+        this.load.image("bgCuidadoHeroi", "assets/bgCuidadoHeroi.png");
 
         // Cenas de gameplay
         this.load.image("bgRacao", "assets/tela-alimentacao/bgRacao.png");
@@ -142,7 +145,7 @@ export class cenaCarregamento extends Phaser.Scene {
         this.load.image("comoJogarLazer", "assets/Feedback/comoJogarLazer.png");
         this.load.image("comoJogarPulgas", "assets/Feedback/comoJogarPulgas.png");
         this.load.image("comoJogarRacao", "assets/Feedback/comoJogarRacao.png");
-
+        this.load.image("bgCuidadoHeroi", "assets/bgCuidadoHeroi.png");
         // Áudio
         this.load.audio("musicaMenuPrincipal", "assets/Sons/menu-principal.m4a");
         this.load.audio("musica", "assets/Sons/menu-principal.m4a");
@@ -165,9 +168,13 @@ export class cenaCarregamento extends Phaser.Scene {
             frameWidth: 480,
             frameHeight: 480
         });
-            this.load.spritesheet("cachorroCorrendo", "assets/tela-lazer/cachorroCorrendo.png", {
+        this.load.spritesheet("cachorroCorrendo", "assets/tela-lazer/cachorroCorrendo.png", {
             frameWidth: 445,
             frameHeight: 280 
+        });
+        this.load.spritesheet("cachorroHeroiCorrendo", "assets/cachorroHeroiCorrendo.png", {
+            frameWidth: 640,
+            frameHeight: 402 
         });
 
 

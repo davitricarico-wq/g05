@@ -64,7 +64,10 @@ export class jogoLazer extends Phaser.Scene {
         this.cameras.main.setBounds(0, 0, 8000, altura);
 
         // ---------------- CACHORRO (JOGADOR) ----------------
-        this.cachorro = this.physics.add.sprite(largura * 0.15, alturaDoChao - 200, 'cachorroCorrendo');
+        // Define qual sprite usar baseado no gameState
+        const spriteCorrendo = gameState.pets.cachorroHeroi ? 'cachorroHeroiCorrendo' : 'cachorroCorrendo'; 
+
+        this.cachorro = this.physics.add.sprite(largura * 0.15, alturaDoChao - 200, spriteCorrendo);
         this.cachorro.setCollideWorldBounds(true);
         this.cachorro.setScale(0.5); 
         this.cachorro.setDepth(10); 
@@ -75,10 +78,15 @@ export class jogoLazer extends Phaser.Scene {
         this.cachorro.body.setSize(dogW * 0.7, dogH * 0.5);
         this.cachorro.body.setOffset(dogW * 0.15, dogH * 0.5);
 
-        // Animação de corrida
+        // Remove a animação 'correr' anterior se existir (evita erro ao reiniciar a cena com outro cachorro)
+        if (this.anims.exists('correr')) {
+            this.anims.remove('correr');
+        }
+
+        // Animação de corrida (agora usa a variável spriteCorrendo)
         this.anims.create({
             key: 'correr',
-            frames: this.anims.generateFrameNumbers('cachorroCorrendo', { start: 0, end: 1 }),
+            frames: this.anims.generateFrameNumbers(spriteCorrendo, { start: 0, end: 1 }),
             frameRate: 7, 
             repeat: -1 
         });

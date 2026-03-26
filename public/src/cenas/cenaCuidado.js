@@ -27,8 +27,11 @@ export class cenaCuidado extends Phaser.Scene {
         const largura = this.scale.width;
         const altura = this.scale.height;
 
+        // --- MUDANÇA AQUI: Define o background com base no cachorro ativo ---
+        const bgAtivo = gameState.pets.cachorroHeroi ? "bgCuidadoHeroi" : "bgCuidado";
+
         // Fundo
-        this.fundo = this.add.image(largura / 2, altura / 2, "bgCuidado")
+        this.fundo = this.add.image(largura / 2, altura / 2, bgAtivo)
             .setDisplaySize(largura, altura);
 
         this.garantirTexturaPinca();
@@ -229,7 +232,7 @@ export class cenaCuidado extends Phaser.Scene {
     }
 
     // ==========================================
-    //           MECÂNICAS DO JOGO
+    //          MECÂNICAS DO JOGO
     // ==========================================
     mostrarPopupInstrucaoPinca() {
         const cx = this.scale.width / 2;
