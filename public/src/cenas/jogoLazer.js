@@ -3,14 +3,19 @@ import { gameState } from "../main.js"; // Ajuste os '../' se o caminho for dife
 export class jogoLazer extends Phaser.Scene {
     constructor() {
         super({ key: "jogoLazer" });
-        this.pontos = 0; 
-        this.instrucoesLidas = false; // Variável de controle do tutorial
     }
 
     /**
-     * Método de inicialização. Chamado uma vez quando a cena começa.
-     * Configura física, cenário, jogador, controles e colisões.
+     * O init() é executado TODA VEZ que a cena é (re)iniciada.
+     * É o lugar certo para resetar variáveis de pontuação e estado!
      */
+    init() {
+        this.pontos = 0; 
+        this.instrucoesLidas = false;
+        this.jogoAcabou = false;
+        this.minigameFinalizado = false;
+    }
+
     create() {
         // Para garantir que a HUD não fique ativa ao iniciar
         this.scene.stop("HUD");
@@ -127,6 +132,7 @@ export class jogoLazer extends Phaser.Scene {
 
         this.events.on('shutdown', () => {
             this.scale.off("resize", handleResizeLazer);
+            this.input.keyboard.removeListener('keydown-SPACE'); 
         });
         
         this.scene.stop("HUD");
@@ -137,11 +143,7 @@ export class jogoLazer extends Phaser.Scene {
         this.cachorro.anims.pause();
     }
 
-    /**
-     * Loop principal do jogo. Executado a cada frame.
-     */
     update() {
-        // Trava o update se as instruções não foram lidas ou se o jogo acabou
         if (!this.instrucoesLidas || this.jogoAcabou) return; 
 
         // --- VERIFICA SE PASSOU DIRETO PELO PETISCÃO (DERROTA) ---
@@ -159,8 +161,10 @@ export class jogoLazer extends Phaser.Scene {
 
         const noChao = this.cachorro.body.blocked.down || this.cachorro.body.touching.down;
 
-        // --- CONTROLES ---
-        if (this.teclado.up.isDown) {
+        // --- CONTROLES (Agora com a tecla Espaço!) ---
+        const querPular = this.teclado.up.isDown || Phaser.Input.Keyboard.JustDown(this.teclaSpace);
+        
+        if (querPular) {
             this.pular();
         } else if (this.teclado.down.isDown) {
             this.abaixar(noChao);
@@ -182,7 +186,7 @@ export class jogoLazer extends Phaser.Scene {
     }
 
     // ========================================================
-    //                 TUTORIAL / INSTRUÇÕES
+    //                  TUTORIAL / INSTRUÇÕES
     // ========================================================
     mostrarInstrucoes() {
         const cx = this.scale.width / 2;
@@ -203,7 +207,7 @@ export class jogoLazer extends Phaser.Scene {
         }).setOrigin(0.5).setDepth(101).setScrollFactor(0);
 
         const texto = this.add.text(cx, cy, 
-            "Seta para CIMA: Pular\n" +
+            "Seta para CIMA ou ESPACO: Pular\n" +
             "Seta para BAIXO: Abaixar\n\n" +
             "Colete petiscos normais para pontuar.\n" +
             "Evite os estragados (imagem diferente)!\n\n" +
@@ -216,7 +220,7 @@ export class jogoLazer extends Phaser.Scene {
             lineSpacing: 15
         }).setOrigin(0.5).setDepth(101).setScrollFactor(0);
 
-        const textoBotao = this.add.text(cx, cy + 180, "[ Clique para Comecar ]", {
+        const textoBotao = this.add.text(cx, cy + 180, "[ Clique ou aperte ESPACO para Comecar ]", {
             fontFamily: '"Press Start 2P", Arial',
             fontSize: "15px",
             color: "#9be564"
@@ -228,9 +232,16 @@ export class jogoLazer extends Phaser.Scene {
 
         grupoInstrucoes.addMultiple([fundo, titulo, texto, textoBotao]);
 
-        fundo.on('pointerdown', () => {
-            grupoInstrucoes.destroy(true); 
-            this.iniciarMinigameAposInstrucoes();
+        const iniciar = () => {
+            if(!this.instrucoesLidas) {
+                grupoInstrucoes.destroy(true); 
+                this.iniciarMinigameAposInstrucoes();
+            }
+        };
+
+        fundo.on('pointerdown', iniciar);
+        this.time.delayedCall(200, () => {
+            this.input.keyboard.once('keydown-SPACE', iniciar);
         });
     }
 
@@ -328,7 +339,6 @@ export class jogoLazer extends Phaser.Scene {
         petisco.disableBody(true, true); 
         
         if (petisco.isEstragado) {
-            // Perde ponto se pegar petisco verde
             this.pontos = Math.max(0, this.pontos - 1);
             this.textoPontos.setText('Petiscos: ' + this.pontos);
             
@@ -338,7 +348,6 @@ export class jogoLazer extends Phaser.Scene {
             });
 
         } else {
-            // Ganha ponto se pegar petisco normal/super
             this.pontos += 1;
             this.textoPontos.setText('Petiscos: ' + this.pontos);
             
@@ -392,13 +401,8 @@ export class jogoLazer extends Phaser.Scene {
             gameState.recompensas.lazer[cachorroAtivo] = true;
         }
 
-        // Pega o valor atual do lazer (se não existir, assume 11 que é a barra vazia)
         let lazerAtual = gameState.barras.lazer !== undefined ? gameState.barras.lazer : 11;
-        
-        // Subtrai do lazer (pois quanto mais próximo de 0, mais cheia está a barra)
         let novoLazer = lazerAtual - reducaoLazer;
-        
-        // Garante que a barra não passe do 0 (cheia) nem do 11 (vazia)
         gameState.barras.lazer = Phaser.Math.Clamp(novoLazer, 0, 11); 
 
         // --- LÓGICA DA TELA DE FEEDBACK ---
@@ -406,7 +410,7 @@ export class jogoLazer extends Phaser.Scene {
         let imagemFeedback = "";
         
         if (estrelas === 3) {
-            imagemFeedback = "feeedback3estrelas"; // Atenção à escrita com três 'e'
+            imagemFeedback = "feeedback3estrelas"; 
         } else if (estrelas === 2) {
             imagemFeedback = "feedback2estrelas";
         } else {
@@ -416,35 +420,26 @@ export class jogoLazer extends Phaser.Scene {
         const cx = this.scale.width / 2;
         const cy = this.scale.height / 2;
 
-        // Fundo escurecido atrás do feedback
         const fundoFeedback = this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.8)
             .setDepth(100)
             .setScrollFactor(0)
             .setInteractive(); 
 
-        // Imagem principal de feedback
         const telaFeedback = this.add.image(cx, cy, imagemFeedback)
             .setDepth(101)
             .setScrollFactor(0)
             .setInteractive();
 
-        // --- AJUSTE DE TAMANHO DA IMAGEM ---
-        // Pega 80% da largura e altura totais da tela como limite
         const limiteLargura = this.scale.width * 0.8;
         const limiteAltura = this.scale.height * 0.8;
 
-        // Descobre o quanto precisa encolher em X e em Y baseando-se no tamanho original da imagem
         const escalaX = limiteLargura / telaFeedback.width;
         const escalaY = limiteAltura / telaFeedback.height;
 
-        // Usa a menor escala entre as duas para garantir que a imagem caiba inteira sem distorcer
         const escalaFinal = Math.min(escalaX, escalaY);
         telaFeedback.setScale(escalaFinal);
-        // ------------------------------------
 
-        // Texto piscante para orientar o jogador a clicar
-        // Calculamos a posição Y baseando-se no novo displayHeight da imagem escalada
-        const textoContinuar = this.add.text(cx, cy + (telaFeedback.displayHeight / 2) + 40, "[ Clique para continuar ]", {
+        const textoContinuar = this.add.text(cx, cy + (telaFeedback.displayHeight / 2) + 40, "[ Clique ou aperte ESPACO para continuar ]", {
             fontFamily: '"Press Start 2P", Arial',
             fontSize: "15px",
             color: "#ffffff"
@@ -454,13 +449,15 @@ export class jogoLazer extends Phaser.Scene {
             targets: textoContinuar, alpha: 0.5, duration: 600, yoyo: true, loop: -1
         });
 
-        // Quando o jogador clicar na tela, retorna para a cena de menu do minigame
-        fundoFeedback.on('pointerdown', () => {
+        const voltarParaMenu = () => {
             this.scene.start("cenaLazer");
-        });
+        };
 
-        telaFeedback.on('pointerdown', () => {
-            this.scene.start("cenaLazer");
+        fundoFeedback.on('pointerdown', voltarParaMenu);
+        telaFeedback.on('pointerdown', voltarParaMenu);
+
+        this.time.delayedCall(200, () => {
+            this.input.keyboard.once('keydown-SPACE', voltarParaMenu);
         });
 
     }
@@ -478,10 +475,8 @@ export class jogoLazer extends Phaser.Scene {
     }
 
     calcularLazer(estrelas) {
-        // Define o quanto vamos SUBTRAIR da barra baseada nas estrelas
-        // Como a barra começa no 11 (vazia) e vai pro 0 (cheia):
-        if (estrelas === 3) return 11; // -11: Enche a barra inteira de uma vez
-        if (estrelas === 2) return 5;  // -5:  Se tava 11, vai pro 6
-        return 2;                      // -2:  Se tava 11, vai pro 9
+        if (estrelas === 3) return 11;
+        if (estrelas === 2) return 5;  
+        return 2;                      
     }
 }
