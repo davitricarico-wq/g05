@@ -33,7 +33,7 @@ export class cenaCarregamento extends Phaser.Scene {
         this.load.image("iconeSujeira", "assets/Icones/iconeSujeira.png");
 
         // Spritesheet da barra de status
-        this.load.spritesheet("barra", "assets/Icones/BarraStatus.png", {
+        this.load.spritesheet("barra", "assets/Icones/barraStatus.png", {
             frameWidth: 144,
             frameHeight: 32
         });
