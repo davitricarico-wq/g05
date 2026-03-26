@@ -310,9 +310,13 @@ export class cenaCuidado extends Phaser.Scene {
         const estrelas = this.calcularEstrelas(segundos);
         const moedas = this.calcularMoedas(estrelas);
 
+        const cachorroAtivo = gameState.pets.cachorroHeroi ? 'heroi' : 'caramelo';
+        if (!gameState.recompensas.cuidado[cachorroAtivo]) {
+            gameState.cobasiCoins += moedas;
+            gameState.recompensas.cuidado[cachorroAtivo] = true;
+        }
+
         gameState.pulga = false;
-        gameState.cobasiCoins += moedas;
-        
         this.mostrarPainelResultado(estrelas, moedas, segundos);
     }
 
@@ -360,7 +364,7 @@ export class cenaCuidado extends Phaser.Scene {
         
         this.tweens.add({ targets: textoContinuar, alpha: 0.5, duration: 600, yoyo: true, loop: -1 });
 
-        // Eventos de clique para voltar
+        // Eventos de clique para retornar à cena de veterinário
         const fecharPainel = () => { this.scene.start("cenaVeterinario"); };
         fundoFeedback.on('pointerdown', fecharPainel);
         telaFeedback.setInteractive().on('pointerdown', fecharPainel);

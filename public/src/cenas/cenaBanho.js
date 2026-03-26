@@ -296,11 +296,12 @@ export class cenaBanho extends Phaser.Scene {
                 this.animarCachorro(); 
                 this.criarExplosaoBrilhos(); 
 
-                gameState.barras.limpeza = 0; 
+                gameState.barras.limpeza = Phaser.Math.Clamp(gameState.barras.limpeza - 11, 0, 11); 
                 
-                if (!gameState.recompensas.banho) { 
+                const cachorroAtivo = gameState.pets.cachorroHeroi ? 'heroi' : 'caramelo';
+                if (!gameState.recompensas.banho[cachorroAtivo]) { 
                     gameState.cobasiCoins += 20; 
-                    gameState.recompensas.banho = true; 
+                    gameState.recompensas.banho[cachorroAtivo] = true; 
                     this.mostrarTextoFlutuante("+20 Moedas!", this.containerCachorro.x, this.containerCachorro.y - 100, "#ffd700");
                 }
 

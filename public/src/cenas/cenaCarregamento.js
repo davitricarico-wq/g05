@@ -75,6 +75,7 @@ export class cenaCarregamento extends Phaser.Scene {
         this.load.image("bgLazer", "assets/tela-lazer/bgLazer.png");
         this.load.image("camaElastica", "assets/tela-lazer/camaElastica.png");
 
+        this.load.image("cachorroHeroiBoca", "assets/cachorroHeroiBoca.png")
 
         // Tela de storytelling/tutorial
         this.load.image("tutorial1", "assets/tutorial1.png");

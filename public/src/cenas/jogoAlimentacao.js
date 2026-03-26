@@ -5,6 +5,17 @@ export class jogoAlimentacao extends Phaser.Scene {
         super({ key: 'jogoAlimentacao' });
     }
 
+    // O método init() garante que variáveis reiniciem corretamente a cada partida
+    init() {
+        this.pontuacao = 0;
+        this.vidas = 3;
+        this.vidasMaximas = 3;
+        this.velocidadeQueda = 220;
+        this.intervaloSpawn = 1200;
+        this.intervaloMinimoSpawn = 420;
+        this.partidaEncerrada = false;
+    }
+
     preload() {
         this.load.image('bgFoodScene', 'assets/tela-alimentação/bgRacao.png');
         this.load.image('dogPlayer', 'assets/dogPlayer.png');
@@ -40,21 +51,15 @@ export class jogoAlimentacao extends Phaser.Scene {
         this.alturaTela = this.scale.height;
         this.chaoY = this.alturaTela - 90;
 
-        this.pontuacao = 0;
-        this.vidas = 3;
-        this.vidasMaximas = 3;
-        this.velocidadeQueda = 220;
-        this.intervaloSpawn = 1200;
-        this.intervaloMinimoSpawn = 420;
-        this.partidaEncerrada = false;
-
         this.fundo = this.add.image(this.larguraTela / 2, this.alturaTela / 2, 'bgFoodScene')
             .setDisplaySize(this.larguraTela, this.alturaTela)
             .setDepth(-1);
 
-        this.jogador = this.physics.add.sprite(this.larguraTela / 2, this.chaoY, 'dogPlayer');
+        // Configuração do Jogador com gravidade ativada para o pulo
+        this.jogador = this.physics.add.sprite(this.larguraTela / 2, this.chaoY, gameState.pets.cachorroHeroi ? 'cachorroHeroiBoca' : 'dogPlayer');
         this.jogador.setCollideWorldBounds(true);
-        this.jogador.body.allowGravity = false;
+        this.jogador.body.allowGravity = true;
+        this.jogador.setGravityY(1200); // Força da gravidade puxando para baixo
         this.jogador.setScale(0.15);
         this.velocidadeJogador = 560;
 
@@ -63,7 +68,7 @@ export class jogoAlimentacao extends Phaser.Scene {
         this.itensComida = this.physics.add.group();
         this.physics.add.overlap(this.jogador, this.itensComida, this.coletarItem, null, this);
 
-        this.textoPontuacao = this.add.text (100, 45, 'Pontuacao: 0', {
+        this.textoPontuacao = this.add.text(100, 45, 'Pontuacao: 0', {
             fontFamily: '"Press Start 2P"',
             fontSize: "18px",
             color: '#1f1f1f'
@@ -78,9 +83,12 @@ export class jogoAlimentacao extends Phaser.Scene {
         }
         this.atualizarHUDVidas();
 
+        // Controles
         this.cursors = this.input.keyboard.createCursorKeys();
         this.teclaA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
         this.teclaD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+        this.teclaW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+        this.teclaEspaco = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
         this.criarEventoSpawn();
 
@@ -119,15 +127,32 @@ export class jogoAlimentacao extends Phaser.Scene {
 
         this.events.on('shutdown', () => {
             this.scale.off("resize", handleResizeAlimentacao);
+            this.input.keyboard.removeListener('keydown-SPACE'); 
         });
     }
 
     update() {
         if (this.partidaEncerrada) return;
 
-        //this.jogador.y = this.chaoY;
-        this.jogador.body.velocity.y = 0;
+        // Lógica de Pulo e colisão com o chão
+        if (this.jogador.y >= this.chaoY) {
+            this.jogador.y = this.chaoY; 
+            
+            if (this.jogador.body.velocity.y > 0) {
+                this.jogador.setVelocityY(0);
+            }
 
+            // Permite pular com Espaço, W ou Seta para Cima
+            const querPular = Phaser.Input.Keyboard.JustDown(this.teclaEspaco) || 
+                              Phaser.Input.Keyboard.JustDown(this.teclaW) || 
+                              Phaser.Input.Keyboard.JustDown(this.cursors.up);
+
+            if (querPular) {
+                this.jogador.setVelocityY(-650); // Força do pulo
+            }
+        }
+
+        // Lógica de movimentação horizontal
         const indoEsquerda = this.cursors.left.isDown || this.teclaA.isDown;
         const indoDireita = this.cursors.right.isDown || this.teclaD.isDown;
 
@@ -209,13 +234,11 @@ export class jogoAlimentacao extends Phaser.Scene {
         this.atualizarHUDPontuacao();
         item.destroy();
 
-        // ✅ Verificação de vitória (mudado para a nova lógica)
         if (this.pontuacao >= 150) {
             this.finalizarMinigame();
         }
     }
 
-    // Trata item perdido (quando cai fora da tela)
     tratarItemPerdido(item) {
         const penalidade = item.getData('penalidade');
         if (penalidade > 0) {
@@ -225,22 +248,19 @@ export class jogoAlimentacao extends Phaser.Scene {
         item.destroy();
     }
 
-    // Altera vidas do jogador (cura ou dano)
     alterarVidas(valor) {
         this.vidas = Phaser.Math.Clamp(this.vidas + valor, 0, this.vidasMaximas);
         this.atualizarHUDVidas();
 
         if (this.vidas <= 0) {
-            this.encerrarPartida(); // Se vidas acabarem → game over
+            this.encerrarPartida();
         }
     }
 
-    // Atualiza HUD de pontuação
     atualizarHUDPontuacao() {
         this.textoPontuacao.setText('Pontuacao: ' + this.pontuacao);
     }
 
-    // Atualiza HUD de vidas (mostra corações ativos)
     atualizarHUDVidas() {
         this.iconesVida.forEach((icone, index) => {
             icone.setVisible(index < this.vidas);
@@ -248,7 +268,7 @@ export class jogoAlimentacao extends Phaser.Scene {
     }
 
     // ==========================================
-    //       NOVAS FUNÇÕES DE TELA FINAL
+    //       FUNÇÕES DE TELA FINAL
     // ==========================================
 
     finalizarMinigame() {
@@ -256,19 +276,19 @@ export class jogoAlimentacao extends Phaser.Scene {
         this.partidaEncerrada = true;
         this.jogador.setVelocityX(0);
 
-        // Remove os eventos de cair comida
         if (this.eventoSpawn) this.eventoSpawn.remove(false);
         if (this.eventoDificuldade) this.eventoDificuldade.remove(false);
 
-        // Limpa a tela das comidas que ainda estavam caindo
         this.itensComida.clear(true, true);
 
-        // Calcula recompensas
         const estrelas = this.calcularEstrelas(this.vidas);
         const moedas = this.calcularMoedas(estrelas);
 
-        // Atualiza variáveis globais
-        gameState.cobasiCoins += moedas;
+        const cachorroAtivo = gameState.pets.cachorroHeroi ? 'heroi' : 'caramelo';
+        if (!gameState.recompensas.alimentacao[cachorroAtivo]) {
+            gameState.cobasiCoins += moedas;
+            gameState.recompensas.alimentacao[cachorroAtivo] = true;
+        }
         gameState.barras.comida = Phaser.Math.Clamp(gameState.barras.comida - 11, 0, 11);
 
         this.mostrarPainelResultado(estrelas);
@@ -290,7 +310,7 @@ export class jogoAlimentacao extends Phaser.Scene {
         let imagemFeedback = "";
         
         if (estrelas === 3) {
-            imagemFeedback = "feeedback3estrelas"; // Atenção à escrita com três 'e'
+            imagemFeedback = "feeedback3estrelas"; 
         } else if (estrelas === 2) {
             imagemFeedback = "feedback2estrelas";
         } else {
@@ -300,19 +320,16 @@ export class jogoAlimentacao extends Phaser.Scene {
         const cx = this.larguraTela / 2;
         const cy = this.alturaTela / 2;
 
-        // Fundo escurecido atrás do feedback
         const fundoFeedback = this.add.rectangle(cx, cy, this.larguraTela, this.alturaTela, 0x000000, 0.8)
             .setDepth(100)
             .setScrollFactor(0)
             .setInteractive(); 
 
-        // Imagem principal de feedback
         const telaFeedback = this.add.image(cx, cy, imagemFeedback)
             .setDepth(101)
             .setScrollFactor(0)
             .setInteractive();
 
-        // Ajuste de tamanho da imagem para 80% da tela
         const limiteLargura = this.larguraTela * 0.8;
         const limiteAltura = this.alturaTela * 0.8;
 
@@ -322,8 +339,7 @@ export class jogoAlimentacao extends Phaser.Scene {
         const escalaFinal = Math.min(escalaX, escalaY);
         telaFeedback.setScale(escalaFinal);
 
-        // Texto piscante para orientar o jogador a clicar
-        const textoContinuar = this.add.text(cx, cy + (telaFeedback.displayHeight / 2) + 40, "[ Clique para continuar ]", {
+        const textoContinuar = this.add.text(cx, cy + (telaFeedback.displayHeight / 2) + 40, "[ Pressione ESPAÇO ou Clique ]", {
             fontFamily: '"Press Start 2P", Arial',
             fontSize: "15px",
             color: "#ffffff"
@@ -333,39 +349,29 @@ export class jogoAlimentacao extends Phaser.Scene {
             targets: textoContinuar, alpha: 0.5, duration: 600, yoyo: true, loop: -1
         });
 
-        // Quando o jogador clicar na tela, ele volta pra cenaComida
-        fundoFeedback.on('pointerdown', () => {
-            this.scene.start("cenaComida"); 
-        });
+        const voltarCena = () => {
+            this.scene.start("cenaComida");
+        };
 
-        telaFeedback.on('pointerdown', () => {
-            this.scene.start("cenaComida"); 
+        fundoFeedback.on('pointerdown', voltarCena);
+        telaFeedback.on('pointerdown', voltarCena);
+
+        this.time.delayedCall(200, () => {
+            this.input.keyboard.once('keydown-SPACE', voltarCena);
         });
     }
 
-    // ==========================================
-
-    // Encerramento da partida (Game Over / Perdeu)
     encerrarPartida() {
-        if (this.partidaEncerrada) {
-            return;
-        }
+        if (this.partidaEncerrada) return;
 
         this.partidaEncerrada = true;
         this.jogador.setVelocityX(0);
 
-        // Remove eventos ativos
-        if (this.eventoSpawn) {
-            this.eventoSpawn.remove(false);
-        }
-        if (this.eventoDificuldade) {
-            this.eventoDificuldade.remove(false);
-        }
+        if (this.eventoSpawn) this.eventoSpawn.remove(false);
+        if (this.eventoDificuldade) this.eventoDificuldade.remove(false);
 
-        // Limpa itens da tela
         this.itensComida.clear(true, true);
 
-        // Tela de Game Over
         this.add.rectangle(this.larguraTela / 2, this.alturaTela / 2, this.larguraTela, this.alturaTela, 0x000000, 0.55)
             .setDepth(20);
 
@@ -381,15 +387,16 @@ export class jogoAlimentacao extends Phaser.Scene {
             color: '#ffffff'
         }).setOrigin(0.5).setDepth(21);
 
-        this.add.text(this.larguraTela / 2, this.alturaTela / 2 + 55, 'Pressione ESPACO para reiniciar', {
+        this.add.text(this.larguraTela / 2, this.alturaTela / 2 + 55, 'Pressione ESPAÇO para reiniciar', {
             fontFamily: 'Arial',
             fontSize: '24px',
             color: '#ffffff'
         }).setOrigin(0.5).setDepth(21);
 
-        // Reinicia partida ao pressionar espaço
-        this.input.keyboard.once('keydown-SPACE', () => {
-            this.scene.restart();
+        this.time.delayedCall(200, () => {
+            this.input.keyboard.once('keydown-SPACE', () => {
+                this.scene.restart();
+            });
         });
     }
 }

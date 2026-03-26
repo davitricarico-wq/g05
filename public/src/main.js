@@ -26,7 +26,10 @@ export let gameState = {
     },
     cobasiCoins: 20,
     recompensas: {
-        banho: false
+        banho: {caramelo: false, heroi: false},
+        lazer: {caramelo: false, heroi: false},
+        cuidado: {caramelo: false, heroi: false},
+        alimentacao: {caramelo: false, heroi: false}
     },
     pets: {
         cachorroCaramelo: true,

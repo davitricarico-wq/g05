@@ -84,6 +84,7 @@ export class jogoLazer extends Phaser.Scene {
         
         // ---------------- CONTROLES ----------------
         this.teclado = this.input.keyboard.createCursorKeys();
+        this.teclaSpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
         // ---------------- GRUPOS DE FÍSICA ----------------
         this.petiscos = this.physics.add.group({ allowGravity: false, immovable: true });
@@ -385,9 +386,12 @@ export class jogoLazer extends Phaser.Scene {
         const moedas = this.calcularMoedas(estrelas);
         const reducaoLazer = this.calcularLazer(estrelas);
 
-        // Atualiza Cobasi Coins
-        gameState.cobasiCoins += moedas;
-        
+        const cachorroAtivo = gameState.pets.cachorroHeroi ? 'heroi' : 'caramelo';
+        if (!gameState.recompensas.lazer[cachorroAtivo]) {
+            gameState.cobasiCoins += moedas;
+            gameState.recompensas.lazer[cachorroAtivo] = true;
+        }
+
         // Pega o valor atual do lazer (se não existir, assume 11 que é a barra vazia)
         let lazerAtual = gameState.barras.lazer !== undefined ? gameState.barras.lazer : 11;
         
@@ -450,13 +454,13 @@ export class jogoLazer extends Phaser.Scene {
             targets: textoContinuar, alpha: 0.5, duration: 600, yoyo: true, loop: -1
         });
 
-        // Quando o jogador clicar na tela, ele volta pra cenaLazer
+        // Quando o jogador clicar na tela, retorna para a cena de menu do minigame
         fundoFeedback.on('pointerdown', () => {
-            this.scene.start("cenaLazer"); 
+            this.scene.start("cenaLazer");
         });
 
         telaFeedback.on('pointerdown', () => {
-            this.scene.start("cenaLazer"); 
+            this.scene.start("cenaLazer");
         });
 
     }
