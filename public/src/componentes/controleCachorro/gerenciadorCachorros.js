@@ -25,22 +25,18 @@ export class GerenciadorCachorros {
   }
 
   verificarCompletude() {
-    // Verifica se todas as barras chegaram a 0
     const barrasZero = 
       gameState.barras.comida <= 0 &&
       gameState.barras.lazer <= 0 &&
       gameState.barras.limpeza <= 0 &&
-      gameState.barras.saude <= 0
+      gameState.barras.saude <= 0;
 
-    // Se todas as barras estão em 0, alterna o cachorro ativo
-    if (barrasZero) {
-      if (gameState.pets.cachorroCaramelo) {
-        this.mudarParaCachorroHeroi()
-      } else if (gameState.pets.cachorroHeroi) {
-        this.mudarParaCachorroCaramelo()
-      }
+    if (barrasZero && gameState.progressoCachorro === 0) {
+        gameState.aguardandoEvolucao = true;
+        // Interrompe o minigame e volta para a central
+        this.scene.scene.start("cenaPrincipal");
     }
-  }
+}
 
   mudarParaCachorroHeroi() {
     gameState.pets.cachorroCaramelo = false
