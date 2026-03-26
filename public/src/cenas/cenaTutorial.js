@@ -89,6 +89,23 @@ export class cenaTutorial extends Phaser.Scene {
         this.botaoProximo.on('pointerout',  () => this.botaoProximo.setStyle({ color: '#ffffff' }));
         this.botaoProximo.on('pointerdown', () => this.irParaImagem(this.indiceAtual + 1));
 
+        // Botão pular
+        this.botaoPular = this.add.text(
+            this.scale.width - 100, 50,
+            'Pular',
+            {
+                fontFamily: 'Arial',
+                fontSize: '24px',
+                color: '#ffffff',
+                stroke: '#000000',
+                strokeThickness: 4
+            }
+        ).setOrigin(0.5).setDepth(10).setInteractive({ useHandCursor: true });
+
+        this.botaoPular.on('pointerover', () => this.botaoPular.setStyle({ color: '#ffdd00' }));
+        this.botaoPular.on('pointerout',  () => this.botaoPular.setStyle({ color: '#ffffff' }));
+        this.botaoPular.on('pointerdown', () => this.scene.start('cenaPrincipal'));
+
         this.atualizarBotoes();
 
         // Listener para redimensionamento da tela
@@ -108,6 +125,7 @@ export class cenaTutorial extends Phaser.Scene {
             // Ajusta botões
             this.botaoAnterior.setPosition(80, altura / 2);
             this.botaoProximo.setPosition(largura - 80, altura / 2);
+            this.botaoPular.setPosition(largura - 100, 50);
         };
 
         this.scale.on("resize", handleResizeTutorial);

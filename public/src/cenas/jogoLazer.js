@@ -12,12 +12,21 @@ export class jogoLazer extends Phaser.Scene {
      * Configura física, cenário, jogador, controles e colisões.
      */
     create() {
-        // Zera as variáveis de controle sempre que a fase reiniciar
-        this.pontos = 0;
-        this.jogoAcabou = false;
-        this.minigameFinalizado = false;
-        this.transicao = false;
-        this.instrucoesLidas = false; // Reseta o tutorial
+        // Para garantir que a HUD não fique ativa ao iniciar
+        this.scene.stop("HUD");
+
+        // Botão voltar
+        this.botaoVoltar = this.add.text(60, 50, "Voltar", {
+            fontFamily: "Arial",
+            fontSize: "24px",
+            color: "#ffffff",
+            stroke: "#000000",
+            strokeThickness: 4
+        }).setOrigin(0.5).setDepth(100).setScrollFactor(0).setInteractive({ useHandCursor: true });
+
+        this.botaoVoltar.on("pointerover", () => this.botaoVoltar.setStyle({ color: "#ffdd00" }));
+        this.botaoVoltar.on("pointerout",  () => this.botaoVoltar.setStyle({ color: "#ffffff" }));
+        this.botaoVoltar.on("pointerdown", () => this.scene.start("cenaLazer"));
 
         this.physics.world.gravity.y = 800;
 
@@ -110,6 +119,7 @@ export class jogoLazer extends Phaser.Scene {
             this.cameras.main.setBounds(0, 0, 8000, h);
             
             this.textoPontos.setPosition(w - 30, 30);
+            this.botaoVoltar.setPosition(60, 50);
         };
 
         this.scale.on("resize", handleResizeLazer);
