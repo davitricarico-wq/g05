@@ -1,6 +1,4 @@
 import { gameState } from "../main.js";
-// Import adicionado para acessar a ração selecionada na cena anterior
-import { Racao } from "../componentes/controleRacoes/racoes.js"; 
 
 export class jogoAlimentacao extends Phaser.Scene {
     constructor() {
@@ -16,7 +14,7 @@ export class jogoAlimentacao extends Phaser.Scene {
         this.intervaloSpawn = 1200;
         this.intervaloMinimoSpawn = 420;
         this.partidaEncerrada = false;
-        // Nova flag para pausar o jogo enquanto as instruções são exibidas
+        // Flag para pausar o jogo enquanto as instruções são exibidas
         this.mostrandoInstrucoes = true; 
     }
 
@@ -367,16 +365,21 @@ export class jogoAlimentacao extends Phaser.Scene {
         }
 
         // --- NOVA LÓGICA DA BARRINHA DE FOME ---
-        // Checa se existe uma ração selecionada e se o tipo ou categoria dela é Super Premium
-        // (Ajuste "racao.tipo" se no seu dadosRacoes.js a propriedade se chamar "categoria" ou "nome")
-        if (Racao.selecionada && (Racao.selecionada.tipo === "Super Premium" || Racao.selecionada.categoria === "Super Premium")) {
+        if (gameState.superPremium) {
+            // Ração Super Premium: enche a barra totalmente (frame 0)
             gameState.barras.comida = 0;
+        } else if (gameState.standart) {
+            // Ração Standard: diminui o valor da barra de fome em 6 (sendo 0 = cheio)
+            // Usamos Math.max para garantir que nunca ficará menor que 0.
+            gameState.barras.comida = Math.max(0, gameState.barras.comida - 6);
         } else {
-            gameState.barras.comida = 5;
+            // Fallback: diminui 6 caso entre no minigame sem ter comprado ração.
+            gameState.barras.comida = Math.max(0, gameState.barras.comida - 6);
         }
 
-        // Limpa a seleção para que em um próximo acesso não pegue o dado antigo
-        Racao.selecionada = null; 
+        // Limpa as variáveis para a próxima vez que for jogar/comprar
+        gameState.superPremium = false;
+        gameState.standart = false;
 
         this.mostrarPainelResultado(estrelas);
     }

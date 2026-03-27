@@ -2,7 +2,7 @@
 export const standartGrandeFilhote = {
   nome: "Filhotes de Grande Porte",
   id: 1,
-  tipo: "Super Premium",
+  tipo: "Standart",
   porte: "Grande",
   idade: "Filhote",
   caracteristicas: ["Crescimento Rápido", "Proteção Articular"],
@@ -17,7 +17,7 @@ export const standartGrandeFilhote = {
 export const standartGrandeAdulto = {
   nome: "Adultos de Grande Porte",
   id: 2,
-  tipo: "Super Premium",
+  tipo: "Standart",
   porte: "Grande",
   idade: "Adulto",
   caracteristicas: ["Massa Muscular", "Alta Digestão"],
@@ -32,7 +32,7 @@ export const standartGrandeAdulto = {
 export const standartGrandeSenior = {
   nome: "Seniors de Grande Porte",
   id: 3,
-  tipo: "Super Premium",
+  tipo: "Standart",
   porte: "Grande",
   idade: "Sênior",
   caracteristicas: ["Saúde Óssea", "Peso Ideal"],
@@ -47,7 +47,7 @@ export const standartGrandeSenior = {
 export const standartMediaFilhote = {
   nome: "Filhotes de Médio Porte",
   id: 4,
-  tipo: "Super Premium",
+  tipo: "Standart",
   porte: "Médio",
   idade: "Filhote",
   caracteristicas: ["Desenvolvimento", "Energia Diária"],
@@ -62,7 +62,7 @@ export const standartMediaFilhote = {
 export const standartMediaAdulto = {
   nome: "Adultos de Médio Porte",
   id: 5,
-  tipo: "Super Premium",
+  tipo: "Standart",
   porte: "Médio",
   idade: "Adulto",
   caracteristicas: ["Pele Saudável", "Redução de Odor"],
@@ -77,7 +77,7 @@ export const standartMediaAdulto = {
 export const standartMediaSenior = {
   nome: "Seniors de Médio Porte",
   id: 6,
-  tipo: "Super Premium",
+  tipo: "Standart",
   porte: "Médio",
   idade: "Sênior",
   caracteristicas: ["Preservação", "Longevidade"],
@@ -92,7 +92,7 @@ export const standartMediaSenior = {
 export const standartPequenaSenior = {
   nome: "Seniors de Pequeno Porte",
   id: 7,
-  tipo: "Super Premium",
+  tipo: "Standart",
   porte: "Pequeno",
   idade: "Sênior",
   caracteristicas: ["Fácil Mastigação", "Saúde Imune"],
@@ -107,7 +107,7 @@ export const standartPequenaSenior = {
 export const standartPequenaAdulto = {
   nome: "Adultos de Pequeno Porte",
   id: 8,
-  tipo: "Super Premium",
+  tipo: "Standart",
   porte: "Pequeno",
   idade: "Adulto",
   caracteristicas: ["Alta Palatibilidade", "Defesa Natural"],
@@ -122,7 +122,7 @@ export const standartPequenaAdulto = {
 export const standartPequenaFilhote = {
   nome: "Filhotes de Pequeno Porte",
   id: 9,
-  tipo: "Super Premium",
+  tipo: "Standart",
   porte: "Pequeno",
   idade: "Filhote",
   caracteristicas: ["Saúde Cerebral", "Odor Reduzido"],
