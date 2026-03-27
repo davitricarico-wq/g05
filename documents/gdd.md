@@ -710,28 +710,67 @@ Eles são essenciais para garantir a qualidade do produto, identificar bugs de f
   <p>Quadro de casos de teste</p>
 </div>
 
-| pré-condição |descrição do teste | condição |
+| Pré-condição | Descrição do teste | Condição esperada |
 | :--- | :---: | ---: |
-|Jogo deve apresentar a tela na proporção de Notebook | Abrir o jogo no navegador | Jogo apresenta aspectos visuais enquandrados na tela |
-| Presença funcional de feedback do usuário | Realizar interações com as funcionalidades da tela de início | Assim que o mouse passa pelos botões eles aumentam de tamanho, indicando correta funcionalidade |
-| Botão "settings" deve gerar outra tela para configurações do jogo | clicar no botão para saber o resultado| Funcionalidade requisitada aparece perfeitamente
-| O áudio não deve ser reproduzido quando estiver desativado | Desativar o áudio e realizar ações no jogo | Nenhum som é reproduzido |
-| Reativar o áudio deve restaurar os sons do jogo | Ativar novamente o áudio nas configurações | Os sons do jogo voltam a ser reproduzidos |
-| O cursor não deve indicar interação em áreas não interativas | Passar o mouse sobre partes vazias da tela | O cursor permanece no estado padrão |
-|O botão "jogar" deve redirecionar para a tela principal do jogo, onde será possível selecionar o Minigame desejado | Clicar no botão e esperar o resultado | O jogo é redirecionado para a tela principal do jogo
-| Deve ser possível segurar e mover o "sabão"| Clicar no sabão e arrastar sobre a tela| O "sabão" é movimentado com o mouse|
-| Objetos interativos devem permanecer selecionáveis após uso | Utilizar um objeto e tentar selecioná-lo novamente | O objeto continua funcional |
-| Ao passar o "sabão" sobre o cachorro, deve surgir "bolhas" como rastro para indicar limpeza| Clicar no sabão e arrastar sobre o cachorro| O efeito das "bolhas" surge sobre o cachorro como rastro de limpeza.| 
-| Deve ser possível segurar e mover o "chuveiro"| Clicar no "chuveiro" e arrastar sobre a tela| O "chuveiro" é movimentado com o mouse|
-|Ao arrastar o chuveiro sobre o cachorro, deve haver uma animação de água caindo que "limpa o sabão"| Arrastar o "chuveiro" sobre o cachorro com "sabão" sobreposto| O efeito da água caindo ocorre e "limpa o sabão" e deixa o cachorro molhado|
-|Deve ser possível segurar e mover a "toalha"| Clicar na "toalha" e arrastar sobre a tela| A "toalha" é movimentada com o mouse|
-| A toalha não deve secar o cachorro antes de ser molhado | Arrastar a toalha sobre o cachorro seco | Nenhuma mudança visual ocorre |
-| As pulgas não devem desaparecer ao clicar fora delas | Clicar em áreas da tela onde não há pulgas | Nenhuma pulga desaparece |
-| O cachorro deve parar de se mover ao soltar a tecla de movimentação no minigame da ração | Pressionar e soltar a tecla de movimentação | O cachorro interrompe o movimento | 
-|Ao arrastar a toalha sobre o cachorro, a animação de "cachorro molhado" deve sair de cena| Arrastar a "toalha" sobre o "cachorro molhado"| A animação de "cachorro limpo" entra em cena|
-|Deve ser possível segurar e mover a "pinça"| Clicar na "pinça" e arrastar sobre a tela| A "pinça" é movida pelo mouse|
-|Ao arrastar a "pinça" pela tela, deve ser possível clicar nas "pulgas"| Clicar com o botão direito do mouse nas "pulgas"| O click em cima de uma "pulga" faz com que a mesma desapareça|
-|Deve ser possível movimentar o cachorro| Movimentar o cachorro através das setas 'esquerda' e 'direita'| O cachorro se desloca de um lado para o outro|
+| Jogo deve apresentar a tela na proporção correta | Abrir o jogo no navegador | O jogo apresenta os elementos visuais enquadrados na tela |
+| Presença funcional de feedback do usuário | Realizar interações na tela inicial | Ao passar o mouse sobre os botões, eles aumentam de tamanho |
+| Botão "Settings" deve abrir a tela de configurações | Clicar no botão | A tela de configurações é exibida corretamente |
+| O áudio não deve ser reproduzido quando desativado | Desativar o áudio e realizar ações | Nenhum som é reproduzido |
+| Reativar o áudio deve restaurar os sons | Ativar o áudio nas configurações | Os sons voltam a ser reproduzidos |
+| O cursor não deve indicar interação em áreas não interativas | Passar o mouse em áreas vazias | O cursor permanece no estado padrão |
+| Botão "Jogar" deve redirecionar para o tutorial | Clicar no botão | O jogo é redirecionado para o tutorial |
+| Deve ser possível avançar no tutorial | Clicar na seta direita | A próxima cena é exibida |
+| Deve ser possível retornar no tutorial | Clicar na seta esquerda | A cena anterior é exibida |
+| Deve ser possível pular o tutorial | Clicar em "Pular" | O jogo retorna à tela inicial |
+| Deve aparecer um pop-up ao entrar na cena inicial pela primeira vez | Finalizar o tutorial | O pop-up aparece |
+| Deve ser possível fechar o pop-up | Clicar no pop-up | O pop-up desaparece |
+| Deve aparecer um pop-up de missão após fechar o anterior | Fechar o pop-up inicial | O pop-up de missão aparece |
+| Botão do banho deve redirecionar corretamente | Clicar no botão com ícone de pato | O jogo vai para a cena de banho |
+| Deve aparecer instrução do minigame de banho | Entrar na cena pela primeira vez | O pop-up é exibido |
+| Pop-up do minigame deve desaparecer | Clicar no pop-up | O pop-up desaparece |
+| Deve ser possível arrastar o sabão | Clicar e arrastar | O sabão segue o cursor |
+| Objetos devem continuar interativos | Usar e tentar reutilizar | O objeto continua funcional |
+| Sabão deve gerar bolhas ao ser usado | Arrastar sobre o cachorro | Bolhas aparecem indicando limpeza |
+| Deve haver limite de bolhas | Gerar bolhas | Um aviso para usar o chuveiro aparece |
+| Deve ser possível arrastar o chuveiro | Clicar e arrastar | O chuveiro segue o cursor |
+| Chuveiro deve remover o sabão | Arrastar sobre o cachorro | A água remove o sabão |
+| Deve aparecer aviso após remoção das bolhas | Usar o chuveiro | Surge aviso para usar a toalha |
+| Deve ser possível usar a toalha | Clicar e arrastar | A toalha segue o cursor |
+| Uso da toalha gera recompensa | Utilizar completamente | Pop-up indica ganho de moedas |
+| HUD deve ser atualizado após uso da toalha | Usar a toalha | Felicidade e moedas são atualizadas |
+| Não deve ser possível reutilizar objetos após finalização | Tentar usar novamente | Nenhum objeto responde |
+| Ordem de uso deve ser respeitada | Tentar usar fora de ordem | Aviso é exibido |
+| Cena de ração deve ser acessível | Clicar no botão correspondente | Cena de ração é exibida |
+| Pop-up da cena de ração deve aparecer | Entrar pela primeira vez | O pop-up aparece |
+| Pop-up deve fechar corretamente | Clicar no pop-up | O pop-up desaparece |
+| Card do cachorro deve destacar | Clicar no card | O card aumenta |
+| Card deve fechar ao clicar novamente | Clicar novamente | O card fecha |
+| Estante deve abrir seleção de rações | Clicar na estante | Nova cena aparece |
+| Tipos de ração devem ser filtráveis | Clicar em "Standard" | Apenas rações Standard aparecem |
+| Deve ser possível ver detalhes da ração | Clicar em uma ração | Informações aparecem |
+| Compra deve iniciar minigame | Clicar no preço | Minigame inicia |
+| Movimento do cachorro deve funcionar | Usar teclas esquerda/direita | Cachorro se movimenta |
+| Coleta de ração deve pontuar | Colidir com ração | Pontuação aumenta |
+| Chocolate deve causar penalidade | Colidir com chocolate | Vida é reduzida |
+| Jogo reinicia após perder todas vidas | Perder 3 vidas | Jogo reinicia |
+| Pontuação alvo encerra o minigame | Atingir 150 pontos | Jogo encerra |
+| Moedas devem ser descontadas na compra | Comprar ração | Valor é atualizado no HUD |
+| Cena do veterinário deve funcionar | Acessar cena | Cena é exibida |
+| Lupa deve iniciar interação | Usar lupa | Minigame é iniciado |
+| Pinça deve capturar pulgas | Arrastar pulga | Pulga é coletada |
+| Pontuação deve ser contabilizada | Depositar pulga | Pontos aumentam |
+| Minigame encerra ao atingir objetivo | Coletar 12 pulgas | Jogo encerra |
+| Cena de lazer deve iniciar corretamente | Clicar no botão | Cena é exibida |
+| Minigame de lazer deve iniciar | Clicar no osso | Minigame inicia |
+| Cachorro deve pular | Pressionar tecla | Salto ocorre |
+| Colisão com obstáculo reinicia jogo | Colidir | Jogo reinicia |
+| Coleta de petiscos positivos | Coletar item | Pontos aumentam |
+| Coleta de petiscos negativos | Coletar item | Pontos diminuem |
+| Salto especial deve funcionar | Usar cama elástica | Salto mais alto ocorre |
+| Coleta do item final encerra jogo | Coletar item especial | Jogo encerra |
+| Pontuação afeta barra de felicidade | Finalizar jogo | Barra é atualizada |
+| Sistema de progresso deve gerar novo cachorro | Completar barras | Novo ciclo inicia |
+| Mecânicas devem funcionar no novo ciclo | Testar novamente | Tudo permanece funcional |
 
 <div align="center">
   <p>Feito pela própia equipe(2026)</p>
