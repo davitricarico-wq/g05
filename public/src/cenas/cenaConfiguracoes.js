@@ -1,18 +1,6 @@
 // Importa o objeto global gameState do arquivo principal
 import { gameState } from "../main.js";
-
-/**
- * CENA: cenaConfiguracoes
- *
- * Funciona como um POPUP (sobreposição) sobre a cenaInicial.
- * Ela não substitui a tela anterior — fica por cima dela.
- * Por isso, na cenaInicial, deve ser chamada com scene.launch()
- * em vez de scene.start().
- *
- * CORREÇÃO APLICADA:
- * - Adicionado botão de fechar (X) que encerra apenas este popup,
- *   retornando à cenaInicial sem reiniciá-la.
- */
+ 
 export class cenaConfiguracoes extends Phaser.Scene {
     constructor() {
         super({ key: 'cenaConfiguracoes' });
@@ -46,8 +34,6 @@ export class cenaConfiguracoes extends Phaser.Scene {
             .setScale(0.8)
             .setDepth(1);
 
-        // ─── BOTÃO FECHAR (X) ────────────────────────────────────────────────
-        // CORREÇÃO: antes não existia botão para fechar o popup.
         // Este botão encerra apenas a cena de configurações e retorna à
         // cenaInicial que estava rodando por baixo, sem reiniciá-la.
         const botaoFechar = this.add.image(
@@ -74,7 +60,7 @@ export class cenaConfiguracoes extends Phaser.Scene {
             this.scene.stop('cenaConfiguracoes');
         });
 
-        // ─── TOGGLES ─────────────────────────────────────────────────────────
+        
         // Alternar música
         gameState.alternarMusica = this.criarAlternar(
             this.scale.width / 2 + 20, this.scale.height / 2 - 85, true,
@@ -96,7 +82,7 @@ export class cenaConfiguracoes extends Phaser.Scene {
             () => { console.log('Vibracao desligada'); }
         );
 
-        // ─── RESPONSIVIDADE ──────────────────────────────────────────────────
+        // Responsividade
         const handleResizeConfiguracoes = () => {
             // Atualiza fundo semitransparente
             const fundoSemitransparente = this.children.getByName();
@@ -121,7 +107,7 @@ export class cenaConfiguracoes extends Phaser.Scene {
                 }
             });
 
-            // Atualiza toggles
+            // Atualiza os botões
             if (gameState.alternarMusica) {
                 gameState.alternarMusica.botaoLigado.setPosition(this.scale.width / 2 + 20, this.scale.height / 2 - 85);
                 gameState.alternarMusica.botaoDesligado.setPosition(this.scale.width / 2 + 20, this.scale.height / 2 - 85);
