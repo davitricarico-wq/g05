@@ -1,4 +1,6 @@
 import { gameState } from "../main.js";
+// Import adicionado para acessar a ração selecionada na cena anterior
+import { Racao } from "../componentes/controleRacoes/racoes.js"; 
 
 export class jogoAlimentacao extends Phaser.Scene {
     constructor() {
@@ -363,7 +365,18 @@ export class jogoAlimentacao extends Phaser.Scene {
             gameState.cobasiCoins += moedas;
             gameState.recompensas.alimentacao[cachorroAtivo] = true;
         }
-        gameState.barras.comida = Phaser.Math.Clamp(gameState.barras.comida - 11, 0, 11);
+
+        // --- NOVA LÓGICA DA BARRINHA DE FOME ---
+        // Checa se existe uma ração selecionada e se o tipo ou categoria dela é Super Premium
+        // (Ajuste "racao.tipo" se no seu dadosRacoes.js a propriedade se chamar "categoria" ou "nome")
+        if (Racao.selecionada && (Racao.selecionada.tipo === "Super Premium" || Racao.selecionada.categoria === "Super Premium")) {
+            gameState.barras.comida = 0;
+        } else {
+            gameState.barras.comida = 5;
+        }
+
+        // Limpa a seleção para que em um próximo acesso não pegue o dado antigo
+        Racao.selecionada = null; 
 
         this.mostrarPainelResultado(estrelas);
     }

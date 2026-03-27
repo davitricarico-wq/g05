@@ -698,6 +698,10 @@ Ao longo do desenvolvimento, a equipe enfrentou desafios relacionados principalm
 
 Para a próxima e última sprint, estão previstas melhorias e expansões, incluindo a adição de mais variações de preços e tipos de ração, a implementação de um quiz ao final da fase, a inclusão de um novo cachorro com características distintas e o refinamento dos testes e validações do sistema, além de ajustes finais de polimento e balanceamento do jogo.
 
+
+
+
+
 ## 4.5. Revisão do MVP (sprint 5)
 
 *Descreva e ilustre aqui o desenvolvimento dos refinamentos e revisões da versão final do jogo, explicando brevemente o que foi entregue em termos de MVP. Utilize prints de tela para ilustrar.*
