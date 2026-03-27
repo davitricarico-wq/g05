@@ -224,6 +224,12 @@ export class cenaRacaoSuperPremium extends Phaser.Scene {
                     // Desativa o botão para evitar cliques múltiplos
                     this.botaoComprarSuperPremium.disableInteractive();
 
+                    // ==========================================
+                    // === ATUALIZAÇÃO DO GAMESTATE AQUI ========
+                    // ==========================================
+                    gameState.superPremium = true;
+                    gameState.standart = false;
+
                     // Aguarda 1.5s e muda de cena
                     this.time.delayedCall(1500, () => {
                         Racao.selecionada = null; 

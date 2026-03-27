@@ -19,6 +19,7 @@ import {cenaRacaoSuperPremium } from "./cenas/cenaRacaoSuperPremium.js";
 // Objeto global para armazenar estados do jogo
 // No seu gameState dentro do main.js:
 export let gameState = {
+
     barras: {
         comida: 11,
         lazer: 11,
@@ -41,7 +42,9 @@ export let gameState = {
     aguardandoEvolucao: false, 
     // -----------------------
     pulga: true,
-    trocar: false
+    trocar: false,
+    superPremium: false,
+    standart: false
 };
 
 // Configuração principal do Phaser

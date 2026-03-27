@@ -27,13 +27,13 @@ export class cenaCarregamento extends Phaser.Scene {
         this.load.image("botaoOn", "assets/tela-configuracoes/botaoOn.png");             // Botão ligado
 
         // Ícones das barras de status
-        this.load.image("iconeFome", "assets/Icones/iconeFome.png");
-        this.load.image("iconeFelicidade", "assets/Icones/iconeFelicidade.png");
-        this.load.image("iconeSaude", "assets/Icones/iconeSaude.png");
-        this.load.image("iconeSujeira", "assets/Icones/iconeSujeira.png");
+        this.load.image("iconeFome", "assets/icones/iconeFome.png");
+        this.load.image("iconeFelicidade", "assets/icones/iconeFelicidade.png");
+        this.load.image("iconeSaude", "assets/icones/iconeSaude.png");
+        this.load.image("iconeSujeira", "assets/icones/iconeSujeira.png");
 
         // Spritesheet da barra de status
-        this.load.spritesheet("barra", "assets/Icones/barraStatus.png", {
+        this.load.spritesheet("barra", "assets/icones/barraStatus.png", {
             frameWidth: 144,
             frameHeight: 32
         });
@@ -94,24 +94,24 @@ export class cenaCarregamento extends Phaser.Scene {
         this.load.image("tutorial11", "assets/tutorial11.png");
 
         // Rações refinadas
-        this.load.image("racaoGA", "assets/Racoes/racaoGA.png");
-        this.load.image("racaoGF", "assets/Racoes/racaoGF.png");
-        this.load.image("racaoGV", "assets/Racoes/racaoGV.png");
-        this.load.image("racaoMA", "assets/Racoes/racaoMA.png");
-        this.load.image("racaoMF", "assets/Racoes/racaoMF.png");
-        this.load.image("racaoMV", "assets/Racoes/racaoMV.png");
-        this.load.image("racaoPA", "assets/Racoes/racaoPA.png");
-        this.load.image("racaoPF", "assets/Racoes/racaoPF.png");
-        this.load.image("racaoPV", "assets/Racoes/racaoPV.png");
-        this.load.image("standardGA", "assets/Racoes/standardGA.png");
-        this.load.image("standartGF", "assets/Racoes/standartGF.png");
-        this.load.image("standartGV", "assets/Racoes/standartGV.png");
-        this.load.image("standartMA", "assets/Racoes/standartMA.png");
-        this.load.image("standartMF", "assets/Racoes/standartMF.png");
-        this.load.image("standartMV", "assets/Racoes/standartMV.png");
-        this.load.image("standartPA", "assets/Racoes/standartPA.png");
-        this.load.image("standartPF", "assets/Racoes/standartPF.png");
-        this.load.image("standartPV", "assets/Racoes/standartPV.png");
+        this.load.image("racaoGA", "assets/racoes/racaoGA.png");
+        this.load.image("racaoGF", "assets/racoes/racaoGF.png");
+        this.load.image("racaoGV", "assets/racoes/racaoGV.png");
+        this.load.image("racaoMA", "assets/racoes/racaoMA.png");
+        this.load.image("racaoMF", "assets/racoes/racaoMF.png");
+        this.load.image("racaoMV", "assets/racoes/racaoMV.png");
+        this.load.image("racaoPA", "assets/racoes/racaoPA.png");
+        this.load.image("racaoPF", "assets/racoes/racaoPF.png");
+        this.load.image("racaoPV", "assets/racoes/racaoPV.png");
+        this.load.image("standardGA", "assets/racoes/standardGA.png");
+        this.load.image("standartGF", "assets/racoes/standartGF.png");
+        this.load.image("standartGV", "assets/racoes/standartGV.png");
+        this.load.image("standartMA", "assets/racoes/standartMA.png");
+        this.load.image("standartMF", "assets/racoes/standartMF.png");
+        this.load.image("standartMV", "assets/racoes/standartMV.png");
+        this.load.image("standartPA", "assets/racoes/standartPA.png");
+        this.load.image("standartPF", "assets/racoes/standartPF.png");
+        this.load.image("standartPV", "assets/racoes/standartPV.png");
 
         // Sprites da cena jogoRacao.js
         this.load.image("botaoStandard", "assets/botaoStandardNormal.png");
@@ -130,26 +130,26 @@ export class cenaCarregamento extends Phaser.Scene {
 
         //Cenas feedback
        // this.load.image("avisoConclusao", "assets/Feedback/avisoConclusao.png");
-        this.load.image("feeedback3estrelas", "assets/Feedback/feedbackMineGame.png");
-        this.load.image("feedback2estrelas", "assets/Feedback/feedbackMineGame2.png");
-        this.load.image("feedback1estrela", "assets/Feedback/feedbackMineGame3.png");
-        this.load.image("instrucaoDescricaoBanho", "assets/Feedback/instrucaoBanho.png");
-        this.load.image("conclusaoPrimeiroRound", "assets/Feedback/conclusaoPrimeiroRound.png");
-        this.load.image("instrucaoDescricaoRacao", "assets/Feedback/instrucaoDescricaoRacao.png");
-        this.load.image("instrucaoLazer", "assets/Feedback/instrucaoLazer.png");
-        this.load.image("instrucaoBanho", "assets/Feedback/instrucaoBanho.png");
-        this.load.image("instrucaoMissao", "assets/Feedback/instrucaoMissao.png");
-        this.load.image("instrucaoPulgas", "assets/Feedback/instrucaoPulgas.png");
-        this.load.image("instrucaoRacao", "assets/Feedback/instrucaoRacao.png");
-        this.load.image("instrucaoSegundaFase", "assets/Feedback/instrucaoSegundaFase.png");
-        this.load.image("comoJogarLazer", "assets/Feedback/comoJogarLazer.png");
-        this.load.image("comoJogarPulgas", "assets/Feedback/comoJogarPulgas.png");
-        this.load.image("comoJogarRacao", "assets/Feedback/comoJogarRacao.png");
+        this.load.image("feeedback3estrelas", "assets/feedback/feedbackMineGame.png");
+        this.load.image("feedback2estrelas", "assets/feedback/feedbackMineGame2.png");
+        this.load.image("feedback1estrela", "assets/feedback/feedbackMineGame3.png");
+        this.load.image("instrucaoDescricaoBanho", "assets/feedback/instrucaoBanho.png");
+        this.load.image("conclusaoPrimeiroRound", "assets/feedback/conclusaoPrimeiroRound.png");
+        this.load.image("instrucaoDescricaoRacao", "assets/feedback/instrucaoDescricaoRacao.png");
+        this.load.image("instrucaoLazer", "assets/feedback/instrucaoLazer.png");
+        this.load.image("instrucaoBanho", "assets/feedback/instrucaoBanho.png");
+        this.load.image("instrucaoMissao", "assets/feedback/instrucaoMissao.png");
+        this.load.image("instrucaoPulgas", "assets/feedback/instrucaoPulgas.png");
+        this.load.image("instrucaoRacao", "assets/feedback/instrucaoRacao.png");
+        this.load.image("instrucaoSegundaFase", "assets/feedback/instrucaoSegundaFase.png");
+        this.load.image("comoJogarLazer", "assets/feedback/comoJogarLazer.png");
+        this.load.image("comoJogarPulgas", "assets/feedback/comoJogarPulgas.png");
+        this.load.image("comoJogarRacao", "assets/feedback/comoJogarRacao.png");
         this.load.image("bgCuidadoHeroi", "assets/bgCuidadoHeroi.png");
         // Áudio
-        this.load.audio("musicaMenuPrincipal", "assets/Sons/menu-principal.mp3");
-        this.load.audio("musica", "assets/Sons/menu-principal.mp3");
-        this.load.audio("musicaTutorial", "assets/Sons/musica-cutscene.mp3");
+        this.load.audio("musicaMenuPrincipal", "assets/sons/menu-principal.mp3");
+        this.load.audio("musica", "assets/sons/menu-principal.mp3");
+        this.load.audio("musicaTutorial", "assets/sons/musica-cutscene.mp3");
 
         // Spritesheets do cachorro e água
         this.load.spritesheet("pulgas", "assets/pulgaCachorro.png", {

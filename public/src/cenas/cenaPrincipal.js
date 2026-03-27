@@ -44,6 +44,15 @@ class CenaPopups extends Phaser.Scene {
                     this.txtContinuarInstrucao.setPosition(novoCentroX, novoPosicaoTextoY);
                 }
             }
+
+            // Resize do novo popup da Fase 2
+            if (this.imgInstrucaoFase2 && this.imgInstrucaoFase2.active) {
+                this.imgInstrucaoFase2.setPosition(novoCentroX, novoCentroY);
+                if (this.txtContinuarFase2 && this.txtContinuarFase2.active) {
+                    const novoPosicaoTextoF2Y = novoCentroY + (this.imgInstrucaoFase2.displayHeight / 2) + 30;
+                    this.txtContinuarFase2.setPosition(novoCentroX, novoPosicaoTextoF2Y);
+                }
+            }
         };
 
         this.scale.on("resize", handleResizePopups);
@@ -75,7 +84,32 @@ class CenaPopups extends Phaser.Scene {
             gameState.barras = { comida: 11, lazer: 11, limpeza: 11, saude: 11 };
             gameState.pulga = true;
 
-            // Para a cena de popups e reinicia a cena principal
+            // Em vez de reiniciar o jogo, destrói os elementos atuais e mostra o próximo popup
+            this.imgEvolucao.destroy();
+            this.txtEvolucao.destroy();
+            this.mostrarInstrucaoSegundaFase();
+        });
+    }
+
+    // Função que mostra a instrução da Segunda Fase
+    mostrarInstrucaoSegundaFase() {
+        const areaUtilLargura = this.scale.width * 0.8;
+        const centroX = areaUtilLargura / 2;
+        const centroY = this.scale.height / 2;
+
+        this.imgInstrucaoFase2 = this.add.image(centroX, centroY, "instrucaoSegundaFase")
+            .setScale(0.5)
+            .setInteractive({ useHandCursor: true }); 
+
+        this.txtContinuarFase2 = this.add.text(centroX, centroY + (this.imgInstrucaoFase2.displayHeight / 2) + 30, "[ Clique para comecar a 2a Fase ]", {
+            fontFamily: '"Press Start 2P"', fontSize: "15px", color: "#ffffff", stroke: "#000000", strokeThickness: 4
+        }).setOrigin(0.5);
+
+        this.imgInstrucaoFase2.on("pointerdown", () => {
+            this.imgInstrucaoFase2.destroy();
+            this.txtContinuarFase2.destroy();
+            
+            // Para a cena de popups e reinicia a cena principal para recarregar com o herói
             this.scene.stop();
             this.scene.get("cenaPrincipal").scene.restart();
         });
