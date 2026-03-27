@@ -212,7 +212,7 @@ Os requisitos do projeto foram definidos para estruturar a experiência do jogad
 
 \# | Quadro 1- Requisitos Funcionais do projeto
 --- | --- 
-1 | O jogo deve possuir gatos e cães como animais disponíveis.
+1 | O jogo deve possuir cães com características diferentes como animais disponíveis.
 2 | A tela inicial do jogo deve possuir botões de "Jogar", "Tutorial", "Sair" e um ícone de engrenagem para configurações.
 3 | Ao clicar em "Jogar" pela primeira vez, o jogo deve iniciar uma cutscene interativa mostrando a história do primeiro resgate.
 4 | A cutscene deve possuir botões para avançar e voltar nas cenas da história.
@@ -221,23 +221,28 @@ Os requisitos do projeto foram definidos para estruturar a experiência do jogad
 7 | O jogador deve cuidar do animal (lavar, alimentar, medicar, brincar, etc.) para progredir no jogo.
 8 | A mecânica principal do jogo deve ser o cuidado com animais resgatados em más condições.
 9 | Em determinado momento do jogo, o jogador encontrará um animal já limpo, acompanhado de uma mensagem de conscientização sobre devolução de animais adotados.
-10 | O jogo deve possuir um cenário específico localizado em uma área de banho.
-11 | O jogador deve ganhar moedas ao tratar os animais, que poderão ser usadas para melhorias.
+10 | O jogador deve ganhar moedas ao tratar os animais, que são usadas para comprar diferentes tipos de ração.
+11 | O jogo deve possuir um cenário específico localizado em uma área de banho.
 12 | O jogo deve possuir uma cena de banho onde o jogador pode remover sujeira através de interações como esfregar, enxaguar e aplicar shampoo.
 13 | O animal só será considerado limpo após uma quantidade mínima de sabão ser aplicada.
 14 | O jogador deve ensaboar, enxaguar e secar o animal para completar o processo de limpeza.
 15 | O jogo deve possuir uma área específica para alimentação.
 16 | Na área de alimentação o jogador deve ter acesso a diferentes tipos de ração com descrição de cada uma.
 17 | A área de alimentação deve possuir uma estante clicável contendo as rações disponíveis.
-18 | A área de alimentação deve conter um quiz educativo sobre alimentação correta de animais.
-19 | Após acertar a ração correta, o jogo deve iniciar o "mini-game da ração".
-20 | No mini-game da ração, pacotes de ração e chocolates devem cair na tela.
-21 | No mini-game da ração, os pacotes de ração devem fornecer pontos e os chocolates devem fazer o jogador perder vida.
-22 | O jogador deve possuir 3 vidas no mini-game da ração, finalizando ao perder todas ou ao clicar na seta de voltar.
-23 | O jogo deve possuir uma área de cuidados.
-24 | A área de cuidados deve possuir um mini-game para retirada de pulgas.
-25 | O mini-game das pulgas deve avaliar a velocidade com que o jogador remove todas as pulgas.
-26 | O jogo deve possuir uma área de lazer para os animais.
+18 | No mini-game de alimentação, pacotes de ração e chocolates devem cair na tela.
+19 | No mini-game de alimentação, os pacotes de ração devem fornecer pontos e os chocolates devem fazer o jogador perder vida.
+20 | O jogador deve possuir 3 vidas no mini-game de alimentação, finalizando ao perder todas ou ao clicar na seta de voltar.
+21 | O jogo deve possuir uma área de cuidados.
+22 | A área de cuidados deve possuir um mini-game para remoção de pulgas.
+23 | O mini-game das pulgas deve avaliar o tempo que o jogador leva para remover todas as pulgas.
+24 | O jogo deve possuir uma área de lazer para os animais.
+25 | A área de lazer deve possuir um mini-game do tipo "endless-ruinning".
+26 | O jogador deve controlar o cachorro no mini-game de lazer, permitindo o jogador pular e abaixar.
+27 | O mini-game de lazer deve ser finalizado quando o jogador coletar o "Petiscão Dourado".
+28 | Após a finalização do jogo por completo, um quiz educativo deve ficar disponível.
+29 | O jogo deve possuir um sistema de progressão por rounds, permitindo que o jogador avance e cuide de novos animais.
+
+
 
 \# | **Quadro 2- Requisitos Não Funcionais do projeto**
 --- | ---
@@ -246,11 +251,13 @@ Os requisitos do projeto foram definidos para estruturar a experiência do jogad
 3 | O jogo deve possuir interface intuitiva, permitindo que o jogador compreenda as ações disponíveis sem necessidade de explicações complexas.
 4 | O jogo deve apresentar tempo de carregamento reduzido entre as cenas, garantindo fluidez na experiência do jogador.
 5 | O jogo deve possuir organização visual clara da HUD, permitindo que o jogador visualize facilmente os status do animal.
-6 | O jogo deve manter consistência visual entre cenários, menus e elementos gráficos.
+6 | O jogo deve manter consistência visual entre cenários, menus, elementos gráficos e paleta de cores referentes à Cobasi.
 7 | O jogo deve possuir controles responsivos, garantindo que as ações do jogador sejam executadas rapidamente após a interação.
 8 | O jogo deve possuir compatibilidade com resolução de tela padrão de computadores, mantendo a interface corretamente ajustada.
 9 | O jogo deve manter desempenho estável, evitando travamentos ou quedas significativas de desempenho durante a execução.
 10 | O jogo deve apresentar textos e informações legíveis, utilizando fontes e tamanhos adequados para facilitar a leitura pelo jogador.
+11 | O jogo deve contar com uma trilha sonora autoral tocando durante a gameplay.
+12 | O jogo deve apresentar telas de retorno (feedback) após a conclusão de cada atividade/minigame.
 
 **Requisitos Funcionais:** São os requisitos que o sistema faz.
 Descrevem as funcionalidades, ações e comportamentos esperados.
@@ -478,7 +485,13 @@ No **minigame veterinário**, o jogador deve retirar todas as pulgas do animal u
 
 ## 3.7.1 Detalhe das Mecânicas
 
-O jogo é composto por diferentes minigames que simulam atividades de cuidado com animais domésticos. Cada minigame apresenta mecânicas próprias que determinam como o jogador deve interagir com os elementos do jogo para completar os desafios propostos.
+O núcleo do jogo baseia-se no gerenciamento do bem-estar de cachorros resgatados. O sistema controla quatro variáveis globais para o animal ativo: Felicidade, Fome, Limpeza e Saúde.
+
+O jogo é composto por diferentes minigames que simulam atividades de cuidado com animais domésticos. Cada minigame apresenta mecânicas próprias que determinam como o jogador deve interagir com os elementos do jogo para completar os desafios propostos. Assim, as variáveis para o animal ativo, que são iniciadas com o valor igual a zero, são preenchidas até serem completas conforme o jogador completa as atividades de cuidado.
+
+Como recompensa pelo sucesso nas atividades, além de restaurar os status, o sistema gera Moedas que alimentam a economia do jogo, permitindo a compra de rações na área na área de alimentação. 
+
+Ao estabilizar os status do animal atual, o jogador avança de round, desbloqueando um novo resgate (ex: um novo cachorro com características distintas).
 
 De modo geral, o jogador interage com o jogo utilizando o mouse e o teclado, dependendo do tipo de atividade que está sendo realizada. Alguns minigames exigem o uso de ferramentas específicas para cuidar do animal, enquanto outros exigem movimentação e tomada de decisão rápida para alcançar o objetivo da fase.
 
@@ -488,11 +501,17 @@ As mecânicas de cada minigame são apresentadas ao jogador no momento em que el
 
 Durante o minigame de banho, o jogador deverá limpar completamente o cachorro utilizando três ferramentas disponíveis: sabão, chuveiro e toalha. Para realizar as ações necessárias, o jogador utilizará apenas o mouse.
 
+O sistema mapeia áreas especficas do modelo do animal como "sujas". A ferramenta selecionada deve colidir continuamente com essas hitboxes.
+
+O jogo calcula o tempo de contato da ferramenta com a sujeira. A aplicação do sabão preenche uma variável relacionada ao aparacimento de bolhas; somente ao atingir a cota mínima de ensaboamento exigida pelo sistema, o estado do animal muda para "Ensaboado", liberando a etapa de enxágue, seguida pela etapa de secagem.
+
+Ao completar a sequência correta em 100% da área mapeada, o minigame é dado como vencido. Isso engatilha a restauração do atributo global de Limpeza do animal para o nível máximo e adiciona um valor 20 de moedas ao inventário do jogador.
+
 Esse minigame possui as seguintes mecânicas:
 
 • Movimentação do mouse – movimentar o cursor pela tela para posicionar as ferramentas sobre o animal.
 
-• Botão direito do mouse (segurar) – permite que o jogador segure a ferramenta selecionada.
+• Botão esquerdo do mouse (segurar) – permite que o jogador segure a ferramenta selecionada.
 
 • Arrastar o mouse sobre o animal – utilizar o objeto selecionado sobre o cachorro, passando o sabão, enxaguando com o chuveiro ou secando com a toalha.
 
@@ -500,7 +519,15 @@ Para concluir o minigame, o jogador deverá utilizar corretamente as ferramentas
 
 ## 3.7.3 Comandos disponíveis no **Minigame de Alimentação**
 
+O minigame de alimentação atua como o principal polo de economia e estratégia do jogo. O sistema exige que o jogador gerencie seus recursos financeiros (Cobasi Coins) para otimizar a nutrição do animal.
+
+O sistema checa a variável de moedas do jogador. Cada tipo de ração possui seu valor atrelado; a transação só é aprovada se o saldo for igual ou superior ao valor do item.
+
 Durante o minigame de alimentação, o jogador deverá controlar o cachorro para coletar apenas alimentos adequados, representados pelas rações que caem na tela, evitando itens prejudiciais como o chocolate.
+
+As rações são instanciadas em categorias distintas (Standard e Super Premium). Cada categoria possui propriedades únicas no banco de dados do jogo.
+
+A escolha da ração altera os multiplicadores de status. Comprar a ração Standard recupera o status de Fome em uma determinada taxa base. Optar pela ração Super Premium, mediante um custo maior de moedas, recupera a Fome em uma determinada taxa superior e pode conceder bônus adicionais, afetando positivamente a Saúde do animal.
 
 Esse minigame utiliza apenas o teclado para movimentação do personagem.
 
@@ -519,6 +546,14 @@ O objetivo do jogador é movimentar o animal corretamente para coletar as raçõ
 ## 3.7.4 Comandos disponíveis no **Minigame Veterinário**
 
 No minigame veterinário, o jogador deverá remover as pulgas presentes no animal utilizando uma pinça como ferramenta. Para realizar essa atividade, o jogador utilizará apenas o mouse.
+
+Ao iniciar a cena, o sistema gera de forma aleatória (ou pré-definida) um número N de instâncias de pulgas sobre o corpo do animal.
+
+O sistema detecta o clique do mouse. Se a hitbox do clique coincidir com a hitbox da pulga utilizando a ferramenta pinça, e o jogador segurar o clique do mouse, a entidade (pulga) é movida para onde o cursor do mouse for. Assim, o jogador tem o objetivo de arrastar todas as pulgas para a bandeja.
+
+Um cronômetro interno é ativado no início do minigame. O sistema monitora constantemente o número de pulgas restantes. Quando o valor chega a zero, o cronômetro para. 
+
+A conclusão do minigame restaura o atributo global de Saúde do animal. A quantidade de moedas recompensadas é calculada de forma inversamente proporcional ao tempo gasto
 
 Esse minigame possui as seguintes mecânicas:
 
