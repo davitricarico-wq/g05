@@ -1,285 +1,273 @@
-// Importação do estado global para persistência de dados (moedas, saúde, progresso)
+import { GerenciadorCachorros } from "../componentes/controleCachorro/gerenciadorCachorros.js";
+import { cachorrosBase } from "../componentes/controleCachorro/cachorrosBase.js";
 import { gameState } from "../main.js";
- //Cena de Minigame: Remoção de Pulgas
- //Utiliza o motor de física Arcade para gerenciar colisões e movimentos erráticos.
 
-export class cenaCuidado extends Phaser.Scene {
+export class cenaComida extends Phaser.Scene {
+    
     constructor() {
-        super({ key: "cenaCuidado" });
-
-        // CONFIGURAÇÕES DAS VARIÁVEIS
-        this.totalPulgas = 12;          // Quantidade de alvos necessária para vencer
-        this.pulgasRemovidas = 0;       // Contador de progresso atual
-        this.pontuacao = 0;             
-        this.minigameFinalizado = false; // Trava de segurança para evitar múltiplos gatilhos de vitória
-        this.pincaEquipada = false;     // Controle de estado do cursor customizado
-        this.bonusMeioGanho = false;    // Flag para disparar evento de 50% de conclusão
-        this.pulgaSegurada = null;      // Referência ao objeto atualmente em "Drag"
-
-        // Controle de fluxo de interface (UX)
-        this.instrucoesLidas = false;
+        super({ key: "cenaComida" });
+        this.transicao = false;
     }
 
     create() {
-        
-        //GESTÃO DE CENAS E HUD
-        //Paramos a HUD para que os cliques no minigame não ativem botões do menu lateral por acidente.
-         
-        this.scene.stop("HUD");
         this.transicao = false;
 
-        const largura = this.scale.width;
-        const altura = this.scale.height;
+        // HUD Management
+        if (!this.scene.isActive("HUD")) {
+            this.scene.launch("HUD");
+        } else if (this.scene.isSleeping("HUD")) {
+            this.scene.wake("HUD");
+        }
+        this.scene.bringToTop("HUD");
 
-        //O background muda dinamicamente se o jogador estiver com o "Cachorro Herói" ativo no gameState. 
-        const bgAtivo = gameState.pets.cachorroHeroi ? "bgCuidadoHeroi" : "bgCuidado";
+        // Melhoria Semântica: Renomeado para refletir que são dimensões (largura e altura)
+        const larguraUtil = this.scale.width * 0.8; 
+        const alturaTotal = this.scale.height;
 
-        // Renderização do fundo com preenchimento total da tela 
-        this.fundo = this.add.image(largura / 2, altura / 2, bgAtivo)
-            .setDisplaySize(largura, altura);
-
-        
-         //Garante que o jogo não quebre caso o asset da pinça falhe; ele gera um desenho vetorial na hora.
-         
-        this.garantirTexturaPinca();
-
-        //Limpa os dados de rodadas anteriores para permitir o replay.
-        this.pulgasRemovidas = 0;
-        this.pontuacao = 0;
-        this.minigameFinalizado = false;
-        this.pincaEquipada = false;
-        this.bonusMeioGanho = false;
-        this.pulgaSegurada = null;
-        this.instrucoesLidas = false;
-
-        // Garantia de que o contador de moedas existe antes de manipular valores
-        gameState.cobasiCoins = gameState.cobasiCoins ?? 0;
-
-         //A bandeja funciona como o "Goal" (objetivo).
-         //  É para onde o jogador deve arrastar as pulgas.
-          this.bandeja = this.add.image(largura / 2, altura * 0.85, "bandeja")
-            .setDepth(5)
-            .setScale(0.5); 
-
-       
-         //Aqui é criado um grupo físico. Em vez de criar/destruir sprites, o Phaser recicla esses objetos,
-        this.pulgas = this.physics.add.group({
-            classType: Phaser.Physics.Arcade.Sprite,
-            maxSize: this.totalPulgas
-        });
-
-        // Inicialização da interface de texto (HUD interna do minigame)
-        this.criarTextosInfo();
-        
-        // Instancia o objeto da pinça que servirá de cursor
-        this.criarFerramentaPinca();
-        
-        // Distribui as pulgas na tela de forma aleatória (Spawn inicial)
-        this.spawnPulgasIniciais();
-
-       
-         //captura da pulga
-         //Quando o jogador clica, buscamos a pulga mais próxima num raio de 50px.
-            this.input.on('pointerdown', (pointer) => {
-            if (!this.instrucoesLidas || !this.pincaEquipada || this.minigameFinalizado || this.pulgaSegurada) return;
+        /**
+         * Aplica efeitos visuais de feedback (Hover e Click)
+         */
+        const passarPressionarEfeito = (alvo, escalaNormal, escalaPassar) => {
+            // Removido alvo.removeAllListeners() para não matar outros eventos anexados ao objeto
             
-            let pulgaMaisProxima = null;
-            let menorDistancia = 50; 
-            
-            this.pulgas.children.iterate((pulga) => {
-                if (!pulga || !pulga.active) return;
-                const distancia = Phaser.Math.Distance.Between(pointer.x, pointer.y, pulga.x, pulga.y);
-                if (distancia < menorDistancia) {
-                    menorDistancia = distancia;
-                    pulgaMaisProxima = pulga;
-                }
+            alvo.on("pointerover", () => {
+                this.tweens.add({ targets: alvo, scaleX: escalaPassar, scaleY: escalaPassar, duration: 200 });
             });
 
-            if (pulgaMaisProxima) {
-                this.pulgaSegurada = pulgaMaisProxima;
-                this.tweens.killTweensOf(pulgaMaisProxima); // Para o movimento aleatório enquanto segura
-                this.pulgaSegurada.setScale(0.15); // Efeito visual de "levantar" a pulga
-            }
-        });
+            alvo.on("pointerdown", () => {
+                this.tweens.add({ targets: alvo, scaleX: escalaNormal * 0.9, scaleY: escalaNormal * 0.9, duration: 150, yoyo: true });
+            });
 
-       
-         //Lógica de  ao soltar o clique, verificamos se a pulga está dentro dos limites da bandeja.
-         
-        this.input.on('pointerup', (pointer) => {
-            if (this.pulgaSegurada) {
-                const areaBandeja = this.bandeja.getBounds();
-                
-                // Verificação geométrica de colisão entre o ponto do mouse e o retângulo da bandeja
-                if (Phaser.Geom.Rectangle.ContainsPoint(areaBandeja, pointer)) {
-                    this.capturarPulga(this.pulgaSegurada);
-                } else {
-                    // Se soltar no lugar errado, ela volta ao tamanho normal e foge novamente
-                    this.pulgaSegurada.setScale(0.12);
-                    this.moverPulga(this.pulgaSegurada); 
-                }
-                this.pulgaSegurada = null;
-            }
-        });
-
-        //Responsividade
-        // Recalcula posições de fundos, bandejas e textos caso a janela mude de tamanho.
-        
-        const handleResize = (gameSize) => {
-            const novaLargura = gameSize.width;
-            const novaAltura = gameSize.height;
-
-            this.cameras.resize(novaLargura, novaAltura);
-            
-            if (this.fundo) {
-                this.fundo.setDisplaySize(novaLargura, novaAltura).setPosition(novaLargura / 2, novaAltura / 2);
-            }
-
-            if (this.textoTempo) this.textoTempo.setPosition(20, 30);
-            if (this.textoProgresso) this.textoProgresso.setPosition(novaLargura - 20, 30);
-
-            if (this.bandeja) {
-                this.bandeja.setPosition(novaLargura / 2, novaAltura * 0.85);
-            }
-
-            // Garante que a pinça não "suma" se o jogador redimensionar sem estar com ela equipada
-            if (this.pinca && !this.pincaEquipada) {
-                this.pinca.setPosition(novaLargura / 2, novaAltura * 0.7);
-            }
-
-            // Reposiciona pulgas ativas para não ficarem fora da tela 
-            this.pulgas.children.iterate((pulga) => {
-                if (pulga && pulga.active && pulga !== this.pulgaSegurada) {
-                    pulga.x = Phaser.Math.Clamp(pulga.x, 50, novaLargura - 50);
-                    pulga.y = Phaser.Math.Clamp(pulga.y, 80, novaAltura - 80);
-                }
+            alvo.on("pointerout", () => {
+                this.tweens.add({ targets: alvo, scaleX: escalaNormal, scaleY: escalaNormal, duration: 200 });
             });
         };
 
-        this.scale.on("resize", handleResize);
+        // Cenário
+        this.fundo = this.add.image(larguraUtil / 2, alturaTotal / 2, "bgRacao")
+            .setDisplaySize(larguraUtil, alturaTotal)
+            .setDepth(-1);
 
-        // Limpeza de eventos ao encerrar a cena para evitar vazamento de memória (Memory Leak)
-        this.events.on('shutdown', () => {
-            this.scale.off("resize", handleResize);
-            this.input.keyboard.removeListener('keydown-SPACE'); 
+        // Estante
+        const estante = this.add.image(larguraUtil * 0.25, alturaTotal * 0.68, "estanteRacao")
+            .setScale(alturaTotal * 0.0006)
+            .setInteractive({ useHandCursor: true });
+
+        passarPressionarEfeito(estante, estante.scaleX, estante.scaleX * 1.1);
+
+        estante.on("pointerdown", () => {
+            const cenaHUD = this.scene.manager.getScene("HUD");
+            if (cenaHUD && cenaHUD.transicionarPara) {
+                cenaHUD.transicionarPara("cenaRacaoSuperPremium");
+            } else {
+                this.scene.start("cenaRacaoSuperPremium");
+            }
         });
 
-        // Inicia o fluxo visual pelo modal de ajuda
-        this.mostrarInstrucoes();
+        // Bilhete / Ficha
+        gameState.bilhete = this.add.image(
+            this.scale.width * 0.7, 
+            this.scale.height * 0.25,
+            'mineFicha'
+        )
+        .setScale(0.15)
+        .setInteractive({ useHandCursor: true });
+        
+        gameState.bilhete.setDepth(10); 
+        this.profundidadeOriginalBilhete = gameState.bilhete.depth;
+        
+        passarPressionarEfeito(gameState.bilhete, 0.15, 0.18);
+
+        gameState.bilhete.on('pointerdown', () => {
+            if (this.overlayFicha) {
+                this.overlayFicha.destroy();
+                this.overlayFicha = null;
+                if (this.txtCliqueFicha) this.txtCliqueFicha.destroy();
+                
+                gameState.bilhete.setDepth(this.profundidadeOriginalBilhete);
+                gameState.enfaseFichaVista = true; 
+            }
+
+            if(this.scene.isActive('ficha')) {
+                this.scene.stop('ficha');
+            } else {
+                this.scene.launch('ficha');
+            }
+        });
+
+        // Tigela Vazia
+        const racaoVazia = this.add.image((larguraUtil / 2) + (larguraUtil / 2) * 0.1, alturaTotal / 2 + alturaTotal * 0.4, "racaoVazia")
+            .setScale(alturaTotal * 0.0002);
+
+        // Pet e Pulgas
+        this.gerenciadorCachorros = new GerenciadorCachorros(this);
+        this.cachorro = this.gerenciadorCachorros.criarCachorro(0, 0, cachorrosBase[0]);
+        const elementosContainer = [this.cachorro.sprite];
+
+        if (!this.anims.exists("pulgaAnim")) {
+            this.anims.create({
+                key: "pulgaAnim",
+                frames: this.anims.generateFrameNumbers("pulgas", { start: 0, end: 1 }), 
+                frameRate: 1,  
+                repeat: -1     
+            });
+        }
+
+        this.pulgas = this.add.sprite(0, 0, "pulgas")
+            .setOrigin(0.5)
+            .setScale(alturaTotal * 0.0015);
+
+        this.pulgas.play("pulgaAnim");
+        this.pulgas.setVisible(gameState.pulga); 
+        elementosContainer.push(this.pulgas); 
+
+        // Container do Pet
+        const dogX = (larguraUtil / 2) + (larguraUtil / 2) * 0.4;
+        const dogY = (alturaTotal / 2) + (alturaTotal / 2) * 0.25;
+
+        this.containerCachorro = this.add.container(dogX, dogY, elementosContainer);
+        this.containerCachorro.setScale(alturaTotal * 0.0007);
+
+        // Tutoriais
+        if (!gameState.instrucaoRacaoVista) {
+            this.mostrarInstrucaoRacao(larguraUtil, alturaTotal);
+        } else if (!gameState.enfaseFichaVista) {
+            this.destacarFicha(larguraUtil, alturaTotal);
+        }
+
+        // Responsividade
+        const handleResizeComida = () => {
+            if (!this.scene.isActive() || !this.cameras || !this.cameras.main) return;
+
+            const novaLarguraUtil = this.scale.width * 0.8;
+            const novaAlturaTotal = this.scale.height;
+            const novoCentroX = novaLarguraUtil / 2;
+            const novoCentroY = novaAlturaTotal / 2;
+
+            this.fundo.setPosition(novoCentroX, novoCentroY).setDisplaySize(novaLarguraUtil, novaAlturaTotal);
+            estante.setPosition(novaLarguraUtil * 0.25, novaAlturaTotal * 0.68).setScale(novaAlturaTotal * 0.0006);
+            gameState.bilhete.setPosition(this.scale.width * 0.7, novaAlturaTotal * 0.25).setScale(0.15);
+            racaoVazia.setPosition(novoCentroX + novoCentroX * 0.1, novoCentroY + novaAlturaTotal * 0.4).setScale(novaAlturaTotal * 0.0002);
+            
+            const novoDogX = novoCentroX + novoCentroX * 0.4;
+            const novoDogY = novoCentroY + novoCentroY * 0.25;
+            this.containerCachorro.setPosition(novoDogX, novoDogY).setScale(novaAlturaTotal * 0.0007);
+            this.pulgas.setScale(novaAlturaTotal * 0.0015);
+
+            if (this.fundoEscuroInstrucao && this.fundoEscuroInstrucao.active) {
+                this.fundoEscuroInstrucao.setSize(novaLarguraUtil, novaAlturaTotal);
+                this.fundoEscuroInstrucao.setPosition(novoCentroX, novoCentroY);
+                if (this.imgInstrucao && this.imgInstrucao.active) {
+                    this.imgInstrucao.setPosition(novoCentroX, novoCentroY);
+                    if (this.txtContinuarInstrucao && this.txtContinuarInstrucao.active) {
+                        const novoPosicaoTextoY = novoCentroY + (this.imgInstrucao.displayHeight / 2) + 30;
+                        this.txtContinuarInstrucao.setPosition(novoCentroX, novoPosicaoTextoY);
+                    }
+                }
+            }
+
+            if (this.overlayFicha && this.overlayFicha.active) {
+                this.overlayFicha.setSize(novaLarguraUtil, novaAlturaTotal);
+                this.overlayFicha.setPosition(novoCentroX, novoCentroY);
+            }
+            if (this.txtCliqueFicha && this.txtCliqueFicha.active) {
+                this.txtCliqueFicha.setPosition(this.scale.width * 0.7, (novaAlturaTotal * 0.25) + 60);
+            }
+        };
+
+        this.scale.on("resize", handleResizeComida);
+
+        this.events.on('shutdown', () => {
+            this.scale.off("resize", handleResizeComida);
+        });
     }
 
     update() {
-        
-         //LOOP DE ATUALIZAÇÃO (60 FPS)
-         //Sincroniza a posição da pinça e da pulga segurada com o movimento do mouse/toque.
-         
-        if (!this.instrucoesLidas || !this.pincaEquipada || this.minigameFinalizado) return;
-
-        const ponteiro = this.input.activePointer;
-        
-        if (this.pinca) {
-            // Pequeno ajuste de offset (18, 14) para a pinça alinhar visualmente com a ponta do cursor
-            this.pinca.setPosition(ponteiro.x + 18, ponteiro.y + 14);
+        if (this.pulgas) {
+            this.pulgas.setVisible(gameState.pulga);
         }
 
-        if (this.pulgaSegurada) {
-            this.pulgaSegurada.setPosition(ponteiro.x, ponteiro.y);
+        // Melhoria: Reset do gameState.trocar para evitar chamadas múltiplas da função por frame
+        if (gameState.trocar) {
+            this.gerenciadorCachorros.mudarParaCachorroHeroi();
+            gameState.trocar = false; // Impede que mude 60 vezes por segundo
         }
     }
 
-    
-     //MODAL DE INSTRUÇÕES 
-     //Cria um fundo escuro interativo que bloqueia o jogo até o clique de início.
-    mostrarInstrucoes() {
-        const cx = this.scale.width / 2;
-        const cy = this.scale.height / 2;
+    mostrarInstrucaoRacao(larguraUtil, alturaTotal) {
+        const centroX = larguraUtil / 2;
+        const centroY = alturaTotal / 2;
 
-        this.fundoInstrucao = this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.85)
-            .setDepth(200).setInteractive(); 
+        this.fundoEscuroInstrucao = this.add.rectangle(centroX, centroY, larguraUtil, alturaTotal, 0x000000, 0.7)
+            .setDepth(1000)
+            .setInteractive(); 
 
-        this.imgInstrucao = this.add.image(cx, cy, "comoJogarPulgas").setDepth(201);
+        this.imgInstrucao = this.add.image(centroX, centroY, "instrucaoRacao")
+            .setDepth(1001)
+            .setScale(0.5);
 
-        // Escalonamento uniforme da imagem de instrução (não distorce)
-        const escala = Math.min((this.scale.width * 0.8) / this.imgInstrucao.width, (this.scale.height * 0.8) / this.imgInstrucao.height);
-        this.imgInstrucao.setScale(escala);
-
-        this.textoIniciar = this.add.text(cx, cy + (this.imgInstrucao.displayHeight / 2) + 40, "[ Clique para começar ]", {
-            fontFamily: '"Press Start 2P", Arial', fontSize: "15px", color: "#ffffff"
-        }).setOrigin(0.5).setDepth(201);
-        
-        // Efeito visual pulsante no texto de início
-        this.tweens.add({ targets: this.textoIniciar, alpha: 0.5, duration: 600, yoyo: true, loop: -1 });
-
-        const comecarJogo = () => {
-            this.fundoInstrucao.destroy();
-            this.imgInstrucao.destroy();
-            this.textoIniciar.destroy();
-            this.iniciarMinigameAposInstrucoes();
-        };
-
-        this.fundoInstrucao.on('pointerdown', comecarJogo);
-        this.input.keyboard.once('keydown-SPACE', comecarJogo);
-    }
-    
-    iniciarMinigameAposInstrucoes() {
-        this.instrucoesLidas = true;
-        this.tempoInicialMs = this.time.now;
-        
-        // Timer que chama a função de atualização de tempo a cada 100ms
-        this.timerEvent = this.time.addEvent({
-            delay: 100, callback: this.atualizarTextoTempo, callbackScope: this, loop: true
-        });
-        
-        // Dá vida às pulgas: elas começam a correr aleatoriamente pela tela
-        this.pulgas.children.iterate((pulga) => {
-            if (pulga && pulga.active) this.moverPulga(pulga);
-        });
-        
-        this.mostrarPopupInstrucaoPinca();
-    }
-
-    
-     
-     //Usa Tweens para mover a pulga para coordenadas X, Y aleatórias repetidamente.
-     
-    moverPulga(pulga) {
-        if (!pulga.active || this.minigameFinalizado) return;
-
-        const x = Phaser.Math.Between(50, this.scale.width - 50);
-        const y = Phaser.Math.Between(80, this.scale.height - 80);
+        const posicaoTextoY = centroY + (this.imgInstrucao.displayHeight / 2) + 30;
+        this.txtContinuarInstrucao = this.add.text(centroX, posicaoTextoY, "[ Clique para continuar ]", {
+            fontFamily: '"Press Start 2P", Arial',
+            fontSize: "15px",
+            color: "#ffffff",
+            stroke: "#000000",
+            strokeThickness: 4
+        }).setOrigin(0.5).setDepth(1001);
 
         this.tweens.add({
-            targets: pulga,
-            x: x,
-            y: y,
-            duration: Phaser.Math.Between(1800, 3200), // Velocidades diferentes para cada pulga
-            ease: "Sine.easeInOut",
-            onComplete: () => { this.moverPulga(pulga); } // Recursividade: move para outro lugar ao chegar
+            targets: this.txtContinuarInstrucao, 
+            alpha: 0.4, 
+            duration: 800, 
+            yoyo: true, 
+            loop: -1
+        });
+
+        this.fundoEscuroInstrucao.on("pointerdown", () => {
+            this.fundoEscuroInstrucao.destroy();
+            this.imgInstrucao.destroy();
+            this.txtContinuarInstrucao.destroy();
+            
+            this.fundoEscuroInstrucao = null;
+            this.imgInstrucao = null;
+            this.txtContinuarInstrucao = null;
+            
+            gameState.instrucaoRacaoVista = true; 
+            
+            if (!gameState.enfaseFichaVista) {
+                this.destacarFicha(larguraUtil, alturaTotal);
+            }
         });
     }
 
-  
-     //Calcula as estrelas com base no tempo e atualiza o estado global de saúde.
-     finalizarMinigame() {
-        if (this.minigameFinalizado) return;
-        this.minigameFinalizado = true;
-        this.input.setDefaultCursor("default");
+    destacarFicha(larguraUtil, alturaTotal) {
+        const centroX = larguraUtil / 2;
+        const centroY = alturaTotal / 2;
 
-        const segundos = Math.ceil((this.time.now - this.tempoInicialMs) / 1000);
-        
-        // Definição de Rank: 3 estrelas (<=30s), 2 estrelas (<=55s), 1 estrela (>55s)
-        const estrelas = segundos <= 30 ? 3 : segundos <= 55 ? 2 : 1;
-        const moedas = estrelas === 3 ? 20 : estrelas === 2 ? 10 : 0;
+        this.overlayFicha = this.add.rectangle(centroX, centroY, larguraUtil, alturaTotal, 0x000000, 0.7)
+            .setDepth(900)
+            .setInteractive(); 
 
-        // Persistência: Dá moedas apenas na primeira vez que limpa o pet na sessão
-        const cachorroAtivo = gameState.pets.cachorroHeroi ? 'heroi' : 'caramelo';
-        if (!gameState.recompensas.cuidado[cachorroAtivo]) {
-            gameState.cobasiCoins += moedas;
-            gameState.recompensas.cuidado[cachorroAtivo] = true;
-        }
+        gameState.bilhete.setDepth(901);
 
-        gameState.pulga = false; // O cachorro agora está visualmente limpo nas outras cenas
-        this.mostrarPainelResultado(estrelas, moedas, segundos);
+        this.txtCliqueFicha = this.add.text(
+            this.scale.width * 0.7, 
+            (this.scale.height * 0.25) + 60, 
+            "Clique na ficha!", {
+            fontFamily: '"Press Start 2P", Arial',
+            fontSize: "12px",
+            color: "#ffffff",
+            align: "center",
+            stroke: "#000000",
+            strokeThickness: 3
+        }).setOrigin(0.5).setDepth(901);
+
+        this.tweens.add({
+            targets: this.txtCliqueFicha,
+            alpha: 0.4,
+            duration: 600,
+            yoyo: true,
+            loop: -1
+        });
     }
-
-    
 }
