@@ -210,11 +210,6 @@ export class jogoLazer extends Phaser.Scene {
             return; // Impede controles enquanto esta caindo apos ganhar
         }
 
-        // Calcula velocidade progressiva baseada na posicao
-        let velocidadeAtual = Math.min(300 + (this.cachorro.x * 0.05), 700);
-        this.cachorro.setVelocityX(velocidadeAtual);
-        this.cachorro.anims.timeScale = velocidadeAtual / 300; 
-
         // Controles de acao
         const querPular = this.teclado.up.isDown || Phaser.Input.Keyboard.JustDown(this.teclaSpace);
         
