@@ -1,27 +1,24 @@
-// Importa o estado global
+// Importa o estado global do jogo
 import { gameState } from "../main.js"
-
-// Imports do sistema de cachorro
+// Importa as dependências para gestão e dados dos animais
 import { GerenciadorCachorros } from "../componentes/controleCachorro/gerenciadorCachorros.js"
 import { cachorrosBase } from "../componentes/controleCachorro/cachorrosBase.js"
 
-// ====================================================================
-// NOVA CENA: Gerencia apenas os Popups (Fica acima da HUD e do Jogo)
-// ====================================================================
+// Cena responsável por gerenciar e exibir interfaces sobrepostas como fichas e evoluções
 class CenaPopups extends Phaser.Scene {
     constructor() {
         super({ key: "CenaPopups" });
     }
 
     create() {
-        // Decide qual popup mostrar
+        // Verifica o estado global para determinar qual interface deve ser renderizada
         if (gameState.aguardandoEvolucao) {
             this.exibirPopupEvolucao();
         } else if (!gameState.instrucaoMissaoVista) {
             this.mostrarFicha();
         }
 
-        // Lógica de Resize exclusiva para os Popups
+        // Gerencia o reposicionamento dos elementos visuais quando o tamanho da tela muda
         const handleResizePopups = () => {
             if (!this.scene.isActive() || !this.cameras || !this.cameras.main) return;
 
@@ -31,6 +28,7 @@ class CenaPopups extends Phaser.Scene {
             const novoCentroX = novaAreaUtilLargura / 2;
             const novoCentroY = novaAltura / 2;
 
+            // Atualiza a posição de imagens e textos ativos conforme o novo centro calculado
             if (this.imgEvolucao && this.imgEvolucao.active) this.imgEvolucao.setPosition(novoCentroX, novoCentroY);
             if (this.txtEvolucao && this.txtEvolucao.active) this.txtEvolucao.setPosition(novoCentroX, novoCentroY + 180);
 
@@ -46,12 +44,14 @@ class CenaPopups extends Phaser.Scene {
             }
         };
 
+        // Adiciona o ouvinte de redimensionamento e garante sua remoção ao encerrar a cena
         this.scale.on("resize", handleResizePopups);
         this.events.on('shutdown', () => {
             this.scale.off("resize", handleResizePopups);
         });
     }
 
+    // Cria a interface visual que indica a mudança de nível do animal
     exibirPopupEvolucao() {
         const areaUtilLargura = this.scale.width * 0.8; 
         const centroX = areaUtilLargura / 2;
@@ -67,6 +67,7 @@ class CenaPopups extends Phaser.Scene {
             fill: "#ffffff"
         }).setOrigin(0.5);
 
+        // Atualiza os dados do pet para a nova fase e reinicia a cena de jogo
         this.imgEvolucao.on('pointerdown', () => {
             gameState.pets.cachorroCaramelo = false;
             gameState.pets.cachorroHeroi = true;
@@ -75,12 +76,12 @@ class CenaPopups extends Phaser.Scene {
             gameState.barras = { comida: 11, lazer: 11, limpeza: 11, saude: 11 };
             gameState.pulga = true;
 
-            // Para a cena de popups e reinicia a cena principal
             this.scene.stop();
             this.scene.get("cenaPrincipal").scene.restart();
         });
     }
 
+    // Monta o container com as informações biográficas do animal ativo
     mostrarFicha() {
         const areaUtilLargura = this.scale.width * 0.8;
         const centroX = areaUtilLargura / 2;
@@ -95,6 +96,7 @@ class CenaPopups extends Phaser.Scene {
         const fundoFicha = this.add.rectangle(0, 0, 500, 350, 0xf0e8bb).setOrigin(0.5);
         const estiloPixel = { fontFamily: '"Press Start 2P", Arial', fontSize: "14px", color: "#000000" };
 
+        // Adiciona textos informativos ao container da ficha
         this.containerFicha.add([
             fundoFicha,
             this.add.text(-220, -120, `Ficha do Animal`, estiloPixel).setOrigin(0, 0.5),
@@ -110,6 +112,7 @@ class CenaPopups extends Phaser.Scene {
             fontFamily: '"Press Start 2P"', fontSize: "15px", color: "#ffffff", stroke: "#000000", strokeThickness: 4
         }).setOrigin(0.5);
 
+        // Ao clicar, destrói a ficha e avança para as instruções da missão
         this.containerFicha.on("pointerdown", () => {
             this.containerFicha.destroy();
             this.txtContinuarFicha.destroy();
@@ -117,6 +120,7 @@ class CenaPopups extends Phaser.Scene {
         });
     }
 
+    // Exibe a imagem explicativa sobre os objetivos da missão atual
     mostrarInstrucao() {
         const areaUtilLargura = this.scale.width * 0.8;
         const centroX = areaUtilLargura / 2;
@@ -130,33 +134,30 @@ class CenaPopups extends Phaser.Scene {
             fontFamily: '"Press Start 2P"', fontSize: "15px", color: "#ffffff", stroke: "#000000", strokeThickness: 4
         }).setOrigin(0.5);
 
+        // Finaliza o fluxo de popups e libera o controle para a cena principal
         this.imgInstrucao.on("pointerdown", () => {
             this.imgInstrucao.destroy();
             this.txtContinuarInstrucao.destroy();
             gameState.instrucaoMissaoVista = true;
-            
-            // Fecha a cena de popups quando o jogador começa
             this.scene.stop();
         });
     }
 }
 
-// ====================================================================
-// CENA PRINCIPAL: Gerencia o Cachorro, Cenário e invoca a HUD e Popups
-// ====================================================================
+// Cena central do jogo que integra o cenário, o pet e chama as interfaces acessórias
 export class cenaPrincipal extends Phaser.Scene {
     constructor() {
         super({ key: "cenaPrincipal" })
     }
 
     create() {
-        // 1. Inicia e traz a HUD para o topo da cenaPrincipal
+        // Inicializa a interface de status hud e a coloca em primeiro plano
         if (!this.scene.isActive("HUD")) {
             this.scene.launch("HUD")
         }
         this.scene.bringToTop("HUD")
 
-        // 2. Registra dinamicamente e lança a Cena de Popups por cima da HUD
+        // Registra e ativa a cena de popups se houver necessidade de evoluir ou ler instruções
         if (!this.scene.get("CenaPopups")) {
             this.scene.add("CenaPopups", CenaPopups, false);
         }
@@ -165,10 +166,10 @@ export class cenaPrincipal extends Phaser.Scene {
             if (!this.scene.isActive("CenaPopups")) {
                 this.scene.launch("CenaPopups");
             }
-            this.scene.bringToTop("CenaPopups"); // Garante que fica ACIMA de tudo
+            this.scene.bringToTop("CenaPopups");
         }
 
-        // Música de fundo
+        // Controle da música de fundo garantindo a transição correta entre menus
         if (!gameState.musicaMenuPrincipal) {
             gameState.musicaMenuPrincipal = this.sound.add("musicaMenuPrincipal", { loop: true, volume: 0.5 })
         }
@@ -180,23 +181,22 @@ export class cenaPrincipal extends Phaser.Scene {
         }
         gameState.musica = gameState.musicaMenuPrincipal;
 
-        // --- LÓGICA DE POSICIONAMENTO RESPONSIVO (ÁREA ÚTIL) ---
+        // Configuração inicial do cenário respeitando a área útil de oitenta por cento da largura
         const larguraTotal = this.scale.width;
         const alturaTotal = this.scale.height;
         const areaUtilLargura = larguraTotal * 0.8; 
 
-        // Fundo da cena
         this.bg = this.add
             .image(areaUtilLargura / 2, alturaTotal / 2, "bgPrincipal")
             .setDisplaySize(areaUtilLargura, alturaTotal)
             .setDepth(-1);
 
-        // Criar cachorro
+        // Instancia o cachorro dinamicamente conforme o índice ativo no estado do jogo
         this.gerenciadorCachorros = new GerenciadorCachorros(this)
         const indiceAtivo = gameState.pets.cachorroHeroi ? 1 : 0
         this.cachorro = this.gerenciadorCachorros.criarCachorro(0, 0, cachorrosBase[indiceAtivo])
 
-        // Configuração das pulgas
+        // Criação e configuração da animação cíclica das pulgas
         if (!this.anims.exists("pulgaAnim")) {
             this.anims.create({
                 key: "pulgaAnim",
@@ -212,17 +212,16 @@ export class cenaPrincipal extends Phaser.Scene {
             .play("pulgaAnim")
             .setVisible(gameState.pulga);
 
-        // Container (Cachorro + Pulgas)
+        // Agrupa o cachorro e as pulgas em um container para manipulação conjunta
         this.containerCachorro = this.add.container(areaUtilLargura / 2, alturaTotal * 0.7, [
             this.cachorro.sprite, 
             this.pulgas
         ]);
 
-        // Ajuste de escala inicial
         const escalaBase = alturaTotal * 0.0006;
         this.containerCachorro.setScale(escalaBase);
 
-        // --- SEU RESIZE DINÂMICO ---
+        // Lógica de redimensionamento para manter o cenário e o pet centralizados na área útil
         const handleResizePrincipal = () => {
             if (!this.scene.isActive() || !this.cameras || !this.cameras.main) return;
 
@@ -247,11 +246,13 @@ export class cenaPrincipal extends Phaser.Scene {
             this.scale.off("resize", handleResizePrincipal);
         });
 
+        // Configuração de câmera com efeito de transição inicial
         this.cameras.main.setBounds(0, 0, larguraTotal, alturaTotal);
         this.cameras.main.fadeIn(200, 0, 0, 0);
     }
 
     update() {
+        // Verifica constantemente se os objetivos do cachorro foram atingidos e atualiza o estado das pulgas
         if (this.gerenciadorCachorros) {
             this.gerenciadorCachorros.verificarCompletude()
         }

@@ -1,17 +1,25 @@
+// Importa o gerenciador responsável pela lógica e criação dos sprites dos pets
 import { GerenciadorCachorros } from "../componentes/controleCachorro/gerenciadorCachorros.js"
+// Importa as configurações base (raças, atributos) dos cachorros
 import { cachorrosBase } from "../componentes/controleCachorro/cachorrosBase.js"
+// Importa o objeto de estado global para persistência de dados entre cenas
 import { gameState } from "../main.js";
 
+// Exporta a cena responsável pela área de alimentação e visualização da ficha do pet
 export class cenaComida extends Phaser.Scene {
     
     constructor() {
+        // Define a chave identificadora da cena no motor Phaser
         super({ key: "cenaComida" });
+        // Flag para controle de transição de cenas
         this.transicao = false;
     }
 
     create() {
+        // Reseta o estado de transição ao iniciar a cena
         this.transicao = false;
 
+        // Gerenciamento da HUD: garante que a interface esteja ativa e visível sobre a cena atual
         if (!this.scene.isActive("HUD")) {
             this.scene.launch("HUD");
         } else if (this.scene.isSleeping("HUD")) {
@@ -19,36 +27,48 @@ export class cenaComida extends Phaser.Scene {
         }
         this.scene.bringToTop("HUD");
 
-        // Calculando área útil (descontando 20% da HUD)
+        // Definição da área útil de gameplay, reservando espaço para a barra lateral da HUD (20%)
         const posicaoX = (this.scale.width - this.scale.width * 0.2);
         const posicaoY = this.scale.height;
 
+        /**
+         * Função utilitária para aplicar efeitos visuais de feedback (Hover e Click)
+         * @param {Phaser.GameObjects.GameObject} alvo - O objeto que receberá os eventos
+         * @param {number} escalaNormal - Escala padrão do objeto
+         * @param {number} escalaPassar - Escala ao passar o mouse (hover)
+         */
         const passarPressionarEfeito = (alvo, escalaNormal, escalaPassar) => {
             alvo.removeAllListeners();
 
+            // Efeito de aumento suave ao passar o mouse
             alvo.on("pointerover", () => {
                 this.tweens.add({ targets: alvo, scaleX: escalaPassar, scaleY: escalaPassar, duration: 200 });
             });
 
+            // Efeito de "aperto" (squash) ao clicar
             alvo.on("pointerdown", () => {
                 this.tweens.add({ targets: alvo, scaleX: escalaNormal * 0.9, scaleY: escalaNormal * 0.9, duration: 150, yoyo: true });
             });
 
+            // Retorno à escala original ao retirar o mouse
             alvo.on("pointerout", () => {
                 this.tweens.add({ targets: alvo, scaleX: escalaNormal, scaleY: escalaNormal, duration: 200 });
             });
         };
 
+        // Renderização do cenário de fundo centralizado na área útil
         this.fundo = this.add.image(posicaoX / 2, posicaoY / 2, "bgRacao")
             .setDisplaySize(posicaoX, posicaoY)
             .setDepth(-1);
 
+        // Instanciação da estante de rações com interatividade para troca de cena
         const estante = this.add.image(posicaoX * 0.25, posicaoY * 0.68, "estanteRacao")
             .setScale(posicaoY * 0.0006)
             .setInteractive({ useHandCursor: true });
 
         passarPressionarEfeito(estante, estante.scaleX, estante.scaleX * 1.1);
 
+        // Lógica de navegação para a cena de seleção de ração específica
         estante.on("pointerdown", () => {
             const cenaHUD = this.scene.manager.getScene("HUD");
             if (cenaHUD && cenaHUD.transicionarPara) {
@@ -58,7 +78,7 @@ export class cenaComida extends Phaser.Scene {
             }
         });
 
-        // Adiciona a ficha de informações do cachorro
+        // Adição da ficha (bilhete) de informações do cachorro na parede
         gameState.bilhete = this.add.image(
             this.scale.width * 0.7, 
             this.scale.height * 0.25,
@@ -66,23 +86,21 @@ export class cenaComida extends Phaser.Scene {
         .setScale(0.15)
         .setInteractive({ useHandCursor:true });
         
-        // Define a profundidade base para podermos voltar a ela depois do destaque
+        // Armazena a profundidade para restaurar após efeitos de destaque/overlay
         gameState.bilhete.setDepth(10); 
         this.profundidadeOriginalBilhete = gameState.bilhete.depth;
         
         passarPressionarEfeito(gameState.bilhete, 0.15, 0.18);
 
-        // AÇÃO DA FICHA ATUALIZADA (Remove o destaque antes de abrir a ficha)
+        // Lógica de abertura da Ficha: limpa overlays de tutorial e lança a cena de detalhes
         gameState.bilhete.on('pointerdown', () => {
-            // Se o overlay de destaque estiver ativo, nós o removemos e permitimos o jogo fluir
             if (this.overlayFicha) {
                 this.overlayFicha.destroy();
                 this.overlayFicha = null;
-                
                 if (this.txtCliqueFicha) this.txtCliqueFicha.destroy();
                 
                 gameState.bilhete.setDepth(this.profundidadeOriginalBilhete);
-                gameState.enfaseFichaVista = true; // Salva para não repetir
+                gameState.enfaseFichaVista = true; 
             }
 
             if(this.scene.isActive('ficha')) {
@@ -92,19 +110,18 @@ export class cenaComida extends Phaser.Scene {
             }
         });
 
+        // Objeto visual da tigela vazia no chão
         const racaoVazia = this.add.image((posicaoX / 2) + (posicaoX / 2) * 0.1, posicaoY / 2 + posicaoY * 0.4, "racaoVazia")
             .setScale(posicaoY * 0.0002);
 
-        // ==========================================
-        // SISTEMA DE CACHORRO + PULGAS NO CONTAINER
-        // ==========================================
+        // Configuração do Pet e Parasitas (Pulgas)
         this.gerenciadorCachorros = new GerenciadorCachorros(this)
 
-        // Criamos o cachorro na posição 0,0 porque ele vai para dentro do container
+        // Instancia o cachorro (posição 0,0 relativa ao container pai)
         this.cachorro = this.gerenciadorCachorros.criarCachorro(0, 0, cachorrosBase[0])
         const elementosContainer = [this.cachorro.sprite];
 
-        // Cria a animação da pulga (se ainda não existir)
+        // Registro global da animação das pulgas (se não houver no cache)
         if (!this.anims.exists("pulgaAnim")) {
             this.anims.create({
                 key: "pulgaAnim",
@@ -114,38 +131,31 @@ export class cenaComida extends Phaser.Scene {
             });
         }
 
-        // Cria o sprite animado da pulga
+        // Adição das pulgas com escala proporcional e controle de visibilidade
         this.pulgas = this.add.sprite(0, 0, "pulgas")
             .setOrigin(0.5)
-            .setScale(posicaoY * 0.0015); // Mantendo a proporção visual das outras cenas
+            .setScale(posicaoY * 0.0015);
 
         this.pulgas.play("pulgaAnim");
         this.pulgas.setVisible(gameState.pulga); 
         elementosContainer.push(this.pulgas); 
 
-        // Calcula a posição onde o cachorro deveria estar
+        // Cálculo da posição absoluta do pet no cenário
         const dogX = (posicaoX / 2) + (posicaoX / 2) * 0.4;
         const dogY = (posicaoY / 2) + (posicaoY / 2) * 0.25;
 
-        // Cria o container com o cachorro e as pulgas
+        // Container agrupa pet + pulgas para transformações (escala/posição) unificadas
         this.containerCachorro = this.add.container(dogX, dogY, elementosContainer);
         this.containerCachorro.setScale(posicaoY * 0.0007);
-        // ==========================================
 
-
-        // --- CONTROLE DOS POPUPS E DESTAQUES ---
+        // Controle de fluxo de onboarding: decide qual popup de instrução exibir primeiro
         if (!gameState.instrucaoRacaoVista) {
             this.mostrarInstrucaoRacao(posicaoX, posicaoY);
         } else if (!gameState.enfaseFichaVista) {
-            // Caso o jogador tenha atualizado a página após ver o popup, mas antes de abrir a ficha
             this.destacarFicha(posicaoX, posicaoY);
         }
-        // ----------------------------------
 
-
-        // ==========================================
-        // RESPONSIVIDADE - LISTENER DE RESIZE
-        // ==========================================
+        // Listener de Responsividade: reajusta todos os elementos caso a janela mude de tamanho
         const handleResizeComida = () => {
             if (!this.scene.isActive() || !this.cameras || !this.cameras.main) return;
 
@@ -154,39 +164,22 @@ export class cenaComida extends Phaser.Scene {
             const novoCentroX = novaLargura / 2;
             const novoCentroY = novaAltura / 2;
 
-            // Atualiza fundo
-            this.fundo.setPosition(novoCentroX, novoCentroY)
-                      .setDisplaySize(novaLargura, novaAltura);
-
-            // Atualiza estante
-            estante.setPosition(novaLargura * 0.25, novaAltura * 0.68)
-                   .setScale(novaAltura * 0.0006);
-
-            // Atualiza bilhete
-            gameState.bilhete.setPosition(this.scale.width * 0.7, novaAltura * 0.25)
-                             .setScale(0.15);
-
-            // Atualiza racao vazia
-            racaoVazia.setPosition(novoCentroX + novoCentroX * 0.1, novoCentroY + novaAltura * 0.4)
-                      .setScale(novaAltura * 0.0002);
-
-            // Atualiza container do cachorro
+            this.fundo.setPosition(novoCentroX, novoCentroY).setDisplaySize(novaLargura, novaAltura);
+            estante.setPosition(novaLargura * 0.25, novaAltura * 0.68).setScale(novaAltura * 0.0006);
+            gameState.bilhete.setPosition(this.scale.width * 0.7, novaAltura * 0.25).setScale(0.15);
+            racaoVazia.setPosition(novoCentroX + novoCentroX * 0.1, novoCentroY + novaAltura * 0.4).setScale(novaAltura * 0.0002);
+            
             const novoDogX = novoCentroX + novoCentroX * 0.4;
             const novoDogY = novoCentroY + novoCentroY * 0.25;
-            this.containerCachorro.setPosition(novoDogX, novoDogY)
-                                  .setScale(novaAltura * 0.0007);
-
-            // Atualiza pulgas
+            this.containerCachorro.setPosition(novoDogX, novoDogY).setScale(novaAltura * 0.0007);
             this.pulgas.setScale(novaAltura * 0.0015);
 
-            // Ajusta o popup de instrução se estiver aberto
+            // Reajuste de modais de instrução ativos durante o resize
             if (this.fundoEscuroInstrucao && this.fundoEscuroInstrucao.active) {
                 this.fundoEscuroInstrucao.setSize(novaLargura, novaAltura);
                 this.fundoEscuroInstrucao.setPosition(novoCentroX, novoCentroY);
-                
                 if (this.imgInstrucao && this.imgInstrucao.active) {
                     this.imgInstrucao.setPosition(novoCentroX, novoCentroY);
-                    
                     if (this.txtContinuarInstrucao && this.txtContinuarInstrucao.active) {
                         const novoPosicaoTextoY = novoCentroY + (this.imgInstrucao.displayHeight / 2) + 30;
                         this.txtContinuarInstrucao.setPosition(novoCentroX, novoPosicaoTextoY);
@@ -194,7 +187,6 @@ export class cenaComida extends Phaser.Scene {
                 }
             }
 
-            // Ajusta o Destaque da Ficha se estiver ativo
             if (this.overlayFicha && this.overlayFicha.active) {
                 this.overlayFicha.setSize(novaLargura, novaAltura);
                 this.overlayFicha.setPosition(novoCentroX, novoCentroY);
@@ -206,40 +198,42 @@ export class cenaComida extends Phaser.Scene {
 
         this.scale.on("resize", handleResizeComida);
 
+        // Limpeza do listener ao encerrar a cena para evitar vazamento de memória
         this.events.on('shutdown', () => {
             this.scale.off("resize", handleResizeComida);
         });
     }
 
     update() {
-        // Atualiza a visibilidade da pulga em tempo real
+        // Atualização em tempo real da visibilidade das pulgas conforme estado global
         if (this.pulgas) {
             this.pulgas.setVisible(gameState.pulga);
         }
 
+        // Sincronização: troca o pet exibido se houver comando no estado global
         if (gameState.trocar) {
             this.gerenciadorCachorros.mudarParaCachorroHeroi()
         }
     }
 
-    // --- FUNÇÃO PARA MOSTRAR INSTRUÇÃO DA RAÇÃO ---
+    /**
+     * Exibe o popup inicial de instrução sobre o funcionamento da ração
+     */
     mostrarInstrucaoRacao(areaUtilLargura, alturaTotal) {
         const centroX = areaUtilLargura / 2;
         const centroY = alturaTotal / 2;
 
-        // Fundo semi-transparente
+        // Overlay de fundo para focar a atenção no popup
         this.fundoEscuroInstrucao = this.add.rectangle(centroX, centroY, areaUtilLargura, alturaTotal, 0x000000, 0.7)
             .setDepth(1000)
             .setInteractive(); 
 
-        // Imagem de instrução da ração
         this.imgInstrucao = this.add.image(centroX, centroY, "instrucaoRacao")
             .setDepth(1001)
             .setScale(0.5);
 
-        // Texto piscante para continuar (posicionado logo abaixo da imagem)
+        // Texto com animação de "piscar" (alpha) para indicar interatividade
         const posicaoTextoY = centroY + (this.imgInstrucao.displayHeight / 2) + 30;
-
         this.txtContinuarInstrucao = this.add.text(centroX, posicaoTextoY, "[ Clique para continuar ]", {
             fontFamily: '"Press Start 2P", Arial',
             fontSize: "15px",
@@ -256,7 +250,7 @@ export class cenaComida extends Phaser.Scene {
             loop: -1
         });
 
-        // Evento de clique para fechar a instrução
+        // Evento para fechar modal e encadear o próximo tutorial (Destaque da Ficha)
         this.fundoEscuroInstrucao.on("pointerdown", () => {
             this.fundoEscuroInstrucao.destroy();
             this.imgInstrucao.destroy();
@@ -268,30 +262,30 @@ export class cenaComida extends Phaser.Scene {
             
             gameState.instrucaoRacaoVista = true; 
             
-            // --- ATIVA O DESTAQUE NA FICHA LOGO APÓS FECHAR O POPUP ---
             if (!gameState.enfaseFichaVista) {
                 this.destacarFicha(areaUtilLargura, alturaTotal);
             }
         });
     }
 
-    // --- FUNÇÃO PARA DESTACAR A FICHA ---
+    /**
+     * Aplica um efeito de destaque (foco) especificamente no bilhete de informações
+     */
     destacarFicha(areaUtilLargura, alturaTotal) {
         const centroX = areaUtilLargura / 2;
         const centroY = alturaTotal / 2;
 
-        // Fundo escuro para bloquear tudo na tela MENOS a ficha
+        // Overlay escuro que bloqueia cliques em outros elementos do cenário
         this.overlayFicha = this.add.rectangle(centroX, centroY, areaUtilLargura, alturaTotal, 0x000000, 0.7)
             .setDepth(900)
-            .setInteractive(); // Ao setar interativo sem função, ele bloqueia os cliques nos itens abaixo dele (estante, cenário, etc)
+            .setInteractive(); 
 
-        // Eleva a ficha visualmente acima do fundo escuro
+        // Eleva a profundidade do bilhete para "atravessar" o overlay escuro
         gameState.bilhete.setDepth(901);
 
-        // Adiciona um pequeno texto guiando o usuário
         this.txtCliqueFicha = this.add.text(
             this.scale.width * 0.7, 
-            (this.scale.height * 0.25) + 60, // Posição logo abaixo da ficha
+            (this.scale.height * 0.25) + 60, 
             "Clique na ficha!", {
             fontFamily: '"Press Start 2P", Arial',
             fontSize: "12px",
@@ -301,7 +295,6 @@ export class cenaComida extends Phaser.Scene {
             strokeThickness: 3
         }).setOrigin(0.5).setDepth(901);
 
-        // Dá um efeitinho piscante no texto
         this.tweens.add({
             targets: this.txtCliqueFicha,
             alpha: 0.4,

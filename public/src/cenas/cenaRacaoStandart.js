@@ -30,9 +30,6 @@ export class cenaRacaoStandart extends Phaser.Scene {
         this.scene.stop("HUD");
         this.transicao = false;
 
-        // ==========================================
-        // FUNÇÕES ORIGINAIS INTACTAS (com ajuste para ler a escala dinâmica)
-        // ==========================================
         const criarBotao = (x, y, texturaNormal, texturaPressionado, escalaBase, escalaAumentada, escalaPressionada, callback) => {
             const botao = this.add.image(x, y, texturaNormal).setScale(escalaBase).setInteractive({ useHandCursor: true });
 
@@ -93,9 +90,7 @@ export class cenaRacaoStandart extends Phaser.Scene {
             this.scene.bringToTop("ficha");
         };
 
-        // ==========================================
-        // ELEMENTOS E POSIÇÕES
-        // ==========================================
+       
         this.fundo = this.add.image(largura / 2, altura / 2, "bgLimpo")
             .setDisplaySize(largura, altura)
             .setDepth(-1);
@@ -267,9 +262,7 @@ export class cenaRacaoStandart extends Phaser.Scene {
             });
         });
 
-        // ==========================================
-        // RESIZE: REPOSICIONAMENTO E ATUALIZAÇÃO TOTAL DAS ESCALAS
-        // ==========================================
+        
         const handleResizeRacaoStandart = (gameSize) => {
             const w = gameSize.width;
             const h = gameSize.height;
