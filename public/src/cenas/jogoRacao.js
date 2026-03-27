@@ -1,45 +1,56 @@
-// Importa os dados das rações disponíveis
+// Importa o estado global do jogo para gerenciar progresso e dados
+import { gameState } from "../main.js";
+
+// Importa os dados de propriedades de cada tipo de ração (tamanho da ração e idade do pet)
 import {
-    racaoGrandeFilhote,
-    racaoGrandeAdulto,
-    racaoGrandeSenior,
-    racaoMediaAdulto,
-    racaoMediaFilhote,
-    racaoMediaSenior,
-    racaoPequenaAdulto,
-    racaoPequenaFilhote,
-    racaoPequenaSenior
+    racaoGrandeFilhote, racaoGrandeAdulto, racaoGrandeSenior,
+    racaoMediaAdulto, racaoMediaFilhote, racaoMediaSenior,
+    racaoPequenaAdulto, racaoPequenaFilhote, racaoPequenaSenior
 } from "../componentes/controleRacoes/dadosRacoes.js";
 
-// Importa classe Racao e controle do cachorro
+// Importa a classe responsável por construir o objeto da ração no jogo
 import { Racao } from "../componentes/controleRacoes/racoes.js";
+
+// Importa as informações base dos cachorros
 import { cachorrosBase } from "../componentes/controleCachorro/cachorrosBase.js";
 
+// Define a classe da cena da loja de rações
 export class jogoRacao extends Phaser.Scene {
     constructor() {
+        // Define a chave identificadora desta cena dentro do Phaser
         super({ key: "jogoRacao" });
     }
 
+    // O método create é executado quando a cena é montada
     create() {
+        // Armazena as dimensões atuais da tela para facilitar o posicionamento
+        const larguraTotal = this.scale.width;
+        const alturaTotal = this.scale.height;
 
+        // Função auxiliar para padronizar a criação de botões com animação e som
         const criarBotao = (x, y, texturaNormal, texturaPressionado, escalaBase, escalaAumentada, escalaPressionada, callback) => {
+            // Cria a imagem do botão e o torna clicável
             const botao = this.add.image(x, y, texturaNormal).setScale(escalaBase).setInteractive({ useHandCursor: true });
 
+            // Efeito de "hover" quando o mouse passa por cima (aumenta o botão)
             botao.on("pointerover", () => {
                 botao.setTexture(texturaPressionado);
                 this.tweens.add({ targets: botao, scale: escalaAumentada, duration: 150, ease: "Power2" });
             });
 
+            // Retorna o botão ao estado normal quando o mouse sai de cima
             botao.on("pointerout", () => {
                 botao.setTexture(texturaNormal);
                 this.tweens.add({ targets: botao, scale: escalaBase, duration: 150, ease: "Power2" });
             });
 
+            // Efeito de afundar o botão no momento exato do clique
             botao.on("pointerdown", () => {
                 botao.setTexture(texturaPressionado);
                 this.tweens.add({ targets: botao, scale: escalaPressionada, duration: 100, ease: "Power2" });
             });
 
+            // Dispara a ação do botão e retorna ele pro tamanho "hover" quando solta o clique
             botao.on("pointerup", () => {
                 botao.setTexture(texturaPressionado);
                 this.tweens.add({ targets: botao, scale: escalaAumentada, duration: 100, ease: "Power2" });
@@ -49,220 +60,148 @@ export class jogoRacao extends Phaser.Scene {
             return botao;
         };
 
-        // Fundo
-        this.fundo = this.add.image(this.scale.width / 2, this.scale.height / 2, "bgLimpo")
-            .setDisplaySize(this.scale.width, this.scale.height)
+        // Adiciona a imagem de fundo esticada para preencher a tela inteira
+        this.fundo = this.add.image(larguraTotal / 2, alturaTotal / 2, "bgLimpo")
+            .setDisplaySize(larguraTotal, alturaTotal)
             .setDepth(-1);
 
-        // Botão Standard
-        this.botaoStandard = criarBotao(
-            this.scale.width * 0.15, this.scale.height * 0.145,
-            "botaoStandard", "botaoStandardPressionado",
-            0.5, 0.55, 0.45,
-            () => this.transicaoPara("")
-        );
-
-        // Botão SuperPremium
-        this.botaoSuperPremium = criarBotao(
-            this.scale.width * 0.35, this.scale.height * 0.15,
-            "botaoSuperPremium", "botaoSuperPremiumPressionado",
-            0.5, 0.55, 0.45,
-            () => this.transicaoPara("")
-        );
-
-        // Estante
-        this.estante = this.add.image(this.scale.width / 4, this.scale.height * 0.6, "estanteVazia")
+        // Adiciona a estante onde os sacos de ração ficarão posicionados
+        this.estante = this.add.image(larguraTotal / 4, alturaTotal * 0.6, "estanteVazia")
             .setScale(1.2)
-            .setDepth(-1);
+            .setDepth(0);
 
-        // Grupo Super Premium (visível no início)
+        // Cria os botões para filtrar e trocar a categoria das rações exibidas
+        this.botaoStandard = criarBotao(larguraTotal * 0.15, alturaTotal * 0.145, "botaoStandard", "botaoStandardPressionado", 0.5, 0.55, 0.45);
+        this.botaoSuperPremium = criarBotao(larguraTotal * 0.35, alturaTotal * 0.15, "botaoSuperPremium", "botaoSuperPremiumPressionado", 0.5, 0.55, 0.45);
+
+        // Instancia as rações da categoria Super Premium passando posições e dados específicos
         this.racoesSuperPremium = [
-            new Racao(this, this.scale.width * 0.13, this.scale.height * 0.37, racaoGrandeFilhote),
-            new Racao(this, this.scale.width * 0.25, this.scale.height * 0.37, racaoGrandeAdulto),
-            new Racao(this, this.scale.width * 0.37, this.scale.height * 0.37, racaoGrandeSenior),
-            new Racao(this, this.scale.width * 0.13, this.scale.height * 0.605, racaoMediaFilhote),
-            new Racao(this, this.scale.width * 0.25, this.scale.height * 0.605, racaoMediaAdulto),
-            new Racao(this, this.scale.width * 0.37, this.scale.height * 0.605, racaoMediaSenior),
-            new Racao(this, this.scale.width * 0.13, this.scale.height * 0.845, racaoPequenaFilhote),
-            new Racao(this, this.scale.width * 0.25, this.scale.height * 0.845, racaoPequenaAdulto),
-            new Racao(this, this.scale.width * 0.37, this.scale.height * 0.845, racaoPequenaSenior),
+            new Racao(this, larguraTotal * 0.13, alturaTotal * 0.37, racaoGrandeFilhote),
+            new Racao(this, larguraTotal * 0.25, alturaTotal * 0.37, racaoGrandeAdulto),
+            new Racao(this, larguraTotal * 0.37, alturaTotal * 0.37, racaoGrandeSenior),
+            new Racao(this, larguraTotal * 0.13, alturaTotal * 0.605, racaoMediaFilhote),
+            new Racao(this, larguraTotal * 0.25, alturaTotal * 0.605, racaoMediaAdulto),
+            new Racao(this, larguraTotal * 0.37, alturaTotal * 0.605, racaoMediaSenior),
+            new Racao(this, larguraTotal * 0.13, alturaTotal * 0.845, racaoPequenaFilhote),
+            new Racao(this, larguraTotal * 0.25, alturaTotal * 0.845, racaoPequenaAdulto),
+            new Racao(this, larguraTotal * 0.37, alturaTotal * 0.845, racaoPequenaSenior),
         ];
-        this.racoesSuperPremium.forEach(r => r.sprite.setScale(0.125));
 
-        // Grupo Standard (oculto no início — troque os dados quando tiver os sprites)
-        this.racoesStandard = [
-            new Racao(this, this.scale.width * 0.13, this.scale.height * 0.37, racaoGrandeFilhote),
-            new Racao(this, this.scale.width * 0.25, this.scale.height * 0.37, racaoGrandeAdulto),
-            new Racao(this, this.scale.width * 0.37, this.scale.height * 0.37, racaoGrandeSenior),
-            new Racao(this, this.scale.width * 0.13, this.scale.height * 0.605, racaoMediaFilhote),
-            new Racao(this, this.scale.width * 0.25, this.scale.height * 0.605, racaoMediaAdulto),
-            new Racao(this, this.scale.width * 0.37, this.scale.height * 0.605, racaoMediaSenior),
-            new Racao(this, this.scale.width * 0.13, this.scale.height * 0.845, racaoPequenaFilhote),
-            new Racao(this, this.scale.width * 0.25, this.scale.height * 0.845, racaoPequenaAdulto),
-            new Racao(this, this.scale.width * 0.37, this.scale.height * 0.845, racaoPequenaSenior),
-        ];
-        this.racoesStandard.forEach(r => {
-            r.sprite.setScale(0.125);
-            r.sprite.setVisible(false);
-        });
+        // Configura a base do painel direito que mostra os detalhes ou o texto inicial
+        this.fundoTemplateRacao = this.add.image(larguraTotal * 0.58, alturaTotal * 0.47, "fundoTemplateRacao")
+            .setScale(alturaTotal * 0.00065);
 
-        const pet = cachorrosBase[0];
-
-        // Template das informações das rações
-        this.fundoTemplateRacao = this.add.image(
-            this.scale.width * 0.58,
-            this.scale.height * 0.47,
-            "fundoTemplateRacao")
-            .setScale(this.scale.height * 0.00065);
-
-        // Container invisível para centralizar o texto no template
-        this.containerTexto = this.add.container(
-            this.fundoTemplateRacao.x,
-            this.fundoTemplateRacao.y
-        );
-
-        const titulo = this.add.text(0, -200, "Compre sua ração!",
-            {
-                fontSize: "30px",
-                color: "#000",
-                fontFamily: '"Press Start 2P"',
-                align: "center"
-            }).setOrigin(0.5);
-
-        const subtitulo = this.add.text(0, 0,
-            "Escolha o tipo de\n\nração ideal para seu\n\npet entre Super\n\nPremium e Standard",
-            {
-                fontSize: "20px",
-                color: "#000",
-                fontFamily: '"Press Start 2P"',
-                align: "center",
-                wordWrap: { width: 450 }
-            }).setOrigin(0.5);
-
-        // Adiciona tudo no container
+        // Container e textos iniciais convidando o jogador a escolher uma ração
+        this.containerTexto = this.add.container(this.fundoTemplateRacao.x, this.fundoTemplateRacao.y);
+        const titulo = this.add.text(0, -200, "Compre sua ração!", { fontSize: "30px", color: "#000", fontFamily: '"Press Start 2P"', align: "center" }).setOrigin(0.5);
+        const subtitulo = this.add.text(0, 0, "Escolha a ração\nideal para seu pet", { fontSize: "20px", color: "#000", fontFamily: '"Press Start 2P"', align: "center" }).setOrigin(0.5);
+        
+        // Agrupa os textos para facilitar a manipulação (esconder/mostrar)
         this.containerTexto.add([titulo, subtitulo]);
 
-        this.botaoComprar = criarBotao(
-            this.scale.width * 0.58, this.scale.height * 0.70,
-            "botaoComprar", "botaoComprarPressionado",
-            0.35, 0.4, 0.30,
-            () => this.transicaoPara("")
-        )
-            .setScale(0.35);
+        // Cria o botão de confirmação da compra
+        this.botaoComprar = criarBotao(larguraTotal * 0.58, alturaTotal * 0.70, "botaoComprar", "botaoComprarPressionado", 0.35, 0.4, 0.30, () => console.log("Comprado!"));
 
-        // Tebtativa de aplicação de responsividade (Container com as informações e imagens ao clicar na ração)
-        this.containerInfo = this.add.container(
-            this.scale.width * 0.58,
-            this.scale.height * 0.45
-        )
-        .setScale(this.scale.height * 0.0009)
-        .setVisible(false).setAlpha(0);
+        // Cria o container da ficha técnica da ração (inicia invisível até clicar em uma)
+        this.containerInfo = this.add.container(larguraTotal * 0.58, alturaTotal * 0.45)
+            .setScale(alturaTotal * 0.0009)
+            .setVisible(false).setAlpha(0);
 
-        // A imagem entra no container no X: 0, Y: 0 (centro)
+        // Prepara os textos e imagens vazias que serão preenchidos ao selecionar a ração
         this.composicaoRacao = this.add.image(0, 0, "composicaoRacao");
-
-        // Imagem da ração clicada (ao lado das informações)
         this.imagemRacaoInfo = this.add.image(-160, -70, "").setScale(0.18);
+        this.textoTipo = this.add.text(0, -217, "", { fontSize: "32px", color: "#000", fontFamily: '"Press Start 2P"', align: "center" }).setOrigin(0.5);
+        this.textoPorte = this.add.text(75, -138, "", { fontSize: "16px", color: "#006600", fontFamily: '"Press Start 2P"' }).setOrigin(0, 0.5);
+        this.textoIdade = this.add.text(75, -102, "", { fontSize: "16px", color: "#006600", fontFamily: '"Press Start 2P"' }).setOrigin(0, 0.5);
+        this.textoChar1 = this.add.text(80, -44, "", { fontSize: "16px", color: "#000", fontFamily: '"Press Start 2P"', align: "center", wordWrap: { width: 300 } }).setOrigin(0.5);
+        this.textoChar2 = this.add.text(80, 18, "", { fontSize: "16px", color: "#000", fontFamily: '"Press Start 2P"', align: "center", wordWrap: { width: 300 } }).setOrigin(0.5);
 
-        // Título (super Premium / standard)
-        this.textoTipo = this.add.text(0, -217, "", {
-            fontSize: "32px", color: "#000", fontFamily: '"Press Start 2P"', align: "center"
-        }).setOrigin(0.5);
+        // Prepara os campos de valor nutricional da ração
+        const estiloNutri = { fontSize: "12px", color: "#8B4513", fontFamily: '"Press Start 2P"' };
+        this.textoTrigo = this.add.text(-170, 204, "", estiloNutri).setOrigin(0.5);
+        this.textoCarne = this.add.text(-60, 204, "", estiloNutri).setOrigin(0.5);
+        this.textoOsso = this.add.text(51, 204, "", estiloNutri).setOrigin(0.5);
+        this.textoGordura = this.add.text(165, 204, "", estiloNutri).setOrigin(0.5);
 
-        // Porte 
-        this.textoPorte = this.add.text(75, -138, "", {
-            fontSize: "16px", color: "#006600", fontFamily: '"Press Start 2P"'
-        }).setOrigin(0, 0.5);
-
-        // Idade 
-        this.textoIdade = this.add.text(75, -102, "", {
-            fontSize: "16px", color: "#006600", fontFamily: '"Press Start 2P"'
-        }).setOrigin(0, 0.5);
-
-        // Mini descrição 1
-        this.textoChar1 = this.add.text(80, -44, "", {
-            fontSize: "16px", color: "#000", fontFamily: '"Press Start 2P"', align: "center", wordWrap: { width: 300 }
-        }).setOrigin(0.5);
-
-        // Mini descrição 2
-        this.textoChar2 = this.add.text(80, 18, "", {
-            fontSize: "16px", color: "#000", fontFamily: '"Press Start 2P"', align: "center", wordWrap: { width: 300 }
-        }).setOrigin(0.5);
-
-        // Porcentagens nutricionais
-        const porcentagem = { fontSize: "12px", color: "#8B4513", fontFamily: '"Press Start 2P"' };
-        this.textoTrigo = this.add.text(-170, 204, "", porcentagem).setOrigin(0.5);
-        this.textoCarne = this.add.text(-60, 204, "", porcentagem).setOrigin(0.5);
-        this.textoOsso = this.add.text(51, 204, "", porcentagem).setOrigin(0.5);
-        this.textoGordura = this.add.text(165, 204, "", porcentagem).setOrigin(0.5);
-
-        // Colocando textos e a imagem da ração por cima do container (imagem)
+        // Adiciona todos os elementos visuais criados no container de informação
         this.containerInfo.add([
-            this.composicaoRacao,
-            this.imagemRacaoInfo,
-            this.textoTipo, this.textoPorte, this.textoIdade, 
-            this.textoChar1, this.textoChar2,
-            this.textoTrigo, this.textoCarne, this.textoOsso, this.textoGordura
+            this.composicaoRacao, this.imagemRacaoInfo, this.textoTipo, this.textoPorte, 
+            this.textoIdade, this.textoChar1, this.textoChar2, this.textoTrigo, 
+            this.textoCarne, this.textoOsso, this.textoGordura
         ]);
-        // ─────────────────────────────────────────────────────────────────
 
-        // Torna todas as rações clicáveis
-        const todasRacoes = [...this.racoesSuperPremium, ...this.racoesStandard];
+        // Adiciona a interatividade de clique e mouse para cada saco de ração instanciado
+        this.racoesSuperPremium.forEach((racao) => {
+            racao.sprite.setInteractive({ useHandCursor: true }).setScale(0.125);
 
-        todasRacoes.forEach((racao) => {
-            racao.sprite.setInteractive({ useHandCursor: true });
-
+            // Dá zoom leve no pacote de ração ao passar o mouse
             racao.sprite.on("pointerover", () => {
                 this.tweens.add({ targets: racao.sprite, scale: 0.14, duration: 100, ease: "Power2" });
             });
 
+            // Volta ao tamanho original
             racao.sprite.on("pointerout", () => {
                 this.tweens.add({ targets: racao.sprite, scale: 0.125, duration: 100, ease: "Power2" });
             });
 
+            // Ação principal: ao clicar no pacote de ração, mostra os dados dele
             racao.sprite.on("pointerup", () => {
+                
+                // Desaparece com a mensagem inicial de boas-vindas da tela
                 this.tweens.add({
                     targets: this.containerTexto,
                     alpha: 0,
                     duration: 200,
-                    ease: "Power2",
                     onComplete: () => this.containerTexto.setVisible(false)
                 });
-                // Preenche o template com os dados da ração clicada
-                this.textoTipo.setText(racao.tipo || "Super Premium");
-                this.textoPorte.setText(racao.porte || "-");
-                this.textoIdade.setText(racao.idade || "-");
-                
-                this.textoChar1.setText(racao.caracteristicas ? racao.caracteristicas[0] : "");
-                this.textoChar2.setText(racao.caracteristicas ? racao.caracteristicas[1] : "");
-                
-                this.textoTrigo.setText(racao.nutrientes ? racao.nutrientes.trigo : "");
-                this.textoCarne.setText(racao.nutrientes ? racao.nutrientes.carne : "");
-                this.textoOsso.setText(racao.nutrientes ? racao.nutrientes.osso : "");
-                this.textoGordura.setText(racao.nutrientes ? racao.nutrientes.gordura : "");
 
+                // Atualiza os textos do painel de detalhes com os dados desta ração específica
+                this.textoTipo.setText(racao.dados.tipo || "Premium");
+                this.textoPorte.setText(racao.dados.porte || "-");
+                this.textoIdade.setText(racao.dados.idade || "-");
                 this.imagemRacaoInfo.setTexture(racao.sprite.texture.key);
+                
+                // Atualiza os dados de nutrientes caso eles existam no objeto
+                if (racao.dados.nutrientes) {
+                    this.textoTrigo.setText(racao.dados.nutrientes.trigo);
+                    this.textoCarne.setText(racao.dados.nutrientes.carne);
+                    this.textoOsso.setText(racao.dados.nutrientes.osso);
+                    this.textoGordura.setText(racao.dados.nutrientes.gordura);
+                }
 
-                // Mostra o container (tudo junto) com fade
-                this.composicaoRacao.setVisible(true); // Garante visibilidade interna
-                this.containerInfo.setAlpha(0).setVisible(true);
-                this.tweens.add({
-                    targets: this.containerInfo,
-                    alpha: 1,
-                    duration: 250,
-                    ease: "Power2"
-                });
+                // Torna o container de informações visível e faz uma transição de transparência suave
+                this.containerInfo.setVisible(true);
+                this.tweens.add({ targets: this.containerInfo, alpha: 1, duration: 250 });
             });
         });
 
-        // >>> Listener de resize <<<
-        this.scale.on("resize", (gameSize) => {
+        // Função para manter o layout no lugar certo caso o jogador redimensione a aba do navegador
+        const handleResizeRacao = (gameSize) => {
             const largura = gameSize.width;
             const altura = gameSize.height;
 
+            // Ajusta a câmera, fundo e estante
             this.cameras.resize(largura, altura);
             this.fundo.setDisplaySize(largura, altura).setPosition(largura / 2, altura / 2);
             this.estante.setPosition(largura / 4, altura * 0.6);
+            
+            // Reposiciona os botões de categorias
+            this.botaoStandard.setPosition(largura * 0.15, altura * 0.145);
+            this.botaoSuperPremium.setPosition(largura * 0.35, altura * 0.15);
+            
+            // Reposiciona o painel direito e os containers de informação e compra
+            this.fundoTemplateRacao.setPosition(largura * 0.58, altura * 0.47).setScale(altura * 0.00065);
+            this.containerTexto.setPosition(this.fundoTemplateRacao.x, this.fundoTemplateRacao.y);
+            this.containerInfo.setPosition(largura * 0.58, altura * 0.45).setScale(altura * 0.0009);
+            this.botaoComprar.setPosition(largura * 0.58, altura * 0.70);
+        };
+
+        // Escuta o evento de resize do Phaser e chama a função de alinhamento
+        this.scale.on("resize", handleResizeRacao);
+
+        // Remove o evento de redimensionamento ao sair da cena para evitar erros de lentidão no jogo
+        this.events.on('shutdown', () => {
+            this.scale.off("resize", handleResizeRacao);
         });
     }
 }

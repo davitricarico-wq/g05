@@ -1,36 +1,55 @@
-import { gameState } from "../main.js"; // Ajuste os '../' se o caminho for diferente!
+// Importa o estado global do jogo
+import { gameState } from "../main.js"; 
 
+// Define a classe da cena do minigame de lazer
 export class jogoLazer extends Phaser.Scene {
     constructor() {
         super({ key: "jogoLazer" });
-        this.pontos = 0; 
     }
 
-    /**
-     * Método de inicialização. Chamado uma vez quando a cena começa.
-     * Configura física, cenário, jogador, controles e colisões.
-     */
+    // O metodo init e executado toda vez que a cena e iniciada
+    init() {
+        this.pontos = 0; 
+        this.instrucoesLidas = false;
+        this.ganhou = false; 
+        this.jogoAcabou = false; 
+        this.minigameFinalizado = false;
+        this.isPropulsao = false; 
+    }
+
     create() {
-        // Zera as variáveis de controle sempre que a fase reiniciar
-        this.pontos = 0;
-        this.jogoAcabou = false;
-        this.minigameFinalizado = false; // <-- CORREÇÃO: Faltava zerar isso aqui!
-        this.transicao = false;
+        // Garante que a interface principal nao fique ativa ao iniciar o minigame
+        this.scene.stop("HUD");
+
+        // Cria o botao de voltar
+        this.botaoVoltar = this.add.text(60, 50, "Voltar", {
+            fontFamily: "Arial",
+            fontSize: "24px",
+            color: "#ffffff",
+            stroke: "#000000",
+            strokeThickness: 4
+        }).setOrigin(0.5).setDepth(100).setScrollFactor(0).setInteractive({ useHandCursor: true });
+
+        this.botaoVoltar.on("pointerover", () => this.botaoVoltar.setStyle({ color: "#ffdd00" }));
+        this.botaoVoltar.on("pointerout",  () => this.botaoVoltar.setStyle({ color: "#ffffff" }));
+        this.botaoVoltar.on("pointerdown", () => this.scene.start("cenaLazer"));
 
         this.physics.world.gravity.y = 800;
 
-        // --------------- MÚSICA ----------------
-        if (!gameState.musica) {
-            gameState.musica = this.sound.add("musica", { loop: true, volume: 0.5 });
+        // Controle da música
+        if (!gameState.musicaMenuPrincipal) {
+            gameState.musicaMenuPrincipal = this.sound.add("musicaMenuPrincipal", { loop: true, volume: 0.5 });
         }
-        if (!gameState.musica.isPlaying) {
-            gameState.musica.play();
+        if (gameState.musicaTutorial?.isPlaying) {
+            gameState.musicaTutorial.stop();
         }
+        if (!gameState.musicaMenuPrincipal.isPlaying) {
+            gameState.musicaMenuPrincipal.play();
+        }
+        gameState.musica = gameState.musicaMenuPrincipal;
 
         const largura = this.scale.width;
         const altura = this.scale.height;
-
-        // ---------------- CENÁRIO E BACKGROUND ----------------
         const alturaImgBg = this.textures.get("bgLazer").getSourceImage().height;
         const escalaBg = altura / alturaImgBg;
 
@@ -38,52 +57,48 @@ export class jogoLazer extends Phaser.Scene {
         this.fundo.setTileScale(escalaBg, escalaBg); 
 
         const alturaDoChao = altura * 0.9;
-        
-        // Limites do mundo físico e da câmera
         this.physics.world.setBounds(0, 0, 8000, alturaDoChao);
         this.cameras.main.setBounds(0, 0, 8000, altura);
 
-        // ---------------- CACHORRO (JOGADOR) ----------------
-        this.cachorro = this.physics.add.sprite(largura * 0.15, alturaDoChao - 200, 'cachorroCorrendo');
+        const spriteCorrendo = gameState.pets.cachorroHeroi ? 'cachorroHeroiCorrendo' : 'cachorroCorrendo'; 
+
+        this.cachorro = this.physics.add.sprite(largura * 0.15, alturaDoChao - 200, spriteCorrendo);
         this.cachorro.setCollideWorldBounds(true);
         this.cachorro.setScale(0.5); 
         this.cachorro.setDepth(10); 
         
-        // Ajuste da Hitbox do Cachorro
         let dogW = this.cachorro.width;
         let dogH = this.cachorro.height;
         this.cachorro.body.setSize(dogW * 0.7, dogH * 0.5);
         this.cachorro.body.setOffset(dogW * 0.15, dogH * 0.5);
 
-        // Animação de corrida
+        if (this.anims.exists('correr')) {
+            this.anims.remove('correr');
+        }
+
         this.anims.create({
             key: 'correr',
-            frames: this.anims.generateFrameNumbers('cachorroCorrendo', { start: 0, end: 1 }),
+            frames: this.anims.generateFrameNumbers(spriteCorrendo, { start: 0, end: 1 }),
             frameRate: 7, 
             repeat: -1 
         });
         this.cachorro.anims.play('correr', true);
 
-        // A câmera segue o cachorro
         this.cameras.main.startFollow(this.cachorro, true, 1, 1, -largura * 0.2, 0);
         
-        // ---------------- CONTROLES ----------------
         this.teclado = this.input.keyboard.createCursorKeys();
+        this.teclaSpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
-        // ---------------- GRUPOS DE FÍSICA ----------------
         this.petiscos = this.physics.add.group({ allowGravity: false, immovable: true });
         this.obstaculos = this.physics.add.group({ allowGravity: false, immovable: true });
         this.camasElasticas = this.physics.add.group({ allowGravity: false, immovable: true });
 
-        // Gera os obstáculos e petiscos pela fase
         this.gerarPercurso(alturaDoChao);
 
-        // ---------------- COLISÕES ----------------
         this.physics.add.overlap(this.cachorro, this.petiscos, this.coletarPetisco, null, this);
         this.physics.add.collider(this.cachorro, this.obstaculos, this.baterNoObstaculo, null, this);
         this.physics.add.collider(this.cachorro, this.camasElasticas, this.usarCamaElastica, null, this);
 
-        // ---------------- UI (HUD LOCAL) ----------------
         this.textoPontos = this.add.text(largura - 30, 30, 'Petiscos: 0', { 
             fontFamily: '"Press Start 2P", monospace', 
             fontSize: '24px', 
@@ -92,46 +107,70 @@ export class jogoLazer extends Phaser.Scene {
             strokeThickness: 4
         }).setOrigin(1, 0).setScrollFactor(0).setDepth(20);
 
-        // ---------------- REDIMENSIONAMENTO (RESIZE) ----------------
-        this.scale.on("resize", (tamanhoTela) => {
+        const handleResizeLazer = (tamanhoTela) => {
             const { width: w, height: h } = tamanhoTela;
-            this.fundo.setSize(8000, h);
+            this.fundo.setSize(9000, h);
             const novaEscalaBg = h / alturaImgBg;
             this.fundo.setTileScale(novaEscalaBg, novaEscalaBg);
 
             const novaAlturaDoChao = h * 0.9;
-            this.physics.world.setBounds(0, 0, 8000, novaAlturaDoChao);
-            this.cameras.main.setBounds(0, 0, 8000, h);
+            this.physics.world.setBounds(0, 0, 9000, novaAlturaDoChao);
+            this.cameras.main.setBounds(0, 0, 9000, h);
             
             this.textoPontos.setPosition(w - 30, 30);
+            this.botaoVoltar.setPosition(60, 50);
+
+            if (this.fundoInstrucao && this.fundoInstrucao.active) {
+                this.fundoInstrucao.setPosition(w / 2, h / 2).setSize(w, h);
+                if (this.imgInstrucao && this.imgInstrucao.active) {
+                    this.imgInstrucao.setPosition(w / 2, h / 2);
+                    if (this.textoIniciar && this.textoIniciar.active) {
+                        this.textoIniciar.setPosition(w / 2, h / 2 + (this.imgInstrucao.displayHeight / 2) + 40);
+                    }
+                }
+            }
+        };
+
+        this.scale.on("resize", handleResizeLazer);
+
+        this.events.on('shutdown', () => {
+            this.scale.off("resize", handleResizeLazer);
+            this.input.keyboard.removeListener('keydown-SPACE'); 
         });
         
-        this.scene.stop("HUD");
+        this.mostrarInstrucoes();
+        this.physics.pause();
+        this.cachorro.anims.pause();
     }
 
-    /**
-     * Loop principal do jogo. Executado a cada frame.
-     */
     update() {
-        if (this.jogoAcabou) return; 
+        if (!this.instrucoesLidas || this.jogoAcabou) return; 
 
-        // --- VERIFICA SE PASSOU DIRETO PELO PETISCÃO (DERROTA) ---
         if (this.petiscaoFinal && this.petiscaoFinal.active) {
             if (this.cachorro.x > this.petiscaoFinal.x + 100) {
                 this.scene.restart(); 
             }
         }
 
-        // --- VELOCIDADE PROGRESSIVA ---
         let velocidadeAtual = Math.min(300 + (this.cachorro.x * 0.05), 700);
         this.cachorro.setVelocityX(velocidadeAtual);
-        
         this.cachorro.anims.timeScale = velocidadeAtual / 300; 
 
         const noChao = this.cachorro.body.blocked.down || this.cachorro.body.touching.down;
 
-        // --- CONTROLES ---
-        if (this.teclado.up.isDown) {
+        if (this.ganhou) {
+            if (noChao) {
+                this.jogoAcabou = true;
+                this.physics.pause();
+                this.cachorro.anims.pause();
+                this.mostrarTextoVitoria();
+            }
+            return; 
+        }
+
+        const querPular = this.teclado.up.isDown || Phaser.Input.Keyboard.JustDown(this.teclaSpace);
+        
+        if (querPular) {
             this.pular();
         } else if (this.teclado.down.isDown) {
             this.abaixar(noChao);
@@ -139,7 +178,6 @@ export class jogoLazer extends Phaser.Scene {
             this.cachorro.setScale(0.5, 0.5); 
         }
 
-        // --- CONTROLE DE ANIMAÇÕES ---
         if (!noChao) {
             this.cachorro.anims.pause(this.cachorro.anims.currentAnim.frames[0]);
         } else {
@@ -152,11 +190,58 @@ export class jogoLazer extends Phaser.Scene {
         }
     }
 
+    mostrarInstrucoes() {
+        const cx = this.scale.width / 2;
+        const cy = this.scale.height / 2;
+
+        this.fundoInstrucao = this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.85)
+            .setDepth(200).setScrollFactor(0).setInteractive(); 
+
+        this.imgInstrucao = this.add.image(cx, cy, "comoJogarLazer")
+            .setDepth(201).setScrollFactor(0).setInteractive();
+
+        const limiteLargura = this.scale.width * 0.8;
+        const limiteAltura = this.scale.height * 0.8;
+        const escalaX = limiteLargura / this.imgInstrucao.width;
+        const escalaY = limiteAltura / this.imgInstrucao.height;
+        this.imgInstrucao.setScale(Math.min(escalaX, escalaY));
+
+        this.textoIniciar = this.add.text(cx, cy + (this.imgInstrucao.displayHeight / 2) + 40, "[ Clique ou aperte ESPAÇO para começar ]", {
+            fontFamily: '"Press Start 2P", Arial',
+            fontSize: "15px",
+            color: "#ffffff"
+        }).setOrigin(0.5).setDepth(201).setScrollFactor(0);
+        
+        this.tweens.add({
+            targets: this.textoIniciar, alpha: 0.5, duration: 600, yoyo: true, loop: -1
+        });
+
+        const iniciar = () => {
+            if(!this.instrucoesLidas) {
+                this.fundoInstrucao.destroy();
+                this.imgInstrucao.destroy();
+                this.textoIniciar.destroy();
+                this.iniciarMinigameAposInstrucoes();
+            }
+        };
+
+        this.fundoInstrucao.on('pointerdown', iniciar);
+        this.imgInstrucao.on('pointerdown', iniciar);
+        
+        this.time.delayedCall(200, () => {
+            this.input.keyboard.once('keydown-SPACE', iniciar);
+        });
+    }
+
+    iniciarMinigameAposInstrucoes() {
+        this.instrucoesLidas = true;
+        this.physics.resume();
+        this.cachorro.anims.resume();
+    }
+
     pular() {
         if (this.jogoAcabou) return; 
-
         const noChao = this.cachorro.body.blocked.down || this.cachorro.body.touching.down;
-
         if (noChao) {
             this.cachorro.setVelocityY(-550);
             this.cachorro.setFrame(0); 
@@ -165,53 +250,46 @@ export class jogoLazer extends Phaser.Scene {
 
     abaixar(noChao) {
         if (this.jogoAcabou) return;
-
         if (!noChao) {
             this.cachorro.setVelocityY(1000); 
         } 
-        
         this.cachorro.setScale(0.5, 0.41); 
     }
 
     gerarPercurso(alturaDoChao) {
         let fimDaFase = 7000;
         let tiposPetiscos = [true, true, true, false, false, false, false, false];
-        
         Phaser.Utils.Array.Shuffle(tiposPetiscos);
 
         for (let x = 600; x <= fimDaFase; x += 800) {
             let posX = x + 400; 
 
             if (x === fimDaFase) {
-                let cama = this.camasElasticas.create(posX, alturaDoChao - 25, 'camaElastica').setScale(0.5).setDepth(5);
+                let cama = this.camasElasticas.create(posX, alturaDoChao - 60, 'camaElastica').setScale(0.4).setDepth(5);
                 cama.body.setSize(cama.width * 0.4, cama.height * 0.1); 
                 cama.body.setOffset(cama.width * 0.4, cama.height * 0.5); 
 
-                let yPetiscao = alturaDoChao - 450; 
-                let petiscoAlto = this.petiscos.create(posX + 300, yPetiscao, 'petisco').setScale(0.3).setDepth(5);
-                
-                petiscoAlto.body.setSize(petiscoAlto.width * 0.4, petiscoAlto.height * 0.4);
-                petiscoAlto.body.setOffset(petiscoAlto.width * 0.3, petiscoAlto.height * 0.3);
-                
+                let yPetiscao = alturaDoChao - 350; 
+                let petiscoAlto = this.petiscos.create(posX + 350, yPetiscao, 'petisco').setScale(0.3).setDepth(5);
+                petiscoAlto.body.setSize(petiscoAlto.width * 0.6, petiscoAlto.height * 0.6);
+                petiscoAlto.body.setOffset(petiscoAlto.width * 0.2, petiscoAlto.height * 0.2);
                 petiscoAlto.tint = 0xffd700; 
                 petiscoAlto.isSuper = true;
-
                 this.petiscaoFinal = petiscoAlto;
-            } 
-            else {
+            } else {
                 let obs = this.obstaculos.create(posX, alturaDoChao - 50, 'obstaculo').setScale(2).setDepth(5);
                 let raio = obs.width * 0.30; 
                 obs.body.setCircle(raio, obs.width * 0.35, obs.height * 0.4);
 
                 let yPetisco = alturaDoChao - 150; 
                 let petisco = this.petiscos.create(x, yPetisco, 'petisco').setScale(0.15).setDepth(5);
-                petisco.body.setSize(petisco.width * 0.3, petisco.height * 0.3);
+                petisco.body.setSize(petisco.width * 0.6, petisco.height * 0.6);
+                petisco.body.setOffset(petisco.width * 0.2, petisco.height * 0.2);
 
                 let ehEstragado = tiposPetiscos.shift();
-
                 if (ehEstragado) {
                     petisco.isEstragado = true;
-                    petisco.tint = 0x55ff55; 
+                    petisco.setTexture('petiscoEstragado'); 
                 } else {
                     petisco.isEstragado = false;
                 }
@@ -220,60 +298,73 @@ export class jogoLazer extends Phaser.Scene {
     }
 
     usarCamaElastica(cachorro, cama) {
-        if (cachorro.body.velocity.y >= 0) {
-            const constanteElasticaK = 800;  
-            const deformacaoX = 0.6;         
-            const forcaElastica = constanteElasticaK * deformacaoX; 
-            const puloBase = 550;
-            const velocidadeFinal = -(puloBase + forcaElastica); 
+        if (this.isPropulsao || this.jogoAcabou || this.ganhou) return;
+        this.isPropulsao = true;
+        cachorro.body.moves = false;
+
+        const xi = cachorro.x;
+        const yi = cachorro.y;
+        const duracaoTotal = 0.3; 
+        const xf = xi + 150; 
+        const yf = yi - 100; 
+
+        const velocidadeX = (xf - xi) / duracaoTotal;
+        const aceleracaoY = (2 * (yf - yi)) / Math.pow(duracaoTotal, 2);
+
+        let tempoAtual = 0;
+        let tempoAnterior = performance.now();
+
+        const atualizarFrame = (tempoFrame) => {
+            let dt = (tempoFrame - tempoAnterior) / 1000; 
+            tempoAnterior = tempoFrame;
+            tempoAtual += dt;
+
+            if (tempoAtual > duracaoTotal) tempoAtual = duracaoTotal;
+
+            let posicaoX = xi + (velocidadeX * tempoAtual);
+            let velocidadeY = aceleracaoY * tempoAtual; 
+            let posicaoY = yi + (aceleracaoY * Math.pow(tempoAtual, 2)) / 2;
             
-            cachorro.setVelocityY(velocidadeFinal);
-            cachorro.setScale(0.5, 0.5); 
-            cachorro.setFrame(0); 
-        }
+            console.log(`[Eixo X - MU] Pos X: ${posicaoX.toFixed(2)} | [Eixo Y - MUV] Pos Y: ${posicaoY.toFixed(2)}`);
+
+            cachorro.x = posicaoX;
+            cachorro.y = posicaoY;
+
+            if (tempoAtual < duracaoTotal) {
+                requestAnimationFrame(atualizarFrame); 
+            } else {
+                cachorro.body.moves = true;
+                cachorro.setVelocityY(velocidadeY); 
+                this.time.delayedCall(1000, () => { this.isPropulsao = false; });
+            }
+        };
+        requestAnimationFrame(atualizarFrame);
     }
 
     coletarPetisco(cachorro, petisco) {
         petisco.disableBody(true, true); 
-        
         if (petisco.isEstragado) {
             this.pontos = Math.max(0, this.pontos - 1);
-            this.textoPontos.setText('Petiscos: ' + this.pontos);
-
-            gameState.barras.felicidade = Phaser.Math.Clamp(gameState.barras.felicidade - 10, 0, 100);
-            
             cachorro.tint = 0xff0000;
-            this.time.delayedCall(500, () => {
-                cachorro.clearTint(); 
-            });
-
-        } 
-        else {
+            this.time.delayedCall(500, () => { cachorro.clearTint(); });
+        } else {
             this.pontos += 1;
-            this.textoPontos.setText('Petiscos: ' + this.pontos);
-            
-            let recompensa = petisco.isSuper ? 20 : 5;
-            gameState.barras.felicidade = Phaser.Math.Clamp(gameState.barras.felicidade + recompensa, 0, 100);
-            
-            if (petisco.isSuper) {
-                this.vencerJogo();
-            }
+            if (petisco.isSuper) this.vencerJogo();
         }
-        
+        this.textoPontos.setText('Petiscos: ' + this.pontos);
         this.events.emit("atualizarHUD"); 
     }
 
-    baterNoObstaculo(cachorro, obstaculo) {
+    baterNoObstaculo() {
         this.scene.restart();
     }
 
     vencerJogo() {
         if (this.jogoAcabou) return; 
-        this.jogoAcabou = true;
+        this.ganhou = true; // Ativa o estado de espera da queda
+    }
 
-        this.physics.pause();
-        this.cachorro.anims.pause();
-
+    mostrarTextoVitoria() {
         const meioX = this.cameras.main.worldView.x + (this.scale.width / 2);
         const meioY = this.scale.height / 2;
 
@@ -285,7 +376,6 @@ export class jogoLazer extends Phaser.Scene {
             strokeThickness: 8
         }).setOrigin(0.5).setDepth(30);
         
-        // CORREÇÃO: Aguarda 2 segundos com o texto na tela e vai direto para a função que transiciona
         this.time.delayedCall(2000, () => {
             this.finalizarMinigame();
         });
@@ -294,26 +384,61 @@ export class jogoLazer extends Phaser.Scene {
     finalizarMinigame() {
         if (this.minigameFinalizado) return;
         this.minigameFinalizado = true;
-        this.input.setDefaultCursor("default");
 
         const estrelas = this.calcularEstrelas(this.pontos);
         const moedas = this.calcularMoedas(estrelas);
+        const reducaoLazer = this.calcularLazer(estrelas);
 
-        gameState.cobasiCoins += moedas;
+        const cachorroAtivo = gameState.pets.cachorroHeroi ? 'heroi' : 'caramelo';
+        if (!gameState.recompensas.lazer[cachorroAtivo]) {
+            gameState.cobasiCoins += moedas;
+            gameState.recompensas.lazer[cachorroAtivo] = true;
+        }
+
+        let lazerAtual = gameState.barras.lazer !== undefined ? gameState.barras.lazer : 11;
+        gameState.barras.lazer = Phaser.Math.Clamp(lazerAtual - reducaoLazer, 0, 11); 
+
+        let imagemFeedback = estrelas === 3 ? "feeedback3estrelas" : (estrelas === 2 ? "feedback2estrelas" : "feedback1estrela");
+
+        const cx = this.scale.width / 2;
+        const cy = this.scale.height / 2;
+
+        const fundoFeedback = this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.8)
+            .setDepth(100).setScrollFactor(0).setInteractive(); 
+
+        const telaFeedback = this.add.image(cx, cy, imagemFeedback).setDepth(101).setScrollFactor(0).setInteractive();
+        const escalaFinal = Math.min((this.scale.width * 0.8) / telaFeedback.width, (this.scale.height * 0.8) / telaFeedback.height);
+        telaFeedback.setScale(escalaFinal);
+
+        const textoContinuar = this.add.text(cx, cy + (telaFeedback.displayHeight / 2) + 40, "[ Clique ou ESPAÇO para continuar ]", {
+            fontFamily: '"Press Start 2P", Arial',
+            fontSize: "15px",
+            color: "#ffffff"
+        }).setOrigin(0.5).setDepth(101).setScrollFactor(0);
         
-        // CORREÇÃO: Transiciona imediatamente, sem o delay extra que estava escondendo o texto
-        this.scene.start("cenaLazer"); 
+        this.tweens.add({ targets: textoContinuar, alpha: 0.5, duration: 600, yoyo: true, loop: -1 });
+
+        const voltarParaMenu = () => { this.scene.start("cenaLazer"); };
+        fundoFeedback.on('pointerdown', voltarParaMenu);
+        telaFeedback.on('pointerdown', voltarParaMenu);
+        this.time.delayedCall(200, () => { this.input.keyboard.once('keydown-SPACE', voltarParaMenu); });
     }
     
     calcularEstrelas(pontos) {
         if (pontos >= 5) return 3; 
         if (pontos >= 3) return 2; 
-        return 1;                  
+        return 1;
     }
 
     calcularMoedas(estrelas) {
         if (estrelas === 3) return 20;
         if (estrelas === 2) return 10;
         return 5; 
+    }
+
+    calcularLazer(estrelas) {
+        if (estrelas === 3) return 11;
+        if (estrelas === 2) return 5;  
+        return 2;
     }
 }

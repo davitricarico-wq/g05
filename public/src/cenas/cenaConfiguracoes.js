@@ -1,18 +1,6 @@
 // Importa o objeto global gameState do arquivo principal
 import { gameState } from "../main.js";
-
-/**
- * CENA: cenaConfiguracoes
- *
- * Funciona como um POPUP (sobreposição) sobre a cenaInicial.
- * Ela não substitui a tela anterior — fica por cima dela.
- * Por isso, na cenaInicial, deve ser chamada com scene.launch()
- * em vez de scene.start().
- *
- * CORREÇÃO APLICADA:
- * - Adicionado botão de fechar (X) que encerra apenas este popup,
- *   retornando à cenaInicial sem reiniciá-la.
- */
+ 
 export class cenaConfiguracoes extends Phaser.Scene {
     constructor() {
         super({ key: 'cenaConfiguracoes' });
@@ -20,13 +8,17 @@ export class cenaConfiguracoes extends Phaser.Scene {
 
     create() {
         // Garante que a música continue tocando ao abrir as configurações
-        if (!gameState.musica) {
+        if (!gameState.musicaMenuPrincipal) {
             // Cria música se ainda não existir
-            gameState.musica = this.sound.add('musica', { loop: true, volume: 0.5 });
+            gameState.musicaMenuPrincipal = this.sound.add('musicaMenuPrincipal', { loop: true, volume: 0.5 });
         }
-        if (!gameState.musica.isPlaying) {
-            gameState.musica.play(); // Inicia música se não estiver tocando
+        if (gameState.musicaTutorial?.isPlaying) {
+            gameState.musicaTutorial.stop();
         }
+        if (!gameState.musicaMenuPrincipal.isPlaying) {
+            gameState.musicaMenuPrincipal.play(); // Inicia música se não estiver tocando
+        }
+        gameState.musica = gameState.musicaMenuPrincipal;
 
         // Fundo semitransparente — dá o visual de popup sobre a cena anterior
         this.add.rectangle(
@@ -42,13 +34,11 @@ export class cenaConfiguracoes extends Phaser.Scene {
             .setScale(0.8)
             .setDepth(1);
 
-        // ─── BOTÃO FECHAR (X) ────────────────────────────────────────────────
-        // CORREÇÃO: antes não existia botão para fechar o popup.
         // Este botão encerra apenas a cena de configurações e retorna à
         // cenaInicial que estava rodando por baixo, sem reiniciá-la.
         const botaoFechar = this.add.image(
-            this.scale.width / 2 + 260,
-            this.scale.height / 2 - 320,
+            this.scale.width / 2 + 65,
+            this.scale.height / 2 - 145,
             "retornoInicio"
         )
             .setScale(0.3)
@@ -70,7 +60,7 @@ export class cenaConfiguracoes extends Phaser.Scene {
             this.scene.stop('cenaConfiguracoes');
         });
 
-        // ─── TOGGLES ─────────────────────────────────────────────────────────
+        
         // Alternar música
         gameState.alternarMusica = this.criarAlternar(
             this.scale.width / 2 + 20, this.scale.height / 2 - 85, true,
@@ -91,6 +81,52 @@ export class cenaConfiguracoes extends Phaser.Scene {
             () => { console.log('Vibracao ligada'); },
             () => { console.log('Vibracao desligada'); }
         );
+
+        // Responsividade
+        const handleResizeConfiguracoes = () => {
+            // Atualiza fundo semitransparente
+            const fundoSemitransparente = this.children.getByName();
+            this.children.each((child) => {
+                if (child.type === 'Rectangle') {
+                    child.setPosition(this.scale.width / 2, this.scale.height / 2)
+                         .setSize(this.scale.width, this.scale.height);
+                }
+            });
+
+            // Atualiza ícone decorativo
+            this.children.each((child) => {
+                if (child.texture?.key === 'configuracoes') {
+                    child.setPosition(this.scale.width / 2, this.scale.height / 2);
+                }
+            });
+
+            // Atualiza botão fechar
+            this.children.each((child) => {
+                if (child.texture?.key === 'retornoInicio') {
+                    child.setPosition(this.scale.width / 2 + 260, this.scale.height / 2 - 320);
+                }
+            });
+
+            // Atualiza os botões
+            if (gameState.alternarMusica) {
+                gameState.alternarMusica.botaoLigado.setPosition(this.scale.width / 2 + 20, this.scale.height / 2 - 85);
+                gameState.alternarMusica.botaoDesligado.setPosition(this.scale.width / 2 + 20, this.scale.height / 2 - 85);
+            }
+            if (gameState.alternarSom) {
+                gameState.alternarSom.botaoLigado.setPosition(this.scale.width / 2 + 20, this.scale.height / 2 - 35);
+                gameState.alternarSom.botaoDesligado.setPosition(this.scale.width / 2 + 20, this.scale.height / 2 - 35);
+            }
+            if (gameState.alternarVibracao) {
+                gameState.alternarVibracao.botaoLigado.setPosition(this.scale.width / 2 + 20, this.scale.height / 2 + 15);
+                gameState.alternarVibracao.botaoDesligado.setPosition(this.scale.width / 2 + 20, this.scale.height / 2 + 15);
+            }
+        };
+
+        this.scale.on("resize", handleResizeConfiguracoes);
+
+        this.events.on('shutdown', () => {
+            this.scale.off("resize", handleResizeConfiguracoes);
+        });
 
         // Efeito de fade-in ao abrir popup
         this.cameras.main.fadeIn(150, 0, 0, 0);
