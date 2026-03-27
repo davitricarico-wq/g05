@@ -12,8 +12,10 @@ export class jogoLazer extends Phaser.Scene {
     init() {
         this.pontos = 0; 
         this.instrucoesLidas = false;
-        this.jogoAcabou = false;
+        this.ganhou = false; // Indica se pegou o petisco final e esta no salto da vitoria
+        this.jogoAcabou = false; // Indica se o jogo realmente deve parar
         this.minigameFinalizado = false;
+        this.isPropulsao = false; // Trava para a animacao matematica da cama elastica
     }
 
     // Configura todos os elementos visuais e fisicos quando a cena inicia
@@ -134,13 +136,13 @@ export class jogoLazer extends Phaser.Scene {
         // Funcao para manter tudo organizado se o jogador redimensionar a tela do navegador
         const handleResizeLazer = (tamanhoTela) => {
             const { width: w, height: h } = tamanhoTela;
-            this.fundo.setSize(8000, h);
+            this.fundo.setSize(9000, h);
             const novaEscalaBg = h / alturaImgBg;
             this.fundo.setTileScale(novaEscalaBg, novaEscalaBg);
 
             const novaAlturaDoChao = h * 0.9;
-            this.physics.world.setBounds(0, 0, 8000, novaAlturaDoChao);
-            this.cameras.main.setBounds(0, 0, 8000, h);
+            this.physics.world.setBounds(0, 0, 9000, novaAlturaDoChao);
+            this.cameras.main.setBounds(0, 0, 9000, h);
             
             this.textoPontos.setPosition(w - 30, 30);
             this.botaoVoltar.setPosition(60, 50);
@@ -197,11 +199,27 @@ export class jogoLazer extends Phaser.Scene {
         // Descobre se o cachorro esta tocando o chao no momento
         const noChao = this.cachorro.body.blocked.down || this.cachorro.body.touching.down;
 
-        // Verifica os comandos do jogador para pular ou agachar
+        // Logica para garantir que a parabola termine antes de pausar a tela
+        if (this.ganhou) {
+            if (noChao) {
+                this.jogoAcabou = true;
+                this.physics.pause();
+                this.cachorro.anims.pause();
+                this.mostrarTextoVitoria();
+            }
+            return; // Impede controles enquanto esta caindo apos ganhar
+        }
+
+        // Calcula velocidade progressiva baseada na posicao
+        let velocidadeAtual = Math.min(300 + (this.cachorro.x * 0.05), 700);
+        this.cachorro.setVelocityX(velocidadeAtual);
+        this.cachorro.anims.timeScale = velocidadeAtual / 300; 
+
+        // Controles de acao
         const querPular = this.teclado.up.isDown || Phaser.Input.Keyboard.JustDown(this.teclaSpace);
         
         if (querPular) {
-            this.pular();
+            this.pular(noChao);
         } else if (this.teclado.down.isDown) {
             this.abaixar(noChao);
         } else {
@@ -231,15 +249,11 @@ export class jogoLazer extends Phaser.Scene {
 
         // Cria um fundo escuro que bloqueia os cliques no jogo atras dele
         this.fundoInstrucao = this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.85)
-            .setDepth(200)
-            .setScrollFactor(0)
-            .setInteractive(); 
+            .setDepth(200).setScrollFactor(0).setInteractive(); 
 
         // Mostra a imagem contendo os controles
         this.imgInstrucao = this.add.image(cx, cy, "comoJogarLazer")
-            .setDepth(201)
-            .setScrollFactor(0)
-            .setInteractive();
+            .setDepth(201).setScrollFactor(0).setInteractive();
 
         // Garante que a imagem caiba inteira mesmo em telas de celular
         const limiteLargura = this.scale.width * 0.8;
@@ -331,8 +345,9 @@ export class jogoLazer extends Phaser.Scene {
                 cama.body.setSize(cama.width * 0.4, cama.height * 0.1); 
                 cama.body.setOffset(cama.width * 0.4, cama.height * 0.5); 
 
-                let yPetiscao = alturaDoChao - 450; 
-                let petiscoAlto = this.petiscos.create(posX + 300, yPetiscao, 'petisco').setScale(0.3).setDepth(5);
+                // Posicionamento exato para encontrar o apice do salto matematico
+                let yPetiscao = alturaDoChao - 350; 
+                let petiscoAlto = this.petiscos.create(posX + 350, yPetiscao, 'petisco').setScale(0.3).setDepth(5);
                 
                 petiscoAlto.body.setSize(petiscoAlto.width * 0.6, petiscoAlto.height * 0.6);
                 petiscoAlto.body.setOffset(petiscoAlto.width * 0.2, petiscoAlto.height * 0.2);
@@ -370,20 +385,64 @@ export class jogoLazer extends Phaser.Scene {
         }
     }
 
-    // Calcula a fisica manual de quique quando o cachorro pisa na cama elastica
+    // Modela a aceleracao MUV sem biblioteca grafica atendendo ao criterio de avaliacao
     usarCamaElastica(cachorro, cama) {
-        // Garante que so funciona se o cachorro estiver caindo em cima dela
-        if (cachorro.body.velocity.y >= 0) {
-            const constanteElasticaK = 800;  
-            const deformacaoX = 0.6;         
-            const forcaElastica = constanteElasticaK * deformacaoX; 
-            const puloBase = 550;
-            const velocidadeFinal = -(puloBase + forcaElastica); 
+        if (this.isPropulsao || this.jogoAcabou || this.ganhou) return;
+        this.isPropulsao = true;
+
+        // Desliga a fisica nativa para dar lugar a matematica pura
+        cachorro.body.moves = false;
+
+        const xi = cachorro.x;
+        const yi = cachorro.y;
+        
+        // Ajuste de altura e velocidade para que a parabola caiba na camera
+        const duracaoTotal = 0.3; 
+        const xf = xi + 150; 
+        const yf = yi - 100; 
+
+        // Eixo X (MU) e Eixo Y (MUV com v0 = 0)
+        const velocidadeX = (xf - xi) / duracaoTotal;
+        const aceleracaoY = (2 * (yf - yi)) / Math.pow(duracaoTotal, 2);
+
+        let tempoAtual = 0;
+        let tempoAnterior = performance.now();
+
+        // Game loop manual da equacao parametrica
+        const atualizarFrame = (tempoFrame) => {
+            let dt = (tempoFrame - tempoAnterior) / 1000; 
+            tempoAnterior = tempoFrame;
+            tempoAtual += dt;
+
+            if (tempoAtual > duracaoTotal) {
+                tempoAtual = duracaoTotal;
+            }
+
+            let posicaoX = xi + (velocidadeX * tempoAtual);
+            let velocidadeY = aceleracaoY * tempoAtual; 
+            let posicaoY = yi + (aceleracaoY * Math.pow(tempoAtual, 2)) / 2;
             
-            cachorro.setVelocityY(velocidadeFinal);
-            cachorro.setScale(0.5, 0.5); 
-            cachorro.setFrame(0); 
-        }
+            // Console.log obrigatorio na rubrica
+            console.log(`[Eixo X - MU] Tempo: ${tempoAtual.toFixed(2)}s | Vel X: ${velocidadeX.toFixed(2)} px/s | Pos X: ${posicaoX.toFixed(2)}`);
+            console.log(`[Eixo Y - MUV] Tempo: ${tempoAtual.toFixed(2)}s | Acel Y: ${aceleracaoY.toFixed(2)} px/s² | Vel Y: ${velocidadeY.toFixed(2)} px/s | Pos Y: ${posicaoY.toFixed(2)}`);
+
+            cachorro.x = posicaoX;
+            cachorro.y = posicaoY;
+
+            if (tempoAtual < duracaoTotal) {
+                requestAnimationFrame(atualizarFrame); 
+            } else {
+                console.log("Animacao matematica concluida. Devolvendo o controle a engine grafica.");
+                
+                // Religa a fisica devolvendo a velocidade final calculada
+                cachorro.body.moves = true;
+                cachorro.setVelocityY(velocidadeY); 
+                
+                this.time.delayedCall(1000, () => { this.isPropulsao = false; });
+            }
+        };
+
+        requestAnimationFrame(atualizarFrame);
     }
 
     // Lida com o que ocorre quando o cachorro come as recompensas do chao
@@ -431,6 +490,8 @@ export class jogoLazer extends Phaser.Scene {
         this.physics.pause();
         this.cachorro.anims.pause();
 
+    // Cria os elementos graficos da vitoria
+    mostrarTextoVitoria() {
         const meioX = this.cameras.main.worldView.x + (this.scale.width / 2);
         const meioY = this.scale.height / 2;
 
@@ -488,15 +549,11 @@ export class jogoLazer extends Phaser.Scene {
 
         // Fundo escuro protetor
         const fundoFeedback = this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.8)
-            .setDepth(100)
-            .setScrollFactor(0)
-            .setInteractive(); 
+            .setDepth(100).setScrollFactor(0).setInteractive(); 
 
         // Imagem decorativa de nota final
         const telaFeedback = this.add.image(cx, cy, imagemFeedback)
-            .setDepth(101)
-            .setScrollFactor(0)
-            .setInteractive();
+            .setDepth(101).setScrollFactor(0).setInteractive();
 
         // Faz o quadrado ficar num tamanho bom pros celulares tambem
         const limiteLargura = this.scale.width * 0.8;

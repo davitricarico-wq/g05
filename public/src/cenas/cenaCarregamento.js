@@ -29,13 +29,13 @@ export class cenaCarregamento extends Phaser.Scene {
         this.load.image("botaoOn", "assets/tela-configuracoes/botaoOn.png");             // Botão ligado
 
         // Ícones das barras de status
-        this.load.image("iconeFome", "assets/Icones/iconeFome.png");
-        this.load.image("iconeFelicidade", "assets/Icones/iconeFelicidade.png");
-        this.load.image("iconeSaude", "assets/Icones/iconeSaude.png");
-        this.load.image("iconeSujeira", "assets/Icones/iconeSujeira.png");
+        this.load.image("iconeFome", "assets/icones/iconeFome.png");
+        this.load.image("iconeFelicidade", "assets/icones/iconeFelicidade.png");
+        this.load.image("iconeSaude", "assets/icones/iconeSaude.png");
+        this.load.image("iconeSujeira", "assets/icones/iconeSujeira.png");
 
         // Spritesheet da barra de status
-        this.load.spritesheet("barra", "assets/Icones/barraStatus.png", {
+        this.load.spritesheet("barra", "assets/icones/barraStatus.png", {
             frameWidth: 144,
             frameHeight: 32
         });
@@ -161,9 +161,9 @@ export class cenaCarregamento extends Phaser.Scene {
 
        
         // Áudio
-        this.load.audio("musicaMenuPrincipal", "assets/Sons/menu-principal.mp3");
-        this.load.audio("musica", "assets/Sons/menu-principal.mp3");
-        this.load.audio("musicaTutorial", "assets/Sons/musica-cutscene.mp3");
+        this.load.audio("musicaMenuPrincipal", "assets/sons/menu-principal.mp3");
+        this.load.audio("musica", "assets/sons/menu-principal.mp3");
+        this.load.audio("musicaTutorial", "assets/sons/musica-cutscene.mp3");
 
         // Spritesheets do cachorro e água
         this.load.spritesheet("pulgas", "assets/pulgaCachorro.png", {

@@ -231,7 +231,13 @@ export class cenaRacaoSuperPremium extends Phaser.Scene {
                     /// desabilitação da interatividade do botão para prevenção de requisições duplicadas
                     this.botaoComprarSuperPremium.disableInteractive();
 
-                    /// agendamento de chamada atrasada para limpeza de seleção e redirecionamento de cena
+                    // ==========================================
+                    // === ATUALIZAÇÃO DO GAMESTATE AQUI ========
+                    // ==========================================
+                    gameState.superPremium = true;
+                    gameState.standart = false;
+
+                    // Aguarda 1.5s e muda de cena
                     this.time.delayedCall(1500, () => {
                         Racao.selecionada = null; 
                         this.transicaoPara("jogoAlimentacao"); 

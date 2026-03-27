@@ -168,6 +168,7 @@ export class cenaRacaoStandart extends Phaser.Scene {
             fontSize: "14px", color: "#ff0000", fontFamily: '"Press Start 2P"', align: "center", wordWrap: { width: 350 }
         }).setOrigin(0.5);
 
+        // === BOTÃO COMPRAR COM A LÓGICA ATUALIZADA ===
         this.botaoComprarStandard = criarBotao(
             centroDireitaX, altura * 0.75, 
             "botaoComprarStandard", "botaoComprarStandardPressionado",
@@ -177,6 +178,7 @@ export class cenaRacaoStandart extends Phaser.Scene {
                     this.textoFeedback.setText("SELECIONE UMA RAÇÃO PRIMEIRO!").setColor("#ff0000");
                     return;
                 }
+                
                 if (Racao.selecionada.id !== pet.id) {
                     this.textoFeedback.setText("ESSA RAÇÃO NÃO É IDEAL.\nESCOLHA OUTRA RAÇÃO.").setColor("#ff0000");
                     return;
@@ -194,6 +196,13 @@ export class cenaRacaoStandart extends Phaser.Scene {
 
                 this.textoFeedback.setText(`COMPRA EFETUADA! (-${valorDaRacao} MOEDAS)\nRedirecionando...`).setColor("#006600");
                 this.botaoComprarStandard.disableInteractive();
+                
+                // ==========================================
+                // === ATUALIZAÇÃO DO GAMESTATE AQUI ========
+                // ==========================================
+                gameState.standart = true;
+                gameState.superPremium = false;
+
                 this.time.delayedCall(1500, () => {
                     Racao.selecionada = null; 
                     this.transicaoPara("jogoAlimentacao"); 

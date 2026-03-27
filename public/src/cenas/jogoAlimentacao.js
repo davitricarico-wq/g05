@@ -439,16 +439,22 @@ export class jogoAlimentacao extends Phaser.Scene {
             gameState.recompensas.alimentacao[cachorroAtivo] = true;
         }
 
-        // Nova logica para preencher o indicador principal de saciedade
-        // Checa se existe uma racao selecionada e se e do tipo superior
-        if (Racao.selecionada && (Racao.selecionada.tipo === "Super Premium" || Racao.selecionada.categoria === "Super Premium")) {
+        // --- NOVA LÓGICA DA BARRINHA DE FOME ---
+        if (gameState.superPremium) {
+            // Ração Super Premium: enche a barra totalmente (frame 0)
             gameState.barras.comida = 0;
+        } else if (gameState.standart) {
+            // Ração Standard: diminui o valor da barra de fome em 6 (sendo 0 = cheio)
+            // Usamos Math.max para garantir que nunca ficará menor que 0.
+            gameState.barras.comida = Math.max(0, gameState.barras.comida - 6);
         } else {
-            gameState.barras.comida = 5;
+            // Fallback: diminui 6 caso entre no minigame sem ter comprado ração.
+            gameState.barras.comida = Math.max(0, gameState.barras.comida - 6);
         }
 
-        // Limpa a memoria da racao marcada para que um proximo ciclo pegue as informacoes limpas
-        Racao.selecionada = null; 
+        // Limpa as variáveis para a próxima vez que for jogar/comprar
+        gameState.superPremium = false;
+        gameState.standart = false;
 
         // Aciona o painel grafico que exibe seu saldo e suas estrelas no fim
         this.mostrarPainelResultado(estrelas);
