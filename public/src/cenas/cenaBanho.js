@@ -1,26 +1,34 @@
+// Importa o estado global do jogo para sincronização de dados
 import { gameState } from "../main.js";
+// Importa as definições base dos animais disponíveis
 import { cachorrosBase } from "../componentes/controleCachorro/cachorrosBase.js";
+// Importa a classe responsável por instanciar e gerenciar a lógica dos pets
 import { GerenciadorCachorros } from "../componentes/controleCachorro/gerenciadorCachorros.js";
 
+// Exporta a cena responsável pela mecânica de banho e higiene do animal
 export class cenaBanho extends Phaser.Scene {
     constructor() {
+        // Define a chave identificadora da cena no Phaser
         super({ key: "cenaBanho" });
 
+        // Inicialização de variáveis de controle: ferramenta em uso e contadores de progresso
         this.ferramentaAtiva = null;
         this.acumuladorAgua = 0;
         this.tempoSecando = 0;
         this.quantidadeEspuma = 0;
         
+        // Armazena coordenadas prévias para detectar se o jogador está movimentando o mouse/toque
         this.ultimoX = 0;
         this.ultimoY = 0;
         
+        // Define o estado inicial do fluxo de limpeza do cachorro
         this.estadoCachorro = "sujo"; 
         this.gerenciadorCachorros = null;
         this.cachorro = null;
     }
 
     create() {
-        // ================= SETUP DO HUD =================
+        // Gerenciamento da interface de usuário (HUD): inicia ou acorda a cena para garantir visibilidade
         if (!this.scene.isActive("HUD")) {
             this.scene.launch("HUD");
         } else if (this.scene.isSleeping("HUD")) {
@@ -28,34 +36,34 @@ export class cenaBanho extends Phaser.Scene {
         }
         this.scene.bringToTop("HUD");
         
-        // ================= RESET GERAL =================
+        // Reinicializa contadores ao entrar na cena para evitar erros de persistência de sessões anteriores
         this.ferramentaAtiva = null;
         this.acumuladorAgua = 0;
         this.tempoSecando = 0;
         this.quantidadeEspuma = 0;
 
+        // Recupera qual pet está sendo exibido no momento (Cachorro Caramelo ou Herói)
         const indiceAtivo = gameState.pets.cachorroHeroi ? 1 : 0;
         this.estadoCachorro = cachorrosBase[indiceAtivo]?.estado || "sujo";
         cachorrosBase[indiceAtivo].estado = this.estadoCachorro;
 
-        // ================= CÁLCULO DE TELA =================
+        // Cálculos de dimensionamento responsivo e definição da área útil de interação
         const largura = this.scale.width;
         const altura = this.scale.height;
         const areaX = largura - (largura * 0.2); 
         const areaY = altura;
 
-        // ================= FUNDO =================
+        // Define a imagem de fundo do banheiro e ajusta para preencher a tela
         gameState.banheiro = this.add.image(areaX / 2, areaY / 2, "bgBanheiro")
             .setDisplaySize(areaX, areaY)
             .setDepth(-1);
 
-        // ================= CACHORRO E PULGAS =================
+        // Criação da entidade do cachorro através do gerenciador e armazenamento de sua escala base
         this.gerenciadorCachorros = new GerenciadorCachorros(this);
         this.cachorro = this.gerenciadorCachorros.criarCachorro(0, 0, cachorrosBase[indiceAtivo]);
-        
-        // Salva a escala base original para não bugar a animação de pulo
         this.escalaBaseCachorro = { x: this.cachorro.sprite.scaleX || this.cachorro.sprite.scale, y: this.cachorro.sprite.scaleY || this.cachorro.sprite.scale };
 
+        // Registro da animação das pulgas caso ainda não exista no cache global
         if (!this.anims.exists("pulgaAnim")) {
             this.anims.create({
                 key: "pulgaAnim",
@@ -65,10 +73,12 @@ export class cenaBanho extends Phaser.Scene {
             });
         }
 
+        // Configuração visual dos parasitas e controle de visibilidade conforme o estado do pet
         this.pulgas = this.add.sprite(0, 0, "pulgas").setOrigin(0.5).setScale(areaY * 0.0015);
         this.pulgas.play("pulgaAnim");
         this.pulgas.setVisible(gameState.pulga); 
 
+        // Container para agrupar o cachorro e as pulgas, facilitando transformações coordenadas
         this.containerCachorro = this.add.container(
             areaX / 2, 
             areaY * 0.65, 
@@ -76,6 +86,7 @@ export class cenaBanho extends Phaser.Scene {
         );
         this.containerCachorro.setScale(areaY * 0.0006);
 
+        // Ativação de física no sprite do animal para detecção de colisões com ferramentas
         this.physics.add.existing(this.cachorro.sprite);
         this.cachorro.sprite.body.setAllowGravity(false);
         this.cachorro.sprite.body.immovable = true;
@@ -83,13 +94,14 @@ export class cenaBanho extends Phaser.Scene {
 
         this.atualizarEstadoCachorroAnimacao();
 
-        // ================= FERRAMENTAS =================
+        // Configuração posicional das ferramentas de banho no rodapé da área útil
         const yFerramentas = areaY * 0.88;
         this.posicaoInicialSabao = { x: (areaX / 2) - (areaX * 0.25), y: yFerramentas };
         this.posicaoInicialChuveiro = { x: areaX / 2, y: yFerramentas };
-        this.posicaoInicialToalha = { x: (areaX / 2) + (areaX * 0.25), y: yFerramentas };
+        this.posicaoInitialToalha = { x: (areaX / 2) + (areaX * 0.25), y: yFerramentas };
         const escalaFerramentas = areaY * 0.0005;
 
+        // Instanciação e configuração de interatividade para o sabão, chuveiro e toalha
         gameState.sabao = this.add.sprite(this.posicaoInicialSabao.x, this.posicaoInicialSabao.y, "sabao")
             .setInteractive({ useHandCursor: true }).setDepth(3);
         gameState.sabao.escalaOriginal = escalaFerramentas * 0.28; 
@@ -100,33 +112,33 @@ export class cenaBanho extends Phaser.Scene {
         gameState.chuveiro.escalaOriginal = escalaFerramentas * 0.36; 
         gameState.chuveiro.setScale(gameState.chuveiro.escalaOriginal);
         
-        gameState.toalha = this.add.sprite(this.posicaoInicialToalha.x, this.posicaoInicialToalha.y, "toalha")
+        gameState.toalha = this.add.sprite(this.posicaoInitialToalha.x, this.posicaoInitialToalha.y, "toalha")
             .setInteractive({ useHandCursor: true }).setDepth(3);
         gameState.toalha.escalaOriginal = escalaFerramentas * 0.36; 
         gameState.toalha.setScale(gameState.toalha.escalaOriginal);
 
+        // Habilita física nas ferramentas para monitorar sobreposição com o pet
         [gameState.sabao, gameState.chuveiro, gameState.toalha].forEach(tool => {
             this.physics.add.existing(tool);
             tool.body.setAllowGravity(false);
         });
 
-        // --- Ajustando Hitboxes (Tamanho Físico) do Sabão e Toalha ---
+        // Ajuste fino das caixas de colisão para tornar a interação mais precisa e orgânica
         const reduzirHitbox = (ferramenta, fator) => {
             const w = ferramenta.width;
             const h = ferramenta.height;
-            // Define o tamanho reduzido e centraliza usando o offset
             ferramenta.body.setSize(w * fator, h * fator);
             ferramenta.body.setOffset(w * ((1 - fator) / 2), h * ((1 - fator) / 2));
         };
 
-        reduzirHitbox(gameState.sabao, 0.3);  // Deixa a hitbox com 30% do tamanho
-        reduzirHitbox(gameState.toalha, 0.3); // Deixa a hitbox com 30% do tamanho
+        reduzirHitbox(gameState.sabao, 0.3);
+        reduzirHitbox(gameState.toalha, 0.3);
 
-
-        // ================= FÍSICA E PARTÍCULAS =================
+        // Grupos de partículas com limite máximo para otimização de performance (Object Pooling)
         gameState.bolhas = this.physics.add.group({ maxSize: 80 });
         gameState.gotas = this.physics.add.group({ maxSize: 160 });
 
+        // Lógica de colisão: quando a água encosta nas bolhas, elas são removidas
         this.physics.add.overlap(gameState.gotas, gameState.bolhas, (gota, bolha) => {
             this.reciclarObjeto(bolha);
             if (this.ferramentaAtiva === "chuveiro") {
@@ -134,7 +146,7 @@ export class cenaBanho extends Phaser.Scene {
             }
         });
 
-        // Eventos
+        // Configura eventos de clique para alternar entre as ferramentas de limpeza
         gameState.sabao.on("pointerdown", () => this.alternarFerramenta("sabao"));
         gameState.chuveiro.on("pointerdown", () => this.alternarFerramenta("chuveiro"));
         gameState.toalha.on("pointerdown", () => this.alternarFerramenta("toalha"));
@@ -144,26 +156,29 @@ export class cenaBanho extends Phaser.Scene {
         this.cameras.main.setBounds(0, 0, this.scale.width, this.scale.height);
         this.cameras.main.fadeIn(200, 0, 0, 0);
 
-        // ================= TELA DE INSTRUÇÕES =================
+        // Exibe instruções se for a primeira vez que o usuário acessa o banho
         if (!gameState.instrucoesBanhoVistas) {
             this.mostrarInstrucoes();
         }
     }
 
     update(tempo, delta) {
-        // Reduzimos o multiplicador de 1.2 para 0.8 para exigir que a ferramenta chegue mais perto
+        // Define o raio de interação baseado no tamanho visual do pet no container
         const raioHitboxCachorro = (this.containerCachorro.getBounds().width / 2) * 0.8; 
 
+        // Atualização contínua das mecânicas de ensaboar, enxaguar e secar
         this.atualizarSabao(raioHitboxCachorro);
         this.atualizarChuveiro(delta, raioHitboxCachorro);
         this.atualizarToalha(raioHitboxCachorro);
         this.limparGotas();
 
+        // Monitora sinalização global para troca de pet durante a execução da cena
         if (gameState.trocar) {
             this.cachorro = this.gerenciadorCachorros.cachorroAtual;
             gameState.cachorro = this.cachorro.sprite;
             this.escalaBaseCachorro = { x: this.cachorro.sprite.scaleX || this.cachorro.sprite.scale, y: this.cachorro.sprite.scaleY || this.cachorro.sprite.scale };
 
+            // Reseta o progresso de limpeza ao trocar de animal
             this.estadoCachorro = "sujo";
             this.cachorro.dados.estado = "sujo";
             this.quantidadeEspuma = 0;
@@ -192,10 +207,12 @@ export class cenaBanho extends Phaser.Scene {
             gameState.trocar = false;
         }
 
+        // Mantém as pulgas visíveis apenas se houver infestação no estado global
         if (this.pulgas) {
             this.pulgas.setVisible(gameState.pulga);
         }
 
+        // Transição: pet sujo -> pet ensaboado (quando acumula espuma suficiente)
         if (this.estadoCachorro === "sujo" && this.quantidadeEspuma >= 50) {
             this.estadoCachorro = "ensaboado";
             this.atualizarEstadoCachorroAnimacao();
@@ -208,10 +225,12 @@ export class cenaBanho extends Phaser.Scene {
             this.ferramentaAtiva = null; 
         }
 
+        // Transição: lavando -> molhado (quando toda a espuma é removida pelo enxágue)
         if (this.estadoCachorro === "lavando" && this.quantidadeEspuma <= 0) {
             this.estadoCachorro = "molhado";
             this.atualizarEstadoCachorroAnimacao();
             
+            // Destrói bolhas remanescentes para garantir limpeza visual completa
             gameState.bolhas.children.iterate((bolha) => {
                 if (bolha && bolha.active) this.reciclarObjeto(bolha);
             });
@@ -225,12 +244,14 @@ export class cenaBanho extends Phaser.Scene {
         }
     }
 
+    // Suaviza o movimento das ferramentas seguindo o ponteiro (Interpolação Linear)
     moverFerramenta(ferramenta) {
         ferramenta.x = Phaser.Math.Linear(ferramenta.x, this.input.activePointer.x, 0.5);
         ferramenta.y = Phaser.Math.Linear(ferramenta.y, this.input.activePointer.y, 0.5);
         ferramenta.body.updateFromGameObject(); 
     }
 
+    // Lógica da mecânica de ensaboar: cria bolhas apenas se houver movimento sobre o pet
     atualizarSabao(raioHitbox) {
         if (this.ferramentaAtiva !== "sabao") return;
 
@@ -240,6 +261,7 @@ export class cenaBanho extends Phaser.Scene {
 
         this.moverFerramenta(sabao);
 
+        // Calcula delta de movimento para evitar criação de bolhas com o mouse parado
         const moveu = Math.abs(sabao.x - this.ultimoX) > 5 || Math.abs(sabao.y - this.ultimoY) > 5;
         const distancia = Phaser.Math.Distance.Between(sabao.x, sabao.y, this.containerCachorro.x, this.containerCachorro.y);
         const estaNoCachorro = distancia < raioHitbox;
@@ -249,6 +271,7 @@ export class cenaBanho extends Phaser.Scene {
         }
     }
 
+    // Lógica da mecânica de enxágue: gera gotas de água e altera estado para lavagem
     atualizarChuveiro(delta, raioHitbox) {
         if (this.ferramentaAtiva !== "chuveiro") {
             this.acumuladorAgua = 0;
@@ -265,6 +288,7 @@ export class cenaBanho extends Phaser.Scene {
             this.cachorro.dados.estado = "lavando";
         }
 
+        // Emite gotas periodicamente baseando-se no tempo delta do frame
         if (this.estadoCachorro === "lavando" || this.estadoCachorro === "ensaboado") {
             this.acumuladorAgua += delta;
             if (this.acumuladorAgua >= 70) {
@@ -274,6 +298,7 @@ export class cenaBanho extends Phaser.Scene {
         }
     }
 
+    // Lógica da mecânica de secagem: incrementa progresso ao manter a toalha sobre o pet molhado
     atualizarToalha(raioHitbox) {
         if (this.ferramentaAtiva !== "toalha") {
             this.tempoSecando = 0;
@@ -290,6 +315,7 @@ export class cenaBanho extends Phaser.Scene {
         if (estaNoCachorro) {
             this.tempoSecando += 1;
 
+            // Finaliza o banho: reseta barras de status e concede moedas como prêmio
             if (this.tempoSecando >= 90) {
                 this.estadoCachorro = "limpo";
                 this.atualizarEstadoCachorroAnimacao();
@@ -305,6 +331,7 @@ export class cenaBanho extends Phaser.Scene {
                     this.mostrarTextoFlutuante("+20 Moedas!", this.containerCachorro.x, this.containerCachorro.y - 100, "#ffd700");
                 }
 
+                // Desativa as ferramentas após conclusão do processo
                 gameState.sabao.disableInteractive();
                 gameState.chuveiro.disableInteractive();
                 gameState.toalha.disableInteractive();
@@ -319,6 +346,7 @@ export class cenaBanho extends Phaser.Scene {
         }
     }
 
+    // Gerencia a seleção lógica de ferramentas, impedindo o uso fora de ordem (UX)
     alternarFerramenta(nomeFerramenta) {
         if (nomeFerramenta === "chuveiro" && this.estadoCachorro !== "ensaboado" && this.estadoCachorro !== "lavando") {
             this.mostrarTextoFlutuante("Ensaboe\nprimeiro!", gameState.chuveiro.x, gameState.chuveiro.y - 60, "#ff4444");
@@ -331,6 +359,7 @@ export class cenaBanho extends Phaser.Scene {
             return;
         }
 
+        // Desativa a ferramenta se ela já estiver ativa (Toggle)
         if (this.ferramentaAtiva === nomeFerramenta) {
             this.animarFerramenta(this.pegarFerramenta(nomeFerramenta), false);
             this.retornarPosicaoInicial(nomeFerramenta);
@@ -338,6 +367,7 @@ export class cenaBanho extends Phaser.Scene {
             return;
         }
         
+        // Se outra ferramenta estiver ativa, retorna ela para a base antes de pegar a nova
         if (this.ferramentaAtiva) {
             this.animarFerramenta(this.pegarFerramenta(this.ferramentaAtiva), false);
             this.retornarPosicaoInicial(this.ferramentaAtiva);
@@ -347,6 +377,7 @@ export class cenaBanho extends Phaser.Scene {
         this.animarFerramenta(this.pegarFerramenta(nomeFerramenta), true);
     }
 
+    // Anima a volta suave das ferramentas para seus respectivos suportes
     retornarPosicaoInicial(nomeFerramenta) {
         const ferramenta = this.pegarFerramenta(nomeFerramenta);
         const pos = this.pegarPosicaoInicial(nomeFerramenta);
@@ -361,6 +392,7 @@ export class cenaBanho extends Phaser.Scene {
         });
     }
 
+    // Executa uma animação de impacto (squash) no pet como feedback visual
     animarCachorro() {
         const target = this.cachorro?.sprite || gameState.cachorro;
         if (!target) return;
@@ -378,6 +410,7 @@ export class cenaBanho extends Phaser.Scene {
         });
     }
 
+    // Sincroniza a aparência visual (sprite) com o estado lógico de limpeza
     atualizarEstadoCachorroAnimacao() {
         if (!this.cachorro) return;
         const estadoAnim = (this.estadoCachorro === "limpo") ? "limpo" : (this.estadoCachorro === "sujo") ? "sujo" : "ensaboado";
@@ -387,6 +420,7 @@ export class cenaBanho extends Phaser.Scene {
         gameState.cachorro = this.cachorro.sprite;
     }
 
+    // Instancia uma bolha de sabão com posição randômica próxima ao sabão
     criarBolha() {
         const variacaoX = Phaser.Math.RND.between(-30, 30);
         const variacaoY = Phaser.Math.RND.between(-30, 30);
@@ -406,6 +440,7 @@ export class cenaBanho extends Phaser.Scene {
         this.quantidadeEspuma += 1;
     }
 
+    // Instancia uma gota de água que cai verticalmente a partir do chuveiro
     criarGota() {
         const x = gameState.chuveiro.x;
         const y = gameState.chuveiro.y + gameState.chuveiro.displayHeight / 2;
@@ -422,6 +457,7 @@ export class cenaBanho extends Phaser.Scene {
         gota.body.setVelocityY(200); 
     }
 
+    // Monitora gotas que saíram da tela e as desativa para reuso no pool
     limparGotas() {
         gameState.gotas.children.iterate((gota) => {
             if (!gota || !gota.active) return;
@@ -431,6 +467,7 @@ export class cenaBanho extends Phaser.Scene {
         });
     }
 
+    // Função genérica para desativar e esconder objetos de física (reciclagem)
     reciclarObjeto(objeto) {
         if (!objeto) return;
         if (objeto.body) {
@@ -441,12 +478,14 @@ export class cenaBanho extends Phaser.Scene {
         objeto.setPosition(-200, -200); 
     }
 
+    // Cria os registros de animação baseados nos spritesheets carregados
     criarAnimacoes() {
         if (!this.anims.exists("aguaAnim")) {
             this.anims.create({ key: "aguaAnim", frames: this.anims.generateFrameNumbers("agua", { start: 0, end: 5 }), frameRate: 8, repeat: -1 });
         }
     }
 
+    // Feedback visual de escala quando uma ferramenta é "pega" pelo jogador
     animarFerramenta(ferramenta, ativa) {
         if (!ferramenta) return;
         const escalaAlvo = ativa ? ferramenta.escalaOriginal * 1.1 : ferramenta.escalaOriginal;
@@ -458,6 +497,7 @@ export class cenaBanho extends Phaser.Scene {
         });
     }
 
+    // Exibe textos de aviso ou recompensa que flutuam e desaparecem suavemente
     mostrarTextoFlutuante(texto, x, y, cor = "#ffffff") {
         const txt = this.add.text(x, y, texto, {
             fontFamily: '"Press Start 2P"', 
@@ -478,6 +518,7 @@ export class cenaBanho extends Phaser.Scene {
         });
     }
 
+    // Gera um efeito de partículas douradas para celebrar a limpeza final do pet
     criarExplosaoBrilhos() {
         for (let i = 0; i < 25; i++) {
             const x = gameState.cachorro.x + Phaser.Math.Between(-150, 150);
@@ -497,6 +538,7 @@ export class cenaBanho extends Phaser.Scene {
         }
     }
 
+    // Funções auxiliares para buscar instâncias de ferramentas e posições no gameState
     pegarFerramenta(nomeFerramenta) {
         if (nomeFerramenta === "sabao") return gameState.sabao;
         if (nomeFerramenta === "chuveiro") return gameState.chuveiro;
@@ -507,10 +549,11 @@ export class cenaBanho extends Phaser.Scene {
     pegarPosicaoInicial(nomeFerramenta) {
         if (nomeFerramenta === "sabao") return this.posicaoInicialSabao;
         if (nomeFerramenta === "chuveiro") return this.posicaoInicialChuveiro;
-        if (nomeFerramenta === "toalha") return this.posicaoInicialToalha;
+        if (nomeFerramenta === "toalha") return this.posicaoInitialToalha;
         return null;
     }
     
+    // Cria um modal de instruções que sobrepõe a cena com um fundo escurecido
     mostrarInstrucoes() {
         this.scene.bringToTop();
 
@@ -525,6 +568,7 @@ export class cenaBanho extends Phaser.Scene {
             .setDepth(101)
             .setInteractive({ useHandCursor: true }); 
 
+        // Garante que a imagem do tutorial caiba proporcionalmente na tela do usuário
         const limiteLargura = this.scale.width * 0.8;
         const limiteAltura = this.scale.height * 0.8;
 
@@ -534,12 +578,11 @@ export class cenaBanho extends Phaser.Scene {
         const escalaFinal = Math.min(escalaX, escalaY);
         telaInstrucao.setScale(escalaFinal);
 
+        // Define o encerramento do tutorial e limpa os elementos da tela
         const fecharInstrucoes = () => {
             fundoEscuro.destroy();
             telaInstrucao.destroy();
-            
             gameState.instrucoesBanhoVistas = true; 
-            
             this.scene.bringToTop("HUD");
         };
 
