@@ -204,7 +204,37 @@ A cultura organizacional da Cobasi evidencia forte orientação para a experiên
 
 ### 1.1.7. Objetivos, Metas e Indicadores (sprint 4)
 
-*Definição de metas SMART (específicas, mensuráveis, alcançáveis, relevantes e temporais) para seu projeto, com indicadores claros para mensuração*
+*Para garantir que o jogo não seja apenas uma experiência de entretenimento, mas também uma extensão estratégica do pilar social **Cobasi Cuida**, os objetivos do projeto foram definidos utilizando a metodologia SMART (Específico, Mensurável, Alcançável, Relevante e Temporal). As metas estão divididas em três eixos centrais: Impacto Social, Engajamento com a Marca e Qualidade Técnica.*
+
+**Objetivo 1: Impacto Social e Educação (Alinhado ao Cobasi Cuida)**
+* **Específico (S):** Conscientizar o jogador sobre as responsabilidades reais do cuidado animal e a importância da adoção (e não devolução), utilizando mecânicas interativas de higiene, alimentação e saúde.
+* **Mensurável (M):** Atingir uma taxa de acerto superior a 75% na primeira tentativa do minigame/quiz de alimentação correta e garantir que 90% dos testadores cheguem à mensagem de conscientização sobre devolução de animais.
+* **Alcançável (A):** O uso de feedback visual imediato (HUD de status do pet) e um design focado na empatia facilita a absorção do conteúdo educativo sem torná-lo maçante.
+* **Relevante (R):** Cumpre o propósito central do programa *Cobasi Cuida*, transformando a Geração Z em tutores mais conscientes e reduzindo a desinformação que leva ao abandono ou devolução de pets.
+* **Temporal (T):** Validação das métricas de aprendizado durante as sessões de *playtest* na Sprint 4 e Sprint 5.
+* **Indicadores (KPIs):**
+  * Taxa de acerto nos minigames educativos (Meta: > 75%).
+  * Porcentagem de jogadores que completam o ciclo de resgate do primeiro animal (Meta: > 90%).
+
+**Objetivo 2: Engajamento e Afinidade de Marca (Brand Equity)**
+* **Específico (S):** Reter o jogador no ciclo principal do jogo (core loop) para fortalecer o vínculo emocional com o pet virtual e, por associação, criar uma percepção positiva e moderna da marca Cobasi.
+* **Mensurável (M):** Manter um tempo médio de sessão de jogo superior a 5 minutos e alcançar uma taxa de conversão (uso das moedas virtuais na "loja" do jogo para comprar upgrades) de 80% entre os usuários ativos.
+* **Alcançável (A):** A economia do jogo (ganhar moedas ao cuidar bem do pet) incentiva a progressão contínua e recompensa o esforço do jogador.
+* **Relevante (R):** Aumenta o tempo de exposição da marca (brand awareness) junto a um público altamente digital, traduzindo a experiência física de "shopping pet" da Cobasi para o ambiente virtual de cuidados e compras (loja do jogo).
+* **Temporal (T):** Dados consolidados a partir da entrega do MVP e testes finais na Sprint 5.
+* **Indicadores (KPIs):**
+  * Tempo médio de sessão por jogador (Meta: > 5 minutos).
+  * Taxa de engajamento com a economia interna do jogo (Meta: 80% dos jogadores realizam pelo menos uma compra de melhoria).
+
+**Objetivo 3: Viabilidade e Usabilidade Técnica**
+* **Específico (S):** Desenvolver um Web Game acessível, leve e com controles responsivos, que rode de forma fluida nos principais navegadores sem necessidade de instalação.
+* **Mensurável (M):** Obter um índice de satisfação de usabilidade (System Usability Scale - SUS) acima de 80 pontos e apresentar zero bugs impeditivos (críticos) na versão final.
+* **Alcançável (A):** O escopo do projeto foi delimitado para 2D point-and-click, focado nas mecânicas centrais, o que é perfeitamente factível para a equipe de desenvolvimento no prazo estabelecido.
+* **Relevante (R):** A excelência operacional da Cobasi (omnichannel e logística rápida) deve ser refletida em um software de alta qualidade; falhas técnicas gerariam frustração e iriam de encontro à imagem da marca.
+* **Temporal (T):** Entrega da versão final estabilizada e testada ao final do Módulo.
+* **Indicadores (KPIs):**
+  * Pontuação na escala SUS (Meta: > 80/100).
+  * Quantidade de bugs críticos/impeditivos na release final (Meta: 0).
 
 ## 1.2. Requisitos do Projeto
 
