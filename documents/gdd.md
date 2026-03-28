@@ -1100,7 +1100,7 @@ Ao concluir o desafio com sucesso, o jogador recebe Cobasi Coins, que funcionam 
 
 <div align="center">
 <p>Minigame de Banho</p>
-<img src="other/telaBanhoCachoro.png" width="800">
+<img src="other/telaBanhoCachorro.png" width="800">
 <p>Feito pela própria equipe (2026)</p>
 </div>
 
@@ -1148,7 +1148,7 @@ Após remover todas as pulgas e concluir o desafio, o jogador também recebe Cob
 
 <div align="center">
 <p>Minigame de Veterinário</p>
-<img src="other/telaPulga" width="800">
+<img src="other/telaPulga.png" width="800">
 <p>Feito pela própria equipe (2026)</p>
 </div>
 
