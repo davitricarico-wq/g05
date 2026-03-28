@@ -583,7 +583,7 @@ Fonte: material produzido pelos autores (2026).
 
 <div align="center">
 <p> Figura 3: Tela do banheiro, apresentando o pet no ambiente de higiene com itens interativos.
-<img src="other/bath.png">
+<img src="other/telaBanhoCachorro.png">
 Fonte: Produzido pelos autores (2026)
 <br>
 </div>
@@ -1059,7 +1059,7 @@ No mini game, o cachorro é apresentado inicialmente em estado sujo, exigindo a 
 
 <div align="center">
   <p>Tela de lazer Geral</p>
-  <img src="other/bgHUD.png" width="800">
+  <img src="other/bgPrincipal.png" width="800">
   <p>Feito pela própia equipe(2026)</p>
 </div>
 
@@ -1100,7 +1100,7 @@ Ao concluir o desafio com sucesso, o jogador recebe Cobasi Coins, que funcionam 
 
 <div align="center">
 <p>Minigame de Banho</p>
-<img src="other/bath.png" width="800">
+<img src="other/telaBanhoCachoro.png" width="800">
 <p>Feito pela própria equipe (2026)</p>
 </div>
 
@@ -1148,7 +1148,7 @@ Após remover todas as pulgas e concluir o desafio, o jogador também recebe Cob
 
 <div align="center">
 <p>Minigame de Veterinário</p>
-<img src="other/sprint3-veterinario.png.png" width="800">
+<img src="other/telaPulga" width="800">
 <p>Feito pela própria equipe (2026)</p>
 </div>
 
@@ -1178,22 +1178,52 @@ Essas melhorias têm como objetivo tornar o Cobasi Shelter uma experiência mais
 
 ## 4.4. Desenvolvimento final do MVP 
 
-Nesta etapa do desenvolvimento, o foco principal esteve no aprimoramento do design do jogo, com ênfase na padronização visual das principais cenas, como a área de lazer e a tela inicial. Buscou-se estabelecer uma identidade visual consistente, baseada em um esquema de cores inspirado na marca Cobasi, garantindo maior coerência estética e reconhecimento visual do projeto. Paralelamente, foram desenvolvidos novos spritesheets, incluindo um novo cachorro que será introduzido no segundo round do jogo, além da criação de novos elementos gráficos para os minigames de cuidado, como ossos, pote de ração e componentes da seção de ração standard.
+Na quarta sprint teve como objetivo consolidar o MVP do Cobasi Shelter, com foco no aprimoramento visual, expansão das mecânicas e integração dos sistemas desenvolvidos anteriormente. Nesta etapa, buscou-se alinhar a experiência do jogador aos requisitos definidos na Seção 1.2, garantindo maior coerência entre jogabilidade, interface e proposta educativa do projeto.
 
-No que se refere às mecânicas e sistemas, foi implementado um novo minigame na área de lazer, baseado em dinâmicas de passeio com o animal, no qual foram utilizadas equações matemáticas de movimento para simular ações como andar, correr e pular, proporcionando maior dinamismo e interatividade. Também foi incorporado um sistema de progressão que permite ao jogador avançar entre rounds, possibilitando o cuidado de um segundo animal até o final da experiência. Além disso, foi desenvolvido um sistema funcional de moedas, no qual o jogador acumula recompensas ao participar dos minigames, podendo utilizá-las para a compra de rações, integrando elementos de economia e progressão ao gameplay.
+**Aprimoramento Visual e Interface**
 
-O minigame de ração, considerado o núcleo principal do projeto, passou por melhorias significativas. Foram adicionadas mais informações e especificações sobre os tipos de ração, tornando o aprendizado mais intuitivo para o jogador. Ademais, foi implementado um sistema de escolhas, permitindo a seleção entre diferentes categorias, como ração super premium e standard. Essas escolhas impactam diretamente o estado do animal e apresentam variações de custo, introduzindo uma camada estratégica à experiência do jogador.
+Durante esta fase, foram realizadas melhorias na identidade visual do jogo, incluindo a padronização das cores, menus e cenários, com base na estética da marca Cobasi. Também houve ajustes na tela inicial e na HUD, visando maior clareza e organização das informações.
+Essas melhorias atendem aos requisitos não funcionais RNF5, RNF6 e RNF10, relacionados à organização visual, consistência gráfica e legibilidade, além de reforçar o requisito funcional RF2, referente à estrutura da tela inicial.
+Expansão de Conteúdo e Elementos Gráficos
+Foram desenvolvidos novos sprites e elementos visuais, incluindo a adição de um segundo cachorro e novos objetos utilizados nos minigames, como itens de alimentação e elementos interativos.
+Essa expansão está alinhada aos requisitos RF1, RF7 e RF8, que definem a presença dos animais e a mecânica central baseada no cuidado por meio de interações.
 
-Durante esta sprint, também houve um direcionamento estratégico voltado ao aprimoramento da experiência do usuário (UX Design). Nesse contexto, foi incorporada uma trilha sonora autoral desenvolvida pela equipe, bem como feedbacks interativos por meio de cores e formas e a implementação de telas de retorno para cada atividade realizada, com o objetivo de tornar as dinâmicas mais intuitivas, claras e envolventes.
 
-Ao longo do desenvolvimento, a equipe enfrentou desafios relacionados principalmente à colaboração no código, uma vez que o grande número de integrantes atuando simultaneamente gerou conflitos de versão e dificuldades na integração das alterações. Além disso, houve entraves na comunicação devido à ausência de alguns membros em determinados momentos, o que impactou o alinhamento da equipe. Ainda assim, tais dificuldades foram gradualmente superadas, contribuindo para o amadurecimento dos processos de trabalho.
-
-Para a próxima e última sprint, estão previstas melhorias e expansões, incluindo a adição de mais variações de preços e tipos de ração, a implementação de um quiz ao final da fase, a inclusão de um novo cachorro com características distintas e o refinamento dos testes e validações do sistema, além de ajustes finais de polimento e balanceamento do jogo.
 
 
 <div align="center">
+  <p>Tela de Cuidado </p>
+  <img src="other/telaCuidadoInicial.png" width="800">
+ 
+  <p>Feito pela própia equipe(2026)</p>
+</div>
+
+**Implementação da Área de Lazer**
+
+Foi implementado um novo minigame na área de lazer, com mecânicas de movimentação como andar, correr e pular, tornando a experiência mais dinâmica.Nele, o animal tem que capturar os petiscos e desviar dos obstáculos.
+Essa funcionalidade atende ao requisito RF26, além de contribuir para os requisitos RF7 e RNF7, relacionados à interação e responsividade dos controles.
+
+<div align="center">
+  <p>Tela do minigame de Lazer </p>
+  <img src="other/telaLazerMinigame.png" width="800">
+ 
+  <p>Feito pela própia equipe(2026)</p>
+</div>
+
+**Sistema de Progressão e Múltiplos Animais**
+
+O jogo passou a contar com um sistema de progressão entre fases, permitindo ao jogador cuidar de mais de um animal ao longo da experiência.
+Esse sistema reforça os requisitos RF5, RF7 e RF8, garantindo continuidade na jogabilidade baseada no cuidado dos animais.
+Integração do Sistema de Cobasi Coins
+O sistema de moedas foi integrado de forma funcional, permitindo ao jogador ganhar Cobasi Coins ao concluir minigames e utilizá-las na compra de itens, como rações.
+Essa implementação atende ao requisito RF11 e se relaciona com RF16, RF17 e RF6, que envolvem os sistemas de alimentação e navegação entre áreas.
+Melhorias no Minigame de Alimentação
+O minigame de alimentação foi aprimorado com a adição de informações sobre os tipos de ração e um sistema de escolhas que impacta o estado do animal.
+Essas melhorias atendem aos requisitos RF16, RF19, RF20, RF21 e RF22, relacionados à lógica do minigame e à aprendizagem do jogador.
+
+<div align="center">
   <p>Tela Inicial com o novo cachorro</p>
-  <img src="other/telainicialNovo.png" width="800">
+  <img src="other/telaInicialNovo.png" width="800">
  
   <p>Feito pela própia equipe(2026)</p>
 </div>
@@ -1206,9 +1236,15 @@ Para a próxima e última sprint, estão previstas melhorias e expansões, inclu
 </div>
 
 
+**Aprimoramento da Experiência do Usuário**
+
+Foram adicionados elementos de UX, como trilha sonora, feedbacks visuais e telas de retorno, tornando a interação mais intuitiva e fluida.
+Essas melhorias atendem aos requisitos não funcionais RNF2, RNF3, RNF4 e RNF9, relacionados à usabilidade, feedback e desempenho do sistema.
+
+
 <div align="center">
-  <p>Tela de Cuidado </p>
-  <img src="other/telaCuidadoInicial.png" width="800">
+  <p>Tela de Instrução de banho </p>
+  <img src="other/instrucaoBanho.png" width="800">
  
   <p>Feito pela própia equipe(2026)</p>
 </div>
@@ -1219,6 +1255,23 @@ Para a próxima e última sprint, estão previstas melhorias e expansões, inclu
  
   <p>Feito pela própia equipe(2026)</p>
 </div>
+
+
+**Dificuldades Encontradas**
+
+Durante a sprint, a equipe enfrentou desafios na integração do código no GitLab, principalmente em relação ao controle de versões e sincronização entre os membros. Também houve dificuldades de comunicação, impactando o andamento das atividades.
+Apesar disso, os problemas foram contornados, contribuindo para o amadurecimento da equipe e melhoria dos processos de desenvolvimento.
+
+**Próximos Passos**
+
+Para a continuidade do projeto, foram definidos os seguintes próximos passos:
+Implementar o quiz educativo (RF18);
+Adicionar novas variações de ração (RF16);
+Refinar testes e desempenho do sistema (RNF9);
+Incluir novos animais (RF1);
+Realizar ajustes finais de interface (RNF6 e RNF3).
+
+
 
 ## 4.5. Revisão do MVP (sprint 5)
 
