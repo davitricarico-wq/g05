@@ -7,7 +7,7 @@ export class jogoLazer extends Phaser.Scene {
         super({ key: "jogoLazer" });
     }
 
-    // O metodo init e executado toda vez que a cena e iniciada
+    // Inicializa variáveis de controle da cena
     init() {
         this.pontos = 0; 
         this.instrucoesLidas = false;
@@ -18,10 +18,10 @@ export class jogoLazer extends Phaser.Scene {
     }
 
     create() {
-        // Garante que a interface principal nao fique ativa ao iniciar o minigame
+        // Interrompe a HUD principal para focar no minigame
         this.scene.stop("HUD");
 
-        // Cria o botao de voltar
+        // Configura o botão de voltar com interatividade e efeitos visuais
         this.botaoVoltar = this.add.text(60, 50, "Voltar", {
             fontFamily: "Arial",
             fontSize: "24px",
@@ -34,9 +34,10 @@ export class jogoLazer extends Phaser.Scene {
         this.botaoVoltar.on("pointerout",  () => this.botaoVoltar.setStyle({ color: "#ffffff" }));
         this.botaoVoltar.on("pointerdown", () => this.scene.start("cenaLazer"));
 
+        // Define a gravidade do mundo físico
         this.physics.world.gravity.y = 800;
 
-        // Controle da música
+        // Gerencia a transição de áudio entre o tutorial e o minigame
         if (!gameState.musicaMenuPrincipal) {
             gameState.musicaMenuPrincipal = this.sound.add("musicaMenuPrincipal", { loop: true, volume: 0.5 });
         }
@@ -48,6 +49,7 @@ export class jogoLazer extends Phaser.Scene {
         }
         gameState.musica = gameState.musicaMenuPrincipal;
 
+        // Configura o fundo infinito (TileSprite) com ajuste de escala
         const largura = this.scale.width;
         const altura = this.scale.height;
         const alturaImgBg = this.textures.get("bgLazer").getSourceImage().height;
@@ -56,12 +58,15 @@ export class jogoLazer extends Phaser.Scene {
         this.fundo = this.add.tileSprite(0, 0, 8000, altura, "bgLazer").setOrigin(0, 0);
         this.fundo.setTileScale(escalaBg, escalaBg); 
 
+        // Define os limites do mundo físico e da câmera
         const alturaDoChao = altura * 0.9;
         this.physics.world.setBounds(0, 0, 8000, alturaDoChao);
         this.cameras.main.setBounds(0, 0, 8000, altura);
 
+        // Define o sprite do cachorro com base na evolução (Heroi ou Caramelo)
         const spriteCorrendo = gameState.pets.cachorroHeroi ? 'cachorroHeroiCorrendo' : 'cachorroCorrendo'; 
 
+        // Cria o sprite do jogador e ajusta sua caixa de colisão (hitbox)
         this.cachorro = this.physics.add.sprite(largura * 0.15, alturaDoChao - 200, spriteCorrendo);
         this.cachorro.setCollideWorldBounds(true);
         this.cachorro.setScale(0.5); 
@@ -72,6 +77,7 @@ export class jogoLazer extends Phaser.Scene {
         this.cachorro.body.setSize(dogW * 0.7, dogH * 0.5);
         this.cachorro.body.setOffset(dogW * 0.15, dogH * 0.5);
 
+        // Cria e inicia a animação de corrida
         if (this.anims.exists('correr')) {
             this.anims.remove('correr');
         }
@@ -84,21 +90,27 @@ export class jogoLazer extends Phaser.Scene {
         });
         this.cachorro.anims.play('correr', true);
 
+        // Faz a câmera seguir o cachorro horizontalmente
         this.cameras.main.startFollow(this.cachorro, true, 1, 1, -largura * 0.2, 0);
         
+        // Mapeia as teclas de controle (setas e espaço)
         this.teclado = this.input.keyboard.createCursorKeys();
         this.teclaSpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
+        // Cria grupos físicos para petiscos, obstáculos e camas elásticas
         this.petiscos = this.physics.add.group({ allowGravity: false, immovable: true });
         this.obstaculos = this.physics.add.group({ allowGravity: false, immovable: true });
         this.camasElasticas = this.physics.add.group({ allowGravity: false, immovable: true });
 
+        // Gera os elementos do cenário ao longo do percurso
         this.gerarPercurso(alturaDoChao);
 
+        // Define as regras de colisão e sobreposição
         this.physics.add.overlap(this.cachorro, this.petiscos, this.coletarPetisco, null, this);
         this.physics.add.collider(this.cachorro, this.obstaculos, this.baterNoObstaculo, null, this);
         this.physics.add.collider(this.cachorro, this.camasElasticas, this.usarCamaElastica, null, this);
 
+        // Cria o texto de pontuação fixo na tela
         this.textoPontos = this.add.text(largura - 30, 30, 'Petiscos: 0', { 
             fontFamily: '"Press Start 2P", monospace', 
             fontSize: '24px', 
@@ -107,6 +119,7 @@ export class jogoLazer extends Phaser.Scene {
             strokeThickness: 4
         }).setOrigin(1, 0).setScrollFactor(0).setDepth(20);
 
+        // Função para manter a responsividade em caso de redimensionamento da janela
         const handleResizeLazer = (tamanhoTela) => {
             const { width: w, height: h } = tamanhoTela;
             this.fundo.setSize(9000, h);
@@ -133,31 +146,38 @@ export class jogoLazer extends Phaser.Scene {
 
         this.scale.on("resize", handleResizeLazer);
 
+        // Limpa listeners ao fechar a cena para evitar vazamento de memória
         this.events.on('shutdown', () => {
             this.scale.off("resize", handleResizeLazer);
             this.input.keyboard.removeListener('keydown-SPACE'); 
         });
         
+        // Pausa o jogo e exibe as instruções iniciais
         this.mostrarInstrucoes();
         this.physics.pause();
         this.cachorro.anims.pause();
     }
 
     update() {
+        // Impede a execução da lógica se as instruções estiverem na tela ou o jogo acabar
         if (!this.instrucoesLidas || this.jogoAcabou) return; 
 
+        // Reinicia a fase se o jogador ultrapassar o petisco final sem pegá-lo
         if (this.petiscaoFinal && this.petiscaoFinal.active) {
             if (this.cachorro.x > this.petiscaoFinal.x + 100) {
                 this.scene.restart(); 
             }
         }
 
+        // Calcula a velocidade progressiva e sincroniza com o tempo da animação
         let velocidadeAtual = Math.min(300 + (this.cachorro.x * 0.05), 700);
         this.cachorro.setVelocityX(velocidadeAtual);
         this.cachorro.anims.timeScale = velocidadeAtual / 300; 
 
+        // Verifica se o pet está em contato com o chão
         const noChao = this.cachorro.body.blocked.down || this.cachorro.body.touching.down;
 
+        // Lógica de finalização após atingir a meta
         if (this.ganhou) {
             if (noChao) {
                 this.jogoAcabou = true;
@@ -168,6 +188,7 @@ export class jogoLazer extends Phaser.Scene {
             return; 
         }
 
+        // Processa comandos de pulo e abaixar
         const querPular = this.teclado.up.isDown || Phaser.Input.Keyboard.JustDown(this.teclaSpace);
         
         if (querPular) {
@@ -178,6 +199,7 @@ export class jogoLazer extends Phaser.Scene {
             this.cachorro.setScale(0.5, 0.5); 
         }
 
+        // Controla o estado da animação com base no contato com o solo
         if (!noChao) {
             this.cachorro.anims.pause(this.cachorro.anims.currentAnim.frames[0]);
         } else {
@@ -190,6 +212,7 @@ export class jogoLazer extends Phaser.Scene {
         }
     }
 
+    // Cria overlay de instruções com texto animado
     mostrarInstrucoes() {
         const cx = this.scale.width / 2;
         const cy = this.scale.height / 2;
@@ -233,12 +256,14 @@ export class jogoLazer extends Phaser.Scene {
         });
     }
 
+    // Libera a física e animações após ler as instruções
     iniciarMinigameAposInstrucoes() {
         this.instrucoesLidas = true;
         this.physics.resume();
         this.cachorro.anims.resume();
     }
 
+    // Aplica impulso vertical para o pulo
     pular() {
         if (this.jogoAcabou) return; 
         const noChao = this.cachorro.body.blocked.down || this.cachorro.body.touching.down;
@@ -248,6 +273,7 @@ export class jogoLazer extends Phaser.Scene {
         }
     }
 
+    // Achata o sprite e aplica força para baixo ao agachar
     abaixar(noChao) {
         if (this.jogoAcabou) return;
         if (!noChao) {
@@ -256,6 +282,7 @@ export class jogoLazer extends Phaser.Scene {
         this.cachorro.setScale(0.5, 0.41); 
     }
 
+    // Distribui obstáculos e petiscos (bons e estragados) ao longo da fase
     gerarPercurso(alturaDoChao) {
         let fimDaFase = 7000;
         let tiposPetiscos = [true, true, true, false, false, false, false, false];
@@ -265,10 +292,12 @@ export class jogoLazer extends Phaser.Scene {
             let posX = x + 400; 
 
             if (x === fimDaFase) {
+                // Cria a cama elástica final
                 let cama = this.camasElasticas.create(posX, alturaDoChao - 60, 'camaElastica').setScale(0.4).setDepth(5);
                 cama.body.setSize(cama.width * 0.4, cama.height * 0.1); 
                 cama.body.setOffset(cama.width * 0.4, cama.height * 0.5); 
 
+                // Cria o super petisco final (meta da fase)
                 let yPetiscao = alturaDoChao - 350; 
                 let petiscoAlto = this.petiscos.create(posX + 350, yPetiscao, 'petisco').setScale(0.3).setDepth(5);
                 petiscoAlto.body.setSize(petiscoAlto.width * 0.6, petiscoAlto.height * 0.6);
@@ -277,6 +306,7 @@ export class jogoLazer extends Phaser.Scene {
                 petiscoAlto.isSuper = true;
                 this.petiscaoFinal = petiscoAlto;
             } else {
+                // Cria obstáculos e petiscos regulares
                 let obs = this.obstaculos.create(posX, alturaDoChao - 50, 'obstaculo').setScale(2).setDepth(5);
                 let raio = obs.width * 0.30; 
                 obs.body.setCircle(raio, obs.width * 0.35, obs.height * 0.4);
@@ -297,6 +327,7 @@ export class jogoLazer extends Phaser.Scene {
         }
     }
 
+    // Calcula trajetória parabólica manual ao tocar na cama elástica
     usarCamaElastica(cachorro, cama) {
         if (this.isPropulsao || this.jogoAcabou || this.ganhou) return;
         this.isPropulsao = true;
@@ -325,8 +356,6 @@ export class jogoLazer extends Phaser.Scene {
             let velocidadeY = aceleracaoY * tempoAtual; 
             let posicaoY = yi + (aceleracaoY * Math.pow(tempoAtual, 2)) / 2;
             
-            console.log(`[Eixo X - MU] Pos X: ${posicaoX.toFixed(2)} | [Eixo Y - MUV] Pos Y: ${posicaoY.toFixed(2)}`);
-
             cachorro.x = posicaoX;
             cachorro.y = posicaoY;
 
@@ -341,6 +370,7 @@ export class jogoLazer extends Phaser.Scene {
         requestAnimationFrame(atualizarFrame);
     }
 
+    // Gerencia a coleta de itens e efeitos no HUD
     coletarPetisco(cachorro, petisco) {
         petisco.disableBody(true, true); 
         if (petisco.isEstragado) {
@@ -355,15 +385,18 @@ export class jogoLazer extends Phaser.Scene {
         this.events.emit("atualizarHUD"); 
     }
 
+    // Reinicia a cena em caso de colisão com obstáculos
     baterNoObstaculo() {
         this.scene.restart();
     }
 
+    // Define o estado de vitória
     vencerJogo() {
         if (this.jogoAcabou) return; 
-        this.ganhou = true; // Ativa o estado de espera da queda
+        this.ganhou = true; 
     }
 
+    // Exibe mensagem centralizada de conclusão de fase
     mostrarTextoVitoria() {
         const meioX = this.cameras.main.worldView.x + (this.scale.width / 2);
         const meioY = this.scale.height / 2;
@@ -381,6 +414,7 @@ export class jogoLazer extends Phaser.Scene {
         });
     }
     
+    // Processa recompensas (moedas e barras) e exibe tela de feedback final
     finalizarMinigame() {
         if (this.minigameFinalizado) return;
         this.minigameFinalizado = true;
@@ -424,6 +458,7 @@ export class jogoLazer extends Phaser.Scene {
         this.time.delayedCall(200, () => { this.input.keyboard.once('keydown-SPACE', voltarParaMenu); });
     }
     
+    // Funções auxiliares para cálculo de progresso e recompensas
     calcularEstrelas(pontos) {
         if (pontos >= 5) return 3; 
         if (pontos >= 3) return 2; 
