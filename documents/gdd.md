@@ -262,39 +262,48 @@ O impacto é baixo, pois são ajustes de refinamento que não comprometem a func
 
 **Ação de mitigação:** reservar tempo no final do projeto para polimento visual e organização das informações na tela.
 
-### 1.1.7. Objetivos, Metas e Indicadores (sprint 4)
 
-*Para garantir que o jogo não seja apenas uma experiência de entretenimento, mas também uma extensão estratégica do pilar social **Cobasi Cuida**, os objetivos do projeto foram definidos utilizando a metodologia SMART (Específico, Mensurável, Alcançável, Relevante e Temporal). As metas estão divididas em três eixos centrais: Impacto Social, Engajamento com a Marca e Qualidade Técnica.*
+### 1.1.7. Objetivos, Metas e Indicadores (Sprint 4)
+
+Para garantir que o jogo não seja apenas uma experiência de entretenimento, mas também uma extensão estratégica do pilar social **Cobasi Cuida**, os objetivos do projeto foram definidos com base na metodologia SMART (Específico, Mensurável, Alcançável, Relevante e Temporal). As metas estão organizadas em três eixos centrais: Impacto Social, Engajamento com a Marca e Qualidade Técnica.
 
 **Objetivo 1: Impacto Social e Educação (Alinhado ao Cobasi Cuida)**
-* **Específico (S):** Conscientizar o jogador sobre as responsabilidades reais do cuidado animal e a importância da adoção (e não devolução), utilizando mecânicas interativas de higiene, alimentação e saúde.
-* **Mensurável (M):** Atingir uma taxa de acerto superior a 75% na primeira tentativa do minigame/quiz de alimentação correta e garantir que 90% dos testadores cheguem à mensagem de conscientização sobre devolução de animais.
-* **Alcançável (A):** O uso de feedback visual imediato (HUD de status do pet) e um design focado na empatia facilita a absorção do conteúdo educativo sem torná-lo maçante.
-* **Relevante (R):** Cumpre o propósito central do programa *Cobasi Cuida*, transformando a Geração Z em tutores mais conscientes e reduzindo a desinformação que leva ao abandono ou devolução de pets.
-* **Temporal (T):** Validação das métricas de aprendizado durante as sessões de *playtest* na Sprint 4 e Sprint 5.
+* **Específico (S):** Promover a conscientização dos usuários sobre as responsabilidades no cuidado animal e a importância da adoção responsável, por meio de mecânicas interativas de higiene, alimentação e saúde.
+* **Mensurável (M):** Atingir uma taxa de acerto superior a 75% na primeira tentativa do minigame/quiz de alimentação correta e garantir que 90% dos testadores alcancem a mensagem de conscientização sobre devolução de animais.
+* **Alcançável (A):** O uso de feedback visual imediato (HUD de status do pet) e um design focado na empatia facilita a compreensão do conteúdo educativo de forma acessível.
+* **Relevante (R):** Alinha-se ao propósito do programa *Cobasi Cuida*, contribuindo para a formação de usuários mais conscientes e reduzindo a desinformação relacionada ao abandono ou devolução de animais.
+* **Temporal (T):** Validação das métricas de aprendizado durante as sessões de *playtest* nas Sprints 4 e 5.
+
 * **Indicadores (KPIs):**
   * Taxa de acerto nos minigames educativos (Meta: > 75%).
   * Porcentagem de jogadores que completam o ciclo de resgate do primeiro animal (Meta: > 90%).
 
+---
+
 **Objetivo 2: Engajamento e Afinidade de Marca (Brand Equity)**
-* **Específico (S):** Reter o jogador no ciclo principal do jogo (core loop) para fortalecer o vínculo emocional com o pet virtual e, por associação, criar uma percepção positiva e moderna da marca Cobasi.
-* **Mensurável (M):** Manter um tempo médio de sessão de jogo superior a 5 minutos e alcançar uma taxa de conversão (uso das moedas virtuais na "loja" do jogo para comprar upgrades) de 80% entre os usuários ativos.
-* **Alcançável (A):** A economia do jogo (ganhar moedas ao cuidar bem do pet) incentiva a progressão contínua e recompensa o esforço do jogador.
-* **Relevante (R):** Aumenta o tempo de exposição da marca (brand awareness) junto a um público altamente digital, traduzindo a experiência física de "shopping pet" da Cobasi para o ambiente virtual de cuidados e compras (loja do jogo).
-* **Temporal (T):** Dados consolidados a partir da entrega do MVP e testes finais na Sprint 5.
+* **Específico (S):** Reter o jogador no ciclo principal do jogo (*core loop*), fortalecendo o vínculo com o pet virtual e promovendo uma percepção positiva da marca Cobasi.
+* **Mensurável (M):** Manter um tempo médio de sessão superior a 5 minutos e alcançar uma taxa de conversão de 80% no uso das moedas virtuais na loja do jogo.
+* **Alcançável (A):** A mecânica de recompensas baseada no cuidado adequado do pet incentiva a progressão contínua do jogador.
+* **Relevante (R):** Amplia a exposição da marca junto a um público digital, aproximando a experiência virtual do contexto real de consumo.
+* **Temporal (T):** Coleta e análise dos dados a partir do MVP, com validação final na Sprint 5.
+
 * **Indicadores (KPIs):**
   * Tempo médio de sessão por jogador (Meta: > 5 minutos).
-  * Taxa de engajamento com a economia interna do jogo (Meta: 80% dos jogadores realizam pelo menos uma compra de melhoria).
+  * Taxa de engajamento com a economia interna do jogo (Meta: 80% dos jogadores realizam ao menos uma ação de compra).
+
+---
 
 **Objetivo 3: Viabilidade e Usabilidade Técnica**
-* **Específico (S):** Desenvolver um Web Game acessível, leve e com controles responsivos, que rode de forma fluida nos principais navegadores sem necessidade de instalação.
-* **Mensurável (M):** Obter um índice de satisfação de usabilidade (System Usability Scale - SUS) acima de 80 pontos e apresentar zero bugs impeditivos (críticos) na versão final.
-* **Alcançável (A):** O escopo do projeto foi delimitado para 2D point-and-click, focado nas mecânicas centrais, o que é perfeitamente factível para a equipe de desenvolvimento no prazo estabelecido.
-* **Relevante (R):** A excelência operacional da Cobasi (omnichannel e logística rápida) deve ser refletida em um software de alta qualidade; falhas técnicas gerariam frustração e iriam de encontro à imagem da marca.
-* **Temporal (T):** Entrega da versão final estabilizada e testada ao final do Módulo.
+* **Específico (S):** Desenvolver um web game acessível, leve e com controles responsivos, compatível com os principais navegadores, sem necessidade de instalação.
+* **Mensurável (M):** Alcançar pontuação superior a 80 na escala SUS (System Usability Scale) e ausência de bugs críticos na versão final.
+* **Alcançável (A):** O escopo foi delimitado para um jogo 2D do tipo *point-and-click*, focado nas mecânicas essenciais.
+* **Relevante (R):** A qualidade técnica do sistema deve refletir a confiabilidade da marca, evitando falhas que comprometam a experiência do usuário.
+* **Temporal (T):** Entrega da versão final estável ao término do módulo.
+
 * **Indicadores (KPIs):**
   * Pontuação na escala SUS (Meta: > 80/100).
-  * Quantidade de bugs críticos/impeditivos na release final (Meta: 0).
+  * Quantidade de bugs críticos na versão final (Meta: 0).
+
 
 ## 1.2. Requisitos do Projeto
 
@@ -551,73 +560,99 @@ A trilha sonora do jogo é composta por faixas originais criadas exclusivamente 
     
 </div>
 
-## 3.6. Regras do jogo (sprint 3)
+## 3.6 REGRAS DO JOGO (SPRINT 3)
 
-O jogo é composto por diferentes **minigames** que simulam atividades de cuidado com animais domésticos. Em cada minigame, o jogador deve realizar determinadas ações para completar os desafios propostos. Ao concluir cada desafio com sucesso, o jogador recebe como recompensa Cobasi Coins, que representam o progresso dentro do jogo e incentivam a continuidade das atividades.
+O jogo é composto por diferentes minigames que simulam atividades de cuidado com um animal doméstico. Em cada minigame, o jogador deve executar ações específicas para cumprir os objetivos propostos. Ao concluir cada atividade com sucesso, o jogador recebe CobasiCoins, que funcionam como indicador de progresso e incentivam a continuidade da experiência.
 
-No **minigame de banho**, o jogador deve limpar completamente o cachorro utilizando três ferramentas disponíveis: uma barra de sabão, um chuveiro e uma toalha. Para concluir o desafio, o jogador deve seguir corretamente a sequência das ações. Primeiro, deve aplicar o sabão sobre o animal, fazendo com que o cachorro fique coberto por espuma. Em seguida, deve utilizar o chuveiro para remover toda a espuma presente no animal. Após o enxágue completo, o cachorro ficará molhado, sendo necessário utilizar a toalha para secá-lo completamente. O minigame só é concluído quando o cachorro estiver totalmente limpo e seco. Após completar todas as etapas corretamente, o jogador recebe Cobasi Coins como recompensa.
+As regras são apresentadas gradualmente por meio de pop-ups informativos exibidos ao acessar cada cena pela primeira vez, permitindo a compreensão adequada das mecânicas e dos objetivos de cada atividade.
 
-No **minigame de alimentação**, o jogador deve controlar o cachorro para coletar apenas alimentos adequados, representados pelas rações que caem na tela. Durante a partida, também aparecem itens prejudiciais ao animal, como chocolate, que devem ser evitados. O jogador inicia o jogo com três vidas e perde uma vida sempre que coleta um item prejudicial. As rações são divididas em dois tipos: Standard, que concedem 10 pontos ao serem coletadas, e Super Premium, que concedem 25 pontos e ainda recuperam uma vida do jogador. O objetivo é atingir a marca de 200 pontos antes de perder todas as vidas. Caso o jogador perca as três vidas antes de alcançar essa pontuação, o minigame é encerrado. Ao completar o desafio e atingir a pontuação necessária, o jogador recebe Cobasi Coins como recompensa.
+### 3.6.1 Minigame de Banho
 
-No **minigame veterinário**, o jogador deve retirar todas as pulgas do animal utilizando uma pinça como ferramenta. O objetivo é remover todas as pulgas presentes no animal no menor tempo possível. O desempenho do jogador é avaliado por meio de um sistema de estrelas baseado no tempo de conclusão do desafio. Caso o jogador conclua o minigame em menos de 30 segundos, ele recebe três estrelas, indicando um desempenho excelente. Caso conclua entre 31 e 45 segundos, recebe duas estrelas, representando um bom desempenho. Caso leve mais de 45 segundos, recebe uma estrela, indicando que o nível foi concluído, porém com desempenho inferior. Após a conclusão do minigame, o jogador também recebe Cobasi Coins como recompensa.
+No minigame de banho, o jogador deve realizar a limpeza completa do cachorro utilizando três ferramentas: sabão, chuveiro e toalha. O processo deve seguir uma ordem sequencial obrigatória.
 
-## 3.7. Mecânicas do jogo
+Inicialmente, o jogador deve aplicar o sabão sobre o animal, gerando bolhas que representam a remoção da sujeira. Após atingir o limite de aplicação do sabão, o sistema apresenta um aviso indicando a necessidade de utilização do chuveiro.
 
-## 3.7.1 Detalhe das Mecânicas
+Em seguida, o jogador deve utilizar o chuveiro para remover completamente o sabão por meio de uma animação de água. Após a remoção total das bolhas, o cachorro permanece molhado, sendo necessário utilizar a toalha para secá-lo.
 
-O jogo é composto por diferentes minigames que simulam atividades de cuidado com animais domésticos. Cada minigame apresenta mecânicas próprias que determinam como o jogador deve interagir com os elementos do jogo para completar os desafios propostos.
+O sistema impede a utilização das ferramentas fora da ordem estabelecida, apresentando mensagens de orientação ao jogador. O minigame é concluído apenas quando o animal se encontra totalmente limpo e seco. Ao final, o jogador recebe 20 CobasiCoins e ocorre a atualização da barra de felicidade.
 
-De modo geral, o jogador interage com o jogo utilizando o mouse e o teclado, dependendo do tipo de atividade que está sendo realizada. Alguns minigames exigem o uso de ferramentas específicas para cuidar do animal, enquanto outros exigem movimentação e tomada de decisão rápida para alcançar o objetivo da fase.
+### 3.6.2 Minigame de Alimentação
 
-As mecânicas de cada minigame são apresentadas ao jogador no momento em que ele inicia a atividade, permitindo que ele compreenda facilmente como realizar as ações necessárias para concluir o desafio.
+No minigame de alimentação, o jogador deve controlar o cachorro com o objetivo de coletar alimentos adequados e evitar itens prejudiciais. Durante a execução, rações são lançadas continuamente a partir da parte superior da tela.
 
-## 3.7.2 Comandos disponíveis no **Minigame de Banho**
+As rações são classificadas em dois tipos. A ração Standard concede 10 pontos ao ser coletada. A ração Super Premium concede 15 pontos e possibilita a recuperação de uma vida, caso o jogador tenha perdido ao menos uma durante a partida.
 
-Durante o minigame de banho, o jogador deverá limpar completamente o cachorro utilizando três ferramentas disponíveis: sabão, chuveiro e toalha. Para realizar as ações necessárias, o jogador utilizará apenas o mouse.
+Itens prejudiciais, como chocolates, também aparecem na tela e devem ser evitados. Cada coleta de um item prejudicial resulta na perda de uma vida. O jogador inicia o minigame com três vidas e, ao perder todas, a atividade é reiniciada.
 
-Esse minigame possui as seguintes mecânicas:
+O objetivo consiste em atingir a pontuação mínima de 150 pontos para concluir o minigame.
 
-• Movimentação do mouse – movimentar o cursor pela tela para posicionar as ferramentas sobre o animal.
+No sistema de compra, a ração Standard possui o custo de 15 CobasiCoins, enquanto a ração Super Premium possui o custo de 20 CobasiCoins.
 
-• Botão direito do mouse (segurar) – permite que o jogador segure a ferramenta selecionada.
+Ao alcançar a pontuação necessária, o jogador retorna à cena de alimentação, ocorre a atualização da barra correspondente e as moedas são ajustadas conforme a compra realizada.
 
-• Arrastar o mouse sobre o animal – utilizar o objeto selecionado sobre o cachorro, passando o sabão, enxaguando com o chuveiro ou secando com a toalha.
+### 3.6.3 Minigame Veterinário
 
-Para concluir o minigame, o jogador deverá utilizar corretamente as ferramentas e passar cada objeto por todo o corpo do animal até completar o processo de limpeza.
+No minigame veterinário, o jogador deve remover as pulgas presentes no animal utilizando uma pinça. A interação consiste em capturar as pulgas e transportá-las até uma bandeja específica.
 
-## 3.7.3 Comandos disponíveis no **Minigame de Alimentação**
+A captura ocorre por meio da manutenção do clique do mouse, sendo que a pulga permanece presa apenas enquanto o botão estiver pressionado. Caso o jogador solte o botão antes de posicionar a pulga na bandeja, ela retorna à sua posição inicial.
 
-Durante o minigame de alimentação, o jogador deverá controlar o cachorro para coletar apenas alimentos adequados, representados pelas rações que caem na tela, evitando itens prejudiciais como o chocolate.
+O objetivo do minigame é coletar um total de 12 pulgas. Ao atingir esse valor, a atividade é encerrada, ocorre a atualização da barra de saúde e o jogador retorna à cena principal.
 
-Esse minigame utiliza apenas o teclado para movimentação do personagem.
+### 3.6.4 Minigame de Lazer
 
-As mecânicas são as seguintes:
+No minigame de lazer, o jogador controla o cachorro em um cenário com movimentação automática, devendo realizar saltos para evitar obstáculos e coletar itens distribuídos ao longo do percurso.
 
-• Seta para a direita (→) – movimenta o cachorro para a direita.
+A colisão com obstáculos resulta na reinicialização do minigame. Os itens coletáveis apresentam efeitos distintos, podendo aumentar ou reduzir a pontuação do jogador.
 
-• Seta para a esquerda (←) – movimenta o cachorro para a esquerda.
+Ao final da fase, o jogador deve coletar um item especial que encerra o minigame. O desempenho obtido influencia diretamente o preenchimento da barra de felicidade, sendo total quando a pontuação é igual ou superior a cinco pontos, e parcial quando inferior a esse valor.
 
-• Colisão com alimentos – ao encostar nas rações, o jogador acumula pontos.
+---
 
-• Colisão com itens prejudiciais – ao encostar em itens como chocolate, o jogador perde uma vida.
+## 3.7 MECÂNICAS DO JOGO
 
-O objetivo do jogador é movimentar o animal corretamente para coletar as rações e evitar os itens prejudiciais até atingir a pontuação necessária para concluir o minigame.
+### 3.7.1 Descrição Geral das Mecânicas
 
-## 3.7.4 Comandos disponíveis no **Minigame Veterinário**
+As mecânicas do jogo definem as formas de interação entre o jogador e os elementos presentes em cada minigame. Essas interações ocorrem por meio do uso do mouse, para manipulação de objetos, e do teclado, para controle de movimentação.
 
-No minigame veterinário, o jogador deverá remover as pulgas presentes no animal utilizando uma pinça como ferramenta. Para realizar essa atividade, o jogador utilizará apenas o mouse.
+O sistema apresenta feedback visual contínuo, incluindo animações, alterações de escala e exibição de elementos informativos, com o objetivo de orientar o jogador durante a execução das atividades.
 
-Esse minigame possui as seguintes mecânicas:
+O progresso do jogador é apresentado por meio de um HUD (Heads-Up Display), que exibe as CobasiCoins e as barras de bem-estar do animal, compreendendo os indicadores de higiene, alimentação, saúde e felicidade.
 
-• Clique do mouse na pinça – permite que o jogador selecione e segure a ferramenta.
+### 3.7.2 Mecânicas do Minigame de Banho
 
-• Movimentação do mouse – movimenta a pinça pela tela.
+No minigame de banho, o jogador interage exclusivamente com o mouse para selecionar e movimentar as ferramentas. O clique esquerdo permite selecionar e manter ativa a ferramenta, enquanto o movimento do cursor possibilita sua aplicação sobre o animal.
 
-• Clique do mouse sobre a pulga – remove a pulga do animal.
+A mecânica consiste na aplicação sequencial das ferramentas. O sabão gera bolhas ao ser utilizado, o chuveiro remove essas bolhas por meio de uma animação de água e a toalha realiza a secagem final do animal. O sistema controla a ordem de uso, impedindo ações incorretas e garantindo a execução adequada do processo.
 
-• Clique duplo com o botão direito do mouse – solta a pinça.
+### 3.7.3 Mecânicas do Minigame de Alimentação
 
-O objetivo do jogador é utilizar a pinça para remover todas as pulgas do animal o mais rápido possível, concluindo o desafio dentro do menor tempo possível.
+No minigame de alimentação, o controle do personagem é realizado por meio do teclado, utilizando as teclas direcionais para deslocamento horizontal.
+
+A mecânica baseia-se na coleta de itens que caem pela tela. Existem dois tipos de ração disponíveis: a ração Standard, que adiciona 10 pontos à pontuação do jogador, e a ração Super Premium, que adiciona 15 pontos e pode restaurar uma vida perdida.
+
+Itens prejudiciais, como chocolates, também estão presentes e devem ser evitados, pois causam a perda de uma vida ao serem coletados.
+
+O jogador inicia a partida com três vidas, sendo possível recuperar esse recurso por meio da coleta de rações específicas. A dinâmica do minigame exige movimentação constante e tomada de decisão rápida.
+
+### 3.7.4 Mecânicas do Minigame Veterinário
+
+No minigame veterinário, a interação ocorre por meio do mouse, permitindo ao jogador manipular a pinça para capturar as pulgas. A movimentação da ferramenta acompanha o cursor, e a captura depende da manutenção do clique durante o deslocamento.
+
+A mecânica exige precisão no posicionamento e controle contínuo, uma vez que a liberação antecipada da pulga resulta em seu retorno à posição inicial.
+
+### 3.7.5 Mecânicas do Minigame de Lazer
+
+No minigame de lazer, o jogador utiliza o teclado para realizar saltos enquanto o personagem se desloca automaticamente pelo cenário.
+
+A mecânica envolve tempo de reação para evitar obstáculos e coletar itens. Elementos específicos, como a cama elástica, permitem a execução de saltos com maior altura, ampliando as possibilidades de interação.
+
+### 3.7.6 Progressão do Jogo
+
+A progressão do jogo é baseada no preenchimento das barras de bem-estar do animal, correspondentes aos aspectos de higiene, alimentação, saúde e felicidade.
+
+Cada minigame contribui diretamente para o preenchimento de uma dessas barras. Quando todas as barras são completamente preenchidas, um novo animal é disponibilizado ao jogador, reiniciando o ciclo de jogo.
+
+As mecânicas permanecem inalteradas no novo ciclo, garantindo a continuidade da experiência.
 
 ## 3.8. Implementação Matemática de Animação/Movimento (sprint 4)
 
@@ -800,6 +835,15 @@ Eles são essenciais para garantir a qualidade do produto, identificar bugs de f
   <p>Quadro de casos de teste</p>
 </div>
 
+## 5.1. Casos de Teste (sprints 2 a 4)
+
+Um Caso de Teste (*Test Case*) é um roteiro detalhado de condições, variáveis, passos e resultados esperados, criado para verificar se uma funcionalidade específica de um software (ou jogo) está operando corretamente e cumprindo seus requisitos.
+
+Eles são essenciais para garantir a qualidade do produto, identificar bugs de forma sistemática antes do lançamento e documentar o comportamento esperado do sistema.
+<div align="center">
+  <p>Quadro de casos de teste</p>
+</div>
+
 | Pré-condição | Descrição do teste | Condição esperada |
 | :--- | :---: | ---: |
 | Jogo deve apresentar a tela na proporção correta | Abrir o jogo no navegador | O jogo apresenta os elementos visuais enquadrados na tela |
@@ -861,6 +905,7 @@ Eles são essenciais para garantir a qualidade do produto, identificar bugs de f
 | Pontuação afeta barra de felicidade | Finalizar jogo | Barra é atualizada |
 | Sistema de progresso deve gerar novo cachorro | Completar barras | Novo ciclo inicia |
 | Mecânicas devem funcionar no novo ciclo | Testar novamente | Tudo permanece funcional |
+
 
 <div align="center">
   <p>Feito pela própia equipe(2026)</p>
