@@ -190,19 +190,98 @@ Outro aspecto importante é a busca constante pela excelência, que se traduz no
 
 A cultura organizacional da Cobasi evidencia forte orientação para a experiência do consumidor aliada a princípios éticos consistentes. Esses pilares sustentam a credibilidade da marca e direcionam a equipe na entrega de um atendimento de qualidade, favorecendo a fidelização do público pet.
 
-### 1.1.4. Proposta de Valor (sprint 4)
+### 1.1.4. Proposta de Valor 
 
-*Posicione aqui o canvas de proposta de valor. Descreva os aspectos essenciais para a criação de valor da ideia do produto com o objetivo de ajudar a entender melhor a realidade do cliente e entregar uma solução que está alinhado com o que ele espera.*
+&ensp;O Canvas de Proposta de Valor, desenvolvido por Alexander Osterwalder, Yves Pigneur e Alan Smith, é uma ferramenta estratégica que permite analisar de que maneira um produto ou serviço atende às necessidades reais de um público específico. O modelo busca assegurar que a solução proposta não apenas ofereça funcionalidades, mas também gere valor concreto ao usuário, ao aliviar dificuldades existentes e proporcionar benefícios relevantes.
+
+&ensp;O Canvas é dividido em dois blocos complementares: o Perfil do Cliente, que descreve suas tarefas, dores e ganhos, e o Mapa de Valor, que apresenta os elementos da solução responsáveis por atender a essas necessidades. Essa estrutura permite avaliar a coerência entre o problema identificado e a proposta apresentada.
+
+&ensp;No contexto do Cobasi Shelter, a solução foi elaborada considerando não apenas as necessidades do público-alvo, mas também o ambiente competitivo do mercado pet brasileiro, que movimenta cerca de R$80 bilhões em 2026 (Abinpet & Instituto Pet Brasil, 2026). O projeto leva em conta a fusão Cobasi-Petz e a presença de concorrentes digitais relevantes, como Petlove, Amazon e marketplaces especializados. Os pet shops tradicionais também continuam desempenhando papel importante na proximidade local com os clientes. Dessa forma, o Canvas de Proposta de Valor foi desenvolvido alinhando essas demandas do mercado aos objetivos institucionais da Cobasi, especialmente no que se refere à conscientização sobre bem-estar animal, educação de tutores e incentivo à adoção responsável. Para melhor visualização desses elementos, a Figura 2 ilustra a organização do Canvas de Proposta de Valor.
+
+
+<br>
+<div align="center">
+<p> Figura 2: Canva proposta de valor.
+<img src="other/canvasdevalor.png">
+Feito pela própria equipe (2026) com base no modelo de negócios elaborado por Alexander Osterwalder, Yves Pigneur e Alan Smith.
+<br>
+</div>
+
+
+## Perfil do Cliente
+### Tarefas do Cliente (Customer Jobs)
+&ensp; As tarefas do cliente representam as atividades, objetivos ou problemas que o público busca resolver em seu cotidiano. Elas correspondem ao que o usuário tenta realizar funcionalmente, emocionalmente ou socialmente ao interagir com um produto, serviço ou situação específica. Nesse contexto, estão relacionadas ao cuidado com animais e ao consumo de conteúdos digitais sobre o tema. Identificá-las permite compreender quais demandas orientam o comportamento do usuário e quais aspectos devem ser considerados no desenvolvimento da solução.
+Principais tarefas identificadas: 
+* Selecionar produtos adequados às necessidades do animal: Interesse em adquirir conhecimentos básicos e práticos para garantir uma rotina adequada e apropriada de cuidados com o pet.
+* Avaliar a própria capacidade de cuidar de um animal antes da adoção: Busca por compreender as responsabilidades envolvidas antes de assumir o compromisso.
+* Consumir conteúdos confiáveis associados a instituições ou marcas reconhecidas: Informações vinculadas a organizações respeitadas tendem a gerar maior credibilidade.
+* Buscar formas acessíveis de lazer digital: Preferência por entretenimento rápido, interativo e de fácil acesso, especialmente online.
+
+### Dores (Pains)
+&ensp; No segmento de dores, são identificados os principais obstáculos, inseguranças e frustrações enfrentados pelo cliente ao tentar realizar suas tarefas. Essa análise evidencia os fatores que dificultam uma experiência satisfatória e indica aspectos que devem ser reduzidos ou solucionados pela proposta. As dores também se relacionam diretamente aos aliviadores de dores, responsáveis por minimizar esses obstáculos. A partir dessa avaliação, foram identificadas as seguintes dificuldades:
+* Dificuldade em compreender as diferenças entre tipos de alimentos e produtos para pets: Informações técnicas e variedade de opções podem gerar confusão na escolha adequada.
+* Insegurança sobre como cuidar corretamente: Medo de prejudicar a saúde ou o bem-estar do animal por falta de conhecimento.
+* Informações contraditórias na internet: Dificuldade em identificar orientações confiáveis para iniciantes.
+* Ansiedade diante da adoção: Receio de não conseguir manter os cuidados necessários ao longo do tempo.
+* Falta de experiência prática: Ausência de oportunidades para compreender a rotina real de cuidados antes de assumir a responsabilidade.
+
+&ensp;Organizações de bem-estar animal apontam que a falta de preparo é um dos fatores associados ao abandono de animais no Brasil (Instituto Pet Brasil, 2023).
+
+### Ganhos (Gains)
+&ensp; No segmento de ganhos, são apresentados os benefícios e resultados positivos que o cliente espera alcançar ao realizar suas tarefas. Essa seção evidencia aquilo que gera valor para o usuário, seja na forma de melhorias práticas, maior segurança ou experiências mais satisfatórias. Assim como ocorre com as dores, os ganhos possuem relação direta com os criadores de ganhos, que representam os elementos da solução responsáveis por torná-los possíveis. Foram identificados os seguintes benefícios esperados:
+* Confiança para cuidar adequadamente de um pet: Informações claras reduzem a ansiedade relacionada à responsabilidade.
+* Sensação de preparo para adotar ou aprimorar os cuidados: O conhecimento adquirido favorece uma convivência mais estável e saudável.
+* Fortalecimento do vínculo emocional com os animais: Interações positivas geram satisfação, empatia e motivação para práticas responsáveis.
+* Aprendizado útil aliado ao entretenimento: Experiências que ensinam de forma leve e envolvente tendem a ser mais valorizadas pelo público.
+
+## Mapa de Valor
+&ensp; A partir do perfil do cliente identificado, o Mapa de Valor apresenta como a solução proposta busca atender às suas necessidades e expectativas. Para isso, são descritos os produtos e serviços desenvolvidos, bem como os elementos responsáveis por gerar benefícios e reduzir as dificuldades enfrentadas pelo usuário.
+### Produtos e Serviços
+&ensp;No segmento de produtos e serviços, são apresentados os elementos concretos que compõem a solução oferecida ao usuário, correspondendo às funcionalidades e experiências disponibilizadas pelo projeto. No caso do jogo digital Cobasi Shelter, destacam-se:
+* Jogo digital casual acessível via navegador web: Permite acesso imediato sem necessidade de instalação, ampliando o alcance e reduzindo barreiras tecnológicas.
+* Simulação de cuidados e adoção com animais resgatados: Reproduz virtualmente atividades essenciais do cotidiano de um tutor, como alimentação, higiene, saúde e lazer.
+* Sistema de minigames interativos: Estrutura a experiência de forma dinâmica, associando entretenimento ao aprendizado prático.
+* Feedback visual sobre o estado do animal: Indica as consequências das ações do jogador, facilitando a compreensão das necessidades do pet.
+* Sistema de progressão e recompensas virtuais: Estimula o engajamento contínuo e reforça comportamentos positivos ao longo da experiência.
+* Mensagens educativas sobre bem-estar animal: Integra conteúdos informativos de forma contextualizada e acessível.
+
+### Criadores de Ganhos (Gain Creators)
+&ensp;Os criadores de ganhos correspondem aos elementos da solução responsáveis por gerar benefícios concretos ao usuário, contribuindo para uma experiência mais envolvente, informativa e satisfatória. Destacam-se: 
+
+* Simulação prática de cuidados com o animal: Permite compreender de forma concreta as necessidades do pet, transformando o aprendizado em experiência ativa.
+* Sistema de progressão e recompensas virtuais: Incentiva a continuidade da interação e o interesse ao longo do tempo.
+* Feedback visual do estado do animal: Permite compreender as consequências das ações, reforçando comportamentos adequados e senso de responsabilidade.
+* Narrativa centrada no resgate, cuidado e adoção responsável: Favorece a empatia com os animais e a conscientização sobre adoção responsável.
+
+### Aliviadores de Dores (Pain Relievers)
+&ensp;Os aliviadores de dores representam os mecanismos pelos quais a solução reduz inseguranças, dificuldades e obstáculos enfrentados pelo usuário ao lidar com o cuidado de um animal. Com base nessa análise, a equipe identificou os seguintes aliviadores de dores:
+* Conteúdos educativos apresentados de forma lúdica: Facilitam a compreensão de informações essenciais sem tornar o aprendizado cansativo.
+* Simulação segura da rotina de cuidados: Permite experimentar responsabilidades sem riscos reais, reduzindo a ansiedade associada à adoção.
+* Organização das tarefas em objetivos claros: Ajuda a compreender, de forma estruturada, o que é necessário para garantir o bem-estar do pet no dia a dia.
+* Acesso gratuito e via navegador web: Elimina barreiras financeiras e tecnológicas, ampliando o acesso à experiência.
+
+&ensp;A proposta integra entretenimento, educação e impacto social em uma única experiência digital. Ao permitir que o usuário aprenda e vivencie virtualmente a rotina de cuidados com animais resgatados, o jogo Cobasi Shelter contribui para a formação de tutores mais preparados e conscientes. Dessa forma, a solução também fortalece a disseminação de práticas responsáveis de cuidado e adoção, ampliando o alcance das iniciativas de bem-estar animal e reforçando o posicionamento da Cobasi como referência no setor pet brasileiro.
+
 
 ### 1.1.5. Descrição da Solução Desenvolvida (sprint 4)
 
-*Descreva brevemente a solução desenvolvida para o parceiro de negócios. Descreva os aspectos essenciais para a criação de valor da ideia do produto com o objetivo de ajudar a entender melhor a realidade do cliente e entregar uma solução que está alinhado com o que ele espera. Observe a seção 2 e verifique que ali é possível trazer mais detalhes, portanto seja objetivo aqui. Atualize esta descrição até a entrega final, conforme desenvolvimento.*
+&ensp;A solução desenvolvida consiste em um jogo digital educativo voltado à conscientização de tutores sobre os cuidados adequados com cães, alinhado ao propósito da Cobasi de promover o bem-estar animal e a adoção responsável. O problema central abordado refere-se à falta de conhecimento prático sobre as necessidades específicas dos pets, especialmente no caso de animais resgatados ou recém-adotados. Essa lacuna contribui para situações de negligência involuntária e abandono, ainda frequentes no Brasil e reconhecidas como desafios para a proteção e o bem-estar animal (Organização Mundial da Saúde Animal, 2022).
+
+&ensp;Nesse contexto, o jogo busca transformar informação em experiência prática, permitindo que o usuário aprenda por meio da simulação de situações reais de cuidado. O mercado pet brasileiro apresenta crescimento contínuo e alta relevância econômica, o que reforça a importância de iniciativas que promovam educação do consumidor e uso responsável de produtos e serviços voltados aos animais (Instituto Pet Brasil, 2024). Assim, a proposta integra conscientização e engajamento, aproximando o público das práticas recomendadas e do universo da marca parceira.
+
+&ensp;A experiência inicia com uma breve narrativa na qual a protagonista encontra um cachorro abandonado e o leva a uma loja da Cobasi, onde recebe orientações e uma ficha com informações essenciais sobre o animal. A partir desse ponto, o jogo se organiza em fases compostas por três rounds, nos quais diferentes cães resgatados são apresentados ao jogador. Cada animal possui características próprias, exigindo análise das informações disponíveis e adaptação das decisões tomadas, o que promove progressão gradual de dificuldade e aprendizado.
+
+&ensp;Durante cada rodada, o usuário realiza ações relacionadas ao cuidado diário do pet, como higiene, alimentação, administração de medicamentos e atenção emocional, por meio de minigames interativos. As escolhas são baseadas na ficha do animal, como selecionar a ração adequada conforme idade e porte, e decisões incorretas geram explicações educativas que orientam o jogador. Situações envolvendo abandono prévio também são abordadas, destacando a importância do afeto e da estabilidade emocional. Ao final de cada fase, um quiz avaliativo verifica a assimilação dos conteúdos, oferecendo feedback explicativo em caso de erro.
+
+&ensp;Entre os principais benefícios da solução destacam-se a promoção da educação sobre cuidados responsáveis, a conscientização sobre os impactos do abandono e o incentivo à tomada de decisões informadas por parte dos tutores. Dessa forma, o jogo atua simultaneamente como ferramenta de aprendizagem e sensibilização, contribuindo para a formação de usuários mais preparados para a adoção e para o cuidado contínuo com os animais, ao mesmo tempo em que fortalece a conexão com os valores institucionais da Cobasi.
+
+
 
 ### 1.1.6. Matriz de Riscos (sprint 4)
 
 <br>
 <div align="center">
-<p> Figura 1: Matriz de Risco.
+<p> Figura 3: Matriz de Risco.
 <img src="other/matrizDeRisco.png">
 Fonte: material produzido pelos autores (2026).
 <br>
@@ -656,7 +735,298 @@ As mecânicas permanecem inalteradas no novo ciclo, garantindo a continuidade da
 
 ## 3.8. Implementação Matemática de Animação/Movimento (sprint 4)
 
-*Descreva aqui a função que implementa a movimentação/animação de personagens ou elementos gráficos no seu jogo. Sua função deve se basear em alguma formulação matemática (e.g. fórmula de aceleração). A explicação do funcionamento desta função deve conter notação matemática formal de fórmulas/equações. Se necessário, crie subseções para sua descrição.*
+### 3.8.1 Parâmetros de entrada
+
+&ensp;Nesta seção é apresentada a modelagem matemática responsável pela animação de deslocamento do personagem após a interação com a cama elástica localizada na área de lazer do jogo.
+
+&ensp;É importante destacar que a cama elástica não constitui a mecânica principal do minigame. Ela atua exclusivamente como um evento de conclusão: após cumprir os objetivos propostos, o jogador aciona esse objeto e o personagem é impulsionado para outra posição do cenário. Essa animação serve como um feedback visual claro de término da atividade e transição para o próximo estado do jogo.
+
+&ensp;O elemento gráfico modelado é o sprite do personagem (cachorro). A posição inicial corresponde exatamente às coordenadas ocupadas pelo personagem no instante do contato com a cama elástica.
+
+&ensp;No código, essas posições são obtidas diretamente por:
+<p align="center">x<sub>0</sub> = cachorro.x  </p>
+<p align="center">y<sub>0</sub> = cachorro.y </p>
+
+&ensp;Portanto, a posição inicial é dada por:
+
+<p align="center">(x<sub>0</sub>  pixels, y<sub>0</sub> pixels)</p>
+
+&ensp;A posição final não é fixa na tela, mas sim definida como um deslocamento relativo, garantindo que a animação funcione corretamente independentemente da posição em que o jogador finalize o minigame.
+
+&ensp;Define-se:
+<p align="center">x<sub>f</sub> = x<sub>0</sub> + 150 pixels</p>
+<p align="center">y<sub>f</sub> = y<sub>0</sub> − 100 pixels  </p>
+
+&ensp;Assim, a posição final desejada é:
+<p align="center">(x<sub>0</sub> + 150 pixels, y<sub>0</sub> − 100 pixels)</p>
+
+&ensp;O tempo total da animação é especificado explicitamente por:
+<p align="center">T = 0,3 segundos</p>
+
+&ensp;Esses parâmetros determinam completamente o movimento e permitem calcular todas as grandezas cinemáticas envolvidas.
+
+---
+
+### 3.8.2 Definição do tempo total da animação
+
+&ensp;O tempo total da animação foi definido de forma explícita, e não por contagem de quadros. Essa escolha torna o movimento independente da taxa de atualização do jogo, garantindo consistência entre diferentes dispositivos.
+
+&ensp;O jogo executa aproximadamente a 60 quadros por segundo (FPS), porém a engine Phaser fornece diretamente o intervalo de tempo entre frames por meio da variável delta, em milissegundos.
+
+&ensp;Assim, o tempo decorrido é acumulado segundo:
+<p align="center">t = t + delta / 1000</p>
+
+onde t é o tempo em segundos.
+
+&ensp;A animação ocorre enquanto:
+<p align="center">0 ≤ t ≤ T</p>
+
+
+&ensp;Quando t atinge o valor T, o movimento matemático é interrompido e o personagem retorna ao controle físico normal.
+
+&ensp;Segundo a formulação clássica da cinemática apresentada por Halliday, Resnick e Walker (Fundamentos de Física — Mecânica), a descrição completa de um movimento requer a definição do intervalo de tempo e das condições iniciais, a partir dos quais as equações horárias determinam posição e velocidade em qualquer instante.
+
+---
+
+### 3.8.3 Modelagem matemática
+
+&ensp;O movimento foi decomposto em duas componentes independentes, conforme o princípio de independência dos movimentos em eixos ortogonais descrito na mecânica clássica.
+
+• No eixo x ocorre Movimento Uniforme (MU), com velocidade constante 
+• No eixo y ocorre Movimento Uniformemente Variado (MUV), com velocidade inicial nula 
+
+&ensp;A superposição desses movimentos gera uma trajetória parabólica, típica de movimentos sob aceleração constante em apenas uma direção.
+
+&ensp;Essa abordagem permite controlar completamente a trajetória sem utilizar o sistema de física da engine.
+
+---
+
+#### 3.8.3.1 Movimentação no eixo x (MU)
+
+&ensp;No eixo horizontal assume-se aceleração nula, caracterizando movimento uniforme.
+
+&ensp;De acordo com a cinemática clássica, a posição em um MU é dada por:
+<p align="center">x(t) = x<sub>0</sub> + vx · t</p>
+
+&ensp;Para que o personagem percorra exatamente a distância desejada no tempo total T, calcula-se a velocidade constante necessária:
+<p align="center">v<sub>x</sub> = (x<sub>f</sub> − x<sub>0</sub>) / T</p>
+
+onde:
+<p align="center">x<sub>f</sub> − x<sub>0</sub> = deslocamento horizontal total </p>
+<p align="center">T = duração da animação</p>
+
+&ensp;Como a aceleração é zero, a velocidade permanece constante durante todo o movimento:
+<p align="center">v<sub>x</sub> = v<sub>0</sub>x</p>
+
+---
+#### 3.8.3.2 Movimentação no eixo y (MUV)
+
+&ensp;No eixo vertical o personagem parte do repouso:
+
+<p align="center">v<sub>0</sub>y = 0</p>
+
+&ensp;O movimento ocorre sob aceleração constante ay, caracterizando MUV.
+
+&ensp;Segundo as equações da cinemática (Halliday et al.), a posição em MUV é:
+
+<p align="center">y(t) = y<sub>0</sub> + v<sub>0</sub>y · t + (a<sub>y</sub> · t²) / 2</p>
+
+&ensp;Como v<sub>0</sub>y = 0:
+
+<p align="center">y(t) = y<sub>0</sub> + (a<sub>y</sub> · t²) / 2</p>
+
+&ensp;Para que o personagem alcance a posição final yf exatamente no instante T, substitui-se t = T:
+
+<p align="center">y<sub>f</sub> = y<sub>0</sub> + (a<sub>y</sub> · T²) / 2</p>
+
+&ensp;Isolando a<sub>y</sub>:
+<p align="center">a<sub>y</sub> = 2 · (y<sub>F</sub> − y<sub>0</sub>) / T²</p>
+
+&ensp;A velocidade vertical ao longo do tempo é:
+<p align="center">v<sub>y</sub>(t) = a<sub>y</sub> · t</p>
+
+---
+
+### 3.8.4 Exemplo Numérico
+
+Com o objetivo de validar a modelagem matemática apresentada anteriormente e demonstrar sua aplicação prática dentro do jogo, constrói-se a seguir um exemplo numérico completo. Essa etapa é fundamental, pois permite verificar se as equações definidas são capazes de reproduzir corretamente o comportamento esperado da animação ao longo do tempo.
+
+Para isso, considera-se uma situação representativa do minigame, em que o personagem interage com a cama elástica e é impulsionado a partir de uma posição inicial conhecida até uma posição final previamente definida. A partir desses valores, calcula-se cada uma das grandezas envolvidas no movimento, tanto no eixo horizontal (MU) quanto no eixo vertical (MUV).
+
+Sejam:
+<p align="center">x<sub>0</sub> = 200 pixels  </p>
+<p align="center">y<sub>0</sub> = 400 pixels  </p>
+
+Assim, definem-se as posições finais como:
+<p align="center">x<sub>f</sub> = 350 pixels </p>
+<p align="center">y<sub>f</sub> = 300 pixels  </p>
+
+O tempo total da animação é dado por:
+<p align="center">T = 0,3 s </p>
+
+---
+
+Inicialmente, analisa-se o movimento no eixo x, que ocorre com velocidade constante (MU).
+
+A velocidade horizontal é determinada por:
+<p align="center">v<sub>x</sub> = (x<sub>f</sub> − x<sub>0</sub>) / T  </p>
+
+<p align="center">v<sub>x</sub> = (350 − 200) / 0,3  </p>
+<p align="center">v<sub>x</sub> = 500 pixels/s  </p>
+---
+
+Em seguida, analisa-se o movimento no eixo y, caracterizado como MUV com velocidade inicial nula.
+
+A aceleração vertical é calculada por:
+<p align="center">a<sub>y</sub> = 2 · (y<sub>f</sub> − y<sub>0</sub>) / T²  </p>
+
+<p align="center">a<sub>y</sub> = 2 · (300 − 400) / (0,3²)  </p>
+<p align="center">a<sub>y</sub> ≈ −2222,22 pixels/s²  </p>
+
+---
+Com a aceleração determinada, calcula-se a velocidade vertical ao final do movimento:
+<p align="center">v<sub>y</sub>(T) = a<sub>y</sub> · T  </p>
+
+<p align="center">v<sub>y</sub>(T) ≈ −666,67 pixels/s  </p>
+
+---
+
+Por fim, realiza-se a verificação da posição final no eixo y, substituindo os valores na equação horária:
+<p align="center">y(T) = y<sub>0</sub> + (a<sub>y</sub> · T²) / 2  </p>
+
+<p align="center">y(T) = 400 + (−2222,22 · 0,3²) / 2  </p>
+<p align="center">y(T) = 300 pixels  </p>
+
+
+---
+
+
+Dessa forma, confirma-se que a modelagem matemática está consistente, uma vez que a posição final calculada coincide com a posição previamente definida. Assim, a trajetória do personagem durante a animação é corretamente descrita pelas equações estabelecidas, validando a implementação proposta.
+
+
+A posição final obtida é:
+<p align="center">(350 pixels, 300 pixels) </p>
+
+
+
+
+---
+
+
+### 3.8.5 Implementação no código
+
+
+&ensp;A movimentação é controlada manualmente por equações dentro da função update(), sem utilização de funções prontas de física da engine.
+
+
+Definição dos parâmetros na função create()
+
+```javascript
+create() {
+
+
+   this.isPropulsao = false;
+   this.t = 0;
+}
+```
+
+Função acionada ao contato com a cama elástica
+```javascript
+usarCamaElastica(cachorro) {
+
+
+   if (this.isPropulsao) return;
+
+
+   this.isPropulsao = true;
+
+
+   this.cachorro = cachorro;
+
+
+   this.x0 = cachorro.x;
+   this.y0 = cachorro.y;
+
+
+   this.T = 0.3;
+
+
+   this.xf = this.x0 + 150;
+   this.yf = this.y0 - 100;
+
+
+   this.vx = (this.xf - this.x0) / this.T;
+   this.ay = (2 * (this.yf - this.y0)) / (this.T * this.T);
+
+
+   this.t = 0;
+
+
+   cachorro.body.moves = false;
+}
+```
+
+Atualização da posição na função update()
+
+```javascript
+update(time, delta) {
+
+
+   if (!this.isPropulsao) return;
+
+
+   let dt = delta / 1000;
+   this.t += dt;
+
+
+   if (this.t > this.T) this.t = this.T;
+
+
+   // Movimento no eixo x (MU)
+   let x = this.x0 + this.vx * this.t;
+
+
+   // Movimento no eixo y (MUV)
+   let vy = this.ay * this.t;
+   let y = this.y0 + (this.ay * this.t * this.t) / 2;
+
+
+   this.cachorro.x = x;
+   this.cachorro.y = y;
+
+
+   console.log("Posição X:", x);
+   console.log("Posição Y:", y);
+   console.log("Velocidade X:", this.vx);
+   console.log("Velocidade Y:", vy);
+}
+```
+
+&ensp;A implementação foi realizada sem utilizar funções prontas de movimentação da engine, empregando apenas operações aritméticas elementares, conforme exigido.
+
+&ensp;Inicialmente, ao detectar a interação com a cama elástica, são calculados os parâmetros da trajetória e desativado temporariamente o movimento físico padrão do personagem.
+
+&ensp;Durante a execução da função update(), a posição é recalculada a cada frame utilizando diretamente as equações deduzidas anteriormente.
+
+&ensp;Os comandos console.log() imprimem posição, velocidade e aceleração, permitindo validar experimentalmente os resultados da modelagem matemática.
+
+&ensp;Quando t atinge T, o movimento é encerrado e o personagem retorna ao comportamento normal, podendo inclusive receber a velocidade vertical final calculada para manter a continuidade física.
+
+&ensp;Os comandos console.log() permitem validar experimentalmente os valores calculados pela modelagem matemática, conforme exigido.
+
+
+---
+
+
+### 3.8.6 Fonte teórica
+
+
+A modelagem baseia-se nas equações fundamentais da cinemática clássica apresentadas em:
+
+
+HALLIDAY, D.; RESNICK, R.; WALKER, J. Fundamentos de Física: Mecânica. Rio de Janeiro: LTC.
+
+
 
 # <a name="c4"></a>4. Desenvolvimento do Jogo
 
@@ -981,6 +1351,20 @@ PANORAMA PET VET. Lista das maiores indústrias de rações tem 4 brasileiras. 2
 
 ISTOÉ PET. Pesquisa global aponta: vivemos uma nova era de tutores e pets. 12 nov. 2024. Disponível em: https://pet.istoe.com.br/pesquisa-global-aponta-vivemos-uma-nova-era-de-tutores-e-pets
 . Acesso em: 27 fev. 2026.
+
+SINDAN. Descubra quais são os principais perfis de tutores de pets de acordo com pesquisa Radar Pet 2020. 2020. Disponível em: https://sindan.org.br/release/descubra-quais-sao-os-principais-perfis-de-tutores-de-pets-de-acordo-com-pesquisa-radar-pet-2020/. Acesso em: 18 mar. 2026.
+
+PET E PET. Humanização pet: o futuro do bem-estar animal em 2025. 10 nov. 2025. Disponível em: https://petepet.pet/2025/11/10/humanizacao-pets-bem-estar-mercado-pet-2025/. Acesso em: 18 mar. 2026.
+
+DESCONTOS RADAR. Mercado pet no Brasil: vendas online e projeções até 2026. 19 fev. 2026. Disponível em: https://descontosradar.com/2026/02/19/mercado-pet-brasil-vendas-online-2026/. Acesso em: 22 mar. 2026.
+
+MANZONI NEWS. Panorama do mercado pet brasileiro em 2026 — projeção de R$ 80 bilhões. 2026.
+Disponível em: https://manzoni.com.br/manzoni-news-panorama-do-mercado-pet-brasileiro-em-2026. Acesso em: 22 mar. 2026.
+
+WORLD ORGANISATION FOR ANIMAL HEALTH (WOAH). Animal welfare. Paris: WOAH, 2022. Disponível em: https://www.woah.org/en/what-we-do/animal-health-and-welfare/animal-welfare/. Acesso em: 24 mar. 2026.
+
+INSTITUTO PET BRASIL. Dados do setor pet. São Paulo: Instituto Pet Brasil, 2024. Disponível em: https://institutopetbrasil.com/setor-pet/dados-do-setor-pet/. Acesso em: 24 mar. 2026.
+
 
 # <a name="c8"></a>Anexos
 
