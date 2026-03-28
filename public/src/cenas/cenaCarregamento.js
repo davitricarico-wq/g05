@@ -118,26 +118,26 @@ export class cenaCarregamento extends Phaser.Scene {
         this.load.image("tutorial11", "assets/tutorial11.png");
 
         // Assets das rações super premium
-        this.load.image("racaoGA", "assets/Racoes/racaoGA.png");
-        this.load.image("racaoGF", "assets/Racoes/racaoGF.png");
-        this.load.image("racaoGV", "assets/Racoes/racaoGV.png");
-        this.load.image("racaoMA", "assets/Racoes/racaoMA.png");
-        this.load.image("racaoMF", "assets/Racoes/racaoMF.png");
-        this.load.image("racaoMV", "assets/Racoes/racaoMV.png");
-        this.load.image("racaoPA", "assets/Racoes/racaoPA.png");
-        this.load.image("racaoPF", "assets/Racoes/racaoPF.png");
-        this.load.image("racaoPV", "assets/Racoes/racaoPV.png");
+        this.load.image("racaoGA", "assets/racoes/racaoGA.png");
+        this.load.image("racaoGF", "assets/racoes/racaoGF.png");
+        this.load.image("racaoGV", "assets/racoes/racaoGV.png");
+        this.load.image("racaoMA", "assets/racoes/racaoMA.png");
+        this.load.image("racaoMF", "assets/racoes/racaoMF.png");
+        this.load.image("racaoMV", "assets/racoes/racaoMV.png");
+        this.load.image("racaoPA", "assets/racoes/racaoPA.png");
+        this.load.image("racaoPF", "assets/racoes/racaoPF.png");
+        this.load.image("racaoPV", "assets/racoes/racaoPV.png");
 
         // assets das rações standard
-        this.load.image("standardGA", "assets/Racoes/standardGA.png");
-        this.load.image("standartGF", "assets/Racoes/standartGF.png");
-        this.load.image("standartGV", "assets/Racoes/standartGV.png");
-        this.load.image("standartMA", "assets/Racoes/standartMA.png");
-        this.load.image("standartMF", "assets/Racoes/standartMF.png");
-        this.load.image("standartMV", "assets/Racoes/standartMV.png");
-        this.load.image("standartPA", "assets/Racoes/standartPA.png");
-        this.load.image("standartPF", "assets/Racoes/standartPF.png");
-        this.load.image("standartPV", "assets/Racoes/standartPV.png");
+        this.load.image("standardGA", "assets/racoes/standardGA.png");
+        this.load.image("standartGF", "assets/racoes/standartGF.png");
+        this.load.image("standartGV", "assets/racoes/standartGV.png");
+        this.load.image("standartMA", "assets/racoes/standartMA.png");
+        this.load.image("standartMF", "assets/racoes/standartMF.png");
+        this.load.image("standartMV", "assets/racoes/standartMV.png");
+        this.load.image("standartPA", "assets/racoes/standartPA.png");
+        this.load.image("standartPF", "assets/racoes/standartPF.png");
+        this.load.image("standartPV", "assets/racoes/standartPV.png");
 
        
         //Cenas feedback
