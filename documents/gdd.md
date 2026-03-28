@@ -592,7 +592,7 @@ Fonte: Produzido pelos autores (2026)
 <br>
 <div align="center">
 <p> Figura 4: Personagem protagonista do jogo, representada por uma mulher jovem e empoderada que cuidará dos pets.</p>
-<img src="..\assets\Personagens\Protagonista.png" width="300>
+<img src="other/Protagonista.png" width="300>
 Fonte: material produzido pelos autores (2026).
 <br>
 
@@ -604,7 +604,7 @@ Fonte: material produzido pelos autores (2026).
 <div align="center">
 <p> Figura 5: Personal Pet, personagem secundário do jogo, responsável por auxiliar o jogador durante a narrativa do jogo.
 </p>
-<img src="..\assets\Personagens\personalpet.png" width="300>
+<img src="other/personalpet.png" width="300>
 Fonte: material produzido pelos autores (2026).
 
 
@@ -1189,6 +1189,36 @@ Durante esta sprint, também houve um direcionamento estratégico voltado ao apr
 Ao longo do desenvolvimento, a equipe enfrentou desafios relacionados principalmente à colaboração no código, uma vez que o grande número de integrantes atuando simultaneamente gerou conflitos de versão e dificuldades na integração das alterações. Além disso, houve entraves na comunicação devido à ausência de alguns membros em determinados momentos, o que impactou o alinhamento da equipe. Ainda assim, tais dificuldades foram gradualmente superadas, contribuindo para o amadurecimento dos processos de trabalho.
 
 Para a próxima e última sprint, estão previstas melhorias e expansões, incluindo a adição de mais variações de preços e tipos de ração, a implementação de um quiz ao final da fase, a inclusão de um novo cachorro com características distintas e o refinamento dos testes e validações do sistema, além de ajustes finais de polimento e balanceamento do jogo.
+
+
+<div align="center">
+  <p>Tela Inicial com o novo cachorro</p>
+  <img src="other/telainicialNovo.png" width="800">
+ 
+  <p>Feito pela própia equipe(2026)</p>
+</div>
+
+<div align="center">
+  <p>Tela de ração com o novo cachorro</p>
+  <img src="other/telaRacaoInicial.png" width="800">
+ 
+  <p>Feito pela própia equipe(2026)</p>
+</div>
+
+
+<div align="center">
+  <p>Tela de Cuidado </p>
+  <img src="other/telaCuidadoInicial.png" width="800">
+ 
+  <p>Feito pela própia equipe(2026)</p>
+</div>
+
+<div align="center">
+  <p>Tela da compra de rações </p>
+  <img src="other/telaRacaoInstrucao.png" width="800">
+ 
+  <p>Feito pela própia equipe(2026)</p>
+</div>
 
 ## 4.5. Revisão do MVP (sprint 5)
 
