@@ -1,15 +1,17 @@
+// importando o estado global, a classe modelo de ração, a ficha e os controladores de estado do mascote
 import { gameState } from "../main.js";
 import { Racao } from "../componentes/controleRacoes/racoes.js";
 import { ficha } from "../componentes/ficha.js";
 import { cachorrosBase } from "../componentes/controleCachorro/cachorrosBase.js";
 
-// Importando APENAS os dados da linha Standart
+// importando APENAS os dados referentes às rações disponíveis na linha Standard
 import {
     standartGrandeFilhote, standartGrandeAdulto, standartGrandeSenior,
     standartMediaFilhote, standartMediaAdulto, standartMediaSenior,
     standartPequenaFilhote, standartPequenaAdulto, standartPequenaSenior
 } from "../componentes/controleRacoes/dadosRacoes.js";
 
+// definição da classe controladora da cena de rações da categoria standard
 export class cenaRacaoStandart extends Phaser.Scene {
     constructor() {
         super({ key: "cenaRacaoStandart" });
@@ -18,26 +20,32 @@ export class cenaRacaoStandart extends Phaser.Scene {
     }
 
     create() {
+        // obtendo as dimensões de largura e altura do canvas da aplicação
         let largura = this.scale.width;
         let altura = this.scale.height;
 
+        // calculando as posições centrais relativas para os eixos esquerdo e direito
         const centroEsquerdaX = largura * 0.30;
         const centroDireitaX = largura * 0.70;
 
+        // determinando o mascote ativo com base no estado global da aplicação
         const petAtivo = gameState.pets.cachorroHeroi ? cachorrosBase[1] : cachorrosBase[0];
         const pet = petAtivo;
 
+        // interrompendo a execução da cena de interface de usuário e redefinindo o estado de transição
         this.scene.stop("HUD");
         this.transicao = false;
 
+        // preservando as declarações de funções originais com adaptações para leitura de escala dinâmica
         const criarBotao = (x, y, texturaNormal, texturaPressionado, escalaBase, escalaAumentada, escalaPressionada, callback) => {
             const botao = this.add.image(x, y, texturaNormal).setScale(escalaBase).setInteractive({ useHandCursor: true });
 
-            // Salvamos as escalas no próprio botão para poder atualizar no resize
+            // armazenando os valores de escala na instância do botão para posterior atualização durante o redimensionamento da tela
             botao.escalaNormal = escalaBase;
             botao.escalaHover = escalaAumentada;
             botao.escalaPress = escalaPressionada;
 
+            // registro dos tratadores de eventos de ponteiro para os estados de interação do botão
             botao.on("pointerover", () => {
                 botao.setTexture(texturaPressionado);
                 this.tweens.add({ targets: botao, scale: botao.escalaHover, duration: 150, ease: "Power2" });
@@ -62,8 +70,9 @@ export class cenaRacaoStandart extends Phaser.Scene {
             return botao;
         };
 
+        // função auxiliar para aplicar efeitos visuais de transição de escala aos elementos interativos
         const passarPressionarEfeito = (alvo, escalaNormal, escalaPassar) => {
-            // Salvamos as escalas no alvo para atualizar no resize
+            // preservando as propriedades de escala no objeto alvo para suporte ao redimensionamento
             alvo.escalaNormal = escalaNormal;
             alvo.escalaPassar = escalaPassar;
 
@@ -80,6 +89,7 @@ export class cenaRacaoStandart extends Phaser.Scene {
             });
         };
 
+        // função responsável por alternar a visibilidade da cena contendo a ficha de informações do mascote
         const alternarFicha = () => {
             if (this.scene.isActive("ficha")) {
                 this.scene.stop("ficha");
@@ -90,7 +100,7 @@ export class cenaRacaoStandart extends Phaser.Scene {
             this.scene.bringToTop("ficha");
         };
 
-       
+        // renderizando a imagem de fundo e iniciando o efeito visual de transição de entrada
         this.fundo = this.add.image(largura / 2, altura / 2, "bgLimpo")
             .setDisplaySize(largura, altura)
             .setDepth(-1);
@@ -98,31 +108,37 @@ export class cenaRacaoStandart extends Phaser.Scene {
         this.cameras.main.setBounds(0, 0, largura, altura);
         this.cameras.main.fadeIn(this.duracaoFade, 0, 0, 0);
 
+        // instanciando o botão de retorno com a respectiva função de chamada para transição de cena
         this.botaoVoltar = criarBotao(
             largura * 0.95, altura * 0.9, "iconeVoltar", "iconeVoltar",
             0.8, 1, 0.6,
             () => this.transicaoPara("cenaComida")
         );
 
+        // renderizando o ícone e o valor atualizado do saldo de moedas virtuais do usuário
         this.iconeMoeda = this.add.image(largura * 0.93, altura * 0.06, "cobasiCoin").setScale(0.6);
 
         this.textoMoedas = this.add.text(largura * 0.94, altura * 0.06, gameState.cobasiCoins, {
             fontSize: "20px", color: "#ffffff", fontFamily: '"Press Start 2P"', align: "center"
         }).setOrigin(0.5);  
         
+        // inicializando o elemento gráfico da ficha de informações do mascote e vinculando eventos interativos
         gameState.bilhete = this.add.image(largura * 0.94, altura * 0.3, 'mineFicha')
             .setScale(0.12)
             .setDepth(20)
             .setInteractive({ useHandCursor:true });
+        
+        // aplicando o tratador de eventos visuais de escala no elemento do bilhete
         passarPressionarEfeito(gameState.bilhete, 0.12, 0.14);
 
         gameState.bilhete.on("pointerup", alternarFicha);
 
+        // instanciando os botões de navegação entre as categorias de alimentação
         this.botaoStandard = criarBotao(
             largura * 0.20, altura * 0.15,
             "botaoStandard", "botaoStandardPressionado",
             0.35, 0.4, 0.30,
-            () => { /* Já estamos na cena Standard */ }
+            () => { /* Já estamos na cena Standard, ignorando comando */ }
         );
 
         this.botaoSuperPremium = criarBotao(
@@ -132,11 +148,14 @@ export class cenaRacaoStandart extends Phaser.Scene {
             () => this.scene.start("cenaRacaoSuperPremium")
         );
 
+        // renderizando o elemento gráfico da estante para alocação dos itens
         this.estante = this.add.image(centroEsquerdaX, altura * 0.6, "estanteVazia").setScale(1).setDepth(-1);
 
+        // definindo as coordenadas de grade para o posicionamento matricial dos itens na estante
         const colunasRacao = [largura * 0.18, largura * 0.30, largura * 0.42];
         const linhasRacao = [altura * 0.37, altura * 0.605, altura * 0.845];
 
+        // instanciando o grupo de rações da categoria standard utilizando as importações específicas
         this.racoesStandard = [
             new Racao(this, colunasRacao[0], linhasRacao[0], standartGrandeFilhote),
             new Racao(this, colunasRacao[1], linhasRacao[0], standartGrandeAdulto),
@@ -149,9 +168,11 @@ export class cenaRacaoStandart extends Phaser.Scene {
             new Racao(this, colunasRacao[2], linhasRacao[2], standartPequenaSenior),
         ];
         
+        // inicializando o painel de fundo para exibição das informações nutricionais
         this.fundoTemplateRacao = this.add.image(centroDireitaX, altura * 0.56, "fundoTemplateRacao")
             .setScale(altura * 0.00075);
 
+        // instanciando um contêiner inicial para o alinhamento centralizado dos elementos textuais instrucionais
         this.containerTexto = this.add.container(centroDireitaX, altura * 0.55);
 
         this.titulo = this.add.text(0, -altura*0.15, "Compre sua ração!", {
@@ -164,45 +185,53 @@ export class cenaRacaoStandart extends Phaser.Scene {
 
         this.containerTexto.add([this.titulo, this.subtitulo]);
 
+        // configurando o elemento de texto destinado ao retorno visual das operações de transação
         this.textoFeedback = this.add.text(centroDireitaX, altura * 0.93, "", {
             fontSize: "14px", color: "#ff0000", fontFamily: '"Press Start 2P"', align: "center", wordWrap: { width: 350 }
         }).setOrigin(0.5);
 
-        // === BOTÃO COMPRAR COM A LÓGICA ATUALIZADA ===
+        // instanciando o botão de confirmação e implementando a lógica integral de validação da transação financeira
         this.botaoComprarStandard = criarBotao(
             centroDireitaX, altura * 0.75, 
             "botaoComprarStandard", "botaoComprarStandardPressionado",
             0.15, 0.16, 0.14,
             () => {
+                // validação da existência de um item previamente selecionado pelo usuário
                 if (!Racao.selecionada) {
                     this.textoFeedback.setText("SELECIONE UMA RAÇÃO PRIMEIRO!").setColor("#ff0000");
                     return;
                 }
                 
+                // validação de compatibilidade entre o item selecionado e os requisitos específicos do mascote ativo
                 if (Racao.selecionada.id !== pet.id) {
                     this.textoFeedback.setText("ESSA RAÇÃO NÃO É IDEAL.\nESCOLHA OUTRA RAÇÃO.").setColor("#ff0000");
                     return;
                 }
 
+                // obtenção do valor comercial do item e verificação de disponibilidade de saldo financeiro
                 const valorDaRacao = Racao.selecionada.valor || 15;
 
                 if (gameState.cobasiCoins < valorDaRacao) {
+                    // emissão de feedback visual indicando insuficiência de recursos financeiros
                     this.textoFeedback.setText("SALDO INSUFICIENTE!").setColor("#ff0000");
                     return;
                 }
 
+                // dedução do valor no saldo global e atualização do componente textual na interface
                 gameState.cobasiCoins -= valorDaRacao;
                 this.textoMoedas.setText(gameState.cobasiCoins);
 
+                // emissão do feedback visual indicando transação bem-sucedida
                 this.textoFeedback.setText(`COMPRA EFETUADA! (-${valorDaRacao} MOEDAS)\nRedirecionando...`).setColor("#006600");
+                
+                // desabilitação da interatividade do botão para prevenção de requisições duplicadas
                 this.botaoComprarStandard.disableInteractive();
                 
-                // ==========================================
-                // === ATUALIZAÇÃO DO GAMESTATE AQUI ========
-                // ==========================================
+                // atualização das variáveis de estado globais referentes ao tipo de ração adquirida
                 gameState.standart = true;
                 gameState.superPremium = false;
 
+                // inicialização de atraso temporal para redirecionamento sequencial à fase de alimentação
                 this.time.delayedCall(1500, () => {
                     Racao.selecionada = null; 
                     this.transicaoPara("jogoAlimentacao"); 
@@ -210,6 +239,7 @@ export class cenaRacaoStandart extends Phaser.Scene {
             }
         ).setVisible(false).setAlpha(0);
 
+        // inicialização do contêiner oculto destinado ao agrupamento dos dados nutricionais exibidos após a seleção
         this.containerInfo = this.add.container(centroDireitaX, altura * 0.47)
             .setScale(altura * 0.0009)
             .setVisible(false).setAlpha(0);
@@ -217,6 +247,7 @@ export class cenaRacaoStandart extends Phaser.Scene {
         this.composicaoRacao = this.add.image(0, 0, "composicaoRacao");
         this.imagemRacaoInfo = this.add.image(-160, -70, "").setScale(0.18);
 
+        // parametrização tipográfica e espacial dos elementos textuais de composição nutricional
         this.textoTipo = this.add.text(0, -217, "", { fontSize: "32px", color: "#000", fontFamily: '"Press Start 2P"', align: "center" }).setOrigin(0.5);
         this.textoPorte = this.add.text(75, -138, "", { fontSize: "16px", color: "#006600", fontFamily: '"Press Start 2P"' }).setOrigin(0, 0.5);
         this.textoIdade = this.add.text(75, -102, "", { fontSize: "16px", color: "#006600", fontFamily: '"Press Start 2P"' }).setOrigin(0, 0.5);
@@ -234,8 +265,9 @@ export class cenaRacaoStandart extends Phaser.Scene {
             this.textoChar1, this.textoChar2, this.textoTrigo, this.textoCarne, this.textoOsso, this.textoGordura
         ]);
 
+        // iteração sobre o array de rações para injeção de propriedades interativas e dinâmicas
         this.racoesStandard.forEach((racao) => {
-            // Propriedades dinâmicas para a ração
+            // atribuição de propriedades dinâmicas baseadas na instancialização gráfica da ração
             racao.sprite.escalaNormal = 0.3;
             racao.sprite.escalaHover = 0.32;
 
@@ -244,6 +276,7 @@ export class cenaRacaoStandart extends Phaser.Scene {
             racao.sprite.on("pointerover", () => this.tweens.add({ targets: racao.sprite, scale: racao.sprite.escalaHover, duration: 100, ease: "Power2" }));
             racao.sprite.on("pointerout", () => this.tweens.add({ targets: racao.sprite, scale: racao.sprite.escalaNormal, duration: 100, ease: "Power2" }));
 
+            // vinculando evento de clique para preenchimento e exibição do painel de informações com os dados do item focado
             racao.sprite.on("pointerup", () => {
                 Racao.selecionada = racao; 
                 this.tweens.add({
@@ -271,7 +304,7 @@ export class cenaRacaoStandart extends Phaser.Scene {
             });
         });
 
-        
+        // implementação do tratador de eventos focado na readequação proporcional dos elementos gráficos durante o redimensionamento da janela
         const handleResizeRacaoStandart = (gameSize) => {
             const w = gameSize.width;
             const h = gameSize.height;
@@ -280,7 +313,7 @@ export class cenaRacaoStandart extends Phaser.Scene {
                 this.cameras.resize(w, h);
                 this.fundo.setDisplaySize(w, h).setPosition(w / 2, h / 2);
                 
-                // Botão Voltar (Atualiza as variáveis de hover/press dinamicamente)
+                // atualização dinâmica das variáveis de interação física e dimensões do botão voltar
                 if (this.botaoVoltar) {
                     this.botaoVoltar.setPosition(w * 0.95, h * 0.9);
                     this.botaoVoltar.escalaNormal = h * 0.0013;
@@ -297,7 +330,7 @@ export class cenaRacaoStandart extends Phaser.Scene {
                     this.textoMoedas.setPosition(w * 0.94, h * 0.06).setScale(h * 0.0015);
                 }
 
-                // Bilhete
+                // recalibragem responsiva da ficha do mascote
                 if (gameState.bilhete) {
                     gameState.bilhete.setPosition(w * 0.94, h * 0.3);
                     gameState.bilhete.escalaNormal = 0.12;
@@ -305,7 +338,7 @@ export class cenaRacaoStandart extends Phaser.Scene {
                     gameState.bilhete.setScale(gameState.bilhete.escalaNormal);
                 }
 
-                // Botões de Categoria
+                // recalibragem responsiva dos controladores de transição de categoria
                 if (this.botaoStandard) {
                     this.botaoStandard.setPosition(w * 0.20, h * 0.15);
                     this.botaoStandard.escalaNormal = h * 0.00058;
@@ -346,7 +379,7 @@ export class cenaRacaoStandart extends Phaser.Scene {
                     this.containerInfo.setPosition(w * 0.70, h * 0.47).setScale(h * 0.0009);
                 }
                 
-                // Botão Comprar
+                // atualização responsiva do componente finalizador da transação (Botão Comprar)
                 if (this.botaoComprarStandard) {
                     this.botaoComprarStandard.setPosition(w * 0.70, h * 0.75);
                     this.botaoComprarStandard.escalaNormal = h * 0.00025;
@@ -362,7 +395,7 @@ export class cenaRacaoStandart extends Phaser.Scene {
                 const novasColunas = [w * 0.18, w * 0.30, w * 0.42];
                 const novasLinhas = [h * 0.37, h * 0.605, h * 0.845];
                 
-                // Atualização dinâmica também para as Rações na Estante
+                // atualização em malha matricial para garantir posicionamento fluido dos itens na vitrine/estante
                 if (this.racoesStandard) {
                     let index = 0;
                     for (let i = 0; i < 3; i++) { 
@@ -382,13 +415,16 @@ export class cenaRacaoStandart extends Phaser.Scene {
             }
         };
 
+        // vinculando e gerenciando ativamente o evento global de redimensionamento
         this.scale.on("resize", handleResizeRacaoStandart);
 
+        // assegurando o descarte do ouvinte de evento durante o descarte da cena para mitigar possíveis vazamentos de memória
         this.events.on('shutdown', () => {
             this.scale.off("resize", handleResizeRacaoStandart);
         });
     }
 
+    // função auxiliar destinada ao controle de transições visuais de saída entre cenas de interface
     transicaoPara(chaveCena) {
         if (this.transicao) return;
         this.transicao = true;
