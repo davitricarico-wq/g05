@@ -200,7 +200,15 @@ A cultura organizacional da Cobasi evidencia forte orientação para a experiên
 
 ### 1.1.6. Matriz de Riscos (sprint 4)
 
-*Registre na matriz os riscos identificados no projeto, visando avaliar situações que possam representar ameaças e oportunidades, bem como os impactos relevantes sobre o projeto. Apresente os riscos, ressaltando, para cada um, impactos e probabilidades com plano de ação e respostas.*
+<br>
+<div align="center">
+<p> Figura 1: Matriz de Risco.
+<img src="other/matrizDeRisco.png">
+Fonte: material produzido pelos autores (2026).
+<br>
+</div>
+
+
 
 ### 1.1.7. Objetivos, Metas e Indicadores (sprint 4)
 
