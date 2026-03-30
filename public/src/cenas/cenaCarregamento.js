@@ -141,23 +141,23 @@ export class cenaCarregamento extends Phaser.Scene {
 
        
         //Cenas feedback
-        this.load.image("feeedback3estrelas", "assets/Feedback/feedbackMineGame.png");
-        this.load.image("feedback2estrelas", "assets/Feedback/feedbackMineGame2.png");
-        this.load.image("feedback1estrela", "assets/Feedback/feedbackMineGame3.png");
+        this.load.image("feeedback3estrelas", "assets/feedback/feedbackMineGame.png");
+        this.load.image("feedback2estrelas", "assets/feedback/feedbackMineGame2.png");
+        this.load.image("feedback1estrela", "assets/feedback/feedbackMineGame3.png");
 
         //Cenas de instrução e Como Jogar
-        this.load.image("instrucaoDescricaoBanho", "assets/Feedback/instrucaoBanho.png");
-        this.load.image("conclusaoPrimeiroRound", "assets/Feedback/conclusaoPrimeiroRound.png");
-        this.load.image("instrucaoDescricaoRacao", "assets/Feedback/instrucaoDescricaoRacao.png");
-        this.load.image("instrucaoLazer", "assets/Feedback/instrucaoLazer.png");
-        this.load.image("instrucaoBanho", "assets/Feedback/instrucaoBanho.png");
-        this.load.image("instrucaoMissao", "assets/Feedback/instrucaoMissao.png");
-        this.load.image("instrucaoPulgas", "assets/Feedback/instrucaoPulgas.png");
-        this.load.image("instrucaoRacao", "assets/Feedback/instrucaoRacao.png");
-        this.load.image("instrucaoSegundaFase", "assets/Feedback/instrucaoSegundaFase.png");
-        this.load.image("comoJogarLazer", "assets/Feedback/comoJogarLazer.png");
-        this.load.image("comoJogarPulgas", "assets/Feedback/comoJogarPulgas.png");
-        this.load.image("comoJogarRacao", "assets/Feedback/comoJogarRacao.png");
+        this.load.image("instrucaoDescricaoBanho", "assets/feedback/instrucaoBanho.png");
+        this.load.image("conclusaoPrimeiroRound", "assets/feedback/conclusaoPrimeiroRound.png");
+        this.load.image("instrucaoDescricaoRacao", "assets/feedback/instrucaoDescricaoRacao.png");
+        this.load.image("instrucaoLazer", "assets/feedback/instrucaoLazer.png");
+        this.load.image("instrucaoBanho", "assets/feedback/instrucaoBanho.png");
+        this.load.image("instrucaoMissao", "assets/feedback/instrucaoMissao.png");
+        this.load.image("instrucaoPulgas", "assets/feedback/instrucaoPulgas.png");
+        this.load.image("instrucaoRacao", "assets/feedback/instrucaoRacao.png");
+        this.load.image("instrucaoSegundaFase", "assets/feedback/instrucaoSegundaFase.png");
+        this.load.image("comoJogarLazer", "assets/feedback/comoJogarLazer.png");
+        this.load.image("comoJogarPulgas", "assets/feedback/comoJogarPulgas.png");
+        this.load.image("comoJogarRacao", "assets/feedback/comoJogarRacao.png");
 
        
         // Áudio
