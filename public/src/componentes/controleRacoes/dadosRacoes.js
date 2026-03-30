@@ -1,3 +1,30 @@
+/*
+  Classificação Etária de Cães por Porte
+
+  Porte Pequeno (até 10 kg):
+    - Filhote: 0 a 6 meses
+    - Jovem: 6 meses a 2 anos
+    - Adulto: 2 a 7 anos
+    - Sênior: 7 a 10 anos
+    - Geriátrico: acima de 10 anos
+
+  Porte Médio (10 a 25 kg):
+    - Filhote: 0 a 6 meses
+    - Jovem: 6 meses a 2 anos
+    - Adulto: 2 a 6 anos
+    - Sênior: 6 a 9 anos
+    - Geriátrico: acima de 9 anos
+
+  Porte Grande (25 a 40 kg):
+    - Filhote: 0 a 6 meses
+    - Jovem: 6 meses a 2 anos
+    - Adulto: 2 a 5 anos
+    - Sênior: 5 a 8 anos
+    - Geriátrico: acima de 8 anos
+
+*/
+
+
 // Exportações das descrições das rações
 export const standartGrandeFilhote = {
   nome: "Filhotes de Grande Porte",
