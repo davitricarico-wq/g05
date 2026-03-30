@@ -1,93 +1,168 @@
-# CobasiShelter
+# Inteli - Instituto de Tecnologia e Liderança
+
+<p align="center">
+  <a href="https://www.inteli.edu.br/">
+    <img src="public/assets/readme/inteli.png" alt="Inteli - Instituto de Tecnologia e Liderança" border="0" width=40% height=40%>
+  </a>
+</p>
+
+<br>
+
+# 🐾 Cobasi Shelter
+
+## Bardot Studios
+
+## 👨‍🎓 Integrantes
+- <a href="https://www.linkedin.com/in/ana-célia-amaral-354a553a4">Ana Célia Augusta Santos</a>
+- <a href="https://www.linkedin.com/in/anita-fratelli-258398314/">Anita Fratelli Sonobe Silveira</a>
+- <a href="https://www.linkedin.com/in/davi-tricarico-248b1a3b1">Davi Viana Tricarico</a>
+- <a href="https://www.linkedin.com/in/gustavo-luz-250708220">Gustavo Luz Fantasia Barbosa</a>
+- <a href="https://www.linkedin.com/in/isaac-nicolas-alves-da-silva-9787592a4">Isaac Nicolas Alves Silva</a>
+- <a href="https://www.linkedin.com/in/joão-pedro-poveda-43263b265">João Pedro Fuzzo Poveda</a>
+- <a href="https://www.linkedin.com/in/pedro-negri-840519335/">Pedro Negri</a>
+- <a href="https://www.linkedin.com/in/valter-lucas-8207a6288">Valter Lucas Garcia de Lima</a>
+
+## 👩‍🏫 Professores
+
+### Orientador(a)
+- <a href="https://www.linkedin.com/in/fabiana-martins-de-oliveira-8993b0b2/">Fabiana Martins de Oliveira</a>
+
+### Instrutores
+- <a href="https://www.linkedin.com/in/juliastateri/">Julia Stateri</a>
+- <a href="https://www.linkedin.com/in/geraldo-magela-severino-vasconcelos-22b1b220/">Geraldo Magela Severino Vasconcelos</a>
+- <a href="https://www.linkedin.com/in/silva-wesley/">Wesley da Silva Santos</a>
+- <a href="https://www.linkedin.com/in/vanunes/">Vanessa Tavares Nunes</a>
+- <a href="https://www.linkedin.com/in/fabiocassiosouza/">Fábio Cássio de Souza</a>
+
+---
+
+## 📜 Descrição
+
+**Cobasi Shelter** é um jogo de simulação casual desenvolvido em parceria com a **Cobasi**, com o objetivo de conscientizar jogadores sobre o programa de adoção responsável da empresa e educar tutores sobre os cuidados essenciais com animais domésticos.
+
+O jogador assume o papel de voluntário do projeto **Cobasi Cuida**, recebendo animais resgatados em diferentes condições e os tratando por meio de minigames interativos até que estejam saudáveis. Cada ação bem-sucedida recompensa o jogador com **CobasiCoins**, moeda virtual utilizada para desbloquear melhorias dentro do jogo.
+
+O projeto busca:
+- **Conscientizar** sobre o programa de adoção da Cobasi, ainda pouco conhecido pelo público geral;
+- **Educar tutores** sobre alimentação, higiene e saúde animal de forma lúdica;
+- **Promover empatia e responsabilidade** no cuidado com animais domésticos.
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+| Tecnologia | Uso |
+|---|---|
+| [Phaser 3](https://phaser.io/) | Engine principal do jogo |
+| JavaScript | Linguagem de desenvolvimento |
+| HTML5 + CSS3 | Estrutura e estilo da página |
+| Piskel e Libresprite | Pixel art do jogo |
+| Arcade Physics (Phaser) | Sistema de física para colisões e movimentação |
+
+---
 
 
 
-## Getting started
-
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+## 📁 Estrutura de Pastas
 
 ```
-cd existing_repo
-git remote add origin https://git.inteli.edu.br/ana.amaral/cobasishelter.git
-git branch -M main
-git push -uf origin main
+cobasi-shelter/
+│
+├── index.html                          # Ponto de entrada — importa Phaser via CDN e src/main.js
+│
+├── src/
+│   ├── main.js                         # Config do Phaser, gameState global, registro de cenas
+│   │
+│   ├── Cenas/                          # Cenas do jogo
+│   │   ├── cenaCarregamento.js
+│   │   ├── cenaInicial.js
+│   │   ├── cenaTutorial.js
+│   │   ├── cenaConfiguracoes.js
+│   │   ├── cenaPrincipal.js
+│   │   ├── cenaComida.js
+│   │   ├── cenaCuidado.js
+│   │   ├── cenaBanho.js
+│   │   ├── jogoRacao.js
+│   │   ├── jogoAlimentacao.js
+│   │   └── jogoLazer.js
+│   │
+│   └── componentes/                    # Componentes reutilizáveis entre cenas
+│       ├── cenaHUD.js                  # HUD sobreposta (barras + moedas)
+│       ├── ficha.js                    # Ficha do pet
+│       ├── controleCachorro/
+│       │   ├── cachorroAnimacao.js     # Classe Cachorro (sprite + animações)
+│       │   └── cachorroGeral.js        # Dados do pet atual (porte, fase de vida)
+│       └── controleRacoes/
+│           ├── racoes.js               # Classe Racao (seleção e exibição)
+│           └── dadosRacoes.js          # Dados das 9 rações (3 portes × 3 fases de vida)
+│
+├── assets/                             # Sprites, fundos, ícones e áudio
+│   ├── tela-alimentação/
+│   ├── Personagens/
+│   └── ...
+│
+└── document/
+    ├── GDD.md                          # Game Design Document completo
+    └── other/                          # Imagens e diagramas complementares
 ```
 
-## Integrate with your tools
+---
 
-- [ ] [Set up project integrations](https://git.inteli.edu.br/ana.amaral/cobasishelter/-/settings/integrations)
+## 🔧 Como Executar
 
-## Collaborate with your team
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+### Opção 1 — VS Code + Live Server (recomendado)
 
-## Test and Deploy
+1. Instale a extensão **Live Server** no VS Code
+2. Abra a pasta do projeto
+3. Clique com o botão direito em "index.html" → **Open with Live Server**
+4. O jogo abrirá automaticamente em "http://127.0.0.1:5500"
 
-Use the built-in continuous integration in GitLab.
+### Opção 2 — GitLab Pages (sem instalação)
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+Obs: essa opção apresenta lentidão para ser iniciada, por esse motivo a alternativa acima é mais recomendada
 
-***
+Abra o link: 
+https://graduacao.pages.git.inteli.edu.br/2026-1a/t25/g05
 
-# Editing this README
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+## 🧪 Testes
 
-## Suggestions for a good README
+Casos de teste documentados cobrem as principais funcionalidades:
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+- Responsividade visual em diferentes resoluções de tela
+- Funcionamento dos botões da tela inicial (Jogar, Tutorial, Configurações, Sair)
+- Sistema de áudio (ativar e desativar)
+- Sequenciamento obrigatório das ferramentas no banho (sabão → chuveiro → toalha)
+- Feedback visual nas interações (bolhas ao ensaboar, gotas ao enxaguar, brilhos ao concluir)
+- Lógica de pontuação, vidas e dificuldade progressiva no minigame de alimentação
+- Remoção de pulgas e sistema de estrelas no minigame veterinário
+- Comportamento do cursor em áreas interativas e não interativas
 
-## Name
-Choose a self-explaining name for your project.
+Testes de jogabilidade com usuários externos confirmaram boa acessibilidade e progressão natural de dificuldade, com apontamentos para melhoria na responsividade dos controles.
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+---
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+## 🗃 Histórico de Lançamentos
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+| Versão | Descrição | Data |
+|---|---|---|
+| 0.5.0 | Revisão final do MVP: refinamentos de UX, correção de bugs e otimizações de desempenho | NA
+| 0.4.0 | MVP completo: CobasiCoins integrado, quiz de rações e melhorias de navegação entre cenas | 16/03/2026 - 27/03/2026
+| 0.3.0 | Implementação dos três minigames (banho, alimentação e veterinário) com sistema de recompensas | 02/03/2026 - 13/03/2026
+| 0.2.0 | HUD de status, cena de banho interativa e sprites dos personagens | 16/02/2026 - 27/02/2026
+| 0.1.0 | Tela inicial funcional, estrutura de cenas, botões com feedback visual e configurações básicas | 02/02/2026 - 13/02/2026
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+---
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+## 📋 Licença / License
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1">
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+<p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/">
+<a property="dct:title" rel="cc:attributionURL" href="https://github.com/Intelihub/Template_M1">COBASI SHELTER</a> by
+<a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://github.com/Intelihub/Template_M1">
+Inteli, Ana Célia Augusta Santos, Anita Fratelli Sonobe Silveira, Davi Viana Tricarico, Gustavo Luz Fantasia Barbosa, Isaac Nicolas Alves Silva, João Pedro Fuzzo Poveda, Pedro Negri, Valter Lucas Garcia de Lima
+</a> is licensed under
+<a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Attribution 4.0 International</a>.
+</p>
