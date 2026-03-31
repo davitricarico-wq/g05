@@ -25,6 +25,7 @@ export class cenaComida extends Phaser.Scene {
         } else if (this.scene.isSleeping("HUD")) {
             this.scene.wake("HUD");
         }
+        // Por padrão, a HUD começa no topo.
         this.scene.bringToTop("HUD");
 
         // Definição da área útil de gameplay, reservando espaço para a barra lateral da HUD (20%)
@@ -62,19 +63,36 @@ export class cenaComida extends Phaser.Scene {
             .setDepth(-1);
 
         // Instanciação da estante de rações com interatividade para troca de cena
-        const estante = this.add.image(posicaoX * 0.25, posicaoY * 0.68, "estanteRacao")
+        this.estante = this.add.image(posicaoX * 0.25, posicaoY * 0.68, "estanteRacao")
             .setScale(posicaoY * 0.0006)
             .setInteractive({ useHandCursor: true });
+            
+        // Armazena a profundidade original da estante
+        this.profundidadeOriginalEstante = this.estante.depth;
 
-        passarPressionarEfeito(estante, estante.scaleX, estante.scaleX * 1.1);
+        passarPressionarEfeito(this.estante, this.estante.scaleX, this.estante.scaleX * 1.1);
 
         // Lógica de navegação para a cena de seleção de ração específica
-        estante.on("pointerdown", () => {
+        this.estante.on("pointerdown", () => {
+            
+            // Limpa o overlay da estante, caso ele esteja ativo
+            if (this.overlayEstante) {
+                this.overlayEstante.destroy();
+                this.overlayEstante = null;
+                if (this.txtCliqueEstante) this.txtCliqueEstante.destroy();
+                
+                this.estante.setDepth(this.profundidadeOriginalEstante);
+                gameState.enfaseEstanteVista = true; 
+                
+                // Retorna a HUD para o topo de tudo, já que o tutorial da estante acabou
+                this.scene.bringToTop("HUD");
+            }
+
             const cenaHUD = this.scene.manager.getScene("HUD");
             if (cenaHUD && cenaHUD.transicionarPara) {
-                cenaHUD.transicionarPara("cenaRacaoSuperPremium");
+                cenaHUD.transicionarPara("cenaEstanteRacao");
             } else {
-                this.scene.start("cenaRacaoSuperPremium");
+                this.scene.start("cenaEstanteRacao");
             }
         });
 
@@ -94,6 +112,7 @@ export class cenaComida extends Phaser.Scene {
 
         // Lógica de abertura da Ficha: limpa overlays de tutorial e lança a cena de detalhes
         gameState.bilhete.on('pointerdown', () => {
+            // Limpa o overlay da ficha
             if (this.overlayFicha) {
                 this.overlayFicha.destroy();
                 this.overlayFicha = null;
@@ -106,7 +125,28 @@ export class cenaComida extends Phaser.Scene {
             if(this.scene.isActive('ficha')) {
                 this.scene.stop('ficha')
             } else {
-                this.scene.launch('ficha')
+                this.scene.launch('ficha');
+
+                // Força a cena da ficha a ficar na frente de TUDO (cenaComida e HUD)
+                this.scene.bringToTop('ficha');
+
+                // Pega a referência da cena da ficha que acabou de ser aberta
+                const cenaFicha = this.scene.manager.getScene('ficha');
+                
+                // Faz a cena atual esperar a cena da ficha ser fechada para destacar a estante ou retornar a HUD
+                cenaFicha.events.once('shutdown', () => {
+                    this.scene.bringToTop("HUD");
+                    if (!gameState.enfaseEstanteVista) {
+                        this.destacarEstante(posicaoX, posicaoY);
+                    }
+                });
+
+                cenaFicha.events.once('sleep', () => {
+                    this.scene.bringToTop("HUD");
+                    if (!gameState.enfaseEstanteVista) {
+                        this.destacarEstante(posicaoX, posicaoY);
+                    }
+                });
             }
         });
 
@@ -148,11 +188,13 @@ export class cenaComida extends Phaser.Scene {
         this.containerCachorro = this.add.container(dogX, dogY, elementosContainer);
         this.containerCachorro.setScale(posicaoY * 0.0007);
 
-        // Controle de fluxo de onboarding: decide qual popup de instrução exibir primeiro
+        // Controle de fluxo de onboarding: decide qual popup de instrução exibir ao carregar a cena
         if (!gameState.instrucaoRacaoVista) {
             this.mostrarInstrucaoRacao(posicaoX, posicaoY);
         } else if (!gameState.enfaseFichaVista) {
             this.destacarFicha(posicaoX, posicaoY);
+        } else if (!gameState.enfaseEstanteVista) { 
+            this.destacarEstante(posicaoX, posicaoY);
         }
 
         // Listener de Responsividade: reajusta todos os elementos caso a janela mude de tamanho
@@ -163,9 +205,11 @@ export class cenaComida extends Phaser.Scene {
             const novaAltura = this.scale.height;
             const novoCentroX = novaLargura / 2;
             const novoCentroY = novaAltura / 2;
+            const centroTelaInteiraX = this.scale.width / 2;
+            const centroTelaInteiraY = this.scale.height / 2;
 
             this.fundo.setPosition(novoCentroX, novoCentroY).setDisplaySize(novaLargura, novaAltura);
-            estante.setPosition(novaLargura * 0.25, novaAltura * 0.68).setScale(novaAltura * 0.0006);
+            this.estante.setPosition(novaLargura * 0.25, novaAltura * 0.68).setScale(novaAltura * 0.0006);
             gameState.bilhete.setPosition(this.scale.width * 0.7, novaAltura * 0.25).setScale(0.15);
             racaoVazia.setPosition(novoCentroX + novoCentroX * 0.1, novoCentroY + novaAltura * 0.4).setScale(novaAltura * 0.0002);
             
@@ -174,25 +218,33 @@ export class cenaComida extends Phaser.Scene {
             this.containerCachorro.setPosition(novoDogX, novoDogY).setScale(novaAltura * 0.0007);
             this.pulgas.setScale(novaAltura * 0.0015);
 
-            // Reajuste de modais de instrução ativos durante o resize
+            // Reajuste de modais de instrução para cobrir 100% da tela durante o resize
             if (this.fundoEscuroInstrucao && this.fundoEscuroInstrucao.active) {
-                this.fundoEscuroInstrucao.setSize(novaLargura, novaAltura);
-                this.fundoEscuroInstrucao.setPosition(novoCentroX, novoCentroY);
+                this.fundoEscuroInstrucao.setSize(this.scale.width, this.scale.height);
+                this.fundoEscuroInstrucao.setPosition(centroTelaInteiraX, centroTelaInteiraY);
                 if (this.imgInstrucao && this.imgInstrucao.active) {
-                    this.imgInstrucao.setPosition(novoCentroX, novoCentroY);
+                    this.imgInstrucao.setPosition(centroTelaInteiraX, centroTelaInteiraY);
                     if (this.txtContinuarInstrucao && this.txtContinuarInstrucao.active) {
-                        const novoPosicaoTextoY = novoCentroY + (this.imgInstrucao.displayHeight / 2) + 30;
-                        this.txtContinuarInstrucao.setPosition(novoCentroX, novoPosicaoTextoY);
+                        const novoPosicaoTextoY = centroTelaInteiraY + (this.imgInstrucao.displayHeight / 2) + 30;
+                        this.txtContinuarInstrucao.setPosition(centroTelaInteiraX, novoPosicaoTextoY);
                     }
                 }
             }
 
             if (this.overlayFicha && this.overlayFicha.active) {
-                this.overlayFicha.setSize(novaLargura, novaAltura);
-                this.overlayFicha.setPosition(novoCentroX, novoCentroY);
+                this.overlayFicha.setSize(this.scale.width, this.scale.height);
+                this.overlayFicha.setPosition(centroTelaInteiraX, centroTelaInteiraY);
             }
             if (this.txtCliqueFicha && this.txtCliqueFicha.active) {
                 this.txtCliqueFicha.setPosition(this.scale.width * 0.7, (novaAltura * 0.25) + 60);
+            }
+
+            if (this.overlayEstante && this.overlayEstante.active) {
+                this.overlayEstante.setSize(this.scale.width, this.scale.height);
+                this.overlayEstante.setPosition(centroTelaInteiraX, centroTelaInteiraY);
+            }
+            if (this.txtCliqueEstante && this.txtCliqueEstante.active) {
+                this.txtCliqueEstante.setPosition(novaLargura * 0.25, (novaAltura * 0.68) - 100);
             }
         };
 
@@ -216,31 +268,35 @@ export class cenaComida extends Phaser.Scene {
         }
     }
 
-    /**
-     * Exibe o popup inicial de instrução sobre o funcionamento da ração
-     */
     mostrarInstrucaoRacao(areaUtilLargura, alturaTotal) {
-        const centroX = areaUtilLargura / 2;
-        const centroY = alturaTotal / 2;
+        // Traz esta cena especificamente para a frente da HUD enquanto o popup estiver ativo
+        this.scene.bringToTop("cenaComida");
 
-        // Overlay de fundo para focar a atenção no popup
-        this.fundoEscuroInstrucao = this.add.rectangle(centroX, centroY, areaUtilLargura, alturaTotal, 0x000000, 0.7)
-            .setDepth(1000)
+        // Usar 100% das dimensões da tela para cobrir tudo (inclusive a HUD)
+        const telaTotalLargura = this.scale.width;
+        const telaTotalAltura = this.scale.height;
+        const centroTelaX = telaTotalLargura / 2;
+        const centroTelaY = telaTotalAltura / 2;
+
+        // Overlay de fundo cobrindo 100% da tela
+        this.fundoEscuroInstrucao = this.add.rectangle(centroTelaX, centroTelaY, telaTotalLargura, telaTotalAltura, 0x000000, 0.7)
+            .setDepth(9999)
             .setInteractive(); 
 
-        this.imgInstrucao = this.add.image(centroX, centroY, "instrucaoRacao")
-            .setDepth(1001)
+        // Centraliza a imagem no centro absoluto da tela
+        this.imgInstrucao = this.add.image(centroTelaX, centroTelaY, "instrucaoRacao")
+            .setDepth(10000)
             .setScale(0.5);
 
         // Texto com animação de "piscar" (alpha) para indicar interatividade
-        const posicaoTextoY = centroY + (this.imgInstrucao.displayHeight / 2) + 30;
-        this.txtContinuarInstrucao = this.add.text(centroX, posicaoTextoY, "[ Clique para continuar ]", {
+        const posicaoTextoY = centroTelaY + (this.imgInstrucao.displayHeight / 2) + 30;
+        this.txtContinuarInstrucao = this.add.text(centroTelaX, posicaoTextoY, "[ Clique para continuar ]", {
             fontFamily: '"Press Start 2P", Arial',
             fontSize: "15px",
             color: "#ffffff",
             stroke: "#000000",
             strokeThickness: 4
-        }).setOrigin(0.5).setDepth(1001);
+        }).setOrigin(0.5).setDepth(10000);
 
         this.tweens.add({
             targets: this.txtContinuarInstrucao, 
@@ -264,24 +320,32 @@ export class cenaComida extends Phaser.Scene {
             
             if (!gameState.enfaseFichaVista) {
                 this.destacarFicha(areaUtilLargura, alturaTotal);
+            } else if (!gameState.enfaseEstanteVista) { 
+                this.destacarEstante(areaUtilLargura, alturaTotal);
+            } else {
+                // Caso não haja mais nenhum tutorial para mostrar, devolve a HUD para o topo
+                this.scene.bringToTop("HUD");
             }
         });
     }
 
-    /**
-     * Aplica um efeito de destaque (foco) especificamente no bilhete de informações
-     */
     destacarFicha(areaUtilLargura, alturaTotal) {
-        const centroX = areaUtilLargura / 2;
-        const centroY = alturaTotal / 2;
+        // Traz esta cena para o topo, colocando-a na frente da HUD
+        this.scene.bringToTop("cenaComida");
 
-        // Overlay escuro que bloqueia cliques em outros elementos do cenário
-        this.overlayFicha = this.add.rectangle(centroX, centroY, areaUtilLargura, alturaTotal, 0x000000, 0.7)
-            .setDepth(900)
+        // Usar 100% das dimensões da tela para cobrir tudo (inclusive a HUD)
+        const telaTotalLargura = this.scale.width;
+        const telaTotalAltura = this.scale.height;
+        const centroTelaX = telaTotalLargura / 2;
+        const centroTelaY = telaTotalAltura / 2;
+
+        // Overlay escuro com depth extrema cobrindo toda a tela
+        this.overlayFicha = this.add.rectangle(centroTelaX, centroTelaY, telaTotalLargura, telaTotalAltura, 0x000000, 0.7)
+            .setDepth(9999)
             .setInteractive(); 
 
-        // Eleva a profundidade do bilhete para "atravessar" o overlay escuro
-        gameState.bilhete.setDepth(901);
+        // Eleva a profundidade do bilhete para ficar acima do overlay
+        gameState.bilhete.setDepth(10000);
 
         this.txtCliqueFicha = this.add.text(
             this.scale.width * 0.7, 
@@ -293,10 +357,50 @@ export class cenaComida extends Phaser.Scene {
             align: "center",
             stroke: "#000000",
             strokeThickness: 3
-        }).setOrigin(0.5).setDepth(901);
+        }).setOrigin(0.5).setDepth(10000);
 
         this.tweens.add({
             targets: this.txtCliqueFicha,
+            alpha: 0.4,
+            duration: 600,
+            yoyo: true,
+            loop: -1
+        });
+    }
+
+    destacarEstante(areaUtilLargura, alturaTotal) {
+        // Traz esta cena para o topo, colocando-a na frente da HUD
+        this.scene.bringToTop("cenaComida");
+
+        // Usar 100% das dimensões da tela para cobrir tudo (inclusive a HUD)
+        const telaTotalLargura = this.scale.width;
+        const telaTotalAltura = this.scale.height;
+        const centroTelaX = telaTotalLargura / 2;
+        const centroTelaY = telaTotalAltura / 2;
+
+        // Overlay escuro com depth extrema cobrindo toda a tela
+        this.overlayEstante = this.add.rectangle(centroTelaX, centroTelaY, telaTotalLargura, telaTotalAltura, 0x000000, 0.7)
+            .setDepth(9999)
+            .setInteractive(); 
+
+        // Eleva a profundidade da estante para ficar acima do overlay extremo
+        this.estante.setDepth(10000);
+
+        // Posiciona o texto em cima da estante
+        this.txtCliqueEstante = this.add.text(
+            this.estante.x, 
+            this.estante.y - 100, 
+            "Clique na estante!", {
+            fontFamily: '"Press Start 2P", Arial',
+            fontSize: "12px",
+            color: "#ffffff",
+            align: "center",
+            stroke: "#000000",
+            strokeThickness: 3
+        }).setOrigin(0.5).setDepth(10000);
+
+        this.tweens.add({
+            targets: this.txtCliqueEstante,
             alpha: 0.4,
             duration: 600,
             yoyo: true,

@@ -38,7 +38,7 @@ export class cenaCuidado extends Phaser.Scene {
 
         // Reset variáveis
         this.pulgasRemovidas = 0;
-        this.pontuacao = 0;
+        this.pontuacao = 0; 
         this.minigameFinalizado = false;
         this.pincaEquipada = false;
         this.bonusMeioGanho = false;
@@ -232,7 +232,7 @@ export class cenaCuidado extends Phaser.Scene {
     }
 
     // ==========================================
-    //          MECÂNICAS DO JOGO
+    //           MECÂNICAS DO JOGO
     // ==========================================
     mostrarPopupInstrucaoPinca() {
         const cx = this.scale.width / 2;
@@ -293,6 +293,8 @@ export class cenaCuidado extends Phaser.Scene {
         if (pulga.body) pulga.body.enable = false;
 
         this.pulgasRemovidas++;
+        this.pontuacao += 50; 
+
         this.textoProgresso.setText(`Pulgas: ${this.pulgasRemovidas}/${this.totalPulgas}`);
 
         if (this.pulgasRemovidas === 6 && !this.bonusMeioGanho) {
@@ -391,9 +393,18 @@ export class cenaCuidado extends Phaser.Scene {
         const escalaFinal = Math.min(limiteLargura / telaFeedback.width, limiteAltura / telaFeedback.height);
         telaFeedback.setScale(escalaFinal);
 
-        // Textos de pontuação em cima do painel
-        const textoMoedas = this.add.text(cx, cy + (telaFeedback.displayHeight * 0.1), `Cobasi Coins: +${moedas}`, {
-            fontFamily: '"Press Start 2P", Arial', fontSize: "16px", color: "#9be564"
+        // --- TEXTO DE PONTOS ---
+        // Fica logo abaixo da palavra "PONTOS :" desenhada na imagem
+        let posMoedasY = cy + (telaFeedback.displayHeight * 0.12);
+        this.add.text(cx-12, posMoedasY, `${moedas} Moedas`, {
+            fontFamily: '"Press Start 2P", Arial', fontSize: "22px", color: "#005e64"
+        }).setOrigin(0.5).setDepth(102);
+
+        // --- TEXTO DE TEMPO ---
+        // Fica logo abaixo da palavra "TEMPO :" desenhada na imagem
+        let posTempoY = cy + (telaFeedback.displayHeight * 0.31); 
+        this.add.text(cx-20, posTempoY, `${segundos}s`, {
+            fontFamily: '"Press Start 2P", Arial', fontSize: "22px", color: "#005e64" // Verde
         }).setOrigin(0.5).setDepth(102);
 
         // Texto piscante para orientar o clique
