@@ -12,8 +12,7 @@ import { cenaCuidado } from "./cenas/cenaCuidado.js";
 import { ficha } from "./componentes/ficha.js";
 import { cenaCarregamento } from "./cenas/cenaCarregamento.js";
 import {cenaVeterinario } from "./cenas/cenaVeterinario.js";
-import {cenaRacaoStandart } from "./cenas/cenaRacaoStandart.js";
-import {cenaRacaoSuperPremium } from "./cenas/cenaRacaoSuperPremium.js";
+import {cenaEstanteRacao} from "./cenas/cenaEstanteRacao.js";
 
 
 // Objeto global para armazenar estados do jogo
@@ -44,7 +43,8 @@ export let gameState = {
     pulga: true,
     trocar: false,
     superPremium: false,
-    standart: false
+    premium: false,
+    standard: false
 };
 
 // Configuração principal do Phaser
@@ -87,10 +87,9 @@ const config = {
         cenaPrincipal,
         HUD,
         jogoLazer,
-        cenaRacaoStandart,
         cenaLazer,
         ficha,
-        cenaRacaoSuperPremium
+        cenaEstanteRacao
     ]
 };
 

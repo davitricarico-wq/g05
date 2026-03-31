@@ -11,6 +11,16 @@ class CenaPopups extends Phaser.Scene {
     }
 
     create() {
+        // Força esta cena inteira a vir para a frente de TUDO (incluindo a HUD)
+        this.scene.bringToTop();
+
+        // Cria um overlay escuro que cobre 100% da tela para bloquear a cena principal e a HUD
+        const telaCentroX = this.scale.width / 2;
+        const telaCentroY = this.scale.height / 2;
+        
+        this.overlayEscuro = this.add.rectangle(telaCentroX, telaCentroY, this.scale.width, this.scale.height, 0x000000, 0.7)
+            .setInteractive(); // O setInteractive aqui é crucial: ele "engole" os cliques, impedindo de clicar na HUD atrás
+
         // Verifica o estado global para determinar qual interface deve ser renderizada
         if (gameState.aguardandoEvolucao) {
             this.exibirPopupEvolucao();
@@ -24,9 +34,15 @@ class CenaPopups extends Phaser.Scene {
 
             const novaLargura = this.scale.width;
             const novaAltura = this.scale.height;
-            const novaAreaUtilLargura = novaLargura * 0.8;
-            const novoCentroX = novaAreaUtilLargura / 2;
+            // Agora centralizamos na tela TODA, já que o popup cobre a HUD também
+            const novoCentroX = novaLargura / 2;
             const novoCentroY = novaAltura / 2;
+
+            // Redimensiona e centraliza o overlay escuro
+            if (this.overlayEscuro && this.overlayEscuro.active) {
+                this.overlayEscuro.setSize(novaLargura, novaAltura);
+                this.overlayEscuro.setPosition(novoCentroX, novoCentroY);
+            }
 
             // Atualiza a posição de imagens e textos ativos conforme o novo centro calculado
             if (this.imgEvolucao && this.imgEvolucao.active) this.imgEvolucao.setPosition(novoCentroX, novoCentroY);
@@ -62,8 +78,7 @@ class CenaPopups extends Phaser.Scene {
 
     // Cria a interface visual que indica a mudança de nível do animal
     exibirPopupEvolucao() {
-        const areaUtilLargura = this.scale.width * 0.8; 
-        const centroX = areaUtilLargura / 2;
+        const centroX = this.scale.width / 2; // Centralizado em 100% da tela
         const centroY = this.scale.height / 2;
 
         this.imgEvolucao = this.add.image(centroX, centroY, "conclusaoPrimeiroRound")
@@ -76,7 +91,7 @@ class CenaPopups extends Phaser.Scene {
             fill: "#ffffff"
         }).setOrigin(0.5);
 
-        // Atualiza os dados do pet para a nova fase e reinicia a cena de jogo
+        // Atualiza os dados do pet para a nova fase e avança
         this.imgEvolucao.on('pointerdown', () => {
             gameState.pets.cachorroCaramelo = false;
             gameState.pets.cachorroHeroi = true;
@@ -85,7 +100,7 @@ class CenaPopups extends Phaser.Scene {
             gameState.barras = { comida: 11, lazer: 11, limpeza: 11, saude: 11 };
             gameState.pulga = true;
 
-            // Em vez de reiniciar o jogo, destrói os elementos atuais e mostra o próximo popup
+            // Destrói os elementos atuais e mostra o próximo popup
             this.imgEvolucao.destroy();
             this.txtEvolucao.destroy();
             this.mostrarInstrucaoSegundaFase();
@@ -94,8 +109,7 @@ class CenaPopups extends Phaser.Scene {
 
     // Função que mostra a instrução da Segunda Fase
     mostrarInstrucaoSegundaFase() {
-        const areaUtilLargura = this.scale.width * 0.8;
-        const centroX = areaUtilLargura / 2;
+        const centroX = this.scale.width / 2;
         const centroY = this.scale.height / 2;
 
         this.imgInstrucaoFase2 = this.add.image(centroX, centroY, "instrucaoSegundaFase")
@@ -110,7 +124,10 @@ class CenaPopups extends Phaser.Scene {
             this.imgInstrucaoFase2.destroy();
             this.txtContinuarFase2.destroy();
             
-            // Para a cena de popups e reinicia a cena principal para recarregar com o herói
+            // Devolve a HUD para o topo antes de fechar a cena
+            this.scene.bringToTop("HUD");
+
+            // Para a cena de popups e reinicia a cena principal
             this.scene.stop();
             this.scene.get("cenaPrincipal").scene.restart();
         });
@@ -118,8 +135,7 @@ class CenaPopups extends Phaser.Scene {
 
     // Monta o container com as informações biográficas do animal ativo
     mostrarFicha() {
-        const areaUtilLargura = this.scale.width * 0.8;
-        const centroX = areaUtilLargura / 2;
+        const centroX = this.scale.width / 2;
         const centroY = this.scale.height / 2;
 
         const pet = cachorrosBase[gameState.pets.cachorroHeroi ? 1 : 0];
@@ -157,8 +173,7 @@ class CenaPopups extends Phaser.Scene {
 
     // Exibe a imagem explicativa sobre os objetivos da missão atual
     mostrarInstrucao() {
-        const areaUtilLargura = this.scale.width * 0.8;
-        const centroX = areaUtilLargura / 2;
+        const centroX = this.scale.width / 2;
         const centroY = this.scale.height / 2;
 
         this.imgInstrucao = this.add.image(centroX, centroY, "instrucaoMissao")
@@ -174,6 +189,9 @@ class CenaPopups extends Phaser.Scene {
             this.imgInstrucao.destroy();
             this.txtContinuarInstrucao.destroy();
             gameState.instrucaoMissaoVista = true;
+
+            // Devolve a HUD para o topo antes de fechar a cena
+            this.scene.bringToTop("HUD");
             this.scene.stop();
         });
     }

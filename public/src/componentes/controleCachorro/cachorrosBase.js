@@ -25,7 +25,7 @@
 // Exporta uma lista (array) base contendo os dados iniciais dos cachorros disponíveis no jogo
 export const cachorrosBase = [
   {
-    id: 5,
+    id: 2,
     nome: "Adriel",
     peso: "13 KG",
     idade: "1 ano",
@@ -34,7 +34,7 @@ export const cachorrosBase = [
     historia: "Encontrado na chuva forte"
   },
   {
-    id: 7,
+    id: 1,
     nome: "Herói",
     peso: "8 KG",
     idade: "8 ano",
