@@ -1363,11 +1363,20 @@ Eles são essenciais para garantir a qualidade do produto, identificar bugs de f
 <div align="center">
   <p>Feito pela própia equipe(2026)</p>
 </div>
-## 5.2. Testes de jogabilidade (playtests) (sprint 5)
+
+## 5.2. Testes de jogabilidade (playtests)
+
+O teste de jogabilidade é uma metodologia sistemática de avaliação qualitativa e quantitativa, conduzida durante o ciclo de desenvolvimento de um software de entretenimento. Enquanto o Controle de Qualidade (QA) foca na integridade técnica do código, o playtesting concentra-se na validação da experiência do usuário (UX) e na eficácia do game design.
+
+**Referências (Seção 7):** Unity Technologies; San Francisco: Game Developer
 
 ### 5.2.1 Registros de testes
 
-*Descreva nesta seção as sessões de teste/entrevista com diferentes jogadores. Registre cada teste conforme o template a seguir.*
+Os testes de jogabilidade são cruciais para este projeto pois funcionam como a principal ferramenta de validação do game design, garantindo que as mecânicas planejadas sejam intuitivas e divertidas para o público-alvo, e não apenas para os desenvolvedores. Ao observar a interação real de usuários externos, é possível identificar falhas na curva de aprendizado e pontos de frustração que a "cegueira do desenvolvedor" costuma ocultar, permitindo ajustes precisos no equilíbrio entre desafio e recompensa.
+
+Além do aspecto criativo, o playtesting atua como uma estratégia de mitigação de riscos e custos, detectando problemas de usabilidade e fluxo antes que recursos significativos sejam investidos em polimento ou marketing. Em última análise, ele assegura que o produto final entregue uma experiência de usuário (UX) consistente e envolvente, aumentando drasticamente as chances de retenção de jogadores e o sucesso comercial do jogo no mercado.
+
+A aplicação dos testes seguiu um padrão para cada pessoa que quis testar o jogo. Numa sala movimentada, um computador de um integrante do grupo foi disponibilizado com o jogo funcionando, tanto com mouse quanto com fones de ouvido disponíveis. Primeiro, o contexto e objetivos a serem atingidos foram apresentados ao 'tester'. Depois disso ele(a) foi instruido apenas a jogar, sem nunhuma explicação, tanto prévia, quanto se solicitada. Por fim, o usuário foi submetido a uma série de perguntas sobre a visão geral sobre o jogo e um formulário de questionamentos, semelhante ao levantamento presente a seguir. 
 
 Nome | João Jonas (use nomes fictícios)
 --- | ---
@@ -1393,9 +1402,6 @@ O que poderia melhorar no jogo? | A responsividade do personagem aos controles, 
 *Relacione também quaisquer ideias que o grupo tenha para melhorias futuras*
 
 # <a name="c7"></a>7. Referências
-
-CONSELHO ADMINISTRATIVO DE DEFESA ECONÔMICA (CADE). CADE clears merger of Petz and Cobasi. 23 jun. 2025. Disponível em: https://www.gov.br/cade/en/matters/news/cade-clears-merger-of-petz-and-cobasi
-. Acesso em: 27 fev. 2026.
 
 CONSELHO ADMINISTRATIVO DE DEFESA ECONÔMICA (CADE). CADE clears merger of Petz and Cobasi. 23 jun. 2025. Disponível em: https://www.gov.br/cade/en/matters/news/cade-clears-merger-of-petz-and-cobasi. Acesso em: 27 fev. 2026.
 
