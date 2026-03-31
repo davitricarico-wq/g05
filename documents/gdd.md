@@ -1279,7 +1279,7 @@ Realizar ajustes finais de interface (RNF6 e RNF3).
 
 # <a name="c5"></a>5. Testes
 
-## 5.1. Casos de Teste (sprints 2 a 4)
+## 5.1. Casos de Teste
 
 Um Caso de Teste (*Test Case*) é um roteiro detalhado de condições, variáveis, passos e resultados esperados, criado para verificar se uma funcionalidade específica de um software (ou jogo) está operando corretamente e cumprindo seus requisitos.
 
@@ -1288,7 +1288,7 @@ Eles são essenciais para garantir a qualidade do produto, identificar bugs de f
   <p>Quadro de casos de teste</p>
 </div>
 
-## 5.1. Casos de Teste (sprints 2 a 4)
+## 5.1. Casos de Teste
 
 Um Caso de Teste (*Test Case*) é um roteiro detalhado de condições, variáveis, passos e resultados esperados, criado para verificar se uma funcionalidade específica de um software (ou jogo) está operando corretamente e cumprindo seus requisitos.
 
@@ -1376,18 +1376,21 @@ Os testes de jogabilidade são cruciais para este projeto pois funcionam como a 
 
 Além do aspecto criativo, o playtesting atua como uma estratégia de mitigação de riscos e custos, detectando problemas de usabilidade e fluxo antes que recursos significativos sejam investidos em polimento ou marketing. Em última análise, ele assegura que o produto final entregue uma experiência de usuário (UX) consistente e envolvente, aumentando drasticamente as chances de retenção de jogadores e o sucesso comercial do jogo no mercado.
 
-A aplicação dos testes seguiu um padrão para cada pessoa que quis testar o jogo. Numa sala movimentada, um computador de um integrante do grupo foi disponibilizado com o jogo funcionando, tanto com mouse quanto com fones de ouvido disponíveis. Primeiro, o contexto e objetivos a serem atingidos foram apresentados ao 'tester'. Depois disso ele(a) foi instruido apenas a jogar, sem nunhuma explicação, tanto prévia, quanto se solicitada. Por fim, o usuário foi submetido a uma série de perguntas sobre a visão geral sobre o jogo e um formulário de questionamentos, semelhante ao levantamento presente a seguir. 
+A aplicação dos testes seguiu um padrão para cada pessoa que quis testar o jogo. Numa sala movimentada, um computador de um integrante do grupo foi disponibilizado com o jogo funcionando, tanto com mouse quanto com fones de ouvido disponíveis. Primeiro, o contexto e objetivos a serem atingidos foram apresentados ao 'tester'. Depois disso ele(a) foi instruido apenas a jogar, sem nunhuma explicação, tanto prévia, quanto se solicitada. Por fim, o usuário foi submetido a uma série de perguntas sobre a visão geral sobre o jogo e um formulário de questionamentos, semelhante ao levantamento presente a seguir. O processo de teste do jogo foi conduzido, dia 31/03/2026, por três integrantes do grupo, um contextualizando, outro gravando e outro para preencher o formulário.
 
-Nome | João Jonas (use nomes fictícios)
+Nome | Soraya
 --- | ---
-Já possuía experiência prévia com games? | sim, é um jogador casual
-Conseguiu iniciar o jogo? | sim
-Entendeu as regras e mecânicas do jogo? | entendeu as regras, mas sobre as mecânicas, apenas as essenciais, não explorou os comandos complexos
-Conseguiu progredir no jogo? | sim, sem dificuldades  
-Apresentou dificuldades? | Não, conseguiu jogar com facilidade e afirmou ser fácil
+Idade | 18 anos
+Curso | Ciência da Computação
+Tem ou já teve algum pet? | Sim, possuo
+Já possuía experiência prévia com games? | Sim, mas pouca
+Conseguiu iniciar o jogo? | Sim
+Entendeu as regras e mecânicas do jogo? | Entendeu com poucas dúvidas
+Conseguiu progredir no jogo? | Sim, mas não conseguiu concluir 
+Apresentou dificuldades? | Sim, no mini game de lazer
 Que nota deu ao jogo? | 9.0
-O que gostou no jogo? | Gostou  de como o jogo vai ficando mais difícil ao longo do tempo sem deixar de ser divertido
-O que poderia melhorar no jogo? | A responsividade do personagem aos controles, disse que havia um pouco de atraso desde o momento do comando até a resposta do personagem
+Qual mini game mais gostou? | Banho
+O que poderia melhorar no jogo? | Dificuldade e salto duplo no mini game de lazer
 
 ### 5.2.2 Melhorias
 
