@@ -16,8 +16,8 @@ Valter Lucas Garcia de Lima
 
 ## Sumário
 
-[1. Introdução](#c1)  
-<small>[1.1 Plano Estratégico do Projeto] (#c2)  
+[1. Introdução](#1-introdução)
+<small>1.1 Plano Estratégico do Projeto   
 1.1.1 Contexto da Industria  
 1.1.1.1 Modelo de 5 Forças de Porter  
 1.1.1.2 Ameaça de Novos Entrantes  
@@ -88,9 +88,9 @@ Valter Lucas Garcia de Lima
 
 <br>
 
-# <a name="c1"></a>1. Introdução
+# 1. Introdução
 
-## <a name="c2"></a>1.1. Plano Estratégico do Projeto
+## 1.1. Plano Estratégico do Projeto
 
 ### 1.1.1. Contexto da indústria 
 
