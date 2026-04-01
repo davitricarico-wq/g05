@@ -1483,7 +1483,7 @@ Após uma extensa seção de testes, a equipe levantou todos os relatos de bugs 
 14- Ajuste no balanço do rabo dos cachorros;
 14- Adicionar um temporizador em todos os mini games;
 15- Adicionar um terceiro cachorro;
-16- Adicionar informações reais dos cachorros das ONGs parceiras da Cobasi
+16- Adicionar informações reais dos cachorros das ONGs parceiras da Cobasi.
 
 
 # <a name="c6"></a>6. Conclusões e trabalhos futuros (sprint 5)
