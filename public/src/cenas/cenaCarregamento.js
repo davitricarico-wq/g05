@@ -173,6 +173,10 @@ export class cenaCarregamento extends Phaser.Scene {
             frameWidth: 626,
             frameHeight: 655
         });
+           this.load.spritesheet("cachorroJoao", "assets/cachorroJoao.png", {
+            frameWidth: 626,
+            frameHeight: 655
+        });
         this.load.spritesheet("agua", "assets/tela-banho/agua.png", {
             frameWidth: 480,
             frameHeight: 480
