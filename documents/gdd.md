@@ -1390,7 +1390,78 @@ Conseguiu progredir no jogo? | Sim, mas não conseguiu concluir
 Apresentou dificuldades? | Sim, no mini game de lazer
 Que nota deu ao jogo? | 9.0
 Qual mini game mais gostou? | Banho
-O que poderia melhorar no jogo? | Dificuldade e salto duplo no mini game de lazer
+O que poderia melhorar no jogo? | Dificuldade alta e salto duplo no mini game de lazer
+
+Nome | Anthony
+--- | ---
+Idade | 19 anos
+Curso | Engenharia de Computação
+Tem ou já teve algum pet? | Não, mas tem vontade 
+Já possuía experiência prévia com games? | Sim, muita
+Conseguiu iniciar o jogo? | Sim
+Entendeu as regras e mecânicas do jogo? | Não teve dúvidas
+Conseguiu progredir no jogo? |  Sim. Concluiu com facilidade
+Apresentou dificuldades? | Sim, no mini game de cuidados (pegar pulgas)
+Que nota deu ao jogo? | 9.0
+Qual mini game mais gostou? | Cuidados
+O que poderia melhorar no jogo? | Hitbox dos ossos e obstáculos no mini game de lazer; Hitbox da pinça no mini game de cuidados
+
+Nome | Pedro
+--- | ---
+Idade | 18 anos
+Curso | Engenharia de Computação
+Tem ou já teve algum pet? | Sim, possuo
+Já possuía experiência prévia com games? | Sim
+Conseguiu iniciar o jogo? | Sim
+Entendeu as regras e mecânicas do jogo? | Não teve dúvidas
+Conseguiu progredir no jogo? | Sim, concluiu com facilidade
+Apresentou dificuldades? | Não, nenhuma
+Que nota deu ao jogo? | 9.0
+Qual mini game mais gostou? | Lazer
+O que poderia melhorar no jogo? | Intuitividade na sequência de tarefas; Hitbox da pinça no mini game de cuidados
+
+Nome | Ludmilla
+--- | ---
+Idade | 20 anos
+Curso |  Engenharia de Software
+Tem ou já teve algum pet? | Não, mas já possuí
+Já possuía experiência prévia com games? | Sim, mas pouca
+Conseguiu iniciar o jogo? | Sim
+Entendeu as regras e mecânicas do jogo? | Entendeu com poucas dúvidas
+Conseguiu progredir no jogo? | Sim, concluiu com dificuldade 
+Apresentou dificuldades? | Sim, no jogo de lazer
+Que nota deu ao jogo? | 9.0
+Qual mini game mais gostou? | Alimentação
+O que poderia melhorar no jogo? | Intuitividade na sequência de tarefas;
+
+Nome | Vitor
+--- | ---
+Idade | 18 anos
+Curso |  Engenharia de Software
+Tem ou já teve algum pet? | Sim, possui
+Já possuía experiência prévia com games? | Sim
+Conseguiu iniciar o jogo? | Sim
+Entendeu as regras e mecânicas do jogo? | Entendeu com poucas dúvidas
+Conseguiu progredir no jogo? | Sim, concluiu com facilidade
+Apresentou dificuldades? | Sim, no jogo de lazer
+Que nota deu ao jogo? | 9.0
+Qual mini game mais gostou? | Cuidados
+O que poderia melhorar no jogo? | Hitbox dos ossos e obstáculos no mini game de lazer
+
+Nome | Henrique
+--- | ---
+Idade | 17 anos
+Curso | Ciência da Computação
+Tem ou já teve algum pet? | Sim, possui
+Já possuía experiência prévia com games? | Sim
+Conseguiu iniciar o jogo? | Sim
+Entendeu as regras e mecânicas do jogo? | Não teve dúvidas 
+Conseguiu progredir no jogo? | Sim, concluiu com facilidade
+Apresentou dificuldades? | Poucas, no jogo de lazer
+Que nota deu ao jogo? | 9.0
+Qual mini game mais gostou? | Lazer
+O que poderia melhorar no jogo? | Cores das rações
+
 
 ### 5.2.2 Melhorias
 
