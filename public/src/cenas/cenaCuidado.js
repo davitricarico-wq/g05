@@ -15,6 +15,10 @@ export class cenaCuidado extends Phaser.Scene {
         this.bonusMeioGanho = false;    
         this.pulgaSegurada = null; 
 
+        // Novas variáveis de tempo
+        this.tempoLimite = 30;
+        this.tempoRestante = 30;
+
         // Variável para saber se as instruções foram fechadas
         this.instrucoesLidas = false;
     }
@@ -44,6 +48,7 @@ export class cenaCuidado extends Phaser.Scene {
         this.bonusMeioGanho = false;
         this.pulgaSegurada = null;
         this.instrucoesLidas = false;
+        this.tempoRestante = this.tempoLimite; // Reseta o tempo para 30
 
         gameState.cobasiCoins = gameState.cobasiCoins ?? 0;
 
@@ -246,7 +251,8 @@ export class cenaCuidado extends Phaser.Scene {
     }
 
     criarTextosInfo() {
-        this.textoTempo = this.add.text(20, 30, "Tempo: 0s", {
+        // Inicializa com o tempo limite
+        this.textoTempo = this.add.text(20, 30, `Tempo: ${this.tempoLimite}s`, {
             fontFamily: '"Press Start 2P", Arial', fontSize: "20px", color: "#ffffff",
             stroke: "#000000", strokeThickness: 5
         }).setOrigin(0, 0).setDepth(50);
@@ -335,8 +341,17 @@ export class cenaCuidado extends Phaser.Scene {
 
     atualizarTextoTempo() {
         if (!this.instrucoesLidas || this.minigameFinalizado) return;
-        const segundos = Math.floor((this.time.now - this.tempoInicialMs) / 1000);
-        this.textoTempo.setText(`Tempo: ${segundos}s`);
+        
+        // Calcula a contagem regressiva
+        const segundosPassados = Math.floor((this.time.now - this.tempoInicialMs) / 1000);
+        this.tempoRestante = Math.max(0, this.tempoLimite - segundosPassados);
+        
+        this.textoTempo.setText(`Tempo: ${this.tempoRestante}s`);
+
+        // Se o tempo acabar, aciona a derrota
+        if (this.tempoRestante === 0) {
+            this.perderMinigame();
+        }
     }
 
     // ==========================================
@@ -347,8 +362,8 @@ export class cenaCuidado extends Phaser.Scene {
         this.minigameFinalizado = true;
         this.input.setDefaultCursor("default");
 
-        const segundos = Math.ceil((this.time.now - this.tempoInicialMs) / 1000);
-        const estrelas = this.calcularEstrelas(segundos);
+        // Usa o tempo que sobrou (tempoRestante) para os cálculos
+        const estrelas = this.calcularEstrelas(this.tempoRestante);
         const moedas = this.calcularMoedas(estrelas);
 
         const cachorroAtivo = gameState.pets.cachorroHeroi ? 'heroi' : 'caramelo';
@@ -358,19 +373,35 @@ export class cenaCuidado extends Phaser.Scene {
         }
 
         gameState.pulga = false;
-        this.mostrarPainelResultado(estrelas, moedas, segundos);
+        
+        // Mantém o SEU painel original
+        this.mostrarPainelResultado(estrelas, moedas, this.tempoRestante);
     }
 
-    calcularEstrelas(segundos) {
-        if (segundos <= 30) return 3; 
-        if (segundos <= 55) return 2; 
+    perderMinigame() {
+        if (this.minigameFinalizado) return;
+        this.minigameFinalizado = true;
+        this.input.setDefaultCursor("default");
+
+        // Congela as pulgas na tela
+        this.pulgas.children.iterate((pulga) => {
+            this.tweens.killTweensOf(pulga);
+        });
+
+        // Chama o SEU painel com 1 estrela, 0 moedas e 0 tempo
+        this.mostrarPainelResultado(1, 0, 0); 
+    }
+
+    calcularEstrelas(tempoRestante) {
+        if (tempoRestante >= 20) return 3; 
+        if (tempoRestante >= 10) return 2; 
         return 1; 
     }
 
     calcularMoedas(estrelas) {
         if (estrelas === 3) return 20;
         if (estrelas === 2) return 10;
-        return 0; 
+        return 0; // 1 estrela ganha 0 moedas
     }
 
     mostrarPainelResultado(estrelas, moedas, segundos) {
