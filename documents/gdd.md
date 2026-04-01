@@ -1465,7 +1465,26 @@ O que poderia melhorar no jogo? | Cores das rações
 
 ### 5.2.2 Melhorias
 
-*Descreva nesta seção um plano de melhorias sobre o jogo, com base nos resultados dos testes de jogabilidade*
+Após uma extensa seção de testes, a equipe levantou todos os relatos de bugs e sugestões para revisar rigorosamente a qualidade do jogo para o usuário. Sendo assim, as melhorias a serem aplicadas são: 
+
+1- Aprimoramento final dos sprites das rações, pinça e cachorro correndo;
+2- Aprimoramento da intuitividade na sequência de atividades a serem feitas;
+3- Aprimoramento da interface do usuário;
+4- Diminução da dificuldade do mini game de lazer;
+5- Substituição da pinça por um remédio; 
+6- Ajuste na ordem das barras de status;
+7- Ajuste na ordem da mecânica de limpeza do cachorro;
+8- Ajuste dos pop-up's de feedback;
+9- Ajuste da intuitividade da sequência de tarefas para o usuário;
+10- Ajuste da distribuição das rações (Standard, Premium, Super Premium) em uma cena;
+11- Ajuste no sprite presente o mini game de alimentação (adicionar o mesmo que é comprado)
+12- Ajuste nas hitboxes do cachorro, ossos e obstáculos no mini game de lazer
+13- Ajuste na posição dos ossos no mini game de lazer;
+14- Ajuste no balanço do rabo dos cachorros;
+14- Adicionar um temporizador em todos os mini games;
+15- Adicionar um terceiro cachorro;
+16- Adicionar informações reais dos cachorros das ONGs parceiras da Cobasi
+
 
 # <a name="c6"></a>6. Conclusões e trabalhos futuros (sprint 5)
 
