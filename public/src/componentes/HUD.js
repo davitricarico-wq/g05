@@ -40,20 +40,20 @@ export class HUD extends Phaser.Scene {
             .setScale(this.scale.height*0.0013);
 
         // Cria os icones e as barras de status do pet
-        this.iconeFome = this.add.image(this.scale.width*0.05, this.scale.height*0.08, "iconeFome").setScale(this.scale.height*0.002);
-        this.barraComida = new Barra(this, this.scale.width*0.15, this.scale.height*0.08, gameState.barras.comida);
+        this.iconeFome = this.add.image(this.scale.width*0.05, this.scale.height*0.16, "iconeFome").setScale(this.scale.height*0.002);
+        this.barraComida = new Barra(this, this.scale.width*0.15, this.scale.height*0.16, gameState.barras.comida);
         this.barraComida.sprite.setScale(this.scale.height*0.002);
 
-        this.iconeFelicidade = this.add.image(this.scale.width*0.05, this.scale.height*0.16, "iconeFelicidade").setScale(this.scale.height*0.002);
-        this.barraLazer = new Barra(this, this.scale.width*0.15, this.scale.height*0.16, gameState.barras.lazer);
+        this.iconeFelicidade = this.add.image(this.scale.width*0.05, this.scale.height*0.32, "iconeFelicidade").setScale(this.scale.height*0.002);
+        this.barraLazer = new Barra(this, this.scale.width*0.15, this.scale.height*0.32, gameState.barras.lazer);
         this.barraLazer.sprite.setScale(this.scale.height*0.002);
 
-        this.iconeSujeira = this.add.image(this.scale.width*0.05, this.scale.height*0.24, "iconeSujeira").setScale(this.scale.height*0.002);
-        this.barraLimpeza = new Barra(this, this.scale.width*0.15, this.scale.height*0.24, gameState.barras.limpeza);
+        this.iconeSujeira = this.add.image(this.scale.width*0.05, this.scale.height*0.08, "iconeSujeira").setScale(this.scale.height*0.002);
+        this.barraLimpeza = new Barra(this, this.scale.width*0.15, this.scale.height*0.08, gameState.barras.limpeza);
         this.barraLimpeza.sprite.setScale(this.scale.height*0.002);
 
-        this.iconeSaude = this.add.image(this.scale.width*0.05, this.scale.height*0.32, "iconeSaude").setScale(this.scale.height*0.002);
-        this.barraSaude = new Barra(this, this.scale.width*0.15, this.scale.height*0.32, gameState.barras.saude);
+        this.iconeSaude = this.add.image(this.scale.width*0.05, this.scale.height*0.24, "iconeSaude").setScale(this.scale.height*0.002);
+        this.barraSaude = new Barra(this, this.scale.width*0.15, this.scale.height*0.24, gameState.barras.saude);
         this.barraSaude.sprite.setScale(this.scale.height*0.002);
 
         // Cria o fundo branco do painel lateral
