@@ -26,7 +26,7 @@ export class cenaBanho extends Phaser.Scene {
         this.cachorro = null;
 
         // Variáveis para o timer e controle da partida
-        this.tempoInicioMs = 0;
+        this.tempoDecorridoMs = 0;
         this.tempoDecorrido = 0;
         this.banhoEmAndamento = false;
         this.banhoFinalizado = false;
@@ -188,7 +188,9 @@ export class cenaBanho extends Phaser.Scene {
 
         // Função de inicio para o timer
         this.iniciarPartida = () => {
-            this.tempoInicioMs = this.time.now;
+            this.tempoDecorridoMs = 0;
+            this.tempoDecorrido = 0;
+            this.textoTempo.setText('Tempo: 0s');
             this.banhoEmAndamento = true;
         };
 
@@ -203,7 +205,9 @@ export class cenaBanho extends Phaser.Scene {
         if (this.banhoFinalizado) return;
 
         if (this.banhoEmAndamento) {
-            this.tempoDecorrido = Math.floor((this.time.now - this.tempoInicioMs) / 1000);
+            // Acumula o tempo isolado da cena
+            this.tempoDecorridoMs += delta; 
+            this.tempoDecorrido = Math.floor(this.tempoDecorridoMs / 1000);
             this.textoTempo.setText(`Tempo: ${this.tempoDecorrido}s`);
         }
 
@@ -529,8 +533,7 @@ export class cenaBanho extends Phaser.Scene {
         this.tweens.add({ targets: textoContinuar, alpha: 0.5, duration: 600, yoyo: true, loop: -1 });
 
         const voltarCena = () => {
-            // Ajuste aqui para o nome da sua cena principal (ou tela de banho estática)
-            this.scene.start("cenaBanho"); 
+            this.scene.restart(); 
         };
 
         fundoFeedback.on('pointerdown', voltarCena);
