@@ -156,7 +156,7 @@ class CenaPopups extends Phaser.Scene {
             this.add.text(-220, 0, `Idade: ${pet.idade}`, estiloPixel).setOrigin(0, 0.5),
             this.add.text(-220, 40, `Porte: ${pet.porte}`, estiloPixel).setOrigin(0, 0.5),
             this.add.text(-220, 80, `Estado: ${pet.estado}`, estiloPixel).setOrigin(0, 0.5),
-            this.add.text(-220, 120, `Historia: ${pet.historia}`, { ...estiloPixel, align: "left", wordWrap: { width: 420 } }).setOrigin(0, 0)
+            this.add.text(-220, 120, `História: ${pet.historia}`, { ...estiloPixel, align: "left", wordWrap: { width: 420 } }).setOrigin(0, 0)
         ]);
 
         this.txtContinuarFicha = this.add.text(centroX, centroY + 200, "[ Clique para continuar ]", {
