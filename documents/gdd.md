@@ -1367,15 +1367,6 @@ Eles são essenciais para garantir a qualidade do produto, identificar bugs de f
   <p>Quadro de casos de teste</p>
 </div>
 
-## 5.1. Casos de Teste 
-
-Um Caso de Teste (*Test Case*) é um roteiro detalhado de condições, variáveis, passos e resultados esperados, criado para verificar se uma funcionalidade específica de um software (ou jogo) está operando corretamente e cumprindo seus requisitos.
-
-Eles são essenciais para garantir a qualidade do produto, identificar bugs de forma sistemática antes do lançamento e documentar o comportamento esperado do sistema.
-<div align="center">
-  <p>Quadro de casos de teste</p>
-</div>
-
 | Pré-condição | Descrição do teste | Condição esperada |
 | :--- | :---: | ---: |
 | Jogo deve apresentar a tela na proporção correta | Abrir o jogo no navegador | O jogo apresenta os elementos visuais enquadrados na tela |
