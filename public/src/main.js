@@ -34,7 +34,8 @@ export let gameState = {
     },
     pets: {
         cachorroCaramelo: true,
-        cachorroHeroi: false
+        cachorroHeroi: false,
+        cachorroJoao: false
     },
     // --- NOVAS VARIÁVEIS ---
     progressoCachorro: 0, // 0 = Caramelo, 1 = Herói

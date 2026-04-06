@@ -69,12 +69,44 @@ export class GerenciadorCachorros {
         this.scene.scene.start("cenaPrincipal");
     }
   }
+   mudarParaCachorroJoao() {
+    // Desativa o Caramelo e ativa o Herói nas variáveis globais
+    gameState.pets.cachorroCaramelo = false
+    gameState.pets.cachorroHeroi = false
+    gameState.pets.cachorroJoao = true
+    gameState.trocar = true
+    
+    // Enche todas as barras de necessidades de volta para o limite (11) para um novo desafio
+    gameState.barras.comida = 0
+    gameState.barras.lazer = 11
+    gameState.barras.limpeza = 0
+    gameState.barras.saude = 0
+
+    // Adiciona uma dificuldade extra: este cachorro vem com pulgas
+    gameState.pulga = false
+    
+    // Atualiza o cachorro visualmente na tela, se ele já existir
+    if (this.cachorroAtual) {
+      // Pega os dados do Herói lá do arquivo base (ele é o índice 1 da lista)
+      this.cachorroAtual.dados = { ...cachorrosBase[2] }
+      
+      // Muda a imagem do cachorro antigo para a imagem do Herói
+      this.cachorroAtual.mudarSprite("cachorroJoao")
+      
+      // Força o cachorro novo a começar sujo
+      this.cachorroAtual.dados.estado = "limpo"
+      
+      // Toca a animação correspondente ao estado "sujo" do novo sprite
+      this.cachorroAtual.atualizarAnimacao()
+    }
+  }
 
   // Faz a transição completa para jogar com o cachorro resgatado "Herói"
   mudarParaCachorroHeroi() {
     // Desativa o Caramelo e ativa o Herói nas variáveis globais
     gameState.pets.cachorroCaramelo = false
     gameState.pets.cachorroHeroi = true
+    gameState.pets.cachorroJoao = false
     gameState.trocar = true
     
     // Enche todas as barras de necessidades de volta para o limite (11) para um novo desafio
@@ -107,6 +139,7 @@ export class GerenciadorCachorros {
     // Ativa o Caramelo e desativa o Herói nas variáveis globais
     gameState.pets.cachorroCaramelo = true
     gameState.pets.cachorroHeroi = false
+    gameState.pets.cachorroJoao = false
     
     // Atualiza o cachorro visualmente na tela, se ele já existir
     if (this.cachorroAtual) {

@@ -41,5 +41,14 @@ export const cachorrosBase = [
     porte: "Pequeno",
     estado: "Sujo",//estado que é modificado apos o banho
     historia: "Ele foi achado sem um olho na rua"
+  },
+  {
+    id: 2,
+    nome: "João",
+    peso: "17 KG",
+    idade: "12 anos",
+    porte: "Médio",
+    estado: "Limpo",
+    historia: "Abandonado devido o problema financeiro do antigo dono"
   }
 ]
