@@ -55,7 +55,8 @@ export class jogoAlimentacao extends Phaser.Scene {
         this.fundo = this.add.image(this.larguraTela / 2, this.alturaTela / 2, 'bgFoodScene')
             .setDisplaySize(this.larguraTela, this.alturaTela).setDepth(-1);
 
-        this.jogador = this.physics.add.sprite(this.larguraTela / 2, this.chaoY, gameState.pets.cachorroHeroi ? 'cachorroHeroiBoca' : 'dogPlayer');
+        const bocaAtiva = gameState.pets.cachorroJoao ? 'cachorroJoaoBoca' : (gameState.pets.cachorroHeroi ? 'cachorroHeroiBoca' : 'dogPlayer');
+        this.jogador = this.physics.add.sprite(this.larguraTela / 2, this.chaoY, bocaAtiva);
         
         this.jogador.setCollideWorldBounds(true);
         this.jogador.body.allowGravity = true;
@@ -359,7 +360,7 @@ export class jogoAlimentacao extends Phaser.Scene {
         const estrelas = this.calcularEstrelas(this.vidas);
         const moedas = this.calcularMoedas(estrelas);
 
-        const cachorroAtivo = gameState.pets.cachorroHeroi ? 'heroi' : 'caramelo';
+        const cachorroAtivo = gameState.pets.cachorroJoao ? 'joao' : (gameState.pets.cachorroHeroi ? 'heroi' : 'caramelo');
         
         if (!gameState.recompensas.alimentacao[cachorroAtivo]) {
             gameState.cobasiCoins += moedas;

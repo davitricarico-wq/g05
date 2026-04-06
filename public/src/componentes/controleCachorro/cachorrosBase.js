@@ -43,12 +43,12 @@ export const cachorrosBase = [
     historia: "Ele foi achado sem um olho na rua"
   },
   {
-    id: 2,
+    id: 3,
     nome: "João",
     peso: "17 KG",
     idade: "12 anos",
     porte: "Médio",
-    estado: "Limpo",
+    estado: "Sujo",
     historia: "Abandonado devido o problema financeiro do antigo dono"
   }
 ]

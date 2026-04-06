@@ -35,7 +35,7 @@ export class cenaEstanteRacao extends Phaser.Scene {
         const centroDireitaX = largura * 0.70;
 
         // determinando o mascote ativo com base no estado global da aplicação
-        const petAtivo = gameState.pets.cachorroHeroi ? cachorrosBase[1] : cachorrosBase[0];
+        const petAtivo = gameState.pets.cachorroJoao ? cachorrosBase[2] : (gameState.pets.cachorroHeroi ? cachorrosBase[1] : cachorrosBase[0]);
         const pet = petAtivo;
 
         // interrompendo a execução da cena de interface de usuário e redefinindo o estado de transição

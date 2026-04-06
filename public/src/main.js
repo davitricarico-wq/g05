@@ -27,10 +27,10 @@ export let gameState = {
     },
     cobasiCoins: 20,
     recompensas: {
-        banho: {caramelo: false, heroi: false},
-        lazer: {caramelo: false, heroi: false},
-        cuidado: {caramelo: false, heroi: false},
-        alimentacao: {caramelo: false, heroi: false}
+        banho: {caramelo: false, heroi: false, joao: false},
+        lazer: {caramelo: false, heroi: false, joao: false},
+        cuidado: {caramelo: false, heroi: false, joao: false},
+        alimentacao: {caramelo: false, heroi: false, joao: false}
     },
     pets: {
         cachorroCaramelo: true,
@@ -38,7 +38,7 @@ export let gameState = {
         cachorroJoao: false
     },
     // --- NOVAS VARIÁVEIS ---
-    progressoCachorro: 0, // 0 = Caramelo, 1 = Herói
+    progressoCachorro: 0, // 0 = Caramelo, 1 = Herói, 2 = João
     aguardandoEvolucao: false, 
     // -----------------------
     pulga: true,

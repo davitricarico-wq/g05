@@ -49,7 +49,8 @@ export class cenaVeterinario extends Phaser.Scene {
 
         // Instancia o gerenciador e cria o cachorro na tela
         this.gerenciadorCachorros = new GerenciadorCachorros(this);
-        this.cachorro = this.gerenciadorCachorros.criarCachorro(0, 0, cachorrosBase[0]);
+        const indiceAtivo = gameState.pets.cachorroJoao ? 2 : (gameState.pets.cachorroHeroi ? 1 : 0)
+        this.cachorro = this.gerenciadorCachorros.criarCachorro(0, 0, cachorrosBase[indiceAtivo]);
 
         // Adiciona fisica ao cachorro sem gravidade e travado no lugar para nao se mover
         this.physics.add.existing(this.cachorro.sprite);

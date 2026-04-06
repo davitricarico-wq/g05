@@ -234,8 +234,8 @@ export class HUD extends Phaser.Scene {
             gameState.barras.limpeza <= 0 &&
             gameState.barras.saude <= 0
 
-        // Forca o retorno para a tela principal caso as barras zerassem jogando com o Caramelo
-        if (barrasZero && gameState.pets.cachorroCaramelo === true && !this.transicao) {
+        // Forca o retorno para a tela principal caso as barras zerassem jogando com Caramelo ou Herói
+        if (barrasZero && gameState.progressoCachorro < 2 && !this.transicao) {
             this.transicionarPara("cenaPrincipal")
         }
     }

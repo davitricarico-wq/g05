@@ -70,15 +70,15 @@ export class jogoLazer extends Phaser.Scene {
         this.cameras.main.setBounds(0, 0, 8000, altura);
 
         // Define o sprite do cachorro com base na evolução (Heroi ou Caramelo)
-        const spriteCorrendo = gameState.pets.cachorroHeroi ? 'cachorroHeroiCorrendo' : 'cachorroCorrendo'; 
+        const spriteCorrendo = gameState.pets.cachorroJoao ? 'cachorroJoaoCorrendo' : (gameState.pets.cachorroHeroi ? 'cachorroHeroiCorrendo' : 'cachorroCorrendo'); 
 
         // Cria o sprite do jogador e ajusta sua caixa de colisão (hitbox)
         this.cachorro = this.physics.add.sprite(largura * 0.15, alturaDoChao - 200, spriteCorrendo);
         this.cachorro.setCollideWorldBounds(true);
         
         // --- MUDANÇA DA ESCALA ---
-        // Define a escala base dependendo do pet (ex: 0.6 para herói, 0.4 para caramelo)
-        this.escalaBase = gameState.pets.cachorroHeroi ? 0.3 : 0.5;
+        // Define a escala base dependendo do pet
+        this.escalaBase = gameState.pets.cachorroJoao ? 0.3 : (gameState.pets.cachorroHeroi ? 0.3 : 0.5);
         this.cachorro.setScale(this.escalaBase); 
         // -------------------------
 
@@ -459,7 +459,7 @@ export class jogoLazer extends Phaser.Scene {
         const moedas = this.calcularMoedas(estrelas);
         const reducaoLazer = this.calcularLazer(estrelas);
 
-        const cachorroAtivo = gameState.pets.cachorroHeroi ? 'heroi' : 'caramelo';
+        const cachorroAtivo = gameState.pets.cachorroJoao ? 'joao' : (gameState.pets.cachorroHeroi ? 'heroi' : 'caramelo');
         if (!gameState.recompensas.lazer[cachorroAtivo]) {
             gameState.cobasiCoins += moedas;
             gameState.recompensas.lazer[cachorroAtivo] = true;

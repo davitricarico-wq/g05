@@ -53,6 +53,7 @@ export class cenaCarregamento extends Phaser.Scene {
         this.load.image("pulga1", "assets/tela-cuidado/pulga1.png");
         this.load.image("bandeja", "assets/tela-cuidado/bandeja.png");
         this.load.image("bgCuidadoHeroi", "assets/bgCuidadoHeroi.png");//fundo do pelo do segundo animal
+        this.load.image("bgCuidadoJoao", "assets/bgCuidadoJoao.png");//fundo do pelo do terceiro animal
         this.load.image("bgVeterinario", "assets/tela-veterinario/bgVeterinario.png");
         this.load.image("lupa", "assets/tela-veterinario/lupa.png");
 
@@ -86,6 +87,7 @@ export class cenaCarregamento extends Phaser.Scene {
         this.load.image('heart', 'assets/heart.png');//vida 
         this.load.image('retornoInicio', 'assets/retornoInicio.png');
         this.load.image("cachorroHeroiBoca", "assets/cachorroHeroiBoca.png");//sprite do segundo cachorro
+        this.load.image("cachorroJoaoBoca", "assets/cachorroJoaoBoca.png");//sprite do terceiro cachorro
     
         //Cenas banheiro
         this.load.image("bgLimpo", "assets/bgLimpo.png");
@@ -142,6 +144,7 @@ export class cenaCarregamento extends Phaser.Scene {
         //Cenas de instrução e Como Jogar
         this.load.image("instrucaoDescricaoBanho", "assets/feedback/instrucaoBanho.png");
         this.load.image("conclusaoPrimeiroRound", "assets/feedback/conclusaoPrimeiroRound.png");
+        this.load.image("instrucaoSegundoRound", "assets/feedback/instrucaoSegundoRound.png");
         this.load.image("instrucaoDescricaoRacao", "assets/feedback/instrucaoDescricaoRacao.png");
         this.load.image("instrucaoLazer", "assets/feedback/instrucaoLazer.png");
         this.load.image("instrucaoBanho", "assets/feedback/instrucaoBanho.png");
@@ -186,6 +189,10 @@ export class cenaCarregamento extends Phaser.Scene {
             frameHeight: 280 
         });
         this.load.spritesheet("cachorroHeroiCorrendo", "assets/cachorroHeroiCorrendo.png", {
+            frameWidth: 640,
+            frameHeight: 402 
+        });
+        this.load.spritesheet("cachorroJoaoCorrendo", "assets/cachorroJoaoCorrendo.png", {
             frameWidth: 640,
             frameHeight: 402 
         });
