@@ -94,15 +94,16 @@ class CenaPopups extends Phaser.Scene {
         // Atualiza os dados do pet para a nova fase e avança
         this.imgEvolucao.on('pointerdown', () => {
             gameState.aguardandoEvolucao = false;
-            gameState.barras = { comida: 11, lazer: 11, limpeza: 11, saude: 11 };
             gameState.pulga = true;
 
             if (gameState.progressoCachorro === 0) {
+                gameState.barras = { comida: 11, lazer: 11, limpeza: 11, saude: 11 };
                 gameState.pets.cachorroCaramelo = false;
                 gameState.pets.cachorroHeroi = true;
                 gameState.pets.cachorroJoao = false;
                 gameState.progressoCachorro = 1;
             } else if (gameState.progressoCachorro === 1) {
+                gameState.barras = { comida: 11, lazer: 0, limpeza: 11, saude: 11 };
                 gameState.pets.cachorroCaramelo = false;
                 gameState.pets.cachorroHeroi = false;
                 gameState.pets.cachorroJoao = true;
