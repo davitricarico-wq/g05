@@ -157,8 +157,9 @@ export class cenaComida extends Phaser.Scene {
         // Configuração do Pet e Parasitas (Pulgas)
         this.gerenciadorCachorros = new GerenciadorCachorros(this)
 
+        const indiceAtivo = gameState.pets.cachorroJoao ? 2 : (gameState.pets.cachorroHeroi ? 1 : 0)
         // Instancia o cachorro (posição 0,0 relativa ao container pai)
-        this.cachorro = this.gerenciadorCachorros.criarCachorro(0, 0, cachorrosBase[0])
+        this.cachorro = this.gerenciadorCachorros.criarCachorro(0, 0, cachorrosBase[indiceAtivo])
         const elementosContainer = [this.cachorro.sprite];
 
         // Registro global da animação das pulgas (se não houver no cache)
@@ -264,7 +265,8 @@ export class cenaComida extends Phaser.Scene {
 
         // Sincronização: troca o pet exibido se houver comando no estado global
         if (gameState.trocar) {
-            this.gerenciadorCachorros.mudarParaCachorroHeroi()
+            this.gerenciadorCachorros.mudarParaCachorroAtivo()
+            gameState.trocar = false
         }
     }
 

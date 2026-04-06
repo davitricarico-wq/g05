@@ -93,12 +93,22 @@ class CenaPopups extends Phaser.Scene {
 
         // Atualiza os dados do pet para a nova fase e avança
         this.imgEvolucao.on('pointerdown', () => {
-            gameState.pets.cachorroCaramelo = false;
-            gameState.pets.cachorroHeroi = true;
-            gameState.progressoCachorro = 1;
             gameState.aguardandoEvolucao = false;
-            gameState.barras = { comida: 11, lazer: 11, limpeza: 11, saude: 11 };
             gameState.pulga = true;
+
+            if (gameState.progressoCachorro === 0) {
+                gameState.barras = { comida: 11, lazer: 11, limpeza: 11, saude: 11 };
+                gameState.pets.cachorroCaramelo = false;
+                gameState.pets.cachorroHeroi = true;
+                gameState.pets.cachorroJoao = false;
+                gameState.progressoCachorro = 1;
+            } else if (gameState.progressoCachorro === 1) {
+                gameState.barras = { comida: 11, lazer: 0, limpeza: 11, saude: 11 };
+                gameState.pets.cachorroCaramelo = false;
+                gameState.pets.cachorroHeroi = false;
+                gameState.pets.cachorroJoao = true;
+                gameState.progressoCachorro = 2;
+            }
 
             // Destrói os elementos atuais e mostra o próximo popup
             this.imgEvolucao.destroy();
@@ -138,7 +148,7 @@ class CenaPopups extends Phaser.Scene {
         const centroX = this.scale.width / 2;
         const centroY = this.scale.height / 2;
 
-        const pet = cachorrosBase[gameState.pets.cachorroHeroi ? 1 : 0];
+        const pet = cachorrosBase[gameState.pets.cachorroJoao ? 2 : (gameState.pets.cachorroHeroi ? 1 : 0)];
         
         this.containerFicha = this.add.container(centroX, centroY)
             .setSize(500, 350) 
@@ -246,7 +256,7 @@ export class cenaPrincipal extends Phaser.Scene {
 
         // Instancia o cachorro dinamicamente conforme o índice ativo no estado do jogo
         this.gerenciadorCachorros = new GerenciadorCachorros(this)
-        const indiceAtivo = gameState.pets.cachorroHeroi ? 1 : 0
+        const indiceAtivo = gameState.pets.cachorroJoao ? 2 : (gameState.pets.cachorroHeroi ? 1 : 0)
         this.cachorro = this.gerenciadorCachorros.criarCachorro(0, 0, cachorrosBase[indiceAtivo])
 
         // Criação e configuração da animação cíclica das pulgas

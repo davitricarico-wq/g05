@@ -24,8 +24,8 @@ export class GerenciadorCachorros {
 
   // Cria um novo cachorro, define as configurações dele e coloca na tela
   criarCachorro(x, y, dados) {
-    // Confere no estado global se o pet ativo deve ser o Herói; se não for, usa o Caramelo
-    const petAtivo = gameState.pets.cachorroHeroi ? "cachorroHeroi" : "cachorroCaramelo"
+    // Seleciona o sprite ativo de acordo com o pet atual no estado do jogo
+    const petAtivo = this.getSpriteKeyAtivo()
     
     // Instancia o objeto do cachorro usando a classe importada, passando as coordenadas e dados
     const cachorro = new Cachorro(this.scene, x, y, petAtivo, dados)
@@ -38,6 +38,35 @@ export class GerenciadorCachorros {
     
     // Retorna o objeto criado caso alguma outra parte do código precise usá-lo imediatamente
     return cachorro
+  }
+
+  getIndiceCachorroAtivo() {
+    if (gameState.pets.cachorroJoao) return 2
+    if (gameState.pets.cachorroHeroi) return 1
+    return 0
+  }
+
+  getSpriteKeyAtivo() {
+    if (gameState.pets.cachorroJoao) return "cachorroJoao"
+    if (gameState.pets.cachorroHeroi) return "cachorroHeroi"
+    return "cachorroCaramelo"
+  }
+
+  getPetChaveAtiva() {
+    if (gameState.pets.cachorroJoao) return "joao"
+    if (gameState.pets.cachorroHeroi) return "heroi"
+    return "caramelo"
+  }
+
+  mudarParaCachorroAtivo() {
+    if (!this.cachorroAtual) return
+    const indice = this.getIndiceCachorroAtivo()
+    const spriteKey = this.getSpriteKeyAtivo()
+
+    this.cachorroAtual.dados = { ...cachorrosBase[indice] }
+    this.cachorroAtual.mudarSprite(spriteKey)
+    this.cachorroAtual.dados.estado = "sujo"
+    this.cachorroAtual.atualizarAnimacao()
   }
 
   // Procura um cachorro específico usando o ID dele e muda o seu estado visual (sujo, feliz, etc.)
@@ -60,8 +89,8 @@ export class GerenciadorCachorros {
       gameState.barras.limpeza <= 0 &&
       gameState.barras.saude <= 0;
 
-    // Se as necessidades foram atendidas e o cachorro ainda está no nível inicial de progresso
-    if (barrasZero && gameState.progressoCachorro === 0) {
+    // Se as necessidades foram atendidas e o cachorro está nas fases 0 ou 1, ativa a evolução
+    if (barrasZero && gameState.progressoCachorro <= 1) {
         // Avisa o jogo inteiro que o cachorro está pronto para ser evoluído/adotado
         gameState.aguardandoEvolucao = true;
         
@@ -69,58 +98,55 @@ export class GerenciadorCachorros {
         this.scene.scene.start("cenaPrincipal");
     }
   }
+   mudarParaCachorroJoao() {
+    gameState.pets.cachorroCaramelo = false
+    gameState.pets.cachorroHeroi = false
+    gameState.pets.cachorroJoao = true
+    gameState.trocar = true
+    gameState.progressoCachorro = 2
+    
+    gameState.barras.comida = 0
+    gameState.barras.lazer = 11
+    gameState.barras.limpeza = 0
+    gameState.barras.saude = 0
+
+    // Adiciona uma dificuldade extra: este cachorro vem com pulgas
+    gameState.pulga = true
+    
+    if (this.cachorroAtual) {
+      this.mudarParaCachorroAtivo()
+    }
+  }
 
   // Faz a transição completa para jogar com o cachorro resgatado "Herói"
   mudarParaCachorroHeroi() {
-    // Desativa o Caramelo e ativa o Herói nas variáveis globais
     gameState.pets.cachorroCaramelo = false
     gameState.pets.cachorroHeroi = true
+    gameState.pets.cachorroJoao = false
     gameState.trocar = true
+    gameState.progressoCachorro = 1
     
-    // Enche todas as barras de necessidades de volta para o limite (11) para um novo desafio
     gameState.barras.comida = 11
     gameState.barras.lazer = 11
     gameState.barras.limpeza = 11
     gameState.barras.saude = 11
 
-    // Adiciona uma dificuldade extra: este cachorro vem com pulgas
     gameState.pulga = true
     
-    // Atualiza o cachorro visualmente na tela, se ele já existir
     if (this.cachorroAtual) {
-      // Pega os dados do Herói lá do arquivo base (ele é o índice 1 da lista)
-      this.cachorroAtual.dados = { ...cachorrosBase[1] }
-      
-      // Muda a imagem do cachorro antigo para a imagem do Herói
-      this.cachorroAtual.mudarSprite("cachorroHeroi")
-      
-      // Força o cachorro novo a começar sujo
-      this.cachorroAtual.dados.estado = "sujo"
-      
-      // Toca a animação correspondente ao estado "sujo" do novo sprite
-      this.cachorroAtual.atualizarAnimacao()
+      this.mudarParaCachorroAtivo()
     }
   }
 
   // Faz a transição inversa, devolvendo o jogo para o cachorro padrão "Caramelo"
   mudarParaCachorroCaramelo() {
-    // Ativa o Caramelo e desativa o Herói nas variáveis globais
     gameState.pets.cachorroCaramelo = true
     gameState.pets.cachorroHeroi = false
+    gameState.pets.cachorroJoao = false
+    gameState.progressoCachorro = 0
     
-    // Atualiza o cachorro visualmente na tela, se ele já existir
     if (this.cachorroAtual) {
-      // Pega os dados do Caramelo do arquivo base (ele é o índice 0 da lista)
-      this.cachorroAtual.dados = { ...cachorrosBase[0] }
-      
-      // Muda a imagem do cachorro para o sprite do Caramelo
-      this.cachorroAtual.mudarSprite("cachorroCaramelo")
-      
-      // Força o cachorro a voltar ao estado "sujo"
-      this.cachorroAtual.dados.estado = "sujo"
-      
-      // Toca a animação correta para o novo visual
-      this.cachorroAtual.atualizarAnimacao()
+      this.mudarParaCachorroAtivo()
     }
   }
 }
