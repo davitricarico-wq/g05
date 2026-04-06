@@ -190,8 +190,8 @@ export class cenaCarregamento extends Phaser.Scene {
             frameHeight: 280 
         });
         this.load.spritesheet("cachorroHeroiCorrendo", "assets/cachorroHeroiCorrendo.png", {
-            frameWidth: 920,
-            frameHeight: 1080 
+            frameWidth: 1202,
+            frameHeight: 1087 
         });
         this.load.spritesheet("cachorroJoaoCorrendo", "assets/cachorroJoaoCorrendo.png", {
             frameWidth: 338,

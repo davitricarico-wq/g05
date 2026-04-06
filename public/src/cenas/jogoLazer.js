@@ -78,7 +78,7 @@ export class jogoLazer extends Phaser.Scene {
         
         // --- MUDANÇA DA ESCALA ---
         // Define a escala base dependendo do pet
-        this.escalaBase = gameState.pets.cachorroJoao ? 0.3 : (gameState.pets.cachorroHeroi ? 0.3 : 0.5);
+        this.escalaBase = gameState.pets.cachorroJoao ? 0.3 : (gameState.pets.cachorroHeroi ? 0.2 : 0.5);
         this.cachorro.setScale(this.escalaBase); 
         // -------------------------
 
