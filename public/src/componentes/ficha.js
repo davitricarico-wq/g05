@@ -17,12 +17,12 @@ export class ficha extends Phaser.Scene {
         // Cria uma variável vazia para armazenar as informações do cachorro atual
         let pet;
         
-        // Verifica no estado global do jogo se o pet ativo no momento é o Herói
-        if (gameState.pets.cachorroHeroi) {
-            // Se for o Herói, pega os dados dele (posição 1 na nossa lista base)
+        // Verifica no estado global do jogo qual pet está ativo
+        if (gameState.pets.cachorroJoao) {
+            pet = cachorrosBase[2];
+        } else if (gameState.pets.cachorroHeroi) {
             pet = cachorrosBase[1];
         } else {
-            // Se não for o Herói, pega os dados do cachorro padrão, o Caramelo (posição 0)
             pet = cachorrosBase[0];
         }
 

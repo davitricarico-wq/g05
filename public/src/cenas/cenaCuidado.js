@@ -32,7 +32,7 @@ export class cenaCuidado extends Phaser.Scene {
         const altura = this.scale.height;
 
         // --- MUDANÇA AQUI: Define o background com base no cachorro ativo ---
-        const bgAtivo = gameState.pets.cachorroHeroi ? "bgCuidadoHeroi" : "bgCuidado";
+        const bgAtivo = gameState.pets.cachorroJoao ? "bgCuidadoJoao" : (gameState.pets.cachorroHeroi ? "bgCuidadoHeroi" : "bgCuidado");
 
         // Fundo
         this.fundo = this.add.image(largura / 2, altura / 2, bgAtivo)
@@ -366,7 +366,7 @@ export class cenaCuidado extends Phaser.Scene {
         const estrelas = this.calcularEstrelas(this.tempoRestante);
         const moedas = this.calcularMoedas(estrelas);
 
-        const cachorroAtivo = gameState.pets.cachorroHeroi ? 'heroi' : 'caramelo';
+        const cachorroAtivo = gameState.pets.cachorroJoao ? 'joao' : (gameState.pets.cachorroHeroi ? 'heroi' : 'caramelo');
         if (!gameState.recompensas.cuidado[cachorroAtivo]) {
             gameState.cobasiCoins += moedas;
             gameState.recompensas.cuidado[cachorroAtivo] = true;

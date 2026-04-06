@@ -40,7 +40,7 @@ export class cenaBanho extends Phaser.Scene {
         }
         this.scene.bringToTop("HUD");
 
-        const indiceAtivo = gameState.pets.cachorroHeroi ? 1 : 0;
+        const indiceAtivo = gameState.pets.cachorroJoao ? 2 : (gameState.pets.cachorroHeroi ? 1 : 0);
         this.estadoCachorro = cachorrosBase[indiceAtivo]?.estado || "sujo";
         
         if (this.estadoCachorro !== "limpo") this.estadoCachorro = "sujo"; 
@@ -469,7 +469,7 @@ export class cenaBanho extends Phaser.Scene {
         if (estrelas === 3) moedas = 20;
         else if (estrelas === 2) moedas = 10;
 
-        const cachorroAtivo = gameState.pets.cachorroHeroi ? 'heroi' : 'caramelo';
+        const cachorroAtivo = gameState.pets.cachorroJoao ? 'joao' : (gameState.pets.cachorroHeroi ? 'heroi' : 'caramelo');
         if (!gameState.recompensas.banho[cachorroAtivo]) { 
             gameState.cobasiCoins += moedas; 
             gameState.recompensas.banho[cachorroAtivo] = true; 
