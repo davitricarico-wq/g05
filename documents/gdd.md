@@ -41,7 +41,7 @@ Valter Lucas Garcia de Lima
 [2.1 Objetivos do Jogo](#21-objetivos-do-jogo)  
 [2.2 Características do Jogo](#22-características-do-jogo)  
 [2.2.1 Gênero do Jogo](#221-gênero-do-jogo)  
-[2.2.2 Plataforma de Jogo](#222-plataforma-de-jogo)  
+[2.2.2 Plataforma do Jogo](#222-plataforma-do-jogo)  
 [2.2.3 Número de Jogadores](#223-número-de-jogadores)  
 [2.2.4 Títulos semelhantes e Inspirações](#224-títulos-semelhantes-e-inspirações)  
 [2.2.4.1 Meu Talking Tom - Android ou IOS](#2241-meu-talking-tom---android-ou-ios)  
@@ -56,7 +56,7 @@ Valter Lucas Garcia de Lima
 [3.2 Personagens](#32-personagens)  
 [3.2.1 Controláveis](#321-controláveis)  
 [3.2.2 Non-Playable Characters (NPC)](#322-non-playable-characters-npc)  
-[3.2.3 Diversidade e Representatividade](#323-diversidade-e-representatividade)  
+[3.2.3 Diversidade e Representatividade dos Personagens](#323-diversidade-e-representatividade-dos-personagens)  
 [3.3 Mundo do Jogo](#33-mundo-do-jogo)  
 [3.3.1 Locações Principais e/ou Mapas](#331-locações-principais-eou-mapas)  
 [3.3.2 Navegação pelo mundo](#332-navegação-pelo-mundo)  
@@ -67,10 +67,12 @@ Valter Lucas Garcia de Lima
 [3.5 Gameflow](#35-gameflow)  
 [3.6 Regras do Jogo](#36-regras-do-jogo)  
 [3.7 Mecânicas do Jogo](#37-mecânicas-do-jogo)  
-[3.7.1 Detalhe das Mecânicas](#371-detalhe-das-mecânicas)  
-[3.7.2 Comandos disponíveis no Minigame de Banho](#372-comandos-disponíveis-no-minigame-de-banho)  
-[3.7.3 Comandos disponíveis no Minigame de Alimentação](#373-comandos-disponíveis-no-minigame-de-alimentação)  
-[3.7.4 Comandos disponíveis no Minigame Veterinário](#374-comandos-disponíveis-no-minigame-veterinário)  
+[3.7.1 Descrição Geral das Mecânicas](#371-descrição-geral-das-mecânicas)  
+[3.7.2 Mecânicas do Minigame de Banho](#372-mecânicas-do-minigame-de-banho)  
+[3.7.3 Mecânicas do Minigame de Alimentação](#373-mecânicas-do-minigame-de-alimentação)  
+[3.7.4 Mecânicas do Minigame Veterinário](#374-mecânicas-do-minigame-veterinário)  
+[3.7.5 Mecânicas do Minigame de Lazer](#375-mecânicas-do-minigame-de-lazer)  
+[3.7.6 Progressão do Jogo](#376-progressão-do-jogo)  
 [3.8 Implementação Matemática de Animação/Movimento](#38-implementação-matemática-de-animaçãomovimento)  
 </small>
 
@@ -393,9 +395,9 @@ Para garantir que o jogo não seja apenas uma experiência de entretenimento, ma
   * Quantidade de bugs críticos na versão final (Meta: 0).
 
 
-## 1.2. Requisitos do Projeto
+## 1.2. Requisitos do Jogo
 
-Os requisitos do projeto foram definidos para estruturar a experiência do jogador a partir da mecânica central de cuidado com animais domésticos, garantindo alinhamento entre jogabilidade e propósito social. O jogo deverá possuir gatos e cães como espécies principais, delimitando o universo temático e aproximando a experiência da realidade dos animais mais adotados. Essa escolha fortalece a proposta de conscientização sobre responsabilidade no cuidado e na adoção.
+Os requisitos do jogo foram definidos para estruturar a experiência do jogador a partir da mecânica central de cuidado com animais domésticos, garantindo alinhamento entre jogabilidade e propósito social. O jogo deverá possuir gatos e cães como espécies principais, delimitando o universo temático e aproximando a experiência da realidade dos animais mais adotados. Essa escolha fortalece a proposta de conscientização sobre responsabilidade no cuidado e na adoção.
 
 \# | Quadro 1- Requisitos Funcionais do projeto
 --- | --- 
@@ -632,12 +634,12 @@ A trilha sonora do jogo é composta por faixas originais criadas exclusivamente 
 
 ## 3.4. Inventário e Bestiário
 *Não se aplica ao projeto*
-## 3.5. Gameflow (Diagrama de cenas)
 
+## 3.5. Gameflow 
 
-*No desenvolvimento de jogos, o diagrama de cenas é uma ferramenta visual utilizada no GDD (Game Design Document) para organizar e representar a estrutura do jogo. Ele mostra, de forma esquemática, todas as telas ou cenas existentes — como menu inicial, tutorial, fases, configurações, pausa e game over (e como elas se conectam entre si).*
+No desenvolvimento de jogos, o diagrama de cenas é uma ferramenta visual utilizada no GDD (Game Design Document) para organizar e representar a estrutura do jogo. Ele mostra, de forma esquemática, todas as telas ou cenas existentes — como menu inicial, tutorial, fases, configurações, pausa e game over (e como elas se conectam entre si).
 
-*Esse diagrama ajuda a equipe a entender o fluxo de navegação do jogador, indicando quais ações levam de uma cena para outra. Além disso, facilita o planejamento da programação, da interface e da experidência do usuário, evitando erros de estrutura e retrabalho. Assim, o diagrama de cenas funciona como um “mapa” do jogo, tornando o projeto mais claro, organizado e eficiente durante o desenvolvimento.*
+Esse diagrama ajuda a equipe a entender o fluxo de navegação do jogador, indicando quais ações levam de uma cena para outra. Além disso, facilita o planejamento da programação, da interface e da experidência do usuário, evitando erros de estrutura e retrabalho. Assim, o diagrama de cenas funciona como um “mapa” do jogo, tornando o projeto mais claro, organizado e eficiente durante o desenvolvimento.
 
 <div align="center">
   <p>Diagrama de Cenas</p>
