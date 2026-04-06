@@ -142,7 +142,10 @@ export class cenaCarregamento extends Phaser.Scene {
         //Cenas de instrução e Como Jogar
         this.load.image("instrucaoDescricaoBanho", "assets/feedback/instrucaoBanho.png");
         this.load.image("conclusaoPrimeiroRound", "assets/feedback/conclusaoPrimeiroRound.png");
+        this.load.image("conclusaoSegundoRound", "assets/feedback/conclusaoSegundoRound.png");
+        this.load.image("conclusaoTerceiroRound", "assets/feedback/conclusaoTerceiroRound.png");
         this.load.image("instrucaoSegundoRound", "assets/feedback/instrucaoSegundoRound.png");
+        this.load.image("instrucaoTerceiroRound", "assets/feedback/instrucaoTerceiroRound.png");
         this.load.image("instrucaoDescricaoRacao", "assets/feedback/instrucaoDescricaoRacao.png");
         this.load.image("instrucaoLazer", "assets/feedback/instrucaoLazer.png");
         this.load.image("instrucaoBanho", "assets/feedback/instrucaoBanho.png");
@@ -187,12 +190,12 @@ export class cenaCarregamento extends Phaser.Scene {
             frameHeight: 280 
         });
         this.load.spritesheet("cachorroHeroiCorrendo", "assets/cachorroHeroiCorrendo.png", {
-            frameWidth: 640,
-            frameHeight: 402 
+            frameWidth: 920,
+            frameHeight: 1080 
         });
         this.load.spritesheet("cachorroJoaoCorrendo", "assets/cachorroJoaoCorrendo.png", {
-            frameWidth: 640,
-            frameHeight: 402 
+            frameWidth: 338,
+            frameHeight: 339 
         });
 
 
