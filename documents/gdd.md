@@ -212,12 +212,11 @@ A cultura organizacional da Cobasi evidencia forte orientação para a experiên
 
 <br>
 <div align="center">
-<p> Figura 2: Canva proposta de valor.
-<img src="other/canvasdevalor.png">
-
-Feito pela própria equipe (2026) com base no modelo de negócios elaborado por Alexander Osterwalder, Yves Pigneur e Alan Smith.
-<br>
+  <p>Figura 2: Canva proposta de valor.</p>
+  <img src="other/canvasdevalor.png">
+  <p>Feito pela própria equipe (2026) com base no modelo de negócios elaborado por Alexander Osterwalder, Yves Pigneur e Alan Smith.</p>
 </div>
+<br>
 
 
 <h2 align="center" id="perfil-do-cliente">Perfil do Cliente</h2>
@@ -293,11 +292,11 @@ Principais tarefas identificadas:
 
 <br>
 <div align="center">
-<p> Figura 3: Matriz de Risco.
-<img src="other/matrizDeRisco.png">
-Fonte: material produzido pelos autores (2026).
-<br>
+  <p> Figura 3: Matriz de Risco.</p>
+  <img src="other/matrizDeRisco.png">
+  <p> Feito pela própria equipe (2026)</p>
 </div>
+<br>
 
 🔴 **R01 – Bugs nas mecânicas dos minigames**
 
@@ -583,56 +582,43 @@ Dessa forma, o impacto esperado é duplo: fortalecer o vínculo emocional com o 
 
 <br>
 <div align="center">
-<p> Figura 1: Tela de menu principal do jogo.
-<img src="other/telaprincipal.png">
-Fonte: material produzido pelos autores (2026).
-<br>
+  <p> Figura 1: Tela de menu principal do jogo.</p>
+  <img src="other/telaprincipal.png">
+  <p>Fonte: material produzido pelos autores (2026).</p>
 </div>
-
+<br>
 
 <br>
 <div align="center">
-<p> Figura 2: HUD com botões que redirecionam para as telas de banheiro, alimentação, saúde e lazer do pet.
-<img src="other/hud.png">
-
-Fonte: material produzido pelos autores (2026).
-<br>
+  <p> Figura 2: HUD com botões que redirecionam para as telas de banheiro, alimentação, saúde e lazer do pet.</p>
+  <img src="other/hud.png">
+  <p>Fonte: material produzido pelos autores (2026).</p>
 </div>
-
-
 <br>
-
-<div align="center">
-<p> Figura 3: Tela do banheiro, apresentando o pet no ambiente de higiene com itens interativos.
-<img src="other/telaBanhoCachorro.png">
-Fonte: Produzido pelos autores (2026)
-<br>
-</div>
-
 
 <br>
 <div align="center">
-<p> Figura 4: Personagem protagonista do jogo, representada por uma mulher jovem e empoderada que cuidará dos pets.</p>
-<img src="other/Protagonista.png" width="300>
-Fonte: material produzido pelos autores (2026).
-<br>
-
+  <p> Figura 3: Tela do banheiro, apresentando o pet no ambiente de higiene com itens interativos.</p>
+  <img src="other/telaBanhoCachorro.png">
+  <p>Fonte: Produzido pelos autores (2026)</p>
 </div>
-
-
 <br>
 
+<br>
 <div align="center">
-<p> Figura 5: Personal Pet, personagem secundário do jogo, responsável por auxiliar o jogador durante a narrativa do jogo.
-</p>
-<img src="other/personalpet.png" width="300>
-Fonte: material produzido pelos autores (2026).
-
-
-</p>
-
+  <p> Figura 4: Personagem protagonista do jogo, representada por uma mulher jovem e empoderada que cuidará dos pets.</p>
+  <img src="other/Protagonista.png" width="300">
+  <p>Fonte: material produzido pelos autores (2026).</p>
 </div>
+<br>
 
+<br>
+<div align="center">
+  <p> Figura 5: Personal Pet, personagem secundário do jogo, responsável por auxiliar o jogador durante a narrativa do jogo.</p>
+  <img src="other/personalpet.png" width="300">
+  <p>Fonte: material produzido pelos autores (2026).</p>
+</div>
+<br>
 
 ### 3.3.5. Trilha Sonora
 A trilha sonora do jogo é composta por faixas originais criadas exclusivamente para o projeto, garantindo uma identidade sonora autêntica e perfeitamente alinhada à atmosfera do jogo. O foco atual da composição é estabelecer o tom correto nos primeiros contatos do jogador com a obra, criando imersão desde o menu inicial e ajudando a contar a história durante a introdução narrativa. As faixas presentes até o momento estão organizadas na tabela abaixo:
@@ -647,7 +633,8 @@ A trilha sonora do jogo é composta por faixas originais criadas exclusivamente 
 </div>
 
 <h2 align="center" id="34-inventário-e-bestiário">3.4. Inventário e Bestiário</h2>
-*Não se aplica ao projeto*
+
+<div align="center">*Não se aplica ao projeto*</div>
 
 <h2 align="center" id="35-gameflow">3.5. Gameflow</h2>
 
@@ -660,8 +647,7 @@ Esse diagrama ajuda a equipe a entender o fluxo de navegação do jogador, indic
   <a href="https://miro.com/app/board/uXjVG8ZyQIk=/?share_link_id=884951366758">
     <img src="other/diagramacenas.png" width="800">
   </a>
-  <p>Feito pela própia equipe(2026)</p>
-    
+  <p>Feito pela própia equipe(2026)</p>  
 </div>
 
 <h2 align="center" id="36-regras-do-jogo">3.6 REGRAS DO JOGO</h2>
@@ -1077,8 +1063,9 @@ Essa funcionalidade atende ao requisito não funcional RNF1, relacionado à indi
 Inicialmente, o menu de configurações foi implementado de forma básica, permitindo acesso a uma tela dedicada, com previsão de expansão de suas funcionalidades nas próximas etapas.
 
 <div align="center"> 
-<p>Tela Inicial</p>
- <img src="other/telaprincipal.png" width="800"> <p>Feito pela própria equipe (2026)</p> 
+  <p>Tela Inicial</p>
+  <img src="other/telaprincipal.png" width="800"> 
+  <p>Feito pela própria equipe (2026)</p> 
  </div>
 
 **Dificuldades Enfrentadas**
@@ -1117,12 +1104,13 @@ Essa funcionalidade atende aos requisitos RF10, RF12, RF13 e RF14, relacionados 
  <p>Tela de lazer Geral</p>
   <img src="other/bgPrincipal.png" width="800"> 
   <p>Feito pela própria equipe (2026)</p> 
-  </div> 
-  <div align="center"> 
+</div> 
+
+<div align="center"> 
   <p>Tela de Banho</p> 
   <img src="other/bath.png" width="800">
-   <p>Feito pela própria equipe (2026)</p> 
-   </div>
+  <p>Feito pela própria equipe (2026)</p> 
+</div>
 
 
 **Desenvolvimento Visual e Elementos Gráficos**
@@ -1165,7 +1153,7 @@ Cena do minigame de banho
  <p>Minigame de Banho</p>
  <img src="other/telaBanhoCachorro.png" width="800"> 
  <p>Feito pela própria equipe (2026)</p>
-  </div>
+</div>
 
 **Implementação do Minigame de Alimentação**
 
@@ -1207,9 +1195,9 @@ Após remover todas as pulgas e concluir o desafio, o jogador também recebe Cob
 Cena do minigame veterinário
 
 <div align="center"> 
-<p>Minigame de Veterinário</p> 
-<img src="other/telaPulga.png" width="800">
- <p>Feito pela própria equipe (2026)</p>
+  <p>Minigame de Veterinário</p> 
+  <img src="other/telaPulga.png" width="800">
+  <p>Feito pela própria equipe (2026)</p>
  </div>
 
 **Dificuldades encontradas durante a sprint**
@@ -1251,7 +1239,6 @@ Essa expansão está alinhada aos requisitos RF1, RF7 e RF8, que definem a prese
 <div align="center">
   <p>Tela de Cuidado </p>
   <img src="other/telaCuidadoInicial.png" width="800">
- 
   <p>Feito pela própia equipe(2026)</p>
 </div>
 
@@ -1261,7 +1248,7 @@ Foi implementado um novo minigame na área de lazer, com mecânicas de movimenta
 Essa funcionalidade atende ao requisito RF26, além de contribuir para os requisitos RF7 e RNF7, relacionados à interação e responsividade dos controles.
 
 <div align="center">
-  <p>Tela do minigame de Lazer </p>
+  <p>Minigame de Lazer </p>
   <img src="other/telaLazerMinigame.png" width="800">
  
   <p>Feito pela própia equipe(2026)</p>
@@ -1302,14 +1289,12 @@ Essas melhorias atendem aos requisitos não funcionais RNF2, RNF3, RNF4 e RNF9, 
 <div align="center">
   <p>Tela de Instrução de banho </p>
   <img src="other/instrucaoBanho.png" width="800">
- 
   <p>Feito pela própia equipe(2026)</p>
 </div>
 
 <div align="center">
   <p>Tela da compra de rações </p>
   <img src="other/telaRacaoInstrucao.png" width="800">
- 
   <p>Feito pela própia equipe(2026)</p>
 </div>
 
