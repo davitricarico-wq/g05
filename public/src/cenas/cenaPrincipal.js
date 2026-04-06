@@ -67,6 +67,15 @@ class CenaPopups extends Phaser.Scene {
                     this.txtContinuarFase2.setPosition(novoCentroX, novoPosicaoTextoF2Y);
                 }
             }
+
+            // Resize do novo popup da Fase 3
+            if (this.imgInstrucaoFase3 && this.imgInstrucaoFase3.active) {
+                this.imgInstrucaoFase3.setPosition(novoCentroX, novoCentroY);
+                if (this.txtContinuarFase3 && this.txtContinuarFase3.active) {
+                    const novoPosicaoTextoF3Y = novoCentroY + (this.imgInstrucaoFase3.displayHeight / 2) + 30;
+                    this.txtContinuarFase3.setPosition(novoCentroX, novoPosicaoTextoF3Y);
+                }
+            }
         };
 
         // Adiciona o ouvinte de redimensionamento e garante sua remoção ao encerrar a cena
@@ -81,11 +90,26 @@ class CenaPopups extends Phaser.Scene {
         const centroX = this.scale.width / 2; // Centralizado em 100% da tela
         const centroY = this.scale.height / 2;
 
-        this.imgEvolucao = this.add.image(centroX, centroY, "conclusaoPrimeiroRound")
+        let imagemConclusao = "";
+        let textoEvolucao = "";
+
+        // Define dinamicamente qual imagem mostrar baseado no progresso
+        if (gameState.progressoCachorro === 0) {
+            imagemConclusao = "conclusaoPrimeiroRound";
+            textoEvolucao = "[ Clique para Evoluir! ]";
+        } else if (gameState.progressoCachorro === 1) {
+            imagemConclusao = "conclusaoSegundoRound";
+            textoEvolucao = "[ Clique para a Ultima Fase! ]";
+        } else if (gameState.progressoCachorro === 2) {
+            imagemConclusao = "conclusaoTerceiroRound";
+            textoEvolucao = "[ Clique para Finalizar ]";
+        }
+
+        this.imgEvolucao = this.add.image(centroX, centroY, imagemConclusao)
             .setScale(0.6)
             .setInteractive({ useHandCursor: true }); 
         
-        this.txtEvolucao = this.add.text(centroX, centroY + 180, "[ Clique para Evoluir! ]", {
+        this.txtEvolucao = this.add.text(centroX, centroY + 180, textoEvolucao, {
             fontFamily: '"Press Start 2P"', 
             fontSize: "16px", 
             fill: "#ffffff"
@@ -94,6 +118,23 @@ class CenaPopups extends Phaser.Scene {
         // Atualiza os dados do pet para a nova fase e avança
         this.imgEvolucao.on('pointerdown', () => {
             gameState.aguardandoEvolucao = false;
+
+            // Se for o fim do jogo (Conclusão Round 3)
+            if (gameState.progressoCachorro === 2) {
+                this.imgEvolucao.destroy();
+                this.txtEvolucao.destroy();
+                
+                // Reinicia as variáveis para um novo jogo e volta para a tela inicial
+                gameState.progressoCachorro = 0;
+                gameState.pets = { cachorroCaramelo: true, cachorroHeroi: false, cachorroJoao: false };
+                gameState.instrucaoMissaoVista = false;
+                
+                this.scene.stop("HUD");
+                this.scene.stop();
+                this.scene.get("cenaPrincipal").scene.start("cenaInicial");
+                return;
+            }
+
             gameState.pulga = true;
 
             if (gameState.progressoCachorro === 0) {
@@ -102,18 +143,24 @@ class CenaPopups extends Phaser.Scene {
                 gameState.pets.cachorroHeroi = true;
                 gameState.pets.cachorroJoao = false;
                 gameState.progressoCachorro = 1;
+
+                // Destrói os elementos atuais e mostra instrução da Fase 2
+                this.imgEvolucao.destroy();
+                this.txtEvolucao.destroy();
+                this.mostrarInstrucaoSegundaFase();
+
             } else if (gameState.progressoCachorro === 1) {
                 gameState.barras = { comida: 11, lazer: 0, limpeza: 11, saude: 11 };
                 gameState.pets.cachorroCaramelo = false;
                 gameState.pets.cachorroHeroi = false;
                 gameState.pets.cachorroJoao = true;
                 gameState.progressoCachorro = 2;
-            }
 
-            // Destrói os elementos atuais e mostra o próximo popup
-            this.imgEvolucao.destroy();
-            this.txtEvolucao.destroy();
-            this.mostrarInstrucaoSegundaFase();
+                // Destrói os elementos atuais e mostra instrução da Fase 3
+                this.imgEvolucao.destroy();
+                this.txtEvolucao.destroy();
+                this.mostrarInstrucaoTerceiraFase();
+            }
         });
     }
 
@@ -133,6 +180,32 @@ class CenaPopups extends Phaser.Scene {
         this.imgInstrucaoFase2.on("pointerdown", () => {
             this.imgInstrucaoFase2.destroy();
             this.txtContinuarFase2.destroy();
+            
+            // Devolve a HUD para o topo antes de fechar a cena
+            this.scene.bringToTop("HUD");
+
+            // Para a cena de popups e reinicia a cena principal
+            this.scene.stop();
+            this.scene.get("cenaPrincipal").scene.restart();
+        });
+    }
+
+    // Função que mostra a instrução da Terceira Fase
+    mostrarInstrucaoTerceiraFase() {
+        const centroX = this.scale.width / 2;
+        const centroY = this.scale.height / 2;
+
+        this.imgInstrucaoFase3 = this.add.image(centroX, centroY, "instrucaoTerceiroRound")
+            .setScale(0.5)
+            .setInteractive({ useHandCursor: true }); 
+
+        this.txtContinuarFase3 = this.add.text(centroX, centroY + (this.imgInstrucaoFase3.displayHeight / 2) + 30, "[ Clique para comecar a 3a Fase ]", {
+            fontFamily: '"Press Start 2P"', fontSize: "15px", color: "#ffffff", stroke: "#000000", strokeThickness: 4
+        }).setOrigin(0.5);
+
+        this.imgInstrucaoFase3.on("pointerdown", () => {
+            this.imgInstrucaoFase3.destroy();
+            this.txtContinuarFase3.destroy();
             
             // Devolve a HUD para o topo antes de fechar a cena
             this.scene.bringToTop("HUD");

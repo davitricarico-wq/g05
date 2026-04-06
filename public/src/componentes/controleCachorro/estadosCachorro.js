@@ -8,4 +8,4 @@ export const ESTADOS_CACHORRO = {
     SUJO: "sujo",
     // Estado padrão após o banho ou quando o pet ainda não se sujou
     LIMPO: "limpo"
-};
+}
