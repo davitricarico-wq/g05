@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://www.inteli.edu.br/">
-    <img src="public/assets/readme/inteli.png" alt="Inteli - Instituto de Tecnologia e Liderança" border="0" width=40% height=40%>
+    <img src="public/assets/inteli.png" alt="Inteli - Instituto de Tecnologia e Liderança" border="0" width=40% height=40%>
   </a>
 </p>
 
