@@ -11,11 +11,13 @@ export class cenaCuidado extends Phaser.Scene {
         this.pulgasRemovidas = 0;       
         this.pontuacao = 0;             
         this.minigameFinalizado = false;
-        this.pincaEquipada = false;     
-        this.bonusMeioGanho = false;    
+        
+        // Controle de ferramentas
+        this.ferramentaEquipada = null; // Pode ser 'espirrador' ou 'pinca'
         this.pulgaSegurada = null; 
+        this.bonusMeioGanho = false;    
 
-        // Novas variáveis de tempo
+        // Variáveis de tempo
         this.tempoLimite = 30;
         this.tempoRestante = 30;
 
@@ -31,31 +33,29 @@ export class cenaCuidado extends Phaser.Scene {
         const largura = this.scale.width;
         const altura = this.scale.height;
 
-        // --- MUDANÇA AQUI: Define o background com base no cachorro ativo ---
+        // Define o background com base no cachorro ativo
         const bgAtivo = gameState.pets.cachorroJoao ? "bgCuidadoJoao" : (gameState.pets.cachorroHeroi ? "bgCuidadoHeroi" : "bgCuidado");
 
         // Fundo
         this.fundo = this.add.image(largura / 2, altura / 2, bgAtivo)
-            .setDisplaySize(largura, altura);
-
-        this.garantirTexturaPinca();
+            .setDisplaySize(largura, altura); // ⬅️ MUDE O TAMANHO AQUI (Fundo da tela)
 
         // Reset variáveis
         this.pulgasRemovidas = 0;
         this.pontuacao = 0; 
         this.minigameFinalizado = false;
-        this.pincaEquipada = false;
+        this.ferramentaEquipada = null;
         this.bonusMeioGanho = false;
         this.pulgaSegurada = null;
         this.instrucoesLidas = false;
-        this.tempoRestante = this.tempoLimite; // Reseta o tempo para 30
+        this.tempoRestante = this.tempoLimite;
 
         gameState.cobasiCoins = gameState.cobasiCoins ?? 0;
 
         // Posição da Bandeja (Responsiva: Centro inferior)
         this.bandeja = this.add.image(largura / 2, altura * 0.85, "bandeja")
             .setDepth(5)
-            .setScale(0.5); 
+            .setScale(0.5); // ⬅️ MUDE O TAMANHO AQUI (Bandeja na tela)
 
         // Grupo de pulgas
         this.pulgas = this.physics.add.group({
@@ -63,20 +63,31 @@ export class cenaCuidado extends Phaser.Scene {
             maxSize: this.totalPulgas
         });
 
+        // Animação do Espirrador (Frames 1 e 2 são a ação de borrifar)
+        if (!this.anims.exists('anim_spray')) {
+            this.anims.create({
+                key: 'anim_spray',
+                frames: this.anims.generateFrameNumbers('espirradorPulgas', { start: 1, end: 2 }),
+                frameRate: 10,
+                yoyo: true // Retorna ao frame inicial
+            });
+        }
+
         // Elementos discretos de info no topo
         this.criarTextosInfo();
         
-        this.criarFerramentaPinca();
+        // Cria as ferramentas na interface (espirrador e pinça)
+        this.criarFerramentasUI();
         
         // Cria pulgas, mas elas ficam paradas até ler instruções
         this.spawnPulgasIniciais();
 
-        // --- LÓGICA DE PEGAR E SOLTAR ---
+        // --- LÓGICA DE INTERAÇÃO COM AS PULGAS E FERRAMENTAS ---
         this.input.on('pointerdown', (pointer) => {
-            if (!this.instrucoesLidas || !this.pincaEquipada || this.minigameFinalizado || this.pulgaSegurada) return;
+            if (!this.instrucoesLidas || !this.ferramentaEquipada || this.minigameFinalizado || this.pulgaSegurada) return;
             
             let pulgaMaisProxima = null;
-            let menorDistancia = 50; 
+            let menorDistancia = 60; 
             
             this.pulgas.children.iterate((pulga) => {
                 if (!pulga || !pulga.active) return;
@@ -87,21 +98,37 @@ export class cenaCuidado extends Phaser.Scene {
                 }
             });
 
-            if (pulgaMaisProxima) {
-                this.pulgaSegurada = pulgaMaisProxima;
-                this.tweens.killTweensOf(pulgaMaisProxima); 
-                this.pulgaSegurada.setScale(0.15); 
+            // Lógica do Espirrador (Matar pulga)
+            if (this.ferramentaEquipada === 'espirrador') {
+                this.cursorEspirrador.play('anim_spray');
+                this.cursorEspirrador.once('animationcomplete', () => {
+                    this.cursorEspirrador.setFrame(0);
+                });
+
+                if (pulgaMaisProxima && pulgaMaisProxima.getData('estado') === 'viva') {
+                    pulgaMaisProxima.setData('estado', 'morta');
+                    this.tweens.killTweensOf(pulgaMaisProxima); // Para de se mover
+                    pulgaMaisProxima.setFlipY(true); // Fica de cabeça para baixo para indicar que morreu
+                    pulgaMaisProxima.setTint(0xcccccc); // Fica um pouco acinzentada
+                }
+            } 
+            // Lógica da Pinça (Pegar pulga morta)
+            else if (this.ferramentaEquipada === 'pinca') {
+                if (pulgaMaisProxima && pulgaMaisProxima.getData('estado') === 'morta') {
+                    this.pulgaSegurada = pulgaMaisProxima;
+                    this.pulgaSegurada.setScale(0.15); // ⬅️ MUDE O TAMANHO AQUI (Pulga quando é agarrada pela pinça)
+                }
             }
         });
 
         this.input.on('pointerup', (pointer) => {
-            if (this.pulgaSegurada) {
+            if (this.pulgaSegurada && this.ferramentaEquipada === 'pinca') {
                 const areaBandeja = this.bandeja.getBounds();
                 if (Phaser.Geom.Rectangle.ContainsPoint(areaBandeja, pointer)) {
                     this.capturarPulga(this.pulgaSegurada);
                 } else {
-                    this.pulgaSegurada.setScale(0.12);
-                    this.moverPulga(this.pulgaSegurada); 
+                    // Se soltar fora da bandeja, ela apenas cai no lugar de volta
+                    this.pulgaSegurada.setScale(0.12); // ⬅️ MUDE O TAMANHO AQUI (Pulga quando é solta fora da bandeja)
                 }
                 this.pulgaSegurada = null;
             }
@@ -115,7 +142,7 @@ export class cenaCuidado extends Phaser.Scene {
             this.cameras.resize(novaLargura, novaAltura);
             
             if (this.fundo) {
-                this.fundo.setDisplaySize(novaLargura, novaAltura).setPosition(novaLargura / 2, novaAltura / 2);
+                this.fundo.setDisplaySize(novaLargura, novaAltura).setPosition(novaLargura / 2, novaAltura / 2); // ⬅️ MUDE O TAMANHO AQUI (Resize do fundo)
             }
 
             if (this.textoTempo) this.textoTempo.setPosition(20, 30);
@@ -125,9 +152,9 @@ export class cenaCuidado extends Phaser.Scene {
                 this.bandeja.setPosition(novaLargura / 2, novaAltura * 0.85);
             }
 
-            if (this.pinca && !this.pincaEquipada) {
-                this.pinca.setPosition(novaLargura / 2, novaAltura * 0.7);
-            }
+            // Reposiciona ícones de ferramentas caso não estejam equipadas
+            if (this.iconeEspirrador) this.iconeEspirrador.setPosition(novaLargura * 0.2, novaAltura * 0.85);
+            if (this.iconePinca) this.iconePinca.setPosition(novaLargura * 0.8, novaAltura * 0.85);
 
             this.pulgas.children.iterate((pulga) => {
                 if (pulga && pulga.active && pulga !== this.pulgaSegurada) {
@@ -155,17 +182,19 @@ export class cenaCuidado extends Phaser.Scene {
             this.input.keyboard.removeListener('keydown-SPACE'); 
         });
 
-        // Chama o painel de instruções substituindo o código antigo
         this.mostrarInstrucoes();
     }
 
     update() {
-        if (!this.instrucoesLidas || !this.pincaEquipada || this.minigameFinalizado) return;
+        if (!this.instrucoesLidas || !this.ferramentaEquipada || this.minigameFinalizado) return;
 
         const ponteiro = this.input.activePointer;
         
-        if (this.pinca) {
-            this.pinca.setPosition(ponteiro.x + 18, ponteiro.y + 14);
+        // Move o cursor customizado de acordo com a ferramenta equipada
+        if (this.ferramentaEquipada === 'espirrador' && this.cursorEspirrador) {
+            this.cursorEspirrador.setPosition(ponteiro.x + 30, ponteiro.y + 30);
+        } else if (this.ferramentaEquipada === 'pinca' && this.cursorPinca) {
+            this.cursorPinca.setPosition(ponteiro.x + 18, ponteiro.y + 14);
         }
 
         if (this.pulgaSegurada) {
@@ -180,30 +209,20 @@ export class cenaCuidado extends Phaser.Scene {
         const cx = this.scale.width / 2;
         const cy = this.scale.height / 2;
 
-        // Fundo escurecido
         this.fundoInstrucao = this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.85)
-            .setDepth(200)
-            .setScrollFactor(0)
-            .setInteractive(); 
+            .setDepth(200).setScrollFactor(0).setInteractive(); 
 
-        // Imagem de instrução
         this.imgInstrucao = this.add.image(cx, cy, "comoJogarPulgas")
-            .setDepth(201)
-            .setScrollFactor(0)
-            .setInteractive();
+            .setDepth(201).setScrollFactor(0).setInteractive();
 
-        // Ajuste de escala responsiva
         const limiteLargura = this.scale.width * 0.8;
         const limiteAltura = this.scale.height * 0.8;
         const escalaX = limiteLargura / this.imgInstrucao.width;
         const escalaY = limiteAltura / this.imgInstrucao.height;
-        this.imgInstrucao.setScale(Math.min(escalaX, escalaY));
+        this.imgInstrucao.setScale(Math.min(escalaX, escalaY)); // ⬅️ MUDE O TAMANHO AQUI (Tamanho da imagem de instrução. Multiplique o final para forçar um tamanho)
 
-        // Texto pulsante
         this.textoIniciar = this.add.text(cx, cy + (this.imgInstrucao.displayHeight / 2) + 40, "[ Clique ou aperte ESPAÇO para começar ]", {
-            fontFamily: '"Press Start 2P", Arial',
-            fontSize: "15px",
-            color: "#ffffff"
+            fontFamily: '"Press Start 2P", Arial', fontSize: "15px", color: "#ffffff"
         }).setOrigin(0.5).setDepth(201).setScrollFactor(0);
         
         this.tweens.add({
@@ -233,49 +252,90 @@ export class cenaCuidado extends Phaser.Scene {
             if (pulga && pulga.active) this.moverPulga(pulga);
         });
         
-        this.mostrarPopupInstrucaoPinca();
+        this.mostrarPopupInstrucaoFerramentas();
     }
 
     // ==========================================
     //           MECÂNICAS DO JOGO
     // ==========================================
-    mostrarPopupInstrucaoPinca() {
+    mostrarPopupInstrucaoFerramentas() {
         const cx = this.scale.width / 2;
         const cy = this.scale.height / 2;
-        const textoPopup = this.add.text(cx, cy, "Clique na Pinca\npara equipar!", {
+        const textoPopup = this.add.text(cx, cy, "MATE as pulgas com o Espirrador,\ndepois PEGUE com a Pinça!", {
             fontFamily: '"Press Start 2P", Arial', fontSize: "16px", color: "#ffd166",
             stroke: "#000000", strokeThickness: 8, align: "center"
         }).setOrigin(0.5).setDepth(80);
         
-        this.time.delayedCall(2000, () => { textoPopup.destroy(); });
+        this.time.delayedCall(3000, () => { textoPopup.destroy(); });
     }
 
     criarTextosInfo() {
-        // Inicializa com o tempo limite
         this.textoTempo = this.add.text(20, 30, `Tempo: ${this.tempoLimite}s`, {
             fontFamily: '"Press Start 2P", Arial', fontSize: "20px", color: "#ffffff",
             stroke: "#000000", strokeThickness: 5
         }).setOrigin(0, 0).setDepth(50);
 
-        this.textoProgresso = this.add.text(this.scale.width - 20, 30, `Pulgas: 0/${this.totalPulgas}`, {
+        this.textoProgresso = this.add.text(this.scale.width - 20, 30, `Bandeja: 0/${this.totalPulgas}`, {
             fontFamily: '"Press Start 2P", Arial', fontSize: "20px", color: "#ffffff",
             stroke: "#000000", strokeThickness: 4
         }).setOrigin(1, 0).setDepth(50);
     }
 
-    criarFerramentaPinca() {
-        this.pinca = this.add.image(this.scale.width / 2, this.scale.height * 0.7, "pincaTool")
-            .setDepth(60).setInteractive({ useHandCursor: true });
+    criarFerramentasUI() {
+        const altura = this.scale.height;
+        const largura = this.scale.width;
 
-        const escala = Math.min(140 / this.pinca.width, 140 / this.pinca.height, 1.2);
-        this.pinca.setScale(escala);
+        // 1. Adiciona as imagens sem o setInteractive primeiro
+        this.iconeEspirrador = this.add.sprite(largura * 0.2, altura * 0.85, 'espirradorPulgas', 0)
+            .setDepth(60).setScale(0.4); // ⬅️ MUDE O TAMANHO AQUI (Ícone do Espirrador na interface)
 
-        this.pinca.on("pointerdown", () => {
-            if (this.pincaEquipada) return;
-            this.pincaEquipada = true;
-            this.input.setDefaultCursor("none"); 
-            this.pinca.disableInteractive();
+        this.iconePinca = this.add.image(largura * 0.8, altura * 0.85, 'pinca')
+            .setDepth(60).setScale(0.3); // ⬅️ MUDE O TAMANHO AQUI (Ícone da Pinça na interface)
+
+        // 2. Cria hitboxes customizados (Círculos) com base no tamanho ORIGINAL da imagem.
+        const raioEspirrador = this.iconeEspirrador.width * 0.3; 
+        this.iconeEspirrador.setInteractive({
+            hitArea: new Phaser.Geom.Circle(this.iconeEspirrador.width / 2, this.iconeEspirrador.height / 2, raioEspirrador),
+            hitAreaCallback: Phaser.Geom.Circle.Contains,
+            useHandCursor: true
         });
+
+        const raioPinca = this.iconePinca.width * 0.3; 
+        this.iconePinca.setInteractive({
+            hitArea: new Phaser.Geom.Circle(this.iconePinca.width / 2, this.iconePinca.height / 2, raioPinca),
+            hitAreaCallback: Phaser.Geom.Circle.Contains,
+            useHandCursor: true
+        });
+
+        // Cursosers customizados escondidos inicialmente
+        this.cursorEspirrador = this.add.sprite(0, 0, 'espirradorPulgas', 0)
+            .setDepth(100).setScale(0.5).setVisible(false); // ⬅️ MUDE O TAMANHO AQUI (Tamanho do Espirrador acompanhando o mouse)
+            
+        this.cursorPinca = this.add.image(0, 0, 'pinca')
+            .setDepth(100).setScale(0.3).setVisible(false); // ⬅️ MUDE O TAMANHO AQUI (Tamanho da Pinça acompanhando o mouse)
+
+        // Eventos de clique para trocar a ferramenta
+        this.iconeEspirrador.on("pointerdown", () => this.equiparFerramenta('espirrador'));
+        this.iconePinca.on("pointerdown", () => this.equiparFerramenta('pinca'));
+    }
+
+    equiparFerramenta(nomeFerramenta) {
+        this.ferramentaEquipada = nomeFerramenta;
+        this.input.setDefaultCursor("none"); 
+
+        if (nomeFerramenta === 'espirrador') {
+            this.cursorEspirrador.setVisible(true);
+            this.cursorPinca.setVisible(false);
+            // Destaca o ícone do espirrador e opaca a pinça
+            this.iconeEspirrador.setAlpha(0.5);
+            this.iconePinca.setAlpha(1);
+        } else if (nomeFerramenta === 'pinca') {
+            this.cursorEspirrador.setVisible(false);
+            this.cursorPinca.setVisible(true);
+            // Destaca o ícone da pinça e opaca o espirrador
+            this.iconePinca.setAlpha(0.5);
+            this.iconeEspirrador.setAlpha(1);
+        }
     }
 
     spawnPulgasIniciais() {
@@ -289,7 +349,8 @@ export class cenaCuidado extends Phaser.Scene {
         if (!pulga) return;
         pulga.setActive(true).setVisible(true);
         pulga.body.setAllowGravity(false);
-        pulga.setScale(0.12).setDepth(10);
+        pulga.setScale(0.12).setDepth(10); // ⬅️ MUDE O TAMANHO AQUI (Tamanho normal da Pulga correndo no cachorro)
+        pulga.setData('estado', 'viva'); // Estado inicial
     }
 
     capturarPulga(pulga) {
@@ -301,7 +362,7 @@ export class cenaCuidado extends Phaser.Scene {
         this.pulgasRemovidas++;
         this.pontuacao += 50; 
 
-        this.textoProgresso.setText(`Pulgas: ${this.pulgasRemovidas}/${this.totalPulgas}`);
+        this.textoProgresso.setText(`Bandeja: ${this.pulgasRemovidas}/${this.totalPulgas}`);
 
         if (this.pulgasRemovidas === 6 && !this.bonusMeioGanho) {
             this.bonusMeioGanho = true;
@@ -322,7 +383,7 @@ export class cenaCuidado extends Phaser.Scene {
 
         const fundo = this.add.rectangle(cx, cy, larguraFundo, 50, 0x000000, 0.8)
             .setStrokeStyle(4, 0x9be564).setDepth(20);
-        const texto = this.add.text(cx, cy, "Metade das\npulgas removidas!", {
+        const texto = this.add.text(cx, cy, "Metade das\npulgas recolhidas!", {
             fontFamily: '"Press Start 2P", Arial', fontSize: "15px", color: "#ffffff", align: "center"
         }).setOrigin(0.5).setDepth(81);
 
@@ -330,25 +391,29 @@ export class cenaCuidado extends Phaser.Scene {
     }
 
     moverPulga(pulga) {
+        if (pulga.getData('estado') !== 'viva') return; // Só move se estiver viva
+
         this.tweens.killTweensOf(pulga);
         const x = Phaser.Math.Between(50, this.scale.width - 50);
         const y = Phaser.Math.Between(80, this.scale.height - 80);
         this.tweens.add({
             targets: pulga, x, y, duration: Phaser.Math.Between(1800, 3200), ease: "Sine.easeInOut",
-            onComplete: () => { if (pulga.active && !this.minigameFinalizado) this.moverPulga(pulga); }
+            onComplete: () => { 
+                if (pulga.active && !this.minigameFinalizado && pulga.getData('estado') === 'viva') {
+                    this.moverPulga(pulga); 
+                }
+            }
         });
     }
 
     atualizarTextoTempo() {
         if (!this.instrucoesLidas || this.minigameFinalizado) return;
         
-        // Calcula a contagem regressiva
         const segundosPassados = Math.floor((this.time.now - this.tempoInicialMs) / 1000);
         this.tempoRestante = Math.max(0, this.tempoLimite - segundosPassados);
         
         this.textoTempo.setText(`Tempo: ${this.tempoRestante}s`);
 
-        // Se o tempo acabar, aciona a derrota
         if (this.tempoRestante === 0) {
             this.perderMinigame();
         }
@@ -361,8 +426,11 @@ export class cenaCuidado extends Phaser.Scene {
         if (this.minigameFinalizado) return;
         this.minigameFinalizado = true;
         this.input.setDefaultCursor("default");
+        
+        // Esconde os cursores customizados
+        if(this.cursorEspirrador) this.cursorEspirrador.setVisible(false);
+        if(this.cursorPinca) this.cursorPinca.setVisible(false);
 
-        // Usa o tempo que sobrou (tempoRestante) para os cálculos
         const estrelas = this.calcularEstrelas(this.tempoRestante);
         const moedas = this.calcularMoedas(estrelas);
 
@@ -374,7 +442,6 @@ export class cenaCuidado extends Phaser.Scene {
 
         gameState.pulga = false;
         
-        // Mantém o SEU painel original
         this.mostrarPainelResultado(estrelas, moedas, this.tempoRestante);
     }
 
@@ -383,12 +450,13 @@ export class cenaCuidado extends Phaser.Scene {
         this.minigameFinalizado = true;
         this.input.setDefaultCursor("default");
 
-        // Congela as pulgas na tela
+        if(this.cursorEspirrador) this.cursorEspirrador.setVisible(false);
+        if(this.cursorPinca) this.cursorPinca.setVisible(false);
+
         this.pulgas.children.iterate((pulga) => {
             this.tweens.killTweensOf(pulga);
         });
 
-        // Chama o SEU painel com 1 estrela, 0 moedas e 0 tempo
         this.mostrarPainelResultado(1, 0, 0); 
     }
 
@@ -401,7 +469,7 @@ export class cenaCuidado extends Phaser.Scene {
     calcularMoedas(estrelas) {
         if (estrelas === 3) return 20;
         if (estrelas === 2) return 10;
-        return 0; // 1 estrela ganha 0 moedas
+        return 0; 
     }
 
     mostrarPainelResultado(estrelas, moedas, segundos) {
@@ -411,56 +479,34 @@ export class cenaCuidado extends Phaser.Scene {
         const imagemFeedback = estrelas === 3 ? "feeedback3estrelas" : 
                                estrelas === 2 ? "feedback2estrelas" : "feedback1estrela";
 
-        // Fundo escurecido atrás do feedback
         const fundoFeedback = this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.8)
             .setDepth(100).setInteractive(); 
 
-        // Imagem principal de feedback
         const telaFeedback = this.add.image(cx, cy, imagemFeedback).setDepth(101);
 
-        // Ajuste de tamanho da imagem (80% da tela)
         const limiteLargura = this.scale.width * 0.8;
         const limiteAltura = this.scale.height * 0.8;
         const escalaFinal = Math.min(limiteLargura / telaFeedback.width, limiteAltura / telaFeedback.height);
-        telaFeedback.setScale(escalaFinal);
+        telaFeedback.setScale(escalaFinal); // ⬅️ MUDE O TAMANHO AQUI (Tamanho da imagem de feedback final)
 
-        // --- TEXTO DE PONTOS ---
-        // Fica logo abaixo da palavra "PONTOS :" desenhada na imagem
         let posMoedasY = cy + (telaFeedback.displayHeight * 0.12);
         this.add.text(cx-12, posMoedasY, `${moedas} Moedas`, {
             fontFamily: '"Press Start 2P", Arial', fontSize: "22px", color: "#005e64"
         }).setOrigin(0.5).setDepth(102);
 
-        // --- TEXTO DE TEMPO ---
-        // Fica logo abaixo da palavra "TEMPO :" desenhada na imagem
         let posTempoY = cy + (telaFeedback.displayHeight * 0.31); 
         this.add.text(cx-20, posTempoY, `${segundos}s`, {
-            fontFamily: '"Press Start 2P", Arial', fontSize: "22px", color: "#005e64" // Verde
+            fontFamily: '"Press Start 2P", Arial', fontSize: "22px", color: "#005e64" 
         }).setOrigin(0.5).setDepth(102);
 
-        // Texto piscante para orientar o clique
         const textoContinuar = this.add.text(cx, cy + (telaFeedback.displayHeight / 2) + 40, "[ Clique para continuar ]", {
             fontFamily: '"Press Start 2P", Arial', fontSize: "15px", color: "#ffffff"
         }).setOrigin(0.5).setDepth(102);
         
         this.tweens.add({ targets: textoContinuar, alpha: 0.5, duration: 600, yoyo: true, loop: -1 });
 
-        // Eventos de clique para retornar à cena de veterinário
         const fecharPainel = () => { this.scene.start("cenaVeterinario"); };
         fundoFeedback.on('pointerdown', fecharPainel);
         telaFeedback.setInteractive().on('pointerdown', fecharPainel);
-    }
-
-    garantirTexturaPinca() {
-        if (this.textures.exists("pincaTool")) return;
-        const g = this.make.graphics({ x: 0, y: 0, add: false });
-        g.lineStyle(10, 0xdddddd);
-        g.beginPath();
-        g.moveTo(14, 122); g.lineTo(54, 12);
-        g.moveTo(44, 122); g.lineTo(72, 12);
-        g.strokePath();
-        g.fillStyle(0x555555); g.fillCircle(63, 12, 6);
-        g.generateTexture("pincaTool", 88, 132);
-        g.destroy();
     }
 }
