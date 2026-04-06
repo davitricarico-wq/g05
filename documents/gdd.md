@@ -645,8 +645,8 @@ Fonte: material produzido pelos autores (2026).
 &ensp;Esse diagrama ajuda a equipe a entender o fluxo de navegação do jogador, indicando quais ações levam de uma cena para outra. Além disso, facilita o planejamento da programação, da interface e da experidência do usuário, evitando erros de estrutura e retrabalho. Assim, o diagrama de cenas funciona como um “mapa” do jogo, tornando o projeto mais claro, organizado e eficiente durante o desenvolvimento.
 
 <div align="center">
-  <p>Figura 9: Diagrama de Cenas</p>
-  <a href="https://miro.com/app/board/uXjVG8ZyQIk=/?share_link_id=884951366758">
+  <p>Figura 9: Diagrama de Cenas</p>
+  <a href="https://miro.com/app/board/uXjVG8ZyQIk=/?share_link_id=884951366758">
     <img src="other/diagramacenas.png" width="800">
   </a>
   <p>Feito pela própia equipe(2026)</p>
@@ -1044,15 +1044,11 @@ HALLIDAY, D.; RESNICK, R.; WALKER, J. Fundamentos de Física: Mecânica. Rio de 
 
 ## 4.1. Desenvolvimento preliminar do jogo 
  
-&ensp;Durante a primeira fase de desenvolvimento, foram definidas as prioridades do projeto com base nos requisitos funcionais estabelecidos na Seção 1.2, com foco nas mecânicas centrais de interação e cuidado com os animais. A equipe realizou sessões de brainstorming para consolidar a proposta do jogo, definir a forma de interação do jogador e estruturar o escopo inicial do sistema.
-A partir dessas definições, iniciou-se a organização do software, com a implementação das primeiras funcionalidades e a distribuição de tarefas entre os membros da equipe, estabelecendo uma base sólida para as sprints seguintes.
-
-**Definição da Narrativa e Mecânicas Centrais**
+ &ensp;Durante a primeira fase de desenvolvimento, foram estabelecidas as prioridades do projeto com base nos requisitos funcionais definidos para o jogo, principalmente aqueles relacionados às mecânicas de cuidado com os animais (Requisitos 3 e 4). A equipe realizou sessões de brainstorming para consolidar a ideia central do jogo, definir como o jogador interagiria com os animais e estruturar o escopo do sistema. A partir dessas definições, foi feita a organização inicial do software, com a implementação das primeiras funcionalidades e a distribuição de funções entre os membros da equipe, estabelecendo uma estrutura promissora para as próximas sprints.
 
 &ensp;No desenvolvimento da narrativa, optou-se por um personagem principal que representa uma pessoa comum, aproximando o jogador da realidade proposta pelo jogo. A história foi estruturada em torno do resgate e cuidado de animais, alinhando-se diretamente à proposta educativa do projeto.
 
 &ensp;As mecânicas centrais foram definidas com base na interação do jogador com os animais, envolvendo ações como alimentar, limpar e cuidar, essenciais para a progressão no jogo.
-
 &ensp;Essa definição atende aos requisitos RF7 e RF8, que estabelecem o cuidado com os animais como mecânica principal, além de se relacionar com o requisito RF3, referente à introdução narrativa por meio da cutscene inicial.
 
 **Implementação da Estrutura Inicial do Sistema**
@@ -1065,10 +1061,11 @@ A partir dessas definições, iniciou-se a organização do software, com a impl
 
 &ensp;Inicialmente, o menu de configurações foi implementado de forma básica, permitindo acesso a uma tela dedicada, com previsão de expansão de suas funcionalidades nas próximas etapas.
 
-<div align="center"> 
-<p>Figura 10: Tela Inicial</p>
- <img src="other/telaprincipal.png" width="800"> <p>Feito pela própria equipe (2026)</p> 
- </div>
+<div align="center">
+  <p> Figura 10: Tela Inicial</p>
+  <img src="other/telaprincipal.png" width="800">
+  <p>Feito pela própia equipe(2026)</p>
+</div>
 
 **Dificuldades Enfrentadas**
 
@@ -1107,12 +1104,13 @@ O fluxo da atividade envolve:
 &ensp;Essa funcionalidade atende aos requisitos RF10, RF12, RF13 e RF14, relacionados à área de banho e às mecânicas de limpeza.
 
 <div align="center">
- <p>Figura 11: Tela de lazer Geral</p>
-  <img src="other/bgPrincipal.png" width="800"> 
-  <p>Feito pela própria equipe (2026)</p> 
-  </div> 
-  <div align="center"> 
-  <p>Figura 12: Tela de Banho</p> 
+  <p>Figura 11: Tela de lazer Geral</p>
+  <img src="other/bgPrincipal.png" width="800">
+  <p>Feito pela própia equipe(2026)</p>
+</div>
+
+<div align="center">
+  <p>Figura 12: Tela de Banho</p>
   <img src="other/bath.png" width="800">
    <p>Feito pela própria equipe (2026)</p> 
    </div>
@@ -1139,15 +1137,15 @@ O fluxo da atividade envolve:
 
 ## 4.3. Desenvolvimento intermediário do jogo 
 
-&ensp;A terceira sprint teve como objetivo a implementação e o aprimoramento de elementos fundamentais da jogabilidade do Cobasi Shelter, focando principalmente no desenvolvimento dos minigames que simulam diferentes formas de cuidado com animais domésticos. Nesta etapa do projeto, a equipe concentrou seus esforços na implementação das mecânicas principais dos minigames, no refinamento das interações do jogador com os objetos do jogo e na estrutura de recompensas utilizando Cobasi Coins (RF7, RF8, RF11, RNF3).
+&ensp;A terceira sprint teve como objetivo a implementação e o aprimoramento de elementos fundamentais da jogabilidade do Cobasi Shelter, focando principalmente no desenvolvimento dos minigames que simulam diferentes formas de cuidado com animais domésticos. Nesta etapa do projeto, a equipe concentrou seus esforços na implementação das mecânicas principais dos minigames, no refinamento das interações do jogador com os objetos do jogo e na estrutura de recompensas utilizando Cobasi Coins.
 
-&ensp;O desenvolvimento desta sprint foi essencial para transformar o protótipo inicial em uma versão mais completa e interativa do jogo, permitindo que os jogadores experimentem na prática as principais atividades relacionadas ao cuidado com os animais (RF7, RF8). A seguir, estão descritas as principais funcionalidades implementadas nesta fase do desenvolvimento.
+&ensp;O desenvolvimento desta sprint foi essencial para transformar o protótipo inicial em uma versão mais completa e interativa do jogo, permitindo que os jogadores experimentem na prática as principais atividades relacionadas ao cuidado com os animais. A seguir, estão descritas as principais funcionalidades implementadas nesta fase do desenvolvimento.
 
-**Implementação do Minigame de Banho**
+### Implementação do Minigame de Banho
 
-&ensp;Um dos principais avanços desta sprint foi o desenvolvimento do minigame de banho, no qual o jogador deve limpar completamente um cachorro utilizando diferentes ferramentas disponíveis no ambiente do banheiro (RF10).
+&ensp;Um dos principais avanços desta sprint foi o desenvolvimento do minigame de banho, no qual o jogador deve limpar completamente um cachorro utilizando diferentes ferramentas disponíveis no ambiente do banheiro.
 
-&ensp;Neste minigame, o jogador utiliza o mouse para selecionar e utilizar três objetos principais: sabão, chuveiro e toalha. O processo de limpeza ocorre em três etapas (RF12, RF13, RF14):
+&ensp;Neste minigame, o jogador utiliza o mouse para selecionar e utilizar três objetos principais: sabão, chuveiro e toalha. O processo de limpeza ocorre em três etapas:
 
 * Aplicação do sabão sobre o animal, fazendo com que ele fique coberto por espuma;
 
@@ -1157,21 +1155,21 @@ O fluxo da atividade envolve:
 
 &ensp;O jogador deve passar cada ferramenta por todo o corpo do animal para que a etapa seja considerada concluída. Apenas após completar corretamente todas as fases do processo de limpeza o minigame é finalizado.
 
-&ensp;Ao concluir o desafio com sucesso, o jogador recebe Cobasi Coins, que funcionam como sistema de recompensa dentro do jogo (RF11, RNF2).
+&ensp;Ao concluir o desafio com sucesso, o jogador recebe Cobasi Coins, que funcionam como sistema de recompensa dentro do jogo.
 
-Cena do minigame de banho
+**Cena do minigame de banho:**
 
 <div align="center">
- <p>Figura 13: Minigame de Banho</p>
- <img src="other/telaBanhoCachorro.png" width="800"> 
- <p>Feito pela própria equipe (2026)</p>
-  </div>
+<p>Figura 13: Minigame de Banho</p>
+<img src="other/telaBanhoCachorro.png" width="800">
+<p>Feito pela própria equipe (2026)</p>
+</div>
 
-**Implementação do Minigame de Alimentação**
+### Implementação do Minigame de Alimentação
 
-&ensp;Outro avanço importante desta sprint foi o desenvolvimento do minigame de alimentação, que tem como objetivo ensinar de forma lúdica quais alimentos são adequados ou prejudiciais para os animais (RF16, RF18).
+&ensp;Outro avanço importante desta sprint foi o desenvolvimento do minigame de alimentação, que tem como objetivo ensinar de forma lúdica quais alimentos são adequados ou prejudiciais para os animais.
 
-&ensp;Neste minigame, o jogador controla o cachorro utilizando as setas do teclado, movimentando o animal para a direita ou para a esquerda na tela. Durante a partida, diferentes itens caem do topo da tela (RF19, RF20, RF21, RF22):
+&ensp;Neste minigame, o jogador controla o cachorro utilizando as setas do teclado, movimentando o animal para a direita ou para a esquerda na tela. Durante a partida, diferentes itens caem do topo da tela:
 
 * Ração Standard, que concede 10 pontos;
 
@@ -1179,24 +1177,25 @@ Cena do minigame de banho
 
 * Itens prejudiciais, como chocolate, que fazem o jogador perder uma vida.
 
-&ensp;O jogador inicia o minigame com três vidas e deve coletar apenas os alimentos corretos enquanto evita os itens prejudiciais (RF22). O objetivo é atingir a pontuação de 200 pontos para concluir o desafio.
-Após atingir essa pontuação, o minigame é finalizado e o jogador recebe Cobasi Coins como recompensa (RF11).
+&ensp;O jogador inicia o minigame com três vidas e deve coletar apenas os alimentos corretos enquanto evita os itens prejudiciais. O objetivo é atingir a pontuação de 200 pontos para concluir o desafio.
 
-Cena do minigame de alimentação
+&ensp;Após atingir essa pontuação, o minigame é finalizado e o jogador recebe Cobasi Coins como recompensa.
 
-<div align="center"> 
-<p>Figura 14: Minigame de Alimentação</p> 
+**Cena do minigame de alimentação**
+
+<div align="center">
+<p>Figura 14: Minigame de Alimentação</p>
 <img src="other/sprint3-alimentacao.png" width="800">
  <p>Feito pela própria equipe (2026)</p> 
  </div>
 
-**Implementação do Minigame Veterinário**
+### Implementação do Minigame Veterinário
 
-&ensp;Também foi desenvolvido o minigame veterinário, no qual o jogador deve ajudar a cuidar da saúde do animal removendo pulgas com o auxílio de uma pinça (RF23, RF24).
+&ensp;Também foi desenvolvido o minigame veterinário, no qual o jogador deve ajudar a cuidar da saúde do animal removendo pulgas com o auxílio de uma pinça.
 
-&ensp;Neste minigame, o jogador utiliza o mouse para selecionar a pinça e movimentá-la pela tela. Ao posicionar a ferramenta sobre uma pulga, o jogador deve clicar para removê-la (RF25, RNF7).
+&ensp;Neste minigame, o jogador utiliza o mouse para selecionar a pinça e movimentá-la pela tela. Ao posicionar a ferramenta sobre uma pulga, o jogador deve clicar para removê-la.
 
-&ensp;O objetivo do minigame é retirar todas as pulgas do animal no menor tempo possível. Para avaliar o desempenho do jogador, foi implementado um sistema de classificação baseado em estrelas (RF25):
+&ensp;O objetivo do minigame é retirar todas as pulgas do animal no menor tempo possível. Para avaliar o desempenho do jogador, foi implementado um sistema de classificação baseado em estrelas:
 
 * 3 estrelas – tempo inferior a 30 segundos;
 
@@ -1204,55 +1203,53 @@ Cena do minigame de alimentação
 
 * 1 estrela – tempo superior a 45 segundos.
 
-&ensp;Após remover todas as pulgas e concluir o desafio, o jogador também recebe Cobasi Coins como recompensa (RF11).
+&ensp;Após remover todas as pulgas e concluir o desafio, o jogador também recebe Cobasi Coins como recompensa.
 
 Cena do minigame veterinário
 
-<div align="center"> 
-<p>Figura 15: Minigame de Veterinário</p> 
+<div align="center">
+<p>Figura 15: Minigame de Veterinário</p>
 <img src="other/telaPulga.png" width="800">
  <p>Feito pela própria equipe (2026)</p>
  </div>
 
-**Dificuldades encontradas durante a sprint**
+### Dificuldades encontradas durante a sprint
 
-&ensp;Durante o desenvolvimento desta sprint, a equipe enfrentou algumas dificuldades técnicas relacionadas principalmente à implementação das interações entre os objetos e os personagens dentro dos minigames. Um dos principais desafios foi ajustar corretamente as colisões e interações entre os elementos da tela, garantindo que as ações do jogador fossem registradas de forma precisa (RNF7).
+&ensp;Durante o desenvolvimento desta sprint, a equipe enfrentou algumas dificuldades técnicas relacionadas principalmente à implementação das interações entre os objetos e os personagens dentro dos minigames. Um dos principais desafios foi ajustar corretamente as colisões e interações entre os elementos da tela, garantindo que as ações do jogador fossem registradas de forma precisa.
 
 &ensp;Outro desafio foi a integração das diferentes mecânicas de controle entre os minigames, já que alguns utilizam o mouse enquanto outros utilizam o teclado. Além disso, a equipe também enfrentou dificuldades na organização do projeto no GitLab, principalmente no controle de versões e na sincronização do código entre os membros do grupo.
 
 &ensp;Apesar desses desafios, foi possível implementar com sucesso as principais mecânicas dos minigames e estruturar uma base sólida para as próximas etapas do desenvolvimento.
 
-**Próximos passos**
+### Próximos passos
 
 &ensp;Para as próximas sprints, a equipe pretende continuar aprimorando a experiência do jogador, adicionando novos elementos ao jogo. Entre os próximos passos planejados estão:
 
-* Implementação do quiz educativo ao final dos minigames (RF18);
+* Implementação do quiz educativo ao final dos minigames;
 
-* Aprimoramento das animações e feedbacks visuais durante as interações (RNF2, RNF3);
+* Aprimoramento das animações e feedbacks visuais durante as interações;
 
-* Integração completa do sistema de Cobasi Coins (RF11);
+* Integração completa do sistema de Cobasi Coins;
 
-* Melhorias na interface e na navegação entre telas (RNF3, RNF6);
+* Melhorias na interface e na navegação entre telas;
 
-* Correção de possíveis bugs e otimização do desempenho do jogo (RNF9).
+* Correção de possíveis bugs e otimização do desempenho do jogo.
 
 &ensp;Essas melhorias têm como objetivo tornar o Cobasi Shelter uma experiência mais completa, interativa e educativa, reforçando a proposta do jogo de ensinar sobre os cuidados necessários com animais domésticos de forma lúdica.
 
 ## 4.4. Desenvolvimento final do MVP 
 
-&ensp;Na quarta sprint teve como objetivo consolidar o MVP do Cobasi Shelter, com foco no aprimoramento visual, expansão das mecânicas e integração dos sistemas desenvolvidos anteriormente. Nesta etapa, buscou-se alinhar a experiência do jogador,garantindo maior coerência entre jogabilidade, interface e proposta educativa do projeto.
+&ensp;Na quarta sprint teve como objetivo consolidar o MVP do Cobasi Shelter, com foco no aprimoramento visual, expansão das mecânicas e integração dos sistemas desenvolvidos anteriormente. Nesta etapa, buscou-se alinhar a experiência do jogador aos requisitos definidos na Seção 1.2, garantindo maior coerência entre jogabilidade, interface e proposta educativa do projeto.
 
-**Aprimoramento Visual e Interface**
+### Aprimoramento Visual e Interface
 
 &ensp;Durante esta fase, foram realizadas melhorias na identidade visual do jogo, incluindo a padronização das cores, menus e cenários, com base na estética da marca Cobasi. Também houve ajustes na tela inicial e na HUD, visando maior clareza e organização das informações.
 
 &ensp;Essas melhorias atendem aos requisitos não funcionais RNF5, RNF6 e RNF10, relacionados à organização visual, consistência gráfica e legibilidade, além de reforçar o requisito funcional RF2, referente à estrutura da tela inicial.
 
-**Expansão de Conteúdo e Elementos Gráficos**
-
+### Expansão de Conteúdo e Elementos Gráficos
 &ensp;Foram desenvolvidos novos sprites e elementos visuais, incluindo a adição de um segundo cachorro e novos objetos utilizados nos minigames, como itens de alimentação e elementos interativos.
-
-&ensp;Essa expansão está alinhada aos requisitos RF1, RF7 e RF8, que definem a presença dos animais e a mecânica central baseada no cuidado por meio de interações.
+Essa expansão está alinhada aos requisitos RF1, RF7 e RF8, que definem a presença dos animais e a mecânica central baseada no cuidado por meio de interações.
 
 <div align="center">
   <p>Figura 16: Tela de Cuidado </p>
@@ -1261,7 +1258,7 @@ Cena do minigame veterinário
   <p>Feito pela própia equipe(2026)</p>
 </div>
 
-**Implementação da Área de Lazer**
+### Implementação da Área de Lazer 
 
 &ensp;Foi implementado um novo minigame na área de lazer, com mecânicas de movimentação como andar, correr e pular, tornando a experiência mais dinâmica.Nele, o animal tem que capturar os petiscos e desviar dos obstáculos.
 
@@ -1274,7 +1271,7 @@ Cena do minigame veterinário
   <p>Feito pela própia equipe(2026)</p>
 </div>
 
-**Sistema de Progressão e Múltiplos Animais**
+### Sistema de Progressão e Múltiplos Animais
 
 &ensp;O jogo passou a contar com um sistema de progressão entre fases, permitindo ao jogador cuidar de mais de um animal ao longo da experiência.
 Esse sistema reforça os requisitos RF5, RF7 e RF8, garantindo continuidade na jogabilidade baseada no cuidado dos animais.
@@ -1299,14 +1296,14 @@ Esse sistema reforça os requisitos RF5, RF7 e RF8, garantindo continuidade na j
 </div>
 
 <div align="center">
-  <p>Figura 19: Tela de ração com o novo cachorro</p>
+  <p>Figrua 19: Tela de ração com o novo cachorro</p>
   <img src="other/telaRacaoInicial.png" width="800">
  
   <p>Feito pela própia equipe(2026)</p>
 </div>
 
 
-**Aprimoramento da Experiência do Usuário**
+### Aprimoramento da Experiência do Usuário
 
 &ensp;Foram adicionados elementos de UX, como trilha sonora, feedbacks visuais e telas de retorno, tornando a interação mais intuitiva e fluida.
 Essas melhorias atendem aos requisitos não funcionais RNF2, RNF3, RNF4 e RNF9, relacionados à usabilidade, feedback e desempenho do sistema.
@@ -1320,20 +1317,20 @@ Essas melhorias atendem aos requisitos não funcionais RNF2, RNF3, RNF4 e RNF9, 
 </div>
 
 <div align="center">
-  <p>Figura 21: Tela da compra de rações </p>
+  <p>Figura 21:Tela da compra de rações </p>
   <img src="other/telaRacaoInstrucao.png" width="800">
  
   <p>Feito pela própia equipe(2026)</p>
 </div>
 
 
-**Dificuldades Encontradas**
+### Dificuldades Encontradas
 
 &ensp;Durante a sprint, a equipe enfrentou desafios na integração do código no GitLab, principalmente em relação ao controle de versões e sincronização entre os membros. Também houve dificuldades de comunicação, impactando o andamento das atividades.
 
 &ensp;Apesar disso, os problemas foram contornados, contribuindo para o amadurecimento da equipe e melhoria dos processos de desenvolvimento.
 
-**Próximos Passos**
+### Próximos Passos
 
 &ensp;Para a continuidade do projeto, foram definidos os seguintes próximos passos:
 * Implementar o quiz educativo (RF18);
@@ -1341,7 +1338,6 @@ Essas melhorias atendem aos requisitos não funcionais RNF2, RNF3, RNF4 e RNF9, 
 * Refinar testes e desempenho do sistema (RNF9);
 * Incluir novos animais (RF1);
 * Realizar ajustes finais de interface (RNF6 e RNF3).
-
 
 ## 4.5. Revisão do MVP 
 
