@@ -53,7 +53,6 @@ export class cenaCarregamento extends Phaser.Scene {
         this.load.image("pulga1", "assets/tela-cuidado/pulga1.png");
         this.load.image("bandeja", "assets/tela-cuidado/bandeja.png");
         this.load.image("bgCuidadoHeroi", "assets/bgCuidadoHeroi.png");//fundo do pelo do segundo animal
-        this.load.image("bgCuidadoJoao", "assets/bgCuidadoJoao.png");//fundo do pelo do terceiro animal
         this.load.image("bgVeterinario", "assets/tela-veterinario/bgVeterinario.png");
         this.load.image("lupa", "assets/tela-veterinario/lupa.png");
 
@@ -87,7 +86,6 @@ export class cenaCarregamento extends Phaser.Scene {
         this.load.image('heart', 'assets/heart.png');//vida 
         this.load.image('retornoInicio', 'assets/retornoInicio.png');
         this.load.image("cachorroHeroiBoca", "assets/cachorroHeroiBoca.png");//sprite do segundo cachorro
-        this.load.image("cachorroJoaoBoca", "assets/cachorroJoaoBoca.png");//sprite do terceiro cachorro
     
         //Cenas banheiro
         this.load.image("bgLimpo", "assets/bgLimpo.png");

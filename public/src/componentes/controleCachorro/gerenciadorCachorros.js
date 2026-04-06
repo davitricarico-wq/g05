@@ -105,10 +105,10 @@ export class GerenciadorCachorros {
     gameState.trocar = true
     gameState.progressoCachorro = 2
     
-    gameState.barras.comida = 0
-    gameState.barras.lazer = 11
-    gameState.barras.limpeza = 0
-    gameState.barras.saude = 0
+    gameState.barras.comida = 11
+    gameState.barras.lazer = 0
+    gameState.barras.limpeza =11
+    gameState.barras.saude =11
 
     // Adiciona uma dificuldade extra: este cachorro vem com pulgas
     gameState.pulga = true
