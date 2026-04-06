@@ -197,8 +197,12 @@ export class cenaCarregamento extends Phaser.Scene {
             frameWidth: 338,
             frameHeight: 339 
         });
+        this.load.spritesheet("espirradorPulgas", "assets/tela-cuidado/espirradorPulga.png", {
+            frameWidth: 232,
+            frameHeight: 239 
+        });
 
-
+        this.load.image("pinca", "assets/tela-cuidado/pinca.png");
       
     }
 
