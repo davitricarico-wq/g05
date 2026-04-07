@@ -5,9 +5,6 @@
 
 # Bardot Studios
 
-Ana Célia Augusta Santos do Amaral  
-Anita Fratelli Sonobe Silveira  
-Davi Viana Tricarico  
 Gustavo Luz Fantasia Barbosa  
 Isaac Nicolas Alves Silva  
 João Pedro Fuzzo Poveda  
