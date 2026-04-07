@@ -639,14 +639,17 @@ Fonte: material produzido pelos autores (2026).
 
 
 ### 3.3.5. Trilha Sonora
-&ensp; A trilha sonora do jogo é composta por faixas originais criadas exclusivamente para o projeto, garantindo uma identidade sonora autêntica e perfeitamente alinhada à atmosfera do jogo. O foco atual da composição é estabelecer o tom correto nos primeiros contatos do jogador com a obra, criando imersão desde o menu inicial e ajudando a contar a história durante a introdução narrativa. As faixas presentes até o momento estão organizadas na tabela abaixo:
+&ensp; A trilha sonora do jogo é composta por faixas originais criadas exclusivamente para o projeto, garantindo uma identidade sonora autêntica e perfeitamente alinhada à atmosfera do jogo. O foco atual da composição é estabelecer o tom correto nos primeiros contatos do jogador com a obra, criando imersão desde o menu inicial e ajudando a contar a história durante a introdução narrativa. Todas as faixas exceto a "Patas na Chuva" podem aparecer em qualquer uma das cenas, evitando repetição caso o jogador se mantenha por mais tempo em alguma parte. As faixas presentes até o momento estão organizadas na tabela abaixo:
 
 <div align="center">
 
 \# | titulo | ocorrência | autoria
 | :---: | :---: | :---: | :---: |
-1 | Adotando e Cuidando | Menu Principal | Composição Própria (Gustavo Fantasia)
+1 | Adotando e Cuidando | Qualquer cena | Composição Própria (Gustavo Fantasia)
 2 | Patas na Chuva | Cutscene pós menu principal | Composição Própria (Gustavo Fantasia) 
+3 | Lazer Despreocupado | Qualquer cena | Composição Própria (Gustavo Fantasia)
+4 | Novo Horizonte | Qualquer cena | Composição Própria (Gustavo Fantasia)
+5 | Pegadas Crescidas | Qualquer cena | Composição Própria (Gustavo Fantasia)
 
 </div>
 
