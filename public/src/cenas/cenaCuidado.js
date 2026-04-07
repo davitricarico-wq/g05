@@ -464,12 +464,10 @@ export class cenaCuidado extends Phaser.Scene {
             gameState.recompensas.cuidado[cachorroAtivo] = true;
         }
 
-        gameState.pulga = false;
-        
-        this.mostrarPainelResultado(estrelas, moedas, this.tempoRestante);
-    }
+        if (gameState.pets.cachorroJoao && !gameState.exibirQuiz) {
+            gameState.exibirQuiz = true;
+        }
 
-    perderMinigame() {
         if (this.minigameFinalizado) return;
         this.minigameFinalizado = true;
         this.input.setDefaultCursor("default");

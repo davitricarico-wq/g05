@@ -356,9 +356,7 @@ class CenaPopups extends Phaser.Scene {
 
                 this.imgEvolucao.destroy();
                 this.txtEvolucao.destroy();
-                // Dispara o quiz após segunda evolução
-                gameState.exibirQuiz = true;
-                this.mostrarQuiz();
+                // O quiz só aparecerá depois de cuidarmos do João.
                 return;
             }
         });
