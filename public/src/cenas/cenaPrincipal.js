@@ -3,14 +3,23 @@ import { gameState } from "../main.js"
 // Importa as dependências para gestão e dados dos animais
 import { GerenciadorCachorros } from "../componentes/controleCachorro/gerenciadorCachorros.js"
 import { cachorrosBase } from "../componentes/controleCachorro/cachorrosBase.js"
+// Importa o gerenciador do Quiz (AJUSTE O CAMINHO SE NECESSÁRIO)
+import { GerenciadorQuiz } from "../componentes/gerenciadorQuiz.js"
 
-// Cena responsável por gerenciar e exibir interfaces sobrepostas como fichas e evoluções
+// Cena responsável por gerenciar e exibir interfaces sobrepostas como fichas, evoluções e quizzes
 class CenaPopups extends Phaser.Scene {
     constructor() {
         super({ key: "CenaPopups" });
     }
 
     create() {
+        // Inicializa o gerenciador de quiz sempre do zero
+        this.quiz = new GerenciadorQuiz();
+        this.quiz.reiniciar();
+        
+        // Flag para rastrear se o feedback foi exibido
+        this.exibindoFeedback = false;
+
         // Força esta cena inteira a vir para a frente de TUDO (incluindo a HUD)
         this.scene.bringToTop();
 
@@ -24,17 +33,18 @@ class CenaPopups extends Phaser.Scene {
         // Verifica o estado global para determinar qual interface deve ser renderizada
         if (gameState.aguardandoEvolucao) {
             this.exibirPopupEvolucao();
+        } else if (gameState.exibirQuiz) {
+            this.mostrarQuiz();
         } else if (!gameState.instrucaoMissaoVista) {
             this.mostrarFicha();
         }
 
         // Gerencia o reposicionamento dos elementos visuais quando o tamanho da tela muda
-        const handleResizePopups = () => {
+        const handleResizePopups = (size) => {
             if (!this.scene.isActive() || !this.cameras || !this.cameras.main) return;
 
             const novaLargura = this.scale.width;
             const novaAltura = this.scale.height;
-            // Agora centralizamos na tela TODA, já que o popup cobre a HUD também
             const novoCentroX = novaLargura / 2;
             const novoCentroY = novaAltura / 2;
 
@@ -51,6 +61,11 @@ class CenaPopups extends Phaser.Scene {
             if (this.containerFicha && this.containerFicha.active) this.containerFicha.setPosition(novoCentroX, novoCentroY);
             if (this.txtContinuarFicha && this.txtContinuarFicha.active) this.txtContinuarFicha.setPosition(novoCentroX, novoCentroY + 200);
             
+            // Resize do Quiz
+            if (this.containerQuiz && this.containerQuiz.active) {
+                this.containerQuiz.setPosition(novoCentroX, novoCentroY);
+            }
+
             if (this.imgInstrucao && this.imgInstrucao.active) {
                 this.imgInstrucao.setPosition(novoCentroX, novoCentroY);
                 if (this.txtContinuarInstrucao && this.txtContinuarInstrucao.active) {
@@ -59,7 +74,6 @@ class CenaPopups extends Phaser.Scene {
                 }
             }
 
-            // Resize do novo popup da Fase 2
             if (this.imgInstrucaoFase2 && this.imgInstrucaoFase2.active) {
                 this.imgInstrucaoFase2.setPosition(novoCentroX, novoCentroY);
                 if (this.txtContinuarFase2 && this.txtContinuarFase2.active) {
@@ -67,33 +81,258 @@ class CenaPopups extends Phaser.Scene {
                     this.txtContinuarFase2.setPosition(novoCentroX, novoPosicaoTextoF2Y);
                 }
             }
+
+            if (this.imgInstrucaoFase3 && this.imgInstrucaoFase3.active) {
+                this.imgInstrucaoFase3.setPosition(novoCentroX, novoCentroY);
+                if (this.txtContinuarFase3 && this.txtContinuarFase3.active) {
+                    const novoPosicaoTextoF3Y = novoCentroY + (this.imgInstrucaoFase3.displayHeight / 2) + 30;
+                    this.txtContinuarFase3.setPosition(novoCentroX, novoPosicaoTextoF3Y);
+                }
+            }
         };
 
-        // Adiciona o ouvinte de redimensionamento e garante sua remoção ao encerrar a cena
+        // Armazena referência para limpeza correta
+        this.handleResizePopups = handleResizePopups;
         this.scale.on("resize", handleResizePopups);
+        
         this.events.on('shutdown', () => {
-            this.scale.off("resize", handleResizePopups);
+            this.scale.off("resize", this.handleResizePopups);
         });
     }
 
-    // Cria a interface visual que indica a mudança de nível do animal
-    exibirPopupEvolucao() {
-        const centroX = this.scale.width / 2; // Centralizado em 100% da tela
+    // --- FUNÇÃO DE QUIZ COM FEEDBACK VISUAL ---
+    mostrarQuiz() {
+        // Limpa o container anterior se existir (para quando avançar a pergunta)
+        if (this.containerQuiz) this.containerQuiz.destroy(); 
+        if (this.containerFeedback) this.containerFeedback.destroy();
+        this.exibindoFeedback = false;
+
+        const centroX = this.scale.width / 2;
         const centroY = this.scale.height / 2;
 
-        this.imgEvolucao = this.add.image(centroX, centroY, "conclusaoPrimeiroRound")
+        this.containerQuiz = this.add.container(centroX, centroY).setSize(800, 500);
+        
+        // Fundo do quiz
+        const fundoQuiz = this.add.rectangle(0, 0, 800, 500, 0xf0e8bb).setOrigin(0.5);
+        this.containerQuiz.add(fundoQuiz);
+        
+        // Indicador de progresso
+        const progresso = `Pergunta ${this.quiz.indiceAtual + 1}/${this.quiz.perguntas.length}`;
+        const txtProgresso = this.add.text(0, -220, progresso, {
+            fontFamily: '"Press Start 2P"',
+            fontSize: "12px",
+            color: "#666666"
+        }).setOrigin(0.5);
+        this.containerQuiz.add(txtProgresso);
+
+        const perguntaAtual = this.quiz.obterPerguntaAtual();
+        
+        // Texto da Pergunta
+        const txtPergunta = this.add.text(0, -180, perguntaAtual.texto, {
+            fontFamily: '"Press Start 2P", Arial',
+            fontSize: "16px",
+            color: "#000000",
+            wordWrap: { width: 750 },
+            align: "center",
+            lineSpacing: 10
+        }).setOrigin(0.5);
+        this.containerQuiz.add(txtPergunta);
+
+        // Armazena referências dos botões para desabilitar depois do feedback
+        const botoesQuiz = [];
+
+        // Gera os botões das opções
+        perguntaAtual.opcoes.forEach((opcao, index) => {
+            const posY = -60 + (index * 75);
+            
+            const btnFundo = this.add.rectangle(0, posY, 760, 65, 0xffffff)
+                .setInteractive({ useHandCursor: true })
+                .setStrokeStyle(2, 0x000000);
+                
+            const txtOpcao = this.add.text(0, posY, opcao, {
+                fontFamily: 'Arial',
+                fontSize: "15px",
+                color: "#000000",
+                wordWrap: { width: 740 },
+                align: "left"
+            }).setOrigin(0.5);
+
+            this.containerQuiz.add([btnFundo, txtOpcao]);
+            botoesQuiz.push({ btn: btnFundo, txt: txtOpcao, indice: index, correta: index === perguntaAtual.indiceCorreto });
+
+            // Evento de Clique na Opção
+            btnFundo.on('pointerdown', () => {
+                if (this.exibindoFeedback) return; // Previne múltiplos cliques durante feedback
+                
+                this.exibindoFeedback = true;
+                const acertou = this.quiz.responder(index);
+                
+                // Desabilita todos os botões e mostra feedback
+                botoesQuiz.forEach(item => {
+                    item.btn.disableInteractive();
+                    item.btn.setStrokeStyle(2, 0x000000);
+                    
+                    if (item.correta) {
+                        // Verde para resposta correta
+                        item.btn.setFillStyle(0x90EE90);
+                    } else if (item.indice === index && !acertou) {
+                        // Vermelho para resposta errada selecionada
+                        item.btn.setFillStyle(0xFF6B6B);
+                    }
+                });
+                
+                // Exibe feedback
+                this.exibirFeedbackResposta(acertou, perguntaAtual.indiceCorreto);
+                
+                // Avança após 2 segundos
+                this.time.delayedCall(2000, () => {
+                    if (this.quiz.avancarPergunta()) {
+                        this.mostrarQuiz();
+                    } else {
+                        this.exibirTelaResultados();
+                    }
+                });
+            });
+            
+            // Efeitos visuais de Hover no botão
+            btnFundo.on('pointerover', () => {
+                if (!this.exibindoFeedback) btnFundo.setFillStyle(0xe0e0e0);
+            });
+            btnFundo.on('pointerout', () => {
+                if (!this.exibindoFeedback) btnFundo.setFillStyle(0xffffff);
+            });
+        });
+    }
+    
+    exibirFeedbackResposta(acertou, indiceCorreto) {
+        const centroX = this.scale.width / 2;
+        const centroY = this.scale.height / 2;
+        
+        const texto = acertou ? "✓ CORRETO!" : "✗ ERRADO!";
+        const cor = acertou ? "#00AA00" : "#FF0000";
+        
+        const feedback = this.add.text(centroX, centroY + 230, texto, {
+            fontFamily: '"Press Start 2P"',
+            fontSize: "24px",
+            color: cor,
+            stroke: "#000000",
+            strokeThickness: 3
+        }).setOrigin(0.5);
+        
+        this.tweens.add({
+            targets: feedback,
+            scale: { from: 0.8, to: 1.1 },
+            duration: 200,
+            yoyo: true
+        });
+    }
+    
+    exibirTelaResultados() {
+        if (this.containerQuiz) this.containerQuiz.destroy();
+        
+        const centroX = this.scale.width / 2;
+        const centroY = this.scale.height / 2;
+        const resultado = this.quiz.obterPontuacao();
+        const percentual = Math.round((resultado.acertos / resultado.total) * 100);
+        
+        this.containerQuiz = this.add.container(centroX, centroY);
+        
+        const fundoResultado = this.add.rectangle(0, 0, 600, 450, 0xf0e8bb).setOrigin(0.5);
+        this.containerQuiz.add(fundoResultado);
+        
+        const txtTitulo = this.add.text(0, -150, "RESULTADO FINAL", {
+            fontFamily: '"Press Start 2P"',
+            fontSize: "20px",
+            color: "#000000"
+        }).setOrigin(0.5);
+        
+        const txtScore = this.add.text(0, -60, `${resultado.acertos}/${resultado.total} acertos`, {
+            fontFamily: '"Press Start 2P"',
+            fontSize: "18px",
+            color: "#000000"
+        }).setOrigin(0.5);
+        
+        const txtPercentual = this.add.text(0, 20, `${percentual}%`, {
+            fontFamily: '"Press Start 2P"',
+            fontSize: "32px",
+            color: percentual >= 70 ? "#00AA00" : "#FF6B6B"
+        }).setOrigin(0.5);
+        
+        const txtContinuar = this.add.text(0, 130, "[ Clique para Continuar ]", {
+            fontFamily: '"Press Start 2P"',
+            fontSize: "12px",
+            color: "#ffffff",
+            stroke: "#000000",
+            strokeThickness: 2
+        }).setOrigin(0.5).setInteractive({ useHandCursor: true });
+        
+        this.containerQuiz.add([fundoResultado, txtTitulo, txtScore, txtPercentual, txtContinuar]);
+        
+        txtContinuar.on('pointerdown', () => {
+            this.finalizarQuiz();
+        });
+        
+        txtContinuar.on('pointerover', () => txtContinuar.setFill("#ffff00"));
+        txtContinuar.on('pointerout', () => txtContinuar.setFill("#ffffff"));
+    }
+
+    finalizarQuiz() {
+        if (this.containerQuiz) this.containerQuiz.destroy();
+        if (this.containerFeedback) this.containerFeedback.destroy();
+        
+        gameState.exibirQuiz = false;
+        
+        // Devolve a HUD e fecha a cena
+        this.scene.bringToTop("HUD");
+        this.scene.stop();
+    }
+    // ----------------------------
+
+    exibirPopupEvolucao() {
+        const centroX = this.scale.width / 2; 
+        const centroY = this.scale.height / 2;
+
+        let imagemConclusao = "";
+        let textoEvolucao = "";
+
+        if (gameState.progressoCachorro === 0) {
+            imagemConclusao = "conclusaoPrimeiroRound";
+            textoEvolucao = "[ Clique para Evoluir! ]";
+        } else if (gameState.progressoCachorro === 1) {
+            imagemConclusao = "conclusaoSegundoRound";
+            textoEvolucao = "[ Clique para a Ultima Fase! ]";
+        } else if (gameState.progressoCachorro === 2) {
+            imagemConclusao = "conclusaoTerceiroRound";
+            textoEvolucao = "[ Clique para Finalizar ]";
+        }
+
+        this.imgEvolucao = this.add.image(centroX, centroY, imagemConclusao)
             .setScale(0.6)
             .setInteractive({ useHandCursor: true }); 
         
-        this.txtEvolucao = this.add.text(centroX, centroY + 180, "[ Clique para Evoluir! ]", {
+        this.txtEvolucao = this.add.text(centroX, centroY + 180, textoEvolucao, {
             fontFamily: '"Press Start 2P"', 
             fontSize: "16px", 
             fill: "#ffffff"
         }).setOrigin(0.5);
 
-        // Atualiza os dados do pet para a nova fase e avança
         this.imgEvolucao.on('pointerdown', () => {
             gameState.aguardandoEvolucao = false;
+
+            if (gameState.progressoCachorro === 2) {
+                this.imgEvolucao.destroy();
+                this.txtEvolucao.destroy();
+                
+                gameState.progressoCachorro = 0;
+                gameState.pets = { cachorroCaramelo: true, cachorroHeroi: false, cachorroJoao: false };
+                gameState.instrucaoMissaoVista = false;
+                
+                this.scene.stop("HUD");
+                this.scene.stop();
+                this.scene.get("cenaPrincipal").scene.start("cenaInicial");
+                return;
+            }
+
             gameState.pulga = true;
 
             if (gameState.progressoCachorro === 0) {
@@ -102,22 +341,27 @@ class CenaPopups extends Phaser.Scene {
                 gameState.pets.cachorroHeroi = true;
                 gameState.pets.cachorroJoao = false;
                 gameState.progressoCachorro = 1;
+
+                this.imgEvolucao.destroy();
+                this.txtEvolucao.destroy();
+                this.mostrarInstrucaoSegundaFase();
+
             } else if (gameState.progressoCachorro === 1) {
-                gameState.barras = { comida: 11, lazer: 0, limpeza: 11, saude: 11 };
+                // João inicia com comida, limpeza e saúde cheias; lazer vazia.
+                gameState.barras = { comida: 0, lazer: 11, limpeza: 0, saude: 0 };
                 gameState.pets.cachorroCaramelo = false;
                 gameState.pets.cachorroHeroi = false;
                 gameState.pets.cachorroJoao = true;
                 gameState.progressoCachorro = 2;
-            }
 
-            // Destrói os elementos atuais e mostra o próximo popup
-            this.imgEvolucao.destroy();
-            this.txtEvolucao.destroy();
-            this.mostrarInstrucaoSegundaFase();
+                this.imgEvolucao.destroy();
+                this.txtEvolucao.destroy();
+                // O quiz só aparecerá depois de cuidarmos do João.
+                return;
+            }
         });
     }
 
-    // Função que mostra a instrução da Segunda Fase
     mostrarInstrucaoSegundaFase() {
         const centroX = this.scale.width / 2;
         const centroY = this.scale.height / 2;
@@ -134,16 +378,34 @@ class CenaPopups extends Phaser.Scene {
             this.imgInstrucaoFase2.destroy();
             this.txtContinuarFase2.destroy();
             
-            // Devolve a HUD para o topo antes de fechar a cena
             this.scene.bringToTop("HUD");
-
-            // Para a cena de popups e reinicia a cena principal
             this.scene.stop();
             this.scene.get("cenaPrincipal").scene.restart();
         });
     }
 
-    // Monta o container com as informações biográficas do animal ativo
+    mostrarInstrucaoTerceiraFase() {
+        const centroX = this.scale.width / 2;
+        const centroY = this.scale.height / 2;
+
+        this.imgInstrucaoFase3 = this.add.image(centroX, centroY, "instrucaoTerceiroRound")
+            .setScale(0.5)
+            .setInteractive({ useHandCursor: true }); 
+
+        this.txtContinuarFase3 = this.add.text(centroX, centroY + (this.imgInstrucaoFase3.displayHeight / 2) + 30, "[ Clique para comecar a 3a Fase ]", {
+            fontFamily: '"Press Start 2P"', fontSize: "15px", color: "#ffffff", stroke: "#000000", strokeThickness: 4
+        }).setOrigin(0.5);
+
+        this.imgInstrucaoFase3.on("pointerdown", () => {
+            this.imgInstrucaoFase3.destroy();
+            this.txtContinuarFase3.destroy();
+            
+            this.scene.bringToTop("HUD");
+            this.scene.stop();
+            this.scene.get("cenaPrincipal").scene.restart();
+        });
+    }
+
     mostrarFicha() {
         const centroX = this.scale.width / 2;
         const centroY = this.scale.height / 2;
@@ -157,7 +419,6 @@ class CenaPopups extends Phaser.Scene {
         const fundoFicha = this.add.rectangle(0, 0, 500, 350, 0xf0e8bb).setOrigin(0.5);
         const estiloPixel = { fontFamily: '"Press Start 2P", Arial', fontSize: "14px", color: "#000000" };
 
-        // Adiciona textos informativos ao container da ficha
         this.containerFicha.add([
             fundoFicha,
             this.add.text(-220, -120, `Ficha do Animal`, estiloPixel).setOrigin(0, 0.5),
@@ -173,7 +434,6 @@ class CenaPopups extends Phaser.Scene {
             fontFamily: '"Press Start 2P"', fontSize: "15px", color: "#ffffff", stroke: "#000000", strokeThickness: 4
         }).setOrigin(0.5);
 
-        // Ao clicar, destrói a ficha e avança para as instruções da missão
         this.containerFicha.on("pointerdown", () => {
             this.containerFicha.destroy();
             this.txtContinuarFicha.destroy();
@@ -181,7 +441,6 @@ class CenaPopups extends Phaser.Scene {
         });
     }
 
-    // Exibe a imagem explicativa sobre os objetivos da missão atual
     mostrarInstrucao() {
         const centroX = this.scale.width / 2;
         const centroY = this.scale.height / 2;
@@ -194,13 +453,11 @@ class CenaPopups extends Phaser.Scene {
             fontFamily: '"Press Start 2P"', fontSize: "15px", color: "#ffffff", stroke: "#000000", strokeThickness: 4
         }).setOrigin(0.5);
 
-        // Finaliza o fluxo de popups e libera o controle para a cena principal
         this.imgInstrucao.on("pointerdown", () => {
             this.imgInstrucao.destroy();
             this.txtContinuarInstrucao.destroy();
             gameState.instrucaoMissaoVista = true;
 
-            // Devolve a HUD para o topo antes de fechar a cena
             this.scene.bringToTop("HUD");
             this.scene.stop();
         });
@@ -220,12 +477,13 @@ export class cenaPrincipal extends Phaser.Scene {
         }
         this.scene.bringToTop("HUD")
 
-        // Registra e ativa a cena de popups se houver necessidade de evoluir ou ler instruções
+        // Registra e ativa a cena de popups
         if (!this.scene.get("CenaPopups")) {
             this.scene.add("CenaPopups", CenaPopups, false);
         }
         
-        if (gameState.aguardandoEvolucao || !gameState.instrucaoMissaoVista) {
+        // Verifica também se é hora de exibir o quiz
+        if (gameState.aguardandoEvolucao || !gameState.instrucaoMissaoVista || gameState.exibirQuiz) {
             if (!this.scene.isActive("CenaPopups")) {
                 this.scene.launch("CenaPopups");
             }
@@ -254,7 +512,7 @@ export class cenaPrincipal extends Phaser.Scene {
             .setDisplaySize(areaUtilLargura, alturaTotal)
             .setDepth(-1);
 
-        // Instancia o cachorro dinamicamente conforme o índice ativo no estado do jogo
+        // Instancia o cachorro dinamicamente
         this.gerenciadorCachorros = new GerenciadorCachorros(this)
         const indiceAtivo = gameState.pets.cachorroJoao ? 2 : (gameState.pets.cachorroHeroi ? 1 : 0)
         this.cachorro = this.gerenciadorCachorros.criarCachorro(0, 0, cachorrosBase[indiceAtivo])
@@ -275,7 +533,7 @@ export class cenaPrincipal extends Phaser.Scene {
             .play("pulgaAnim")
             .setVisible(gameState.pulga);
 
-        // Agrupa o cachorro e as pulgas em um container para manipulação conjunta
+        // Agrupa o cachorro e as pulgas em um container
         this.containerCachorro = this.add.container(areaUtilLargura / 2, alturaTotal * 0.7, [
             this.cachorro.sprite, 
             this.pulgas
@@ -284,7 +542,7 @@ export class cenaPrincipal extends Phaser.Scene {
         const escalaBase = alturaTotal * 0.0006;
         this.containerCachorro.setScale(escalaBase);
 
-        // Lógica de redimensionamento para manter o cenário e o pet centralizados na área útil
+        // Lógica de redimensionamento
         const handleResizePrincipal = () => {
             if (!this.scene.isActive() || !this.cameras || !this.cameras.main) return;
 
@@ -309,13 +567,11 @@ export class cenaPrincipal extends Phaser.Scene {
             this.scale.off("resize", handleResizePrincipal);
         });
 
-        // Configuração de câmera com efeito de transição inicial
         this.cameras.main.setBounds(0, 0, larguraTotal, alturaTotal);
         this.cameras.main.fadeIn(200, 0, 0, 0);
     }
 
     update() {
-        // Verifica constantemente se os objetivos do cachorro foram atingidos e atualiza o estado das pulgas
         if (this.gerenciadorCachorros) {
             this.gerenciadorCachorros.verificarCompletude()
         }
