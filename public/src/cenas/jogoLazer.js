@@ -468,6 +468,13 @@ export class jogoLazer extends Phaser.Scene {
         let lazerAtual = gameState.barras.lazer !== undefined ? gameState.barras.lazer : 11;
         gameState.barras.lazer = Phaser.Math.Clamp(lazerAtual - reducaoLazer, 0, 11); 
 
+        // Verificar se todas as barras estão zeradas para voltar à cena principal
+        const barrasZero = 
+          gameState.barras.comida <= 0 &&
+          gameState.barras.lazer <= 0 &&
+          gameState.barras.limpeza <= 0 &&
+          gameState.barras.saude <= 0;
+
         let imagemFeedback = estrelas === 3 ? "feeedback3estrelas" : (estrelas === 2 ? "feedback2estrelas" : "feedback1estrela");
 
         const cx = this.scale.width / 2;
@@ -503,7 +510,11 @@ export class jogoLazer extends Phaser.Scene {
         this.tweens.add({ targets: textoContinuar, alpha: 0.5, duration: 600, yoyo: true, loop: -1 });
 
         const voltarParaMenu = () => {
-            this.scene.start("cenaLazer"); 
+            if (barrasZero) {
+                this.scene.start("cenaPrincipal");
+            } else {
+                this.scene.start("cenaLazer"); 
+            }
         };
         
         fundoFeedback.on('pointerdown', voltarParaMenu);

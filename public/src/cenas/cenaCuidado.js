@@ -534,7 +534,13 @@ export class cenaCuidado extends Phaser.Scene {
         
         this.tweens.add({ targets: textoContinuar, alpha: 0.5, duration: 600, yoyo: true, loop: -1 });
 
-        const fecharPainel = () => { this.scene.start("cenaVeterinario"); };
+        const fecharPainel = () => { 
+            if (gameState.pets.cachorroJoao) {
+                this.scene.start("cenaPrincipal");
+            } else {
+                this.scene.start("cenaVeterinario");
+            }
+        };
         fundoFeedback.on('pointerdown', fecharPainel);
         telaFeedback.setInteractive().on('pointerdown', fecharPainel);
     }
