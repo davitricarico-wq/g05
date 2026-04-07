@@ -156,6 +156,7 @@ export class cenaCarregamento extends Phaser.Scene {
         this.load.image("comoJogarLazer", "assets/feedback/comoJogarLazer.png");
         this.load.image("comoJogarPulgas", "assets/feedback/comoJogarPulgas.png");
         this.load.image("comoJogarRacao", "assets/feedback/comoJogarRacao.png");
+        this.load.image("instrucaoQuiz", "assets/feedback/instrucaoQuiz.png");
 
        
         // Áudio
