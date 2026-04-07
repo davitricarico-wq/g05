@@ -19,7 +19,7 @@ Valter Lucas Garcia de Lima
 [1. Introdução](#1-introdução)  
 <small>
 [1.1 Plano Estratégico do Projeto](#11-plano-estratégico-do-projeto)  
-[1.1.1 Contexto da Industria](#111-contexto-da-industria)  
+[1.1.1 Contexto da Indústria](#111-contexto-da-indústria)  
 [1.1.1.1 Modelo de 5 Forças de Porter](#1111-modelo-de-5-forças-de-porter)  
 [1.1.1.2 Ameaça de Novos Entrantes](#1112-ameaça-de-novos-entrantes)  
 [1.1.1.3 Ameaça de Produtos ou Serviços Substitutos](#1113-ameaça-de-produtos-ou-serviços-substitutos)  
@@ -220,6 +220,7 @@ Por fim, os pet shops de bairro competem fortemente no mercado local, com foco e
 
 
 <h2 align="center" id="perfil-do-cliente">Perfil do Cliente</h2>
+
 ### Tarefas do Cliente (Customer Jobs)
 &ensp; As tarefas do cliente representam as atividades, objetivos ou problemas que o público busca resolver em seu cotidiano. Elas correspondem ao que o usuário tenta realizar funcionalmente, emocionalmente ou socialmente ao interagir com um produto, serviço ou situação específica. Nesse contexto, estão relacionadas ao cuidado com animais e ao consumo de conteúdos digitais sobre o tema. Identificá-las permite compreender quais demandas orientam o comportamento do usuário e quais aspectos devem ser considerados no desenvolvimento da solução.
 Principais tarefas identificadas: 
@@ -230,6 +231,7 @@ Principais tarefas identificadas:
 
 ### Dores (Pains)
 &ensp; No segmento de dores, são identificados os principais obstáculos, inseguranças e frustrações enfrentados pelo cliente ao tentar realizar suas tarefas. Essa análise evidencia os fatores que dificultam uma experiência satisfatória e indica aspectos que devem ser reduzidos ou solucionados pela proposta. As dores também se relacionam diretamente aos aliviadores de dores, responsáveis por minimizar esses obstáculos. A partir dessa avaliação, foram identificadas as seguintes dificuldades:
+
 * Dificuldade em compreender as diferenças entre tipos de alimentos e produtos para pets: Informações técnicas e variedade de opções podem gerar confusão na escolha adequada.
 * Insegurança sobre como cuidar corretamente: Medo de prejudicar a saúde ou o bem-estar do animal por falta de conhecimento.
 * Informações contraditórias na internet: Dificuldade em identificar orientações confiáveis para iniciantes.
@@ -240,6 +242,7 @@ Principais tarefas identificadas:
 
 ### Ganhos (Gains)
 &ensp; No segmento de ganhos, são apresentados os benefícios e resultados positivos que o cliente espera alcançar ao realizar suas tarefas. Essa seção evidencia aquilo que gera valor para o usuário, seja na forma de melhorias práticas, maior segurança ou experiências mais satisfatórias. Assim como ocorre com as dores, os ganhos possuem relação direta com os criadores de ganhos, que representam os elementos da solução responsáveis por torná-los possíveis. Foram identificados os seguintes benefícios esperados:
+
 * Confiança para cuidar adequadamente de um pet: Informações claras reduzem a ansiedade relacionada à responsabilidade.
 * Sensação de preparo para adotar ou aprimorar os cuidados: O conhecimento adquirido favorece uma convivência mais estável e saudável.
 * Fortalecimento do vínculo emocional com os animais: Interações positivas geram satisfação, empatia e motivação para práticas responsáveis.
@@ -444,10 +447,10 @@ Principais tarefas identificadas:
 6 | O jogo deve manter consistência visual entre cenários, menus e elementos gráficos.
 7 | O jogo deve possuir controles responsivos, garantindo que as ações do jogador sejam executadas rapidamente após a interação.
 8 | O jogo deve possuir compatibilidade com resolução de tela padrão de computadores, mantendo a interface corretamente ajustada.
-
-</div>
 9 | O jogo deve manter desempenho estável, evitando travamentos ou quedas significativas de desempenho durante a execução.
 10 | O jogo deve apresentar textos e informações legíveis, utilizando fontes e tamanhos adequados para facilitar a leitura pelo jogador.
+
+</div>
 
 **Requisitos Funcionais:** São os requisitos que o sistema faz.
 Descrevem as funcionalidades, ações e comportamentos esperados.
@@ -1064,9 +1067,10 @@ Essa funcionalidade atende ao requisito não funcional RNF1, relacionado à indi
 Inicialmente, o menu de configurações foi implementado de forma básica, permitindo acesso a uma tela dedicada, com previsão de expansão de suas funcionalidades nas próximas etapas.
 
 <div align="center"> 
-<p>Tela Inicial</p>
- <img src="other/telaprincipal.png" width="800"> <p>Feito pela própria equipe (2026)</p> 
- </div>
+  <p>Tela Inicial</p>
+  <img src="other/telaprincipal.png" width="800"> 
+  <p>Feito pela própria equipe (2026)</p> 
+</div>
 
 **Dificuldades Enfrentadas**
 
@@ -1104,12 +1108,13 @@ Essa funcionalidade atende aos requisitos RF10, RF12, RF13 e RF14, relacionados 
  <p>Tela de lazer Geral</p>
   <img src="other/bgPrincipal.png" width="800"> 
   <p>Feito pela própria equipe (2026)</p> 
-  </div> 
-  <div align="center"> 
+</div> 
+
+<div align="center"> 
   <p>Tela de Banho</p> 
   <img src="other/bath.png" width="800">
-   <p>Feito pela própria equipe (2026)</p> 
-   </div>
+  <p>Feito pela própria equipe (2026)</p> 
+</div>
 
 
 **Desenvolvimento Visual e Elementos Gráficos**
@@ -1183,11 +1188,11 @@ Neste minigame, o jogador utiliza o mouse para selecionar a pinça e movimentá-
 
 O objetivo do minigame é retirar todas as pulgas do animal no menor tempo possível. Para avaliar o desempenho do jogador, foi implementado um sistema de classificação baseado em estrelas (RF25):
 
-3 estrelas – tempo inferior a 30 segundos;
+* 3 estrelas – tempo inferior a 30 segundos;
 
-2 estrelas – tempo entre 31 e 45 segundos;
+* 2 estrelas – tempo entre 31 e 45 segundos;
 
-1 estrela – tempo superior a 45 segundos.
+* 1 estrela – tempo superior a 45 segundos.
 
 Após remover todas as pulgas e concluir o desafio, o jogador também recebe Cobasi Coins como recompensa (RF11).
 
@@ -1359,7 +1364,6 @@ Apesar dos obstáculos, os problemas foram superados, contribuindo para o aprimo
 # 5. Testes
 
 ## 5.1. Casos de Teste
-=======
 
 &ensp;Um Caso de Teste (*Test Case*) é um roteiro detalhado de condições, variáveis, passos e resultados esperados, criado para verificar se uma funcionalidade específica de um software (ou jogo) está operando corretamente e cumprindo seus requisitos.
 
@@ -1453,6 +1457,8 @@ Apesar dos obstáculos, os problemas foram superados, contribuindo para o aprimo
 
 A aplicação dos testes seguiu um padrão para cada pessoa que quis testar o jogo. Numa sala movimentada, um computador de um integrante do grupo foi disponibilizado com o jogo funcionando, tanto com mouse quanto com fones de ouvido disponíveis. Primeiro, o contexto e objetivos a serem atingidos foram apresentados ao 'tester'. Depois disso ele(a) foi instruido apenas a jogar, sem nunhuma explicação, tanto prévia, quanto se solicitada. Por fim, o usuário foi submetido a uma série de perguntas sobre a visão geral sobre o jogo e um formulário de questionamentos, semelhante ao levantamento presente a seguir. O processo de teste do jogo foi conduzido, dia 31/03/2026, por três integrantes do grupo, um contextualizando, outro gravando e outro para preencher o formulário.
 
+<div align="center">
+
 Nome | Soraya
 --- | ---
 Idade | 18 anos
@@ -1537,28 +1543,29 @@ Que nota deu ao jogo? | 9.0
 Qual mini game mais gostou? | Lazer
 O que poderia melhorar no jogo? | Cores das rações
 
+</div>
 
 ### 5.2.2 Melhorias
 
 Após uma extensa seção de testes, a equipe levantou todos os relatos de bugs e sugestões para revisar rigorosamente a qualidade do jogo para o usuário. Sendo assim, as melhorias a serem aplicadas são: 
 
-1- Aprimoramento final dos sprites das rações, pinça e cachorro correndo;
-2- Aprimoramento da intuitividade na sequência de atividades a serem feitas;
-3- Aprimoramento da interface do usuário;
-4- Diminução da dificuldade do mini game de lazer;
-5- Substituição da pinça por um remédio; 
-6- Ajuste na ordem das barras de status;
-7- Ajuste na ordem da mecânica de limpeza do cachorro;
-8- Ajuste dos pop-up's de feedback;
-9- Ajuste da intuitividade da sequência de tarefas para o usuário;
-10- Ajuste da distribuição das rações (Standard, Premium, Super Premium) em uma cena;
-11- Ajuste no sprite presente o mini game de alimentação (adicionar o mesmo que é comprado)
-12- Ajuste nas hitboxes do cachorro, ossos e obstáculos no mini game de lazer
-13- Ajuste na posição dos ossos no mini game de lazer;
-14- Ajuste no balanço do rabo dos cachorros;
-14- Adicionar um temporizador em todos os mini games;
-15- Adicionar um terceiro cachorro;
-16- Adicionar informações reais dos cachorros das ONGs parceiras da Cobasi.
+* Aprimoramento final dos sprites das rações, pinça e cachorro correndo;
+* Aprimoramento da intuitividade na sequência de atividades a serem feitas;
+* Aprimoramento da interface do usuário;
+* Diminução da dificuldade do mini game de lazer;
+* Substituição da pinça por um remédio; 
+* Ajuste na ordem das barras de status;
+* Ajuste na ordem da mecânica de limpeza do cachorro;
+* Ajuste dos pop-up's de feedback;
+* Ajuste da intuitividade da sequência de tarefas para o usuário;
+* Ajuste da distribuição das rações (Standard, Premium, Super Premium) em uma cena;
+* Ajuste no sprite presente o mini game de alimentação (adicionar o mesmo que é comprado)
+* Ajuste nas hitboxes do cachorro, ossos e obstáculos no mini game de lazer
+* Ajuste na posição dos ossos no mini game de lazer;
+* Ajuste no balanço do rabo dos cachorros;
+* Adicionar um temporizador em todos os mini games;
+* Adicionar um terceiro cachorro;
+* Adicionar informações reais dos cachorros das ONGs parceiras da Cobasi.
 
 # 6. Conclusões e trabalhos futuros
 
@@ -1570,7 +1577,7 @@ Além disso, o projeto se mostrou eficaz ao incorporar elementos da identidade d
 
 Outro ponto relevante foi a proposta inclusiva do jogo, com a escolha de uma protagonista jovem, representando o público-alvo da Geração Z, o que contribui para maior identificação e engajamento dos usuários. Também se destaca o caráter educativo do jogo, reforçado pelos minigames e pelo sistema de feedback, que orienta o jogador durante sua jornada.
 
-**Pontos Fortes**
+## **Pontos Fortes**
 
 Entre os principais pontos fortes do projeto, destacam-se:
 
@@ -1580,7 +1587,7 @@ Entre os principais pontos fortes do projeto, destacam-se:
 * Sistema de progressão e recompensas, que estimula o engajamento do jogador;
 * Uso de feedback visual e mecânicas intuitivas, favorecendo a usabilidade.
 
-**Pontos a Melhorar**
+## **Pontos a Melhorar**
 
 Apesar dos resultados positivos, foram identificadas algumas oportunidades de melhoria ao longo do desenvolvimento e dos testes realizados:
 
@@ -1590,7 +1597,7 @@ Apesar dos resultados positivos, foram identificadas algumas oportunidades de me
 * Limitações na variedade de conteúdos (animais, produtos e cenários);
 * Aprimoramento dos elementos visuais, como sprites e animações.
 
-**Trabalhos Futuros**
+## **Trabalhos Futuros**
 
 Com base nos testes realizados e nas limitações identificadas, foram definidos alguns planos de ação para futuras evoluções do projeto:
 
@@ -1609,7 +1616,7 @@ Além disso, como evolução conceitual do projeto, o jogo pode incorporar novas
 * Expansão do sistema educativo com novos temas (saúde, comportamento, adoção);
 * Integração com plataformas digitais ou ações reais da marca Cobasi.
 
-**Considerações Finais**
+## **Considerações Finais**
 
 De modo geral, o Cobasi Shelter se apresenta como uma solução viável, funcional e alinhada aos objetivos propostos, conseguindo unir tecnologia, educação e impacto social em uma única experiência digital. O projeto demonstra potencial de expansão e evolução, podendo se tornar uma ferramenta ainda mais completa de conscientização sobre o bem-estar animal.
 
