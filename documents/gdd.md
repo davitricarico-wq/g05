@@ -1343,7 +1343,6 @@ Essas melhorias atendem aos requisitos não funcionais RNF2, RNF3, RNF4 e RNF9, 
 
 # 5. Testes
 
-<<<<<<< HEAD
 ## 5.1. Casos de Teste
 =======
 
@@ -1545,9 +1544,6 @@ Após uma extensa seção de testes, a equipe levantou todos os relatos de bugs 
 14- Adicionar um temporizador em todos os mini games;
 15- Adicionar um terceiro cachorro;
 16- Adicionar informações reais dos cachorros das ONGs parceiras da Cobasi.
-<<<<<<< HEAD
-=======
-
 
 # 6. Conclusões e trabalhos futuros
 
@@ -1556,7 +1552,6 @@ Após uma extensa seção de testes, a equipe levantou todos os relatos de bugs 
 *Relacione os pontos de melhorias evidenciados nos testes com plano de ações para serem implementadas no jogo. O grupo não precisa implementá-las, pode deixar registrado aqui o plano para futuros desenvolvimentos.*
 
 *Relacione também quaisquer ideias que o grupo tenha para melhorias futuras*
->>>>>>> a66e342014179a110fe3ae8cecfb16692396b180
 
 # 7. Referências
 
