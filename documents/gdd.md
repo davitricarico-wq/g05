@@ -1444,38 +1444,118 @@ O teste de jogabilidade é uma metodologia sistemática de avaliação qualitati
 
 ### 5.2.1 Registros de testes
 
-Os testes de jogabilidade são cruciais para este projeto pois funcionam como a principal ferramenta de validação do game design, garantindo que as mecânicas planejadas sejam intuitivas e divertidas para o público-alvo, e não apenas para os desenvolvedores. Ao observar a interação real de usuários externos, é possível identificar falhas na curva de aprendizado e pontos de frustração que a "cegueira do desenvolvedor" costuma ocultar, permitindo ajustes precisos no equilíbrio entre desafio e recompensa.
+&ensp;Os testes de jogabilidade são cruciais para este projeto pois funcionam como a principal ferramenta de validação do game design, garantindo que as mecânicas planejadas sejam intuitivas e divertidas para o público-alvo, e não apenas para os desenvolvedores. Ao observar a interação real de usuários externos, é possível identificar falhas na curva de aprendizado e pontos de frustração que a "cegueira do desenvolvedor" costuma ocultar, permitindo ajustes precisos no equilíbrio entre desafio e recompensa.
 
-Além do aspecto criativo, o playtesting atua como uma estratégia de mitigação de riscos e custos, detectando problemas de usabilidade e fluxo antes que recursos significativos sejam investidos em polimento ou marketing. Em última análise, ele assegura que o produto final entregue uma experiência de usuário (UX) consistente e envolvente, aumentando drasticamente as chances de retenção de jogadores e o sucesso comercial do jogo no mercado.
+&ensp;Além do aspecto criativo, o playtesting atua como uma estratégia de mitigação de riscos e custos, detectando problemas de usabilidade e fluxo antes que recursos significativos sejam investidos em polimento ou marketing. Em última análise, ele assegura que o produto final entregue uma experiência de usuário (UX) consistente e envolvente, aumentando drasticamente as chances de retenção de jogadores e o sucesso comercial do jogo no mercado.
 
-A aplicação dos testes seguiu um padrão para cada pessoa que quis testar o jogo. Numa sala movimentada, um computador de um integrante do grupo foi disponibilizado com o jogo funcionando, tanto com mouse quanto com fones de ouvido disponíveis. Primeiro, o contexto e objetivos a serem atingidos foram apresentados ao 'tester'. Depois disso ele(a) foi instruido apenas a jogar, sem nunhuma explicação, tanto prévia, quanto se solicitada. Por fim, o usuário foi submetido a uma série de perguntas sobre a visão geral sobre o jogo e um formulário de questionamentos, semelhante ao levantamento presente a seguir. 
+A aplicação dos testes seguiu um padrão para cada pessoa que quis testar o jogo. Numa sala movimentada, um computador de um integrante do grupo foi disponibilizado com o jogo funcionando, tanto com mouse quanto com fones de ouvido disponíveis. Primeiro, o contexto e objetivos a serem atingidos foram apresentados ao 'tester'. Depois disso ele(a) foi instruido apenas a jogar, sem nunhuma explicação, tanto prévia, quanto se solicitada. Por fim, o usuário foi submetido a uma série de perguntas sobre a visão geral sobre o jogo e um formulário de questionamentos, semelhante ao levantamento presente a seguir. O processo de teste do jogo foi conduzido, dia 31/03/2026, por três integrantes do grupo, um contextualizando, outro gravando e outro para preencher o formulário.
 
-<div align="center">
+Nome | Soraya
+--- | ---
+Idade | 18 anos
+Curso | Ciência da Computação
+Tem ou já teve algum pet? | Sim, possuo
+Já possuía experiência prévia com games? | Sim, mas pouca
+Conseguiu iniciar o jogo? | Sim
+Entendeu as regras e mecânicas do jogo? | Entendeu com poucas dúvidas
+Conseguiu progredir no jogo? | Sim, mas não conseguiu concluir 
+Apresentou dificuldades? | Sim, no mini game de lazer
+Que nota deu ao jogo? | 9.0
+Qual mini game mais gostou? | Banho
+O que poderia melhorar no jogo? | Dificuldade alta e salto duplo no mini game de lazer
 
-| Nome | João Jonas (use nomes fictícios) |
-| :---: | :---: |
-| Já possuía experiência prévia com games? | sim, é um jogador casual |
-| Conseguiu iniciar o jogo? | sim |
-| Entendeu as regras e mecânicas do jogo? | entendeu as regras, mas sobre as mecânicas, apenas as essenciais, não explorou os comandos complexos |
-| Conseguiu progredir no jogo? | sim, sem dificuldades |
-| Apresentou dificuldades? | Não, conseguiu jogar com facilidade e afirmou ser fácil |
-| Que nota deu ao jogo? | 9.0 |
-| O que gostou no jogo? | Gostou  de como o jogo vai ficando mais difícil ao longo do tempo sem deixar de ser divertido |
-| O que poderia melhorar no jogo? | A responsividade do personagem aos controles, disse que havia um pouco de atraso desde o momento do comando até a resposta do personagem |
+Nome | Anthony
+--- | ---
+Idade | 19 anos
+Curso | Engenharia de Computação
+Tem ou já teve algum pet? | Não, mas tem vontade 
+Já possuía experiência prévia com games? | Sim, muita
+Conseguiu iniciar o jogo? | Sim
+Entendeu as regras e mecânicas do jogo? | Não teve dúvidas
+Conseguiu progredir no jogo? |  Sim. Concluiu com facilidade
+Apresentou dificuldades? | Sim, no mini game de cuidados (pegar pulgas)
+Que nota deu ao jogo? | 9.0
+Qual mini game mais gostou? | Cuidados
+O que poderia melhorar no jogo? | Hitbox dos ossos e obstáculos no mini game de lazer; Hitbox da pinça no mini game de cuidados
 
-</div>
+Nome | Pedro
+--- | ---
+Idade | 18 anos
+Curso | Engenharia de Computação
+Tem ou já teve algum pet? | Sim, possuo
+Já possuía experiência prévia com games? | Sim
+Conseguiu iniciar o jogo? | Sim
+Entendeu as regras e mecânicas do jogo? | Não teve dúvidas
+Conseguiu progredir no jogo? | Sim, concluiu com facilidade
+Apresentou dificuldades? | Não, nenhuma
+Que nota deu ao jogo? | 9.0
+Qual mini game mais gostou? | Lazer
+O que poderia melhorar no jogo? | Intuitividade na sequência de tarefas; Hitbox da pinça no mini game de cuidados
+
+Nome | Ludmilla
+--- | ---
+Idade | 20 anos
+Curso |  Engenharia de Software
+Tem ou já teve algum pet? | Não, mas já possuí
+Já possuía experiência prévia com games? | Sim, mas pouca
+Conseguiu iniciar o jogo? | Sim
+Entendeu as regras e mecânicas do jogo? | Entendeu com poucas dúvidas
+Conseguiu progredir no jogo? | Sim, concluiu com dificuldade 
+Apresentou dificuldades? | Sim, no jogo de lazer
+Que nota deu ao jogo? | 9.0
+Qual mini game mais gostou? | Alimentação
+O que poderia melhorar no jogo? | Intuitividade na sequência de tarefas;
+
+Nome | Vitor
+--- | ---
+Idade | 18 anos
+Curso |  Engenharia de Software
+Tem ou já teve algum pet? | Sim, possui
+Já possuía experiência prévia com games? | Sim
+Conseguiu iniciar o jogo? | Sim
+Entendeu as regras e mecânicas do jogo? | Entendeu com poucas dúvidas
+Conseguiu progredir no jogo? | Sim, concluiu com facilidade
+Apresentou dificuldades? | Sim, no jogo de lazer
+Que nota deu ao jogo? | 9.0
+Qual mini game mais gostou? | Cuidados
+O que poderia melhorar no jogo? | Hitbox dos ossos e obstáculos no mini game de lazer
+
+Nome | Henrique
+--- | ---
+Idade | 17 anos
+Curso | Ciência da Computação
+Tem ou já teve algum pet? | Sim, possui
+Já possuía experiência prévia com games? | Sim
+Conseguiu iniciar o jogo? | Sim
+Entendeu as regras e mecânicas do jogo? | Não teve dúvidas 
+Conseguiu progredir no jogo? | Sim, concluiu com facilidade
+Apresentou dificuldades? | Poucas, no jogo de lazer
+Que nota deu ao jogo? | 9.0
+Qual mini game mais gostou? | Lazer
+O que poderia melhorar no jogo? | Cores das rações
+
 
 ### 5.2.2 Melhorias
 
-*Descreva nesta seção um plano de melhorias sobre o jogo, com base nos resultados dos testes de jogabilidade*
+Após uma extensa seção de testes, a equipe levantou todos os relatos de bugs e sugestões para revisar rigorosamente a qualidade do jogo para o usuário. Sendo assim, as melhorias a serem aplicadas são: 
 
-<h1 align="center" id="6-conclusões-e-trabalhos-futuros">6. Conclusões e trabalhos futuros</h1>
-
-*Escreva de que formas a solução do jogo atingiu os objetivos descritos na seção 1 deste documento. Indique pontos fortes e pontos a melhorar de maneira geral.*
-
-*Relacione os pontos de melhorias evidenciados nos testes com plano de ações para serem implementadas no jogo. O grupo não precisa implementá-las, pode deixar registrado aqui o plano para futuros desenvolvimentos.*
-
-*Relacione também quaisquer ideias que o grupo tenha para melhorias futuras*
+1- Aprimoramento final dos sprites das rações, pinça e cachorro correndo;
+2- Aprimoramento da intuitividade na sequência de atividades a serem feitas;
+3- Aprimoramento da interface do usuário;
+4- Diminução da dificuldade do mini game de lazer;
+5- Substituição da pinça por um remédio; 
+6- Ajuste na ordem das barras de status;
+7- Ajuste na ordem da mecânica de limpeza do cachorro;
+8- Ajuste dos pop-up's de feedback;
+9- Ajuste da intuitividade da sequência de tarefas para o usuário;
+10- Ajuste da distribuição das rações (Standard, Premium, Super Premium) em uma cena;
+11- Ajuste no sprite presente o mini game de alimentação (adicionar o mesmo que é comprado)
+12- Ajuste nas hitboxes do cachorro, ossos e obstáculos no mini game de lazer
+13- Ajuste na posição dos ossos no mini game de lazer;
+14- Ajuste no balanço do rabo dos cachorros;
+14- Adicionar um temporizador em todos os mini games;
+15- Adicionar um terceiro cachorro;
+16- Adicionar informações reais dos cachorros das ONGs parceiras da Cobasi.
 
 <h1 align="center" id="7-referências">7. Referências</h1>
 
