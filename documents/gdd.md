@@ -1353,71 +1353,17 @@ Essas melhorias atendem aos requisitos não funcionais RNF2, RNF3, RNF4 e RNF9, 
 * Incluir novos animais (RF1);
 * Realizar ajustes finais de interface (RNF6 e RNF3).
 
-<h2 align="center" id="45-revisão-do-mvp">4.5. Revisão do MVP</h2>
-
-&ensp;Nesta etapa final do desenvolvimento, foram priorizados ajustes relacionados à correção de bugs, melhorias na usabilidade e refinamento da experiência do usuário (UX Design). O objetivo foi  proporcionar uma experiência mais fluida e intuitiva ao jogador.
-
-**Correções e Melhorias de Jogabilidade**
-
-&ensp;Foram realizados ajustes em minigames já implementados, com foco na melhoria da jogabilidade e usabilidade.
-
-&ensp;No minigame da área de lazer, foram identificadas dificuldades relacionadas à movimentação e interação do jogador. Dessa forma, foram ajustados parâmetros como colisão e velocidade dos elementos do jogo, tornando a experiência mais responsiva e acessível.
-
-&ensp;Essas melhorias atendem ao requisito funcional RF26, além de reforçar os requisitos não funcionais RNF3 e RNF7, relacionados à usabilidade e responsividade dos controles.
-
-**Aprimoramentos no Minigame de Banho**
-
-&ensp;O minigame de banho passou por ajustes estruturais em sua lógica de progressão. Agora, o jogador deve obrigatoriamente molhar o animal antes de prosseguir para as próximas etapas, garantindo maior coerência com o processo real de higiene.
-
-&ensp;Além disso, foi implementada uma barra de progressão que indica o avanço em cada etapa do banho, tornando a experiência mais clara e orientada.
-
-&ensp;Essas alterações atendem aos requisitos RF12, RF13 e RF14, além de contribuírem para os requisitos não funcionais RNF2 e RNF3, relacionados ao feedback visual e à clareza da interface.
-
-**Orientação ao Jogador e Fluxo de Progressão**
-
-&ensp;Após a finalização de cada minigame, o jogador passou a receber orientações para prosseguir para as próximas atividades. Essa melhoria foi implementada com base nos resultados dos testes realizados, visando reduzir dúvidas e melhorar o fluxo de progressão.
-
-&ensp;Essa funcionalidade reforça os requisitos RF5, RF6 e RF7, além de atender ao requisito não funcional RNF3, relacionado à interface intuitiva.
-
-**Melhorias no Minigame de Alimentação**
-
-&ensp;O minigame de alimentação também foi reformulado visualmente e funcionalmente. Os modelos das rações foram redesenhados e a estante passou a contar com uma nova organização, dividida em categorias: standard, premium e super premium.
-
-&ensp;Cada tipo de ração passou a impactar de forma diferente a barra de alimentação do animal, agregando valor estratégico à escolha do jogador.
-Essas melhorias atendem aos requisitos RF16, RF17, RF19, RF20, RF21 e RF22, além de reforçar o aprendizado proposto pelo jogo.
-
-**Implementação do Animal Final e Storytelling**
-
-&ensp;Ao final desta etapa, foi implementado o último animal do jogo, responsável por concluir a narrativa principal. Diferentemente dos anteriores, este animal não necessita de cuidados básicos como banho ou alimentação, pois já foi tratado anteriormente e devolvido ao abrigo.
-
-&ensp;Nesse contexto, o jogador deve oferecer atenção e carinho, reforçando a mensagem educativa sobre responsabilidade e cuidado com animais adotados.
-
-&ensp;Após completar essa interação, o jogador conclui sua missão e é direcionado ao quiz educativo, que tem como objetivo reforçar o aprendizado adquirido ao longo do jogo.
-
-&ensp;Essa implementação atende aos requisitos RF1, RF8, RF9 e RF18, consolidando o propósito educativo do projeto.
-
-**Dificuldades Enfrentadas**
-
-&ensp;Durante este sprint final, a equipe enfrentou desafios relacionados principalmente à implementação de melhorias na interface do usuário, exigindo retrabalho e refinamento contínuo para atender às necessidades identificadas nos testes de usabilidade.
-
-&ensp;Além disso, houve dificuldades técnicas na implementação do sistema de quiz, uma vez que envolveu conceitos e estruturas ainda não explorados anteriormente pela equipe.
-
-&ensp;Apesar dos obstáculos, os problemas foram superados, contribuindo para o aprimoramento técnico e organizacional do grupo.
 
 
-<h1 align="center" id="5-casos-de-teste">5. Testes</h1>
+## 4.5. Revisão do MVP 
 
-<h2 align="center" id="51-casos-de-teste">5.1. Casos de Teste</h2>
+*Descreva e ilustre aqui o desenvolvimento dos refinamentos e revisões da versão final do jogo, explicando brevemente o que foi entregue em termos de MVP. Utilize prints de tela para ilustrar.*
 
-&ensp;Um Caso de Teste (*Test Case*) é um roteiro detalhado de condições, variáveis, passos e resultados esperados, criado para verificar se uma funcionalidade específica de um software (ou jogo) está operando corretamente e cumprindo seus requisitos.
+# 5. Testes
 
-&ensp;Eles são essenciais para garantir a qualidade do produto, identificar bugs de forma sistemática antes do lançamento e documentar o comportamento esperado do sistema.
-
-<div align="center">
-  <p>Quadro de casos de teste</p>
-</div>
-
-## 5.1. Casos de Teste 
+<<<<<<< HEAD
+## 5.1. Casos de Teste
+=======
 
 &ensp;Um Caso de Teste (*Test Case*) é um roteiro detalhado de condições, variáveis, passos e resultados esperados, criado para verificar se uma funcionalidade específica de um software (ou jogo) está operando corretamente e cumprindo seus requisitos.
 
@@ -1509,79 +1455,125 @@ Essas melhorias atendem aos requisitos RF16, RF17, RF19, RF20, RF21 e RF22, alé
 
 &ensp;Além do aspecto criativo, o playtesting atua como uma estratégia de mitigação de riscos e custos, detectando problemas de usabilidade e fluxo antes que recursos significativos sejam investidos em polimento ou marketing. Em última análise, ele assegura que o produto final entregue uma experiência de usuário (UX) consistente e envolvente, aumentando drasticamente as chances de retenção de jogadores e o sucesso comercial do jogo no mercado.
 
-&ensp;A aplicação dos testes seguiu um padrão para cada pessoa que quis testar o jogo. Numa sala movimentada, um computador de um integrante do grupo foi disponibilizado com o jogo funcionando, tanto com mouse quanto com fones de ouvido disponíveis. Primeiro, o contexto e objetivos a serem atingidos foram apresentados ao 'tester'. Depois disso ele(a) foi instruido apenas a jogar, sem nunhuma explicação, tanto prévia, quanto se solicitada. Por fim, o usuário foi submetido a uma série de perguntas sobre a visão geral sobre o jogo e um formulário de questionamentos, semelhante ao levantamento presente a seguir. 
+A aplicação dos testes seguiu um padrão para cada pessoa que quis testar o jogo. Numa sala movimentada, um computador de um integrante do grupo foi disponibilizado com o jogo funcionando, tanto com mouse quanto com fones de ouvido disponíveis. Primeiro, o contexto e objetivos a serem atingidos foram apresentados ao 'tester'. Depois disso ele(a) foi instruido apenas a jogar, sem nunhuma explicação, tanto prévia, quanto se solicitada. Por fim, o usuário foi submetido a uma série de perguntas sobre a visão geral sobre o jogo e um formulário de questionamentos, semelhante ao levantamento presente a seguir. O processo de teste do jogo foi conduzido, dia 31/03/2026, por três integrantes do grupo, um contextualizando, outro gravando e outro para preencher o formulário.
 
-<div align="center">
+Nome | Soraya
+--- | ---
+Idade | 18 anos
+Curso | Ciência da Computação
+Tem ou já teve algum pet? | Sim, possuo
+Já possuía experiência prévia com games? | Sim, mas pouca
+Conseguiu iniciar o jogo? | Sim
+Entendeu as regras e mecânicas do jogo? | Entendeu com poucas dúvidas
+Conseguiu progredir no jogo? | Sim, mas não conseguiu concluir 
+Apresentou dificuldades? | Sim, no mini game de lazer
+Que nota deu ao jogo? | 9.0
+Qual mini game mais gostou? | Banho
+O que poderia melhorar no jogo? | Dificuldade alta e salto duplo no mini game de lazer
 
-| Nome | João Jonas (use nomes fictícios) |
-| :---: | :---: |
-| Já possuía experiência prévia com games? | sim, é um jogador casual |
-| Conseguiu iniciar o jogo? | sim |
-| Entendeu as regras e mecânicas do jogo? | entendeu as regras, mas sobre as mecânicas, apenas as essenciais, não explorou os comandos complexos |
-| Conseguiu progredir no jogo? | sim, sem dificuldades |
-| Apresentou dificuldades? | Não, conseguiu jogar com facilidade e afirmou ser fácil |
-| Que nota deu ao jogo? | 9.0 |
-| O que gostou no jogo? | Gostou  de como o jogo vai ficando mais difícil ao longo do tempo sem deixar de ser divertido |
-| O que poderia melhorar no jogo? | A responsividade do personagem aos controles, disse que havia um pouco de atraso desde o momento do comando até a resposta do personagem |
+Nome | Anthony
+--- | ---
+Idade | 19 anos
+Curso | Engenharia de Computação
+Tem ou já teve algum pet? | Não, mas tem vontade 
+Já possuía experiência prévia com games? | Sim, muita
+Conseguiu iniciar o jogo? | Sim
+Entendeu as regras e mecânicas do jogo? | Não teve dúvidas
+Conseguiu progredir no jogo? |  Sim. Concluiu com facilidade
+Apresentou dificuldades? | Sim, no mini game de cuidados (pegar pulgas)
+Que nota deu ao jogo? | 9.0
+Qual mini game mais gostou? | Cuidados
+O que poderia melhorar no jogo? | Hitbox dos ossos e obstáculos no mini game de lazer; Hitbox da pinça no mini game de cuidados
 
-</div>
+Nome | Pedro
+--- | ---
+Idade | 18 anos
+Curso | Engenharia de Computação
+Tem ou já teve algum pet? | Sim, possuo
+Já possuía experiência prévia com games? | Sim
+Conseguiu iniciar o jogo? | Sim
+Entendeu as regras e mecânicas do jogo? | Não teve dúvidas
+Conseguiu progredir no jogo? | Sim, concluiu com facilidade
+Apresentou dificuldades? | Não, nenhuma
+Que nota deu ao jogo? | 9.0
+Qual mini game mais gostou? | Lazer
+O que poderia melhorar no jogo? | Intuitividade na sequência de tarefas; Hitbox da pinça no mini game de cuidados
+
+Nome | Ludmilla
+--- | ---
+Idade | 20 anos
+Curso |  Engenharia de Software
+Tem ou já teve algum pet? | Não, mas já possuí
+Já possuía experiência prévia com games? | Sim, mas pouca
+Conseguiu iniciar o jogo? | Sim
+Entendeu as regras e mecânicas do jogo? | Entendeu com poucas dúvidas
+Conseguiu progredir no jogo? | Sim, concluiu com dificuldade 
+Apresentou dificuldades? | Sim, no jogo de lazer
+Que nota deu ao jogo? | 9.0
+Qual mini game mais gostou? | Alimentação
+O que poderia melhorar no jogo? | Intuitividade na sequência de tarefas;
+
+Nome | Vitor
+--- | ---
+Idade | 18 anos
+Curso |  Engenharia de Software
+Tem ou já teve algum pet? | Sim, possui
+Já possuía experiência prévia com games? | Sim
+Conseguiu iniciar o jogo? | Sim
+Entendeu as regras e mecânicas do jogo? | Entendeu com poucas dúvidas
+Conseguiu progredir no jogo? | Sim, concluiu com facilidade
+Apresentou dificuldades? | Sim, no jogo de lazer
+Que nota deu ao jogo? | 9.0
+Qual mini game mais gostou? | Cuidados
+O que poderia melhorar no jogo? | Hitbox dos ossos e obstáculos no mini game de lazer
+
+Nome | Henrique
+--- | ---
+Idade | 17 anos
+Curso | Ciência da Computação
+Tem ou já teve algum pet? | Sim, possui
+Já possuía experiência prévia com games? | Sim
+Conseguiu iniciar o jogo? | Sim
+Entendeu as regras e mecânicas do jogo? | Não teve dúvidas 
+Conseguiu progredir no jogo? | Sim, concluiu com facilidade
+Apresentou dificuldades? | Poucas, no jogo de lazer
+Que nota deu ao jogo? | 9.0
+Qual mini game mais gostou? | Lazer
+O que poderia melhorar no jogo? | Cores das rações
+
 
 ### 5.2.2 Melhorias
 
-*Descreva nesta seção um plano de melhorias sobre o jogo, com base nos resultados dos testes de jogabilidade*
+Após uma extensa seção de testes, a equipe levantou todos os relatos de bugs e sugestões para revisar rigorosamente a qualidade do jogo para o usuário. Sendo assim, as melhorias a serem aplicadas são: 
 
-<h1 align="center" id="6-conclusões-e-trabalhos-futuros">6. Conclusões e trabalhos futuros</h1>
+1- Aprimoramento final dos sprites das rações, pinça e cachorro correndo;
+2- Aprimoramento da intuitividade na sequência de atividades a serem feitas;
+3- Aprimoramento da interface do usuário;
+4- Diminução da dificuldade do mini game de lazer;
+5- Substituição da pinça por um remédio; 
+6- Ajuste na ordem das barras de status;
+7- Ajuste na ordem da mecânica de limpeza do cachorro;
+8- Ajuste dos pop-up's de feedback;
+9- Ajuste da intuitividade da sequência de tarefas para o usuário;
+10- Ajuste da distribuição das rações (Standard, Premium, Super Premium) em uma cena;
+11- Ajuste no sprite presente o mini game de alimentação (adicionar o mesmo que é comprado)
+12- Ajuste nas hitboxes do cachorro, ossos e obstáculos no mini game de lazer
+13- Ajuste na posição dos ossos no mini game de lazer;
+14- Ajuste no balanço do rabo dos cachorros;
+14- Adicionar um temporizador em todos os mini games;
+15- Adicionar um terceiro cachorro;
+16- Adicionar informações reais dos cachorros das ONGs parceiras da Cobasi.
 
-O desenvolvimento do jogo Cobasi Shelter permitiu atingir de forma consistente os objetivos propostos na Seção 1 deste documento, especialmente no que se refere à conscientização sobre os cuidados com animais domésticos e ao alinhamento com o propósito social da marca Cobasi.
 
-A solução desenvolvida conseguiu integrar educação e entretenimento, utilizando mecânicas interativas que simulam situações reais de cuidado com pets, como higiene, alimentação, saúde e lazer. Dessa forma, o jogo atende diretamente ao objetivo de transformar o aprendizado em uma experiência prática, permitindo que o usuário compreenda, na prática, as responsabilidades envolvidas na adoção e manutenção de um animal.
+# 6. Conclusões e trabalhos futuros
 
-Além disso, o projeto se mostrou eficaz ao incorporar elementos da identidade da Cobasi, utilizando produtos, ambientação e narrativa alinhados à missão, visão e valores da empresa. Esse fator contribui para o fortalecimento da marca e para a criação de uma experiência imersiva, aproximando o jogador do contexto real do cuidado animal.
+*Escreva de que formas a solução do jogo atingiu os objetivos descritos na seção 1 deste documento. Indique pontos fortes e pontos a melhorar de maneira geral.*
 
-Outro ponto relevante foi a proposta inclusiva do jogo, com a escolha de uma protagonista jovem, representando o público-alvo da Geração Z, o que contribui para maior identificação e engajamento dos usuários. Também se destaca o caráter educativo do jogo, reforçado pelos minigames e pelo sistema de feedback, que orienta o jogador durante sua jornada.
+*Relacione os pontos de melhorias evidenciados nos testes com plano de ações para serem implementadas no jogo. O grupo não precisa implementá-las, pode deixar registrado aqui o plano para futuros desenvolvimentos.*
 
-**Pontos Fortes**
+*Relacione também quaisquer ideias que o grupo tenha para melhorias futuras*
 
-Entre os principais pontos fortes do projeto, destacam-se:
-
-*Integração entre aprendizado e jogabilidade de forma lúdica e acessível;
-Alinhamento com o propósito social da Cobasi, especialmente no incentivo à adoção responsável;
-Estrutura baseada em minigames, que torna a experiência dinâmica e interativa;
-Sistema de progressão e recompensas, que estimula o engajamento do jogador;
-Uso de feedback visual e mecânicas intuitivas, favorecendo a usabilidade.
-Pontos a Melhorar
-
-Apesar dos resultados positivos, foram identificadas algumas oportunidades de melhoria ao longo do desenvolvimento e dos testes realizados:
-
-* Necessidade de maior refinamento na interface do usuário (UI/UX);
-* Ajustes na responsividade e precisão das interações;
-* Presença de pequenos bugs em mecânicas específicas;
-* Limitações na variedade de conteúdos (animais, produtos e cenários);
-* Aprimoramento dos elementos visuais, como sprites e animações.
-* Trabalhos Futuros
-
-Com base nos testes realizados e nas limitações identificadas, foram definidos alguns planos de ação para futuras evoluções do projeto:
-
-* Adição de novos animais, como gatos (RF1), ampliando a diversidade do jogo;
-* Expansão da lógica de produtos, incluindo novos tipos de ração e itens interativos (RF16);
-* Implementação completa e aprimoramento do quiz educativo (RF18);
-* Refatoração do código para melhoria de organização, manutenção e escalabilidade;
-* Aprimoramento dos sprites e da qualidade visual do jogo (RNF6);
-* Inclusão de mais efeitos sonoros e melhorias no sound design, visando maior imersão (RNF2);
-* Otimização de desempenho e redução de falhas técnicas (RNF9).
-
-Além disso, como evolução conceitual do projeto, o jogo pode incorporar novas funcionalidades, como:
-
-* Sistema mais aprofundado de narrativa e tomada de decisão;
-* Personalização dos animais;
-* Expansão do sistema educativo com novos temas (saúde, comportamento, adoção);
-* Integração com plataformas digitais ou ações reais da marca Cobasi.
-
-**Considerações Finais**
-
-De modo geral, o Cobasi Shelter se apresenta como uma solução viável, funcional e alinhada aos objetivos propostos, conseguindo unir tecnologia, educação e impacto social em uma única experiência digital. O projeto demonstra potencial de expansão e evolução, podendo se tornar uma ferramenta ainda mais completa de conscientização sobre o bem-estar animal.
-
-<h1 align="center" id="7-referências">7. Referências</h1>
+# 7. Referências
 
 CONSELHO ADMINISTRATIVO DE DEFESA ECONÔMICA (CADE). CADE clears merger of Petz and Cobasi. 23 jun. 2025. Disponível em: https://www.gov.br/cade/en/matters/news/cade-clears-merger-of-petz-and-cobasi. Acesso em: 27 fev. 2026.
 
