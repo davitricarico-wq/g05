@@ -40,20 +40,20 @@ export class HUD extends Phaser.Scene {
             .setScale(this.scale.height*0.0013);
 
         // Cria os icones e as barras de status do pet
-        this.iconeFome = this.add.image(this.scale.width*0.05, this.scale.height*0.08, "iconeFome").setScale(this.scale.height*0.002);
-        this.barraComida = new Barra(this, this.scale.width*0.15, this.scale.height*0.08, gameState.barras.comida);
+        this.iconeFome = this.add.image(this.scale.width*0.05, this.scale.height*0.16, "iconeFome").setScale(this.scale.height*0.002);
+        this.barraComida = new Barra(this, this.scale.width*0.15, this.scale.height*0.16, gameState.barras.comida);
         this.barraComida.sprite.setScale(this.scale.height*0.002);
 
-        this.iconeFelicidade = this.add.image(this.scale.width*0.05, this.scale.height*0.16, "iconeFelicidade").setScale(this.scale.height*0.002);
-        this.barraLazer = new Barra(this, this.scale.width*0.15, this.scale.height*0.16, gameState.barras.lazer);
+        this.iconeFelicidade = this.add.image(this.scale.width*0.05, this.scale.height*0.32, "iconeFelicidade").setScale(this.scale.height*0.002);
+        this.barraLazer = new Barra(this, this.scale.width*0.15, this.scale.height*0.32, gameState.barras.lazer);
         this.barraLazer.sprite.setScale(this.scale.height*0.002);
 
-        this.iconeSujeira = this.add.image(this.scale.width*0.05, this.scale.height*0.24, "iconeSujeira").setScale(this.scale.height*0.002);
-        this.barraLimpeza = new Barra(this, this.scale.width*0.15, this.scale.height*0.24, gameState.barras.limpeza);
+        this.iconeSujeira = this.add.image(this.scale.width*0.05, this.scale.height*0.08, "iconeSujeira").setScale(this.scale.height*0.002);
+        this.barraLimpeza = new Barra(this, this.scale.width*0.15, this.scale.height*0.08, gameState.barras.limpeza);
         this.barraLimpeza.sprite.setScale(this.scale.height*0.002);
 
-        this.iconeSaude = this.add.image(this.scale.width*0.05, this.scale.height*0.32, "iconeSaude").setScale(this.scale.height*0.002);
-        this.barraSaude = new Barra(this, this.scale.width*0.15, this.scale.height*0.32, gameState.barras.saude);
+        this.iconeSaude = this.add.image(this.scale.width*0.05, this.scale.height*0.24, "iconeSaude").setScale(this.scale.height*0.002);
+        this.barraSaude = new Barra(this, this.scale.width*0.15, this.scale.height*0.24, gameState.barras.saude);
         this.barraSaude.sprite.setScale(this.scale.height*0.002);
 
         // Cria o fundo branco do painel lateral
@@ -65,11 +65,18 @@ export class HUD extends Phaser.Scene {
         this.botoes = [];
 
         // Cria o botao de dar banho e configura o evento de clique
+        const navegarHud = (cenaAlvo) => {
+            if (gameState.pets.cachorroJoao && cenaAlvo !== "cenaLazer") {
+                return this.exibirAvisoApenasLazer();
+            }
+            this.transicionarPara(cenaAlvo);
+        };
+
         const botaoBanho = this.add.image(painelX, this.scale.height*0.2, "iconeBanho")
             .setInteractive({ useHandCursor: true })
             .setScale(this.scale.height*0.001)
             .setScrollFactor(0);
-        botaoBanho.on("pointerdown", () => this.transicionarPara("cenaBanho"));
+        botaoBanho.on("pointerdown", () => navegarHud("cenaBanho"));
         this.botoes.push({ botao: botaoBanho, cenaAlvo: "cenaBanho" });
 
         // Cria o botao de dar racao e configura o evento de clique
@@ -77,7 +84,7 @@ export class HUD extends Phaser.Scene {
             .setInteractive({ useHandCursor: true })
             .setScale(this.scale.height*0.001)
             .setScrollFactor(0);
-        botaoRacao.on("pointerdown", () => this.transicionarPara("cenaComida"));
+        botaoRacao.on("pointerdown", () => navegarHud("cenaComida"));
         this.botoes.push({ botao: botaoRacao, cenaAlvo: "cenaComida" });
 
         // Cria o botao de cuidados medicos e configura o evento de clique
@@ -85,7 +92,7 @@ export class HUD extends Phaser.Scene {
             .setInteractive({ useHandCursor: true })
             .setScale(this.scale.height*0.001)
             .setScrollFactor(0);
-        botaoCuidados.on("pointerdown", () => this.transicionarPara("cenaVeterinario"));
+        botaoCuidados.on("pointerdown", () => navegarHud("cenaVeterinario"));
         this.botoes.push({ botao: botaoCuidados, cenaAlvo: "cenaVeterinario" });
 
         // Cria o botao de brincar e configura o evento de clique
@@ -93,7 +100,7 @@ export class HUD extends Phaser.Scene {
             .setInteractive({ useHandCursor: true })
             .setScale(this.scale.height*0.001)
             .setScrollFactor(0);
-        botaoLazer.on("pointerdown", () => this.transicionarPara("cenaLazer"));
+        botaoLazer.on("pointerdown", () => navegarHud("cenaLazer"));
         this.botoes.push({ botao: botaoLazer, cenaAlvo: "cenaLazer" });
 
         // Cria o botao de voltar para a tela principal e configura o evento de clique
@@ -101,7 +108,7 @@ export class HUD extends Phaser.Scene {
             .setInteractive({ useHandCursor: true })
             .setScale(this.scale.height*0.001)
             .setScrollFactor(0);
-        botaoVoltar.on("pointerdown", () => this.transicionarPara("cenaPrincipal"));
+        botaoVoltar.on("pointerdown", () => navegarHud("cenaPrincipal"));
         this.botoes.push({ botao: botaoVoltar, cenaAlvo: "cenaPrincipal" });
 
         // Funcao interna para ajustar elementos dinamicamente quando a janela mudar de tamanho
@@ -148,6 +155,47 @@ export class HUD extends Phaser.Scene {
             this.scale.off("resize", handleResizeHUD);
         });
 
+    }
+
+    exibirAvisoApenasLazer() {
+        if (this.avisoContainer) {
+            this.avisoContainer.destroy();
+            this.avisoTimer?.remove(false);
+        }
+
+        const larguraAviso = this.scale.width * 0.18;
+        const alturaAviso = 60;
+        const x = this.scale.width - this.scale.width * 0.1;
+        const y = this.scale.height * 0.38;
+
+        const fundoAviso = this.add.rectangle(x, y, larguraAviso, alturaAviso, 0x000000, 0.8)
+            .setOrigin(0.5)
+            .setScrollFactor(0)
+            .setDepth(1100);
+
+        const textoAviso = this.add.text(x, y, "Cachorro João só pode brincar. Clique no botão Lazer.", {
+            fontFamily: '"Press Start 2P"',
+            fontSize: "12px",
+            color: "#ffffff",
+            align: "center",
+            wordWrap: { width: larguraAviso - 20 }
+        })
+            .setOrigin(0.5)
+            .setScrollFactor(0)
+            .setDepth(1101);
+
+        this.avisoContainer = this.add.container(0, 0, [fundoAviso, textoAviso]);
+
+        this.avisoTimer = this.time.addEvent({
+            delay: 2200,
+            callback: () => {
+                if (this.avisoContainer) {
+                    this.avisoContainer.destroy();
+                    this.avisoContainer = null;
+                }
+                this.avisoTimer = null;
+            }
+        });
     }
 
     // Funcao responsavel por gerenciar as trocas de cena com efeito visual de escurecimento
@@ -234,8 +282,8 @@ export class HUD extends Phaser.Scene {
             gameState.barras.limpeza <= 0 &&
             gameState.barras.saude <= 0
 
-        // Forca o retorno para a tela principal caso as barras zerassem jogando com o Caramelo
-        if (barrasZero && gameState.pets.cachorroCaramelo === true && !this.transicao) {
+        // Forca o retorno para a tela principal caso as barras zerassem jogando com Caramelo ou Herói
+        if (barrasZero && gameState.progressoCachorro < 2 && !this.transicao) {
             this.transicionarPara("cenaPrincipal")
         }
     }

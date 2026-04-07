@@ -15,6 +15,10 @@ export class jogoLazer extends Phaser.Scene {
         this.jogoAcabou = false; 
         this.minigameFinalizado = false;
         this.isPropulsao = false; 
+        this.ultimoTempoMs = 0; // Controle de tempo local
+
+        // AQUI: Reseta o tempo global toda vez que a cena (ou a partida) inicia
+        gameState.tempoLazerTotal = 0; 
     }
 
     create() {
@@ -32,7 +36,9 @@ export class jogoLazer extends Phaser.Scene {
 
         this.botaoVoltar.on("pointerover", () => this.botaoVoltar.setStyle({ color: "#ffdd00" }));
         this.botaoVoltar.on("pointerout",  () => this.botaoVoltar.setStyle({ color: "#ffffff" }));
-        this.botaoVoltar.on("pointerdown", () => this.scene.start("cenaLazer"));
+        this.botaoVoltar.on("pointerdown", () => {
+            this.scene.start("cenaLazer");
+        });
 
         // Define a gravidade do mundo físico
         this.physics.world.gravity.y = 800;
@@ -64,12 +70,18 @@ export class jogoLazer extends Phaser.Scene {
         this.cameras.main.setBounds(0, 0, 8000, altura);
 
         // Define o sprite do cachorro com base na evolução (Heroi ou Caramelo)
-        const spriteCorrendo = gameState.pets.cachorroHeroi ? 'cachorroHeroiCorrendo' : 'cachorroCorrendo'; 
+        const spriteCorrendo = gameState.pets.cachorroJoao ? 'cachorroJoaoCorrendo' : (gameState.pets.cachorroHeroi ? 'cachorroHeroiCorrendo' : 'cachorroCorrendo'); 
 
         // Cria o sprite do jogador e ajusta sua caixa de colisão (hitbox)
         this.cachorro = this.physics.add.sprite(largura * 0.15, alturaDoChao - 200, spriteCorrendo);
         this.cachorro.setCollideWorldBounds(true);
-        this.cachorro.setScale(0.5); 
+        
+        // --- MUDANÇA DA ESCALA ---
+        // Define a escala base dependendo do pet
+        this.escalaBase = gameState.pets.cachorroJoao ? 0.3 : (gameState.pets.cachorroHeroi ? 0.3 : 0.5);
+        this.cachorro.setScale(this.escalaBase); 
+        // -------------------------
+
         this.cachorro.setDepth(10); 
         
         let dogW = this.cachorro.width;
@@ -119,6 +131,15 @@ export class jogoLazer extends Phaser.Scene {
             strokeThickness: 4
         }).setOrigin(1, 0).setScrollFactor(0).setDepth(20);
 
+        // LÓGICA DO TEMPO NO TOPO
+        this.textoTempo = this.add.text(largura / 2, 30, `Tempo: ${gameState.tempoLazerTotal}s`, { 
+            fontFamily: '"Press Start 2P", monospace', 
+            fontSize: '24px', 
+            fill: '#fff',
+            stroke: '#000',
+            strokeThickness: 4
+        }).setOrigin(0.5, 0).setScrollFactor(0).setDepth(20);
+
         // Função para manter a responsividade em caso de redimensionamento da janela
         const handleResizeLazer = (tamanhoTela) => {
             const { width: w, height: h } = tamanhoTela;
@@ -131,6 +152,7 @@ export class jogoLazer extends Phaser.Scene {
             this.cameras.main.setBounds(0, 0, 9000, h);
             
             this.textoPontos.setPosition(w - 30, 30);
+            this.textoTempo.setPosition(w / 2, 30);
             this.botaoVoltar.setPosition(60, 50);
 
             if (this.fundoInstrucao && this.fundoInstrucao.active) {
@@ -161,6 +183,15 @@ export class jogoLazer extends Phaser.Scene {
     update() {
         // Impede a execução da lógica se as instruções estiverem na tela ou o jogo acabar
         if (!this.instrucoesLidas || this.jogoAcabou) return; 
+
+        // CALCULO DO TEMPO
+        const agora = this.time.now;
+        if (agora - this.ultimoTempoMs >= 1000) {
+            const segundosPassados = Math.floor((agora - this.ultimoTempoMs) / 1000);
+            gameState.tempoLazerTotal += segundosPassados;
+            this.ultimoTempoMs = agora;
+            this.textoTempo.setText(`Tempo: ${gameState.tempoLazerTotal}s`);
+        }
 
         // Reinicia a fase se o jogador ultrapassar o petisco final sem pegá-lo
         if (this.petiscaoFinal && this.petiscaoFinal.active) {
@@ -196,7 +227,8 @@ export class jogoLazer extends Phaser.Scene {
         } else if (this.teclado.down.isDown) {
             this.abaixar(noChao);
         } else {
-            this.cachorro.setScale(0.5, 0.5); 
+            // --- MUDANÇA DA ESCALA AO LEVANTAR ---
+            this.cachorro.setScale(this.escalaBase, this.escalaBase); 
         }
 
         // Controla o estado da animação com base no contato com o solo
@@ -259,6 +291,7 @@ export class jogoLazer extends Phaser.Scene {
     // Libera a física e animações após ler as instruções
     iniciarMinigameAposInstrucoes() {
         this.instrucoesLidas = true;
+        this.ultimoTempoMs = this.time.now;
         this.physics.resume();
         this.cachorro.anims.resume();
     }
@@ -279,7 +312,9 @@ export class jogoLazer extends Phaser.Scene {
         if (!noChao) {
             this.cachorro.setVelocityY(1000); 
         } 
-        this.cachorro.setScale(0.5, 0.41); 
+        // --- MUDANÇA DA ESCALA AO AGACHAR ---
+        // Ele vai manter a largura original (escalaBase) e amassar a altura em proporção
+        this.cachorro.setScale(this.escalaBase, this.escalaBase * 0.82); 
     }
 
     // Distribui obstáculos e petiscos (bons e estragados) ao longo da fase
@@ -298,7 +333,7 @@ export class jogoLazer extends Phaser.Scene {
                 cama.body.setOffset(cama.width * 0.4, cama.height * 0.5); 
 
                 // Cria o super petisco final (meta da fase)
-                let yPetiscao = alturaDoChao - 350; 
+                let yPetiscao = alturaDoChao - 400; 
                 let petiscoAlto = this.petiscos.create(posX + 350, yPetiscao, 'petisco').setScale(0.3).setDepth(5);
                 petiscoAlto.body.setSize(petiscoAlto.width * 0.6, petiscoAlto.height * 0.6);
                 petiscoAlto.body.setOffset(petiscoAlto.width * 0.2, petiscoAlto.height * 0.2);
@@ -311,7 +346,8 @@ export class jogoLazer extends Phaser.Scene {
                 let raio = obs.width * 0.30; 
                 obs.body.setCircle(raio, obs.width * 0.35, obs.height * 0.4);
 
-                let yPetisco = alturaDoChao - 150; 
+                // Altura original do petisco
+                let yPetisco = alturaDoChao - 180; 
                 let petisco = this.petiscos.create(x, yPetisco, 'petisco').setScale(0.15).setDepth(5);
                 petisco.body.setSize(petisco.width * 0.6, petisco.height * 0.6);
                 petisco.body.setOffset(petisco.width * 0.2, petisco.height * 0.2);
@@ -423,7 +459,7 @@ export class jogoLazer extends Phaser.Scene {
         const moedas = this.calcularMoedas(estrelas);
         const reducaoLazer = this.calcularLazer(estrelas);
 
-        const cachorroAtivo = gameState.pets.cachorroHeroi ? 'heroi' : 'caramelo';
+        const cachorroAtivo = gameState.pets.cachorroJoao ? 'joao' : (gameState.pets.cachorroHeroi ? 'heroi' : 'caramelo');
         if (!gameState.recompensas.lazer[cachorroAtivo]) {
             gameState.cobasiCoins += moedas;
             gameState.recompensas.lazer[cachorroAtivo] = true;
@@ -444,6 +480,20 @@ export class jogoLazer extends Phaser.Scene {
         const escalaFinal = Math.min((this.scale.width * 0.8) / telaFeedback.width, (this.scale.height * 0.8) / telaFeedback.height);
         telaFeedback.setScale(escalaFinal);
 
+        // TEXTOS NO POPUP DE FINALIZAÇÃO
+        // Posição correspondente à palavra "PONTOS/MOEDAS" do asset
+        let posMoedasY = cy + (telaFeedback.displayHeight * 0.12);
+        this.add.text(cx -12, posMoedasY, `${moedas} Moedas`, {
+            fontFamily: '"Press Start 2P", Arial', fontSize: "22px", color: "#005e64"
+        }).setOrigin(0.5).setDepth(102).setScrollFactor(0);
+
+        // Posição correspondente à palavra "TEMPO" do asset
+        let posTempoY = cy - 20 + (telaFeedback.displayHeight * 0.35); 
+        this.add.text(cx, posTempoY, `${gameState.tempoLazerTotal}s`, {
+            fontFamily: '"Press Start 2P", Arial', fontSize: "22px", color: "#005e64"
+        }).setOrigin(0.5).setDepth(102).setScrollFactor(0);
+
+
         const textoContinuar = this.add.text(cx, cy + (telaFeedback.displayHeight / 2) + 40, "[ Clique ou ESPAÇO para continuar ]", {
             fontFamily: '"Press Start 2P", Arial',
             fontSize: "15px",
@@ -452,7 +502,10 @@ export class jogoLazer extends Phaser.Scene {
         
         this.tweens.add({ targets: textoContinuar, alpha: 0.5, duration: 600, yoyo: true, loop: -1 });
 
-        const voltarParaMenu = () => { this.scene.start("cenaLazer"); };
+        const voltarParaMenu = () => {
+            this.scene.start("cenaLazer"); 
+        };
+        
         fundoFeedback.on('pointerdown', voltarParaMenu);
         telaFeedback.on('pointerdown', voltarParaMenu);
         this.time.delayedCall(200, () => { this.input.keyboard.once('keydown-SPACE', voltarParaMenu); });

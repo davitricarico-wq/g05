@@ -117,27 +117,21 @@ export class cenaCarregamento extends Phaser.Scene {
         this.load.image("tutorial10", "assets/tutorial10.png");
         this.load.image("tutorial11", "assets/tutorial11.png");
 
-        // Assets das rações super premium
-        this.load.image("racaoGA", "assets/racoes/racaoGA.png");
-        this.load.image("racaoGF", "assets/racoes/racaoGF.png");
-        this.load.image("racaoGV", "assets/racoes/racaoGV.png");
-        this.load.image("racaoMA", "assets/racoes/racaoMA.png");
-        this.load.image("racaoMF", "assets/racoes/racaoMF.png");
-        this.load.image("racaoMV", "assets/racoes/racaoMV.png");
-        this.load.image("racaoPA", "assets/racoes/racaoPA.png");
-        this.load.image("racaoPF", "assets/racoes/racaoPF.png");
-        this.load.image("racaoPV", "assets/racoes/racaoPV.png");
+        // Assets das rações standard
+        this.load.image("racaoStandardPequeno", "assets/racoes/racaoStandard.png");
+        this.load.image("racaoStandardMedio", "assets/racoes/racaoStandard.png");
+        this.load.image("racaoStandardGrande", "assets/racoes/racaoStandard.png");
 
-        // assets das rações standard
-        this.load.image("standardGA", "assets/racoes/standardGA.png");
-        this.load.image("standartGF", "assets/racoes/standartGF.png");
-        this.load.image("standartGV", "assets/racoes/standartGV.png");
-        this.load.image("standartMA", "assets/racoes/standartMA.png");
-        this.load.image("standartMF", "assets/racoes/standartMF.png");
-        this.load.image("standartMV", "assets/racoes/standartMV.png");
-        this.load.image("standartPA", "assets/racoes/standartPA.png");
-        this.load.image("standartPF", "assets/racoes/standartPF.png");
-        this.load.image("standartPV", "assets/racoes/standartPV.png");
+        // Assets das rações premium
+        this.load.image("racaoPremiumPequeno", "assets/racoes/racaoPremium.png");
+        this.load.image("racaoPremiumMedio", "assets/racoes/racaoPremium.png");
+        this.load.image("racaoPremiumGrande", "assets/racoes/racaoPremium.png");
+
+        // Assets das rações super premium
+        this.load.image("racaoSuperPremiumPequeno", "assets/racoes/racaoSuperPremium.png");
+        this.load.image("racaoSuperPremiumMedio", "assets/racoes/racaoSuperPremium.png");
+        this.load.image("racaoSuperPremiumGrande", "assets/racoes/racaoSuperPremium.png");
+
 
        
         //Cenas feedback
@@ -148,6 +142,7 @@ export class cenaCarregamento extends Phaser.Scene {
         //Cenas de instrução e Como Jogar
         this.load.image("instrucaoDescricaoBanho", "assets/feedback/instrucaoBanho.png");
         this.load.image("conclusaoPrimeiroRound", "assets/feedback/conclusaoPrimeiroRound.png");
+        this.load.image("instrucaoSegundoRound", "assets/feedback/instrucaoSegundoRound.png");
         this.load.image("instrucaoDescricaoRacao", "assets/feedback/instrucaoDescricaoRacao.png");
         this.load.image("instrucaoLazer", "assets/feedback/instrucaoLazer.png");
         this.load.image("instrucaoBanho", "assets/feedback/instrucaoBanho.png");
@@ -179,6 +174,10 @@ export class cenaCarregamento extends Phaser.Scene {
             frameWidth: 626,
             frameHeight: 655
         });
+           this.load.spritesheet("cachorroJoao", "assets/cachorroJoao.png", {
+            frameWidth: 626,
+            frameHeight: 655
+        });
         this.load.spritesheet("agua", "assets/tela-banho/agua.png", {
             frameWidth: 480,
             frameHeight: 480
@@ -188,6 +187,10 @@ export class cenaCarregamento extends Phaser.Scene {
             frameHeight: 280 
         });
         this.load.spritesheet("cachorroHeroiCorrendo", "assets/cachorroHeroiCorrendo.png", {
+            frameWidth: 640,
+            frameHeight: 402 
+        });
+        this.load.spritesheet("cachorroJoaoCorrendo", "assets/cachorroJoaoCorrendo.png", {
             frameWidth: 640,
             frameHeight: 402 
         });

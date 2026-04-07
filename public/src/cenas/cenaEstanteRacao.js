@@ -1,14 +1,14 @@
 // importando os dados referentes às rações disponíveis no catálogo
 import {
-    racaoGrandeFilhote,
-    racaoGrandeAdulto,
-    racaoGrandeSenior,
-    racaoMediaAdulto,
-    racaoMediaFilhote,
-    racaoMediaSenior,
-    racaoPequenaAdulto,
-    racaoPequenaFilhote,
-    racaoPequenaSenior
+    racaoStandardPequeno,
+    racaoStandardMedio,
+    racaoStandardGrande,
+    racaoPremiumPequeno,
+    racaoPremiumMedio,
+    racaoPremiumGrande,
+    racaoSuperPremiumPequeno,
+    racaoSuperPremiumMedio,
+    racaoSuperPremiumGrande,
 } from "../componentes/controleRacoes/dadosRacoes.js";
 
 // importando a classe modelo de ração e os controladores de estado do mascote
@@ -17,10 +17,10 @@ import { cachorrosBase } from "../componentes/controleCachorro/cachorrosBase.js"
 import { gameState } from "../main.js";
 import { ficha } from "../componentes/ficha.js";
 
-// definição da classe controladora da cena de rações da categoria super premium
-export class cenaRacaoSuperPremium extends Phaser.Scene {
+// definição da classe controladora da cena de rações
+export class cenaEstanteRacao extends Phaser.Scene {
     constructor() {
-        super({ key: "cenaRacaoSuperPremium" });
+        super({ key: "cenaEstanteRacao" });
         this.transicao = false;
         this.duracaoFade = 250;
     }
@@ -35,7 +35,7 @@ export class cenaRacaoSuperPremium extends Phaser.Scene {
         const centroDireitaX = largura * 0.70;
 
         // determinando o mascote ativo com base no estado global da aplicação
-        const petAtivo = gameState.pets.cachorroHeroi ? cachorrosBase[1] : cachorrosBase[0];
+        const petAtivo = gameState.pets.cachorroJoao ? cachorrosBase[2] : (gameState.pets.cachorroHeroi ? cachorrosBase[1] : cachorrosBase[0]);
         const pet = petAtivo;
 
         // interrompendo a execução da cena de interface de usuário e redefinindo o estado de transição
@@ -46,12 +46,10 @@ export class cenaRacaoSuperPremium extends Phaser.Scene {
         const criarBotao = (x, y, texturaNormal, texturaPressionado, escalaBase, escalaAumentada, escalaPressionada, callback) => {
             const botao = this.add.image(x, y, texturaNormal).setScale(escalaBase).setInteractive({ useHandCursor: true });
 
-            // armazenando os valores de escala na instância do botão para posterior atualização durante o redimensionamento da tela
             botao.escalaNormal = escalaBase;
             botao.escalaHover = escalaAumentada;
             botao.escalaPress = escalaPressionada;
 
-            // registro dos tratadores de eventos de ponteiro para os estados de interação do botão
             botao.on("pointerover", () => {
                 botao.setTexture(texturaPressionado);
                 this.tweens.add({ targets: botao, scale: botao.escalaHover, duration: 150, ease: "Power2" });
@@ -76,9 +74,7 @@ export class cenaRacaoSuperPremium extends Phaser.Scene {
             return botao;
         };
 
-        // função auxiliar para aplicar efeitos visuais de transição de escala aos elementos interativos
         const passarPressionarEfeito = (alvo, escalaNormal, escalaPassar) => {
-            // preservando as propriedades de escala no objeto alvo para suporte ao redimensionamento
             alvo.escalaNormal = escalaNormal;
             alvo.escalaPassar = escalaPassar;
 
@@ -95,13 +91,11 @@ export class cenaRacaoSuperPremium extends Phaser.Scene {
             });
         };
 
-        // função responsável por alternar a visibilidade da cena contendo a ficha de informações do mascote
         const alternarFicha = () => {
             if (this.scene.isActive("ficha")) {
                 this.scene.stop("ficha");
                 return;
             }
-
             this.scene.launch("ficha");
             this.scene.bringToTop("ficha");
         };
@@ -114,7 +108,7 @@ export class cenaRacaoSuperPremium extends Phaser.Scene {
         this.cameras.main.setBounds(0, 0, largura, altura);
         this.cameras.main.fadeIn(this.duracaoFade, 0, 0, 0);
 
-        // instanciando o botão de retorno com a respectiva função de chamada para transição de cena
+        // instanciando o botão de retorno
         this.botaoVoltar = criarBotao(
             largura * 0.95, altura * 0.9, "iconeVoltar", "iconeVoltar",
             0.8, 1, 0.6,
@@ -128,60 +122,46 @@ export class cenaRacaoSuperPremium extends Phaser.Scene {
             fontSize: "20px", color: "#ffffff", fontFamily: '"Press Start 2P"', align: "center"
         }).setOrigin(0.5);  
 
-        // inicializando o elemento gráfico da ficha de informações do mascote e vinculando eventos interativos
+        // inicializando o elemento gráfico da ficha de informações
         gameState.bilhete = this.add.image(largura * 0.94, altura * 0.3, 'mineFicha')
             .setScale(0.12)
             .setDepth(20)
             .setInteractive({ useHandCursor:true });
         
-        // armazenando as proporções de escala para suporte à responsividade da interface
         gameState.bilhete.escalaNormal = 0.12;
         gameState.bilhete.escalaPassar = 0.14;
         
         passarPressionarEfeito(gameState.bilhete, 0.12, 0.14);
-
         gameState.bilhete.on("pointerup", alternarFicha);
 
-        // instanciando os botões de navegação entre as categorias de alimentação
-        this.botaoStandard = criarBotao(
-            largura * 0.20, altura * 0.15,
-            "botaoStandard", "botaoStandardPressionado",
-            0.35, 0.4, 0.30,
-            () => this.transicaoPara("cenaRacaoStandart")
-        );
-
-        this.botaoSuperPremium = criarBotao(
-            largura * 0.40, altura * 0.155,
-            "botaoSuperPremium", "botaoSuperPremiumPressionado",
-            0.35, 0.4, 0.30,
-            () => { /* estado atual já reflete esta cena, ignorando comando */ }
-        );
-
-        // renderizando o elemento gráfico da estante para alocação dos itens
+        // renderizando a estante
         this.estante = this.add.image(centroEsquerdaX, altura * 0.6, "estanteVazia").setScale(1).setDepth(-1);
 
-        // definindo as coordenadas de grade para o posicionamento matricial dos itens na estante
         const colunasRacao = [largura * 0.18, largura * 0.30, largura * 0.42];
         const linhasRacao = [altura * 0.37, altura * 0.605, altura * 0.845];
 
-        // instanciando o grupo de rações da categoria super premium e definindo sua visibilidade inicial
-        this.racoesSuperPremium = [
-            new Racao(this, colunasRacao[0], linhasRacao[0], racaoGrandeFilhote),
-            new Racao(this, colunasRacao[1], linhasRacao[0], racaoGrandeAdulto),
-            new Racao(this, colunasRacao[2], linhasRacao[0], racaoGrandeSenior),
-            new Racao(this, colunasRacao[0], linhasRacao[1], racaoMediaFilhote),
-            new Racao(this, colunasRacao[1], linhasRacao[1], racaoMediaAdulto),
-            new Racao(this, colunasRacao[2], linhasRacao[1], racaoMediaSenior),
-            new Racao(this, colunasRacao[0], linhasRacao[2], racaoPequenaFilhote),
-            new Racao(this, colunasRacao[1], linhasRacao[2], racaoPequenaAdulto),
-            new Racao(this, colunasRacao[2], linhasRacao[2], racaoPequenaSenior),
+        // Instanciando as rações corretas importadas do dadosRacoes.js (Grid 3x3)
+        this.racoes = [
+            // Linha 1: Rações Standard (Índices 0 a 2)
+            new Racao(this, colunasRacao[0], linhasRacao[0], racaoStandardPequeno),
+            new Racao(this, colunasRacao[1], linhasRacao[0], racaoStandardMedio),
+            new Racao(this, colunasRacao[2], linhasRacao[0], racaoStandardGrande),
+            
+            // Linha 2: Rações Premium (Índices 3 a 5)
+            new Racao(this, colunasRacao[0], linhasRacao[1], racaoPremiumPequeno),
+            new Racao(this, colunasRacao[1], linhasRacao[1], racaoPremiumMedio),
+            new Racao(this, colunasRacao[2], linhasRacao[1], racaoPremiumGrande),
+            
+            // Linha 3: Rações Super Premium (Índices 6 a 8)
+            new Racao(this, colunasRacao[0], linhasRacao[2], racaoSuperPremiumPequeno),
+            new Racao(this, colunasRacao[1], linhasRacao[2], racaoSuperPremiumMedio),
+            new Racao(this, colunasRacao[2], linhasRacao[2], racaoSuperPremiumGrande),
         ];
         
         // inicializando o painel de fundo para exibição das informações nutricionais
         this.fundoTemplateRacao = this.add.image(centroDireitaX, altura * 0.56, "fundoTemplateRacao")
             .setScale(altura * 0.00075);
 
-        // instanciando um contêiner oculto para o alinhamento centralizado dos elementos textuais no painel
         this.containerTexto = this.add.container(centroDireitaX, altura * 0.55);
 
         this.titulo = this.add.text(0, -altura*0.15, "Compre sua ração!", {
@@ -194,60 +174,66 @@ export class cenaRacaoSuperPremium extends Phaser.Scene {
 
         this.containerTexto.add([this.titulo, this.subtitulo]);
 
-        // configurando o elemento de texto destinado ao retorno visual das operações de transação
         this.textoFeedback = this.add.text(centroDireitaX, altura * 0.93, "", {
             fontSize: "14px", color: "#ff0000", fontFamily: '"Press Start 2P"', align: "center", wordWrap: { width: 350 }
         }).setOrigin(0.5);
 
-        // instanciando o botão de confirmação e implementando a lógica integral de validação da transação financeira
+        // instanciando o botão de confirmação e lógica de compra
         this.botaoComprarSuperPremium = criarBotao(
             centroDireitaX, altura * 0.75,
             "botaoComprarSuperPremium", "botaoComprarSuperPremiumPressionado",
             0.15, 0.16, 0.14,
             () => {
-                // validação da existência de um item previamente selecionado pelo usuário
                 if (!Racao.selecionada) {
                     this.textoFeedback.setText("SELECIONE UMA RAÇÃO PRIMEIRO!").setColor("#ff0000");
                     return;
                 }
 
-                // validação de compatibilidade entre o item selecionado e os requisitos específicos do mascote ativo
                 if (Racao.selecionada.id !== pet.id) {
                     this.textoFeedback.setText("ESSA RAÇÃO NÃO É IDEAL.\nESCOLHA OUTRA RAÇÃO.").setColor("#ff0000");
                     return;
                 }
 
-                // obtenção do valor comercial do item e verificação de disponibilidade de saldo financeiro
                 const valorDaRacao = Racao.selecionada.valor || 15; 
                 
                 if (gameState.cobasiCoins >= valorDaRacao) {
-                    // dedução do valor no saldo global e atualização do componente textual na interface
                     gameState.cobasiCoins -= valorDaRacao;
                     this.textoMoedas.setText(gameState.cobasiCoins);
 
-                    // emissão do feedback visual indicando transação bem-sucedida
                     this.textoFeedback.setText(`COMPRA EFETUADA! (-${valorDaRacao} MOEDAS)\nRedirecionando...`).setColor("#006600");
 
-                    // desabilitação da interatividade do botão para prevenção de requisições duplicadas
                     this.botaoComprarSuperPremium.disableInteractive();
 
-                    // Atualiza o gameState
-                    gameState.superPremium = true;
-                    gameState.standart = false;
+                    // --- ATUALIZAÇÃO DO GAMESTATE AQUI ---
+                    gameState.superPremium = false;
+                    gameState.premium = false;
+                    gameState.standard = false;
 
-                    // Aguarda 1.5s e muda de cena
+                    if (Racao.selecionada.tipo === "Super Premium") {
+                        gameState.superPremium = true;
+                    } else if (Racao.selecionada.tipo === "Premium") {
+                        gameState.premium = true;
+                    } else if (Racao.selecionada.tipo === "Standard") {
+                        gameState.standard = true;
+                    }
+
+                    // 👉 NOVA LÓGICA: Salvamos a ração exata no gameState
+                    gameState.racaoAtual = {
+                        tipo: Racao.selecionada.tipo,
+                        sprite: Racao.selecionada.sprite.texture.key 
+                    };
+
                     this.time.delayedCall(1500, () => {
                         Racao.selecionada = null; 
                         this.transicaoPara("jogoAlimentacao"); 
                     });
                 } else {
-                    // emissão de feedback visual indicando insuficiência de recursos financeiros
                     this.textoFeedback.setText("SALDO INSUFICIENTE!").setColor("#ff0000"); 
                 }
             }
         ).setVisible(false).setAlpha(0); 
 
-        // inicialização do contêiner para agrupamento dos dados nutricionais exibidos após a seleção do item
+        // inicialização do contêiner de informações nutricionais
         this.containerInfo = this.add.container(centroDireitaX, altura * 0.47)
             .setScale(altura * 0.0009)
             .setVisible(false).setAlpha(0);
@@ -255,7 +241,6 @@ export class cenaRacaoSuperPremium extends Phaser.Scene {
         this.composicaoRacao = this.add.image(0, 0, "composicaoRacao");
         this.imagemRacaoInfo = this.add.image(-160, -70, "").setScale(0.18);
 
-        // parametrização tipográfica e espacial dos elementos textuais de composição nutricional
         this.textoTipo = this.add.text(0, -217, "", { fontSize: "32px", color: "#000", fontFamily: '"Press Start 2P"', align: "center" }).setOrigin(0.5);
         this.textoPorte = this.add.text(75, -138, "", { fontSize: "16px", color: "#006600", fontFamily: '"Press Start 2P"' }).setOrigin(0, 0.5);
         this.textoIdade = this.add.text(75, -102, "", { fontSize: "16px", color: "#006600", fontFamily: '"Press Start 2P"' }).setOrigin(0, 0.5);
@@ -268,24 +253,45 @@ export class cenaRacaoSuperPremium extends Phaser.Scene {
         this.textoOsso = this.add.text(51, 204, "", porcentagem).setOrigin(0.5);
         this.textoGordura = this.add.text(165, 204, "", porcentagem).setOrigin(0.5);
 
-        // anexando os nós de texto ao contêiner pai para manipulação unificada
         this.containerInfo.add([
             this.composicaoRacao, this.imagemRacaoInfo, this.textoTipo, this.textoPorte, this.textoIdade, 
             this.textoChar1, this.textoChar2, this.textoTrigo, this.textoCarne, this.textoOsso, this.textoGordura
         ]);
 
-        // iteração sobre a coleção de itens para injeção de comportamentos interativos e eventos de seleção
-        this.racoesSuperPremium.forEach((racao) => {
-            // atribuição de propriedades dinâmicas de escala à entidade visual do item
-            racao.sprite.escalaNormal = 0.3;
-            racao.sprite.escalaHover = 0.32;
+        // Interação com as Rações na Estante
+        this.racoes.forEach((racao, index) => {
+            // 🚨 REMOVE EVENTOS ANTIGOS DA CLASSE RACAO
+            racao.sprite.removeAllListeners('pointerover');
+            racao.sprite.removeAllListeners('pointerout');
 
-            racao.sprite.setScale(racao.sprite.escalaNormal).setVisible(true).setInteractive({ useHandCursor: true });
+            let tamanhoNormal = 0.3;
+            let tamanhoHover = 0.32;
+
+            // 👉 CONDIÇÃO INICIAL DE ESCALAS POR ÍNDICES
+            if (index >= 0 && index <= 2) {
+                // Rações Standard (Linha de cima)
+                tamanhoNormal = 0.13; 
+                tamanhoHover = 0.14;
+            } else if (index >= 3 && index <= 5) {
+                // Rações Premium (Linha do meio)
+                tamanhoNormal = 0.13; 
+                tamanhoHover = 0.14;
+            } else if (index >= 6 && index <= 8) {
+                // Rações Super Premium (Linha de baixo)
+                tamanhoNormal = 0.65; 
+                tamanhoHover = 0.67;
+            }
+
+            racao.sprite.escalaNormal = tamanhoNormal;
+            racao.sprite.escalaHover = tamanhoHover;
+
+            // 🚨 APLICA O SETSCALE DIRETAMENTE AQUI
+            racao.sprite.setScale(tamanhoNormal).setVisible(true).setInteractive({ useHandCursor: true });
             
+            // Recria os eventos de hover com as escalas novas
             racao.sprite.on("pointerover", () => this.tweens.add({ targets: racao.sprite, scale: racao.sprite.escalaHover, duration: 100, ease: "Power2" }));
             racao.sprite.on("pointerout", () => this.tweens.add({ targets: racao.sprite, scale: racao.sprite.escalaNormal, duration: 100, ease: "Power2" }));
 
-            // atualização do painel de informações laterais mediante o acionamento do evento de seleção do item
             racao.sprite.on("pointerup", () => {
                 Racao.selecionada = racao; 
                 this.tweens.add({
@@ -314,12 +320,12 @@ export class cenaRacaoSuperPremium extends Phaser.Scene {
             });
         });
 
-        // verificação de estado e acionamento do componente modal contendo as instruções de uso
+        // Modal de Instruções
         if (!gameState.instrucaoDescricaoRacaoVista) {
             this.mostrarInstrucaoDescricaoRacao(largura, altura);
         }
 
-        // tratador do evento de redimensionamento para adequação responsiva e recálculo total das escalas
+        // Evento de Resize
         const handleResizeRacaoSuperPremium = (gameSize) => {
             const w = gameSize.width;
             const h = gameSize.height;
@@ -327,7 +333,6 @@ export class cenaRacaoSuperPremium extends Phaser.Scene {
             this.cameras.resize(w, h);
             this.fundo.setDisplaySize(w, h).setPosition(w / 2, h / 2);
             
-            // recálculo dinâmico das posições e das variáveis de interação para o botão de retorno
             this.botaoVoltar.setPosition(w * 0.95, h * 0.9);
             this.botaoVoltar.escalaNormal = h * 0.0013; 
             this.botaoVoltar.escalaHover = h * 0.0016;  
@@ -340,26 +345,12 @@ export class cenaRacaoSuperPremium extends Phaser.Scene {
                 this.textoMoedas.setPosition(w * 0.94, h * 0.06).setScale(h * 0.0015);
             }
 
-            // atualização das proporções responsivas do elemento gráfico do bilhete
             if (gameState.bilhete) {
                 gameState.bilhete.setPosition(w * 0.94, h * 0.3);
                 gameState.bilhete.escalaNormal = 0.12;  
                 gameState.bilhete.escalaPassar = 0.14; 
                 gameState.bilhete.setScale(gameState.bilhete.escalaNormal);
             }
-
-            // redimensionamento e reposicionamento dos botões de navegação de categoria
-            this.botaoStandard.setPosition(w * 0.20, h * 0.15);
-            this.botaoStandard.escalaNormal = h * 0.00058; 
-            this.botaoStandard.escalaHover = h * 0.00066;  
-            this.botaoStandard.escalaPress = h * 0.0005;   
-            this.botaoStandard.setScale(this.botaoStandard.escalaNormal);
-
-            this.botaoSuperPremium.setPosition(w * 0.40, h * 0.155);
-            this.botaoSuperPremium.escalaNormal = h * 0.00058;
-            this.botaoSuperPremium.escalaHover = h * 0.00066;
-            this.botaoSuperPremium.escalaPress = h * 0.0005;
-            this.botaoSuperPremium.setScale(this.botaoSuperPremium.escalaNormal);
 
             this.estante.setPosition(w * 0.30, h * 0.6).setScale(h * 0.0016);
 
@@ -371,7 +362,6 @@ export class cenaRacaoSuperPremium extends Phaser.Scene {
 
             this.containerInfo.setPosition(w * 0.70, h * 0.47).setScale(h * 0.0009);
             
-            // ajuste proporcional do botão de confirmação de transação perante a nova resolução
             this.botaoComprarSuperPremium.setPosition(w * 0.70, h * 0.75);
             this.botaoComprarSuperPremium.escalaNormal = h * 0.00025; 
             this.botaoComprarSuperPremium.escalaHover = h * 0.00026;  
@@ -383,21 +373,38 @@ export class cenaRacaoSuperPremium extends Phaser.Scene {
             const novasColunas = [w * 0.18, w * 0.30, w * 0.42];
             const novasLinhas = [h * 0.37, h * 0.605, h * 0.845];
             
-            // recálculo da grade matricial e reposicionamento dinâmico dos itens alocados na estante
             let index = 0;
             for (let i = 0; i < 3; i++) { 
                 for (let j = 0; j < 3; j++) { 
-                    if(this.racoesSuperPremium[index]) {
-                        this.racoesSuperPremium[index].sprite.setPosition(novasColunas[j], novasLinhas[i]);
-                        this.racoesSuperPremium[index].sprite.escalaNormal = h * 0.0005;  
-                        this.racoesSuperPremium[index].sprite.escalaHover = h * 0.00053; 
-                        this.racoesSuperPremium[index].sprite.setScale(this.racoesSuperPremium[index].sprite.escalaNormal);
+                    if(this.racoes[index]) {
+                        this.racoes[index].sprite.setPosition(novasColunas[j], novasLinhas[i]);
+                        
+                        let escalaBase = h * 0.0005;
+                        let escalaHover = h * 0.00053;
+
+                        // 👉 CONDIÇÃO DE RESIZE POR ÍNDICES
+                        if (index >= 0 && index <= 2) {
+                            // Rações Standard
+                            escalaBase = h * 0.0005;
+                            escalaHover = h * 0.00053;
+                        } else if (index >= 3 && index <= 5) {
+                            // Rações Premium
+                            escalaBase = h * 0.0006;
+                            escalaHover = h * 0.00063;
+                        } else if (index >= 6 && index <= 8) {
+                            // Rações Super Premium
+                            escalaBase = h * 0.0007;
+                            escalaHover = h * 0.00073;
+                        }
+
+                        this.racoes[index].sprite.escalaNormal = escalaBase;  
+                        this.racoes[index].sprite.escalaHover = escalaHover; 
+                        this.racoes[index].sprite.setScale(this.racoes[index].sprite.escalaNormal);
                     }
                     index++;
                 }
             }
 
-            // adequação responsiva das dimensões e posicionamento do modal de instruções, caso esteja ativo
             if (this.fundoEscuroInstrucao && this.fundoEscuroInstrucao.active) {
                 this.fundoEscuroInstrucao.setSize(w, h);
                 this.fundoEscuroInstrucao.setPosition(w / 2, h / 2);
@@ -415,28 +422,23 @@ export class cenaRacaoSuperPremium extends Phaser.Scene {
 
         this.scale.on("resize", handleResizeRacaoSuperPremium);
 
-        // remoção do tratador de eventos de redimensionamento durante o ciclo de destruição da cena
         this.events.on('shutdown', () => {
             this.scale.off("resize", handleResizeRacaoSuperPremium);
         });
     }
 
-    // método responsável pela renderização e controle do componente modal de instruções sobre a descrição dos itens
     mostrarInstrucaoDescricaoRacao(largura, altura) {
         const centroX = largura / 2;
         const centroY = altura / 2;
 
-        // instanciando a camada de fundo com opacidade reduzida para destaque do modal
         this.fundoEscuroInstrucao = this.add.rectangle(centroX, centroY, largura, altura, 0x000000, 0.7)
             .setDepth(1000)
             .setInteractive(); 
 
-        // renderizando o elemento gráfico contendo as diretrizes visuais
         this.imgInstrucao = this.add.image(centroX, centroY, "instrucaoDescricaoRacao")
             .setDepth(1001)
             .setScale(0.5); 
 
-        // configurando o componente textual indicativo de continuidade com animação de opacidade intermitente
         const posicaoTextoY = centroY + (this.imgInstrucao.displayHeight / 2) + 30;
 
         this.txtContinuarInstrucao = this.add.text(centroX, posicaoTextoY, "[ Clique para continuar ]", {
@@ -455,7 +457,6 @@ export class cenaRacaoSuperPremium extends Phaser.Scene {
             loop: -1
         });
 
-        // registro do tratador de eventos para desconstrução do modal e atualização do estado global de visualização
         this.fundoEscuroInstrucao.on("pointerdown", () => {
             this.fundoEscuroInstrucao.destroy();
             this.imgInstrucao.destroy();
@@ -465,12 +466,10 @@ export class cenaRacaoSuperPremium extends Phaser.Scene {
             this.imgInstrucao = null;
             this.txtContinuarInstrucao = null;
             
-            // persistência do estado de visualização para evitar reexibição durante o recarregamento da cena
             gameState.instrucaoDescricaoRacaoVista = true; 
         });
     }
 
-    // método encapsulado para transição segura entre cenas direcionando ao minijogo de alimentação
     transicaoPara(chaveCena) {
         if (this.transicao) return;
 

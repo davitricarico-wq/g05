@@ -15,6 +15,10 @@ export class cenaCuidado extends Phaser.Scene {
         this.bonusMeioGanho = false;    
         this.pulgaSegurada = null; 
 
+        // Novas variáveis de tempo
+        this.tempoLimite = 30;
+        this.tempoRestante = 30;
+
         // Variável para saber se as instruções foram fechadas
         this.instrucoesLidas = false;
     }
@@ -28,7 +32,7 @@ export class cenaCuidado extends Phaser.Scene {
         const altura = this.scale.height;
 
         // --- MUDANÇA AQUI: Define o background com base no cachorro ativo ---
-        const bgAtivo = gameState.pets.cachorroHeroi ? "bgCuidadoHeroi" : "bgCuidado";
+        const bgAtivo = gameState.pets.cachorroJoao ? "bgCuidadoJoao" : (gameState.pets.cachorroHeroi ? "bgCuidadoHeroi" : "bgCuidado");
 
         // Fundo
         this.fundo = this.add.image(largura / 2, altura / 2, bgAtivo)
@@ -38,12 +42,13 @@ export class cenaCuidado extends Phaser.Scene {
 
         // Reset variáveis
         this.pulgasRemovidas = 0;
-        this.pontuacao = 0;
+        this.pontuacao = 0; 
         this.minigameFinalizado = false;
         this.pincaEquipada = false;
         this.bonusMeioGanho = false;
         this.pulgaSegurada = null;
         this.instrucoesLidas = false;
+        this.tempoRestante = this.tempoLimite; // Reseta o tempo para 30
 
         gameState.cobasiCoins = gameState.cobasiCoins ?? 0;
 
@@ -232,7 +237,7 @@ export class cenaCuidado extends Phaser.Scene {
     }
 
     // ==========================================
-    //          MECÂNICAS DO JOGO
+    //           MECÂNICAS DO JOGO
     // ==========================================
     mostrarPopupInstrucaoPinca() {
         const cx = this.scale.width / 2;
@@ -246,7 +251,8 @@ export class cenaCuidado extends Phaser.Scene {
     }
 
     criarTextosInfo() {
-        this.textoTempo = this.add.text(20, 30, "Tempo: 0s", {
+        // Inicializa com o tempo limite
+        this.textoTempo = this.add.text(20, 30, `Tempo: ${this.tempoLimite}s`, {
             fontFamily: '"Press Start 2P", Arial', fontSize: "20px", color: "#ffffff",
             stroke: "#000000", strokeThickness: 5
         }).setOrigin(0, 0).setDepth(50);
@@ -293,6 +299,8 @@ export class cenaCuidado extends Phaser.Scene {
         if (pulga.body) pulga.body.enable = false;
 
         this.pulgasRemovidas++;
+        this.pontuacao += 50; 
+
         this.textoProgresso.setText(`Pulgas: ${this.pulgasRemovidas}/${this.totalPulgas}`);
 
         if (this.pulgasRemovidas === 6 && !this.bonusMeioGanho) {
@@ -333,8 +341,17 @@ export class cenaCuidado extends Phaser.Scene {
 
     atualizarTextoTempo() {
         if (!this.instrucoesLidas || this.minigameFinalizado) return;
-        const segundos = Math.floor((this.time.now - this.tempoInicialMs) / 1000);
-        this.textoTempo.setText(`Tempo: ${segundos}s`);
+        
+        // Calcula a contagem regressiva
+        const segundosPassados = Math.floor((this.time.now - this.tempoInicialMs) / 1000);
+        this.tempoRestante = Math.max(0, this.tempoLimite - segundosPassados);
+        
+        this.textoTempo.setText(`Tempo: ${this.tempoRestante}s`);
+
+        // Se o tempo acabar, aciona a derrota
+        if (this.tempoRestante === 0) {
+            this.perderMinigame();
+        }
     }
 
     // ==========================================
@@ -345,30 +362,46 @@ export class cenaCuidado extends Phaser.Scene {
         this.minigameFinalizado = true;
         this.input.setDefaultCursor("default");
 
-        const segundos = Math.ceil((this.time.now - this.tempoInicialMs) / 1000);
-        const estrelas = this.calcularEstrelas(segundos);
+        // Usa o tempo que sobrou (tempoRestante) para os cálculos
+        const estrelas = this.calcularEstrelas(this.tempoRestante);
         const moedas = this.calcularMoedas(estrelas);
 
-        const cachorroAtivo = gameState.pets.cachorroHeroi ? 'heroi' : 'caramelo';
+        const cachorroAtivo = gameState.pets.cachorroJoao ? 'joao' : (gameState.pets.cachorroHeroi ? 'heroi' : 'caramelo');
         if (!gameState.recompensas.cuidado[cachorroAtivo]) {
             gameState.cobasiCoins += moedas;
             gameState.recompensas.cuidado[cachorroAtivo] = true;
         }
 
         gameState.pulga = false;
-        this.mostrarPainelResultado(estrelas, moedas, segundos);
+        
+        // Mantém o SEU painel original
+        this.mostrarPainelResultado(estrelas, moedas, this.tempoRestante);
     }
 
-    calcularEstrelas(segundos) {
-        if (segundos <= 30) return 3; 
-        if (segundos <= 55) return 2; 
+    perderMinigame() {
+        if (this.minigameFinalizado) return;
+        this.minigameFinalizado = true;
+        this.input.setDefaultCursor("default");
+
+        // Congela as pulgas na tela
+        this.pulgas.children.iterate((pulga) => {
+            this.tweens.killTweensOf(pulga);
+        });
+
+        // Chama o SEU painel com 1 estrela, 0 moedas e 0 tempo
+        this.mostrarPainelResultado(1, 0, 0); 
+    }
+
+    calcularEstrelas(tempoRestante) {
+        if (tempoRestante >= 20) return 3; 
+        if (tempoRestante >= 10) return 2; 
         return 1; 
     }
 
     calcularMoedas(estrelas) {
         if (estrelas === 3) return 20;
         if (estrelas === 2) return 10;
-        return 0; 
+        return 0; // 1 estrela ganha 0 moedas
     }
 
     mostrarPainelResultado(estrelas, moedas, segundos) {
@@ -391,9 +424,18 @@ export class cenaCuidado extends Phaser.Scene {
         const escalaFinal = Math.min(limiteLargura / telaFeedback.width, limiteAltura / telaFeedback.height);
         telaFeedback.setScale(escalaFinal);
 
-        // Textos de pontuação em cima do painel
-        const textoMoedas = this.add.text(cx, cy + (telaFeedback.displayHeight * 0.1), `Cobasi Coins: +${moedas}`, {
-            fontFamily: '"Press Start 2P", Arial', fontSize: "16px", color: "#9be564"
+        // --- TEXTO DE PONTOS ---
+        // Fica logo abaixo da palavra "PONTOS :" desenhada na imagem
+        let posMoedasY = cy + (telaFeedback.displayHeight * 0.12);
+        this.add.text(cx-12, posMoedasY, `${moedas} Moedas`, {
+            fontFamily: '"Press Start 2P", Arial', fontSize: "22px", color: "#005e64"
+        }).setOrigin(0.5).setDepth(102);
+
+        // --- TEXTO DE TEMPO ---
+        // Fica logo abaixo da palavra "TEMPO :" desenhada na imagem
+        let posTempoY = cy + (telaFeedback.displayHeight * 0.31); 
+        this.add.text(cx-20, posTempoY, `${segundos}s`, {
+            fontFamily: '"Press Start 2P", Arial', fontSize: "22px", color: "#005e64" // Verde
         }).setOrigin(0.5).setDepth(102);
 
         // Texto piscante para orientar o clique

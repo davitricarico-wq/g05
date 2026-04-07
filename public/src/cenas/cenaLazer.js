@@ -32,7 +32,8 @@ export class cenaLazer extends Phaser.Scene {
    
         // inicializa o gerenciador e cria o pet na origem para o container
         this.gerenciadorCachorros = new GerenciadorCachorros(this);
-        this.cachorro = this.gerenciadorCachorros.criarCachorro(0, 0, cachorrosBase[0]);
+        const indiceAtivo = gameState.pets.cachorroJoao ? 2 : (gameState.pets.cachorroHeroi ? 1 : 0)
+        this.cachorro = this.gerenciadorCachorros.criarCachorro(0, 0, cachorrosBase[indiceAtivo]);
         
         const elementosContainer = [this.cachorro.sprite];
 
@@ -97,7 +98,8 @@ export class cenaLazer extends Phaser.Scene {
     update(){
         // monitora a necessidade de trocar o pet ou atualizar as pulgas em tempo real
         if (gameState.trocar) {
-            this.gerenciadorCachorros.mudarParaCachorroHeroi();
+            this.gerenciadorCachorros.mudarParaCachorroAtivo();
+            gameState.trocar = false;
         }
         
         if (this.pulgas) {

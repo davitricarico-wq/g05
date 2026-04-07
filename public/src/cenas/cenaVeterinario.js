@@ -49,7 +49,8 @@ export class cenaVeterinario extends Phaser.Scene {
 
         // Instancia o gerenciador e cria o cachorro na tela
         this.gerenciadorCachorros = new GerenciadorCachorros(this);
-        this.cachorro = this.gerenciadorCachorros.criarCachorro(0, 0, cachorrosBase[0]);
+        const indiceAtivo = gameState.pets.cachorroJoao ? 2 : (gameState.pets.cachorroHeroi ? 1 : 0)
+        this.cachorro = this.gerenciadorCachorros.criarCachorro(0, 0, cachorrosBase[indiceAtivo]);
 
         // Adiciona fisica ao cachorro sem gravidade e travado no lugar para nao se mover
         this.physics.add.existing(this.cachorro.sprite);
@@ -231,11 +232,14 @@ export class cenaVeterinario extends Phaser.Scene {
 
     // Funcao para exibir a tela de tutorial inicial
     mostrarInstrucoes() {
+        // Traz a cena atual (Veterinário) para cima da HUD
+        this.scene.bringToTop();
+
         const centroX = this.scale.width / 2;
         const centroY = this.scale.height / 2;
 
         // Cria um fundo escuro transparente cobrindo toda a tela
-        const fundoEscuro = this.add.rectangle(centroX, centroY, this.scale.width, this.scale.height, 0x000000, 0.7)
+        const fundoEscuro = this.add.rectangle(centroX, centroY, this.scale.width, this.scale.height, 0x000000, 0.85)
             .setDepth(100).setInteractive();
 
         // Adiciona a imagem de instrucoes no centro e permite clicar nela
@@ -243,19 +247,48 @@ export class cenaVeterinario extends Phaser.Scene {
             .setDepth(101).setInteractive({ useHandCursor: true }); 
 
         // Calcula a melhor escala para a imagem caber bem na tela
-        const escalaFinal = Math.min(this.scale.width * 0.8 / telaInstrucao.width, this.scale.height * 0.8 / telaInstrucao.height);
+        const limiteLargura = this.scale.width * 0.8;
+        const limiteAltura = this.scale.height * 0.8;
+        const escalaX = limiteLargura / telaInstrucao.width;
+        const escalaY = limiteAltura / telaInstrucao.height;
+        const escalaFinal = Math.min(escalaX, escalaY);
         telaInstrucao.setScale(escalaFinal);
+
+        // Texto animado de continuar
+        const textoIniciar = this.add.text(centroX, centroY + (telaInstrucao.displayHeight / 2) + 40, "[ Clique ou aperte ESPAÇO para começar ]", {
+            fontFamily: '"Press Start 2P", Arial',
+            fontSize: "15px",
+            color: "#ffffff"
+        }).setOrigin(0.5).setDepth(101);
+        
+        // Efeito de piscar no texto
+        this.tweens.add({
+            targets: textoIniciar, alpha: 0.5, duration: 600, yoyo: true, loop: -1
+        });
+
+        let instrucoesLidas = false;
 
         // Funcao interna para fechar as instrucoes e registrar que o jogador ja leu
         const fecharInstrucoes = () => {
+            if (instrucoesLidas) return;
+            instrucoesLidas = true;
+
             fundoEscuro.destroy();
             telaInstrucao.destroy();
+            textoIniciar.destroy();
             gameState.instrucoesPulgasVistas = true; 
+            
+            // Devolve a HUD para o topo da tela
             this.scene.bringToTop("HUD");
         };
 
         // Permite fechar clicando no fundo escuro ou na propria imagem
         fundoEscuro.on('pointerdown', fecharInstrucoes);
         telaInstrucao.on('pointerdown', fecharInstrucoes);
+
+        // Permite fechar usando a tecla ESPAÇO (com um leve atraso para evitar skips acidentais)
+        this.time.delayedCall(200, () => {
+            this.input.keyboard.once('keydown-SPACE', fecharInstrucoes);
+        });
     }
 }

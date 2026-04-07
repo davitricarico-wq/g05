@@ -12,8 +12,7 @@ import { cenaCuidado } from "./cenas/cenaCuidado.js";
 import { ficha } from "./componentes/ficha.js";
 import { cenaCarregamento } from "./cenas/cenaCarregamento.js";
 import {cenaVeterinario } from "./cenas/cenaVeterinario.js";
-import {cenaRacaoStandart } from "./cenas/cenaRacaoStandart.js";
-import {cenaRacaoSuperPremium } from "./cenas/cenaRacaoSuperPremium.js";
+import {cenaEstanteRacao} from "./cenas/cenaEstanteRacao.js";
 
 
 // Objeto global para armazenar estados do jogo
@@ -28,23 +27,25 @@ export let gameState = {
     },
     cobasiCoins: 20,
     recompensas: {
-        banho: {caramelo: false, heroi: false},
-        lazer: {caramelo: false, heroi: false},
-        cuidado: {caramelo: false, heroi: false},
-        alimentacao: {caramelo: false, heroi: false}
+        banho: {caramelo: false, heroi: false, joao: false},
+        lazer: {caramelo: false, heroi: false, joao: false},
+        cuidado: {caramelo: false, heroi: false, joao: false},
+        alimentacao: {caramelo: false, heroi: false, joao: false}
     },
     pets: {
         cachorroCaramelo: true,
-        cachorroHeroi: false
+        cachorroHeroi: false,
+        cachorroJoao: false
     },
     // --- NOVAS VARIÁVEIS ---
-    progressoCachorro: 0, // 0 = Caramelo, 1 = Herói
+    progressoCachorro: 0, // 0 = Caramelo, 1 = Herói, 2 = João
     aguardandoEvolucao: false, 
     // -----------------------
     pulga: true,
     trocar: false,
     superPremium: false,
-    standart: false
+    premium: false,
+    standard: false
 };
 
 // Configuração principal do Phaser
@@ -87,10 +88,9 @@ const config = {
         cenaPrincipal,
         HUD,
         jogoLazer,
-        cenaRacaoStandart,
         cenaLazer,
         ficha,
-        cenaRacaoSuperPremium
+        cenaEstanteRacao
     ]
 };
 

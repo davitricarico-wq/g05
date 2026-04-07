@@ -3,7 +3,7 @@
 
 # GDD - Game Design Document - Módulo 1 - Inteli
 
-## Bordot Studios
+## Bardot Studios
 
 Ana Célia Augusta Santos do Amaral  
 Anita Fratelli Sonobe Silveira  
@@ -16,80 +16,89 @@ Valter Lucas Garcia de Lima
 
 ## Sumário
 
-[1. Introdução](#c1)  
-<small>1.1 Plano Estratégico do Projeto  
-1.1.1 Contexto da Industria  
-1.1.1.1 Modelo de 5 Forças de Porter  
-1.1.1.2 Ameaça de Novos Entrantes  
-1.1.1.3 Ameaça de Produtos ou Serviços Substitutos  
-1.1.1.4 Poder de Barganha dos Fornecedores   
-1.1.1.5 Poder de Barganha dos Clientes  
-1.1.1.6 Rivalidade entre os Concorrentes Existentes   
-1.1.2 Análise Swot  
-1.1.3 Missão / Visão / Valores   
-1.1.4 Proposta de Valor   
-1.1.5 Descrição da Solução Desenvolvida  
-1.1.6 Matriz de Riscos   
-1.1.7 Objetivos, Metas e Indicadores  
-1.2 Requisitos do Jogo  
-1.3 Público-alvo do Projeto </small>
+[1. Introdução](#1-introdução)  
+<small>
+[1.1 Plano Estratégico do Projeto](#11-plano-estratégico-do-projeto)  
+[1.1.1 Contexto da Industria](#111-contexto-da-industria)  
+[1.1.1.1 Modelo de 5 Forças de Porter](#1111-modelo-de-5-forças-de-porter)  
+[1.1.1.2 Ameaça de Novos Entrantes](#1112-ameaça-de-novos-entrantes)  
+[1.1.1.3 Ameaça de Produtos ou Serviços Substitutos](#1113-ameaça-de-produtos-ou-serviços-substitutos)  
+[1.1.1.4 Poder de Barganha dos Fornecedores](#1114-poder-de-barganha-dos-fornecedores)  
+[1.1.1.5 Poder de Barganha dos Clientes](#1115-poder-de-barganha-dos-clientes)  
+[1.1.1.6 Rivalidade entre os Concorrentes Existentes](#1116-rivalidade-entre-os-concorrentes-existentes)  
+[1.1.2 Análise Swot](#112-análise-swot)  
+[1.1.3 Missão / Visão / Valores](#113-missão--visão--valores)  
+[1.1.4 Proposta de Valor](#114-proposta-de-valor)  
+[1.1.5 Descrição da Solução Desenvolvida](#115-descrição-da-solução-desenvolvida)  
+[1.1.6 Matriz de Riscos](#116-matriz-de-riscos)  
+[1.1.7 Objetivos, Metas e Indicadores](#117-objetivos-metas-e-indicadores)  
+[1.2 Requisitos do Jogo](#12-requisitos-do-jogo)  
+[1.3 Público-alvo do Projeto](#13-público-alvo-do-projeto)  
+</small>
 
-[2. Visão Geral do Jogo](#c2)  
-<small>2.1 Objetivos do Jogo   
-2.2 Características do Jogo  
-2.2.1 Gênero do Jogo   
-2.2.2 Plataforma de Jogo   
-2.2.3 Número de Jogadores   
-2.2.4 Títulos semelhantes e Inspirações   
-2.2.4.1 Meu Talking Tom - Android ou IOS  
-2.2.4.2 Nintendogs - Nintendo DS/3DS  
-2.2.4.3 Animal Shelter Simulator - Google Play e IOS  
-2.2.5 Tempo estimado de jogo </small>
+[2. Visão Geral do Jogo](#2-visão-geral-do-jogo)  
+<small>
+[2.1 Objetivos do Jogo](#21-objetivos-do-jogo)  
+[2.2 Características do Jogo](#22-características-do-jogo)  
+[2.2.1 Gênero do Jogo](#221-gênero-do-jogo)  
+[2.2.2 Plataforma de Jogo](#222-plataforma-de-jogo)  
+[2.2.3 Número de Jogadores](#223-número-de-jogadores)  
+[2.2.4 Títulos semelhantes e Inspirações](#224-títulos-semelhantes-e-inspirações)  
+[2.2.4.1 Meu Talking Tom - Android ou IOS](#2241-meu-talking-tom---android-ou-ios)  
+[2.2.4.2 Nintendogs - Nintendo DS/3DS](#2242-nintendogs---nintendo-ds3ds)  
+[2.2.4.3 Animal Shelter Simulator - Google Play e IOS](#2243-animal-shelter-simulator---google-play-e-ios)  
+[2.2.5 Tempo estimado de jogo](#225-tempo-estimado-de-jogo)  
+</small>
 
-[3. Game Design](#c3)  
-<small>3.1 Enredo do Jogo   
-3.2 Personagens   
-3.2.1 Controláveis   
-3.2.2 Non-Playable Characters (NPC)   
-3.2.3 Diversidade e Representatividade   
-3.3 Mundo do Jogo   
-3.3.1 Locações Principais e/ou Mapas   
-3.3.2 Navegação pelo mundo   
-3.3.3 Condições climáticas e temporais   
-3.3.4 Concept Art   
-3.3.5 Trilha sonora   
-3.4 Inventário e Bestiário  
-3.5 Gameflow   
-3.6 Regras do Jogo   
-3.7 Mecânicas do Jogo   
-3.7.1 Detalhe das Mecânicas   
-3.7.2 Comandos disponíveis no Minigame de Banho  
-3.7.3 Comandos disponíveis no Minigame de Alimentação   
-3.7.4 Comandos disponíveis no Minigame Veterinário   
-3.8 Implementação Matemática de Animação/Movimento </small>
+[3. Game Design](#3-game-design)  
+<small>
+[3.1 Enredo do Jogo](#31-enredo-do-jogo)  
+[3.2 Personagens](#32-personagens)  
+[3.2.1 Controláveis](#321-controláveis)  
+[3.2.2 Non-Playable Characters (NPC)](#322-non-playable-characters-npc)  
+[3.2.3 Diversidade e Representatividade](#323-diversidade-e-representatividade)  
+[3.3 Mundo do Jogo](#33-mundo-do-jogo)  
+[3.3.1 Locações Principais e/ou Mapas](#331-locações-principais-eou-mapas)  
+[3.3.2 Navegação pelo mundo](#332-navegação-pelo-mundo)  
+[3.3.3 Condições climáticas e temporais](#333-condições-climáticas-e-temporais)  
+[3.3.4 Concept Art](#334-concept-art)  
+[3.3.5 Trilha sonora](#335-trilha-sonora)  
+[3.4 Inventário e Bestiário](#34-inventário-e-bestiário)  
+[3.5 Gameflow](#35-gameflow)  
+[3.6 Regras do Jogo](#36-regras-do-jogo)  
+[3.7 Mecânicas do Jogo](#37-mecânicas-do-jogo)  
+[3.7.1 Detalhe das Mecânicas](#371-detalhe-das-mecânicas)  
+[3.7.2 Comandos disponíveis no Minigame de Banho](#372-comandos-disponíveis-no-minigame-de-banho)  
+[3.7.3 Comandos disponíveis no Minigame de Alimentação](#373-comandos-disponíveis-no-minigame-de-alimentação)  
+[3.7.4 Comandos disponíveis no Minigame Veterinário](#374-comandos-disponíveis-no-minigame-veterinário)  
+[3.8 Implementação Matemática de Animação/Movimento](#38-implementação-matemática-de-animaçãomovimento)  
+</small>
 
-[4. Desenvolvimento do jogo](#c4)  
-<small>4.1 Desenvolvimento preliminar do Jogo   
-4.2 Desenvolvimento básico do Jogo   
-4.3 Desenvolvimento intermediário do Jogo  
-4.4 Desenvolvimento final do MVP   
-4.5 Revisão do MVP </small>
+[4. Desenvolvimento do jogo](#4-desenvolvimento-do-jogo)  
+<small>
+[4.1 Desenvolvimento preliminar do Jogo](#41-desenvolvimento-preliminar-do-jogo)  
+[4.2 Desenvolvimento básico do Jogo](#42-desenvolvimento-básico-do-jogo)  
+[4.3 Desenvolvimento intermediário do Jogo](#43-desenvolvimento-intermediário-do-jogo)  
+[4.4 Desenvolvimento final do MVP](#44-desenvolvimento-final-do-mvp)  
+[4.5 Revisão do MVP](#45-revisão-do-mvp)  
+</small>
 
-[5. Casos de Teste](#c5)  
-<small>5.1 Casos de Teste   
-5.2.1 Registros de testes   
-5.2.2 Melhorias   </small>
+[5. Casos de Teste](#5-casos-de-teste)  
+<small>
+[5.1 Casos de Teste](#51-casos-de-teste)  
+[5.2.1 Registros de testes](#521-registros-de-testes)  
+[5.2.2 Melhorias](#522-melhorias)  
+</small>
 
-[6. Conclusões e trabalhos futuros](#c6)
+[6. Conclusões e trabalhos futuros](#6-conclusões-e-trabalhos-futuros)  
 
-[7. Referências](#c7)
+[7. Referências](#7-referências)  
 
-[Anexos](#c8)
+[Anexos](#anexos)
 
 <br>
 
-
-# <a name="c1"></a>1. Introdução
+# 1. Introdução
 
 ## 1.1. Plano Estratégico do Projeto
 
@@ -263,7 +272,7 @@ Principais tarefas identificadas:
 &ensp;A proposta integra entretenimento, educação e impacto social em uma única experiência digital. Ao permitir que o usuário aprenda e vivencie virtualmente a rotina de cuidados com animais resgatados, o jogo Cobasi Shelter contribui para a formação de tutores mais preparados e conscientes. Dessa forma, a solução também fortalece a disseminação de práticas responsáveis de cuidado e adoção, ampliando o alcance das iniciativas de bem-estar animal e reforçando o posicionamento da Cobasi como referência no setor pet brasileiro.
 
 
-### 1.1.5. Descrição da Solução Desenvolvida (sprint 4)
+### 1.1.5. Descrição da Solução Desenvolvida
 
 &ensp;A solução desenvolvida consiste em um jogo digital educativo voltado à conscientização de tutores sobre os cuidados adequados com cães, alinhado ao propósito da Cobasi de promover o bem-estar animal e a adoção responsável. O problema central abordado refere-se à falta de conhecimento prático sobre as necessidades específicas dos pets, especialmente no caso de animais resgatados ou recém-adotados. Essa lacuna contribui para situações de negligência involuntária e abandono, ainda frequentes no Brasil e reconhecidas como desafios para a proteção e o bem-estar animal (Organização Mundial da Saúde Animal, 2022).
 
@@ -277,7 +286,7 @@ Principais tarefas identificadas:
 
 
 
-### 1.1.6. Matriz de Riscos (sprint 4)
+### 1.1.6. Matriz de Riscos 
 
 <br>
 <div align="center">
@@ -342,7 +351,7 @@ O impacto é baixo, pois são ajustes de refinamento que não comprometem a func
 **Ação de mitigação:** reservar tempo no final do projeto para polimento visual e organização das informações na tela.
 
 
-### 1.1.7. Objetivos, Metas e Indicadores (Sprint 4)
+### 1.1.7. Objetivos, Metas e Indicadores 
 
 Para garantir que o jogo não seja apenas uma experiência de entretenimento, mas também uma extensão estratégica do pilar social **Cobasi Cuida**, os objetivos do projeto foram definidos com base na metodologia SMART (Específico, Mensurável, Alcançável, Relevante e Temporal). As metas estão organizadas em três eixos centrais: Impacto Social, Engajamento com a Marca e Qualidade Técnica.
 
@@ -450,7 +459,7 @@ Os requisitos não operam de forma isolada, mas de maneira articulada. A defini�
 O Público alvo do nosso projeto é qualquer um que tenha interesse em aprender e dar uma qualidade de vida melhor ao seu Pet. Apesar de ser acessível para qualquer um, é previsto que a Geração Z tenha mais contato com o jogo pela seu apreço com jogos e pela crescente onda de pais de pets entre essa geração.
 
 
-# <a name="c2"></a>2. Visão Geral do Jogo
+# 2. Visão Geral do Jogo
 
 ## 2.1. Objetivos do Jogo
 
@@ -510,18 +519,18 @@ A experiência single-player também permite que o jogador se envolva de forma m
 
 
 
-### 2.2.5 Tempo estimado de jogo (sprint 5)
+### 2.2.5 Tempo estimado de jogo 
 
 
-# <a name="c3"></a>3. Game Design (sprints 2 e 3)
+# 3. Game Design 
 
-## 3.1. Enredo do Jogo (sprints 2 e 3)
+## 3.1. Enredo do Jogo 
 
 *Descreva o enredo/história do jogo, criando contexto para os personagens (seção 3.2) e o mundo do jogo (seção 3.3). Uma boa história costuma ter um arco narrativo de contexto, conflito e resolução. Utilize etapas sequenciais para descrever esta história.* 
 
 *Caso seu jogo não possua enredo/história (ex. jogo Tetris), mencione os motivos de não existir e como o jogador pode se contextualizar com o ambiente do jogo.*
 
-## 3.2. Personagens (sprints 2 e 3)
+## 3.2. Personagens
 
 ### 3.2.1. Controláveis
 
@@ -541,17 +550,17 @@ Além disso, o personagem pet care foi desenvolvido com pele escura, reforçando
 Dessa forma, o impacto esperado é duplo: fortalecer o vínculo emocional com o público-alvo e posicionar o jogo como uma experiência transformadora que reflete a pluralidade da sociedade brasileira e os valores de responsabilidade, cuidado e inclusão associados à marca.
 
 
-## 3.3. Mundo do jogo (sprints 2 e 3)
+## 3.3. Mundo do jogo 
 
-### 3.3.1. Locações Principais e/ou Mapas (sprints 2 e 3)
+### 3.3.1. Locações Principais e/ou Mapas 
 
 *Descreva o ambiente do jogo, em que locais ele ocorre. Ilustre com imagens. Se houverem mapas, posicione-os aqui, descrevendo as áreas em acordo com o enredo. Se houverem fases, descreva-as também em acordo com o enredo (pode ser um jogo de uma fase só). Utilize listas ou tabelas para organizar esta seção. Caso utilize material de terceiros em licença Creative Commons, não deixe de citar os autores/fontes.*
 
-### 3.3.2. Navegação pelo mundo (sprints 2 e 3)
+### 3.3.2. Navegação pelo mundo 
 
 *Descreva como os personagens se movem no mundo criado e as relações entre as locações – como as áreas/fases são acessadas ou desbloqueadas, o que é necessário para serem acessadas etc. Utilize listas ou tabelas para organizar esta seção.*
 
-### 3.3.3. Condições climáticas e temporais (sprints 2 e 3)
+### 3.3.3. Condições climáticas e temporais 
 
 *\<opcional\> Descreva diferentes condições de clima que podem afetar o mundo e as fases, se aplicável*
 
@@ -639,7 +648,7 @@ A trilha sonora do jogo é composta por faixas originais criadas exclusivamente 
     
 </div>
 
-## 3.6 REGRAS DO JOGO (SPRINT 3)
+## 3.6 REGRAS DO JOGO 
 
 O jogo é composto por diferentes minigames que simulam atividades de cuidado com um animal doméstico. Em cada minigame, o jogador deve executar ações específicas para cumprir os objetivos propostos. Ao concluir cada atividade com sucesso, o jogador recebe CobasiCoins, que funcionam como indicador de progresso e incentivam a continuidade da experiência.
 
@@ -733,7 +742,7 @@ Cada minigame contribui diretamente para o preenchimento de uma dessas barras. Q
 
 As mecânicas permanecem inalteradas no novo ciclo, garantindo a continuidade da experiência.
 
-## 3.8. Implementação Matemática de Animação/Movimento (sprint 4)
+## 3.8. Implementação Matemática de Animação/Movimento 
 
 ### 3.8.1 Parâmetros de entrada
 
@@ -1028,7 +1037,7 @@ HALLIDAY, D.; RESNICK, R.; WALKER, J. Fundamentos de Física: Mecânica. Rio de 
 
 
 
-# <a name="c4"></a>4. Desenvolvimento do Jogo
+# 4. Desenvolvimento do Jogo
 
 ## 4.1. Desenvolvimento preliminar do jogo 
  
@@ -1074,7 +1083,7 @@ No mini game, o cachorro é apresentado inicialmente em estado sujo, exigindo a 
 
 &ensp;Entre as principais dificuldades enfrentadas durante esse desenvolvimento destacam-se os desafios relacionados à aplicação da sintaxe do framework Phaser, especialmente no que se refere à implementação de mecânicas que envolvem interação direta do jogador, como eventos de clique e ativação sequencial de ações. Ademais, foram identificadas limitações técnicas e criativas na elaboração dos fundos em pixel art, demandando maior refinamento visual nas próximas etapas do projeto.
 
-## 4.3. Desenvolvimento intermediário do jogo (sprint 3)
+## 4.3. Desenvolvimento intermediário do jogo 
 
 A terceira sprint teve como objetivo a implementação e o aprimoramento de elementos fundamentais da jogabilidade do Cobasi Shelter, focando principalmente no desenvolvimento dos minigames que simulam diferentes formas de cuidado com animais domésticos. Nesta etapa do projeto, a equipe concentrou seus esforços na implementação das mecânicas principais dos minigames, no refinamento das interações do jogador com os objetos do jogo e na estrutura de recompensas utilizando Cobasi Coins.
 
@@ -1273,22 +1282,15 @@ Realizar ajustes finais de interface (RNF6 e RNF3).
 
 
 
-## 4.5. Revisão do MVP (sprint 5)
+## 4.5. Revisão do MVP 
 
 *Descreva e ilustre aqui o desenvolvimento dos refinamentos e revisões da versão final do jogo, explicando brevemente o que foi entregue em termos de MVP. Utilize prints de tela para ilustrar.*
 
-# <a name="c5"></a>5. Testes
+# 5. Testes
 
+<<<<<<< HEAD
 ## 5.1. Casos de Teste
-
-Um Caso de Teste (*Test Case*) é um roteiro detalhado de condições, variáveis, passos e resultados esperados, criado para verificar se uma funcionalidade específica de um software (ou jogo) está operando corretamente e cumprindo seus requisitos.
-
-Eles são essenciais para garantir a qualidade do produto, identificar bugs de forma sistemática antes do lançamento e documentar o comportamento esperado do sistema.
-<div align="center">
-  <p>Quadro de casos de teste</p>
-</div>
-
-## 5.1. Casos de Teste
+=======
 
 Um Caso de Teste (*Test Case*) é um roteiro detalhado de condições, variáveis, passos e resultados esperados, criado para verificar se uma funcionalidade específica de um software (ou jogo) está operando corretamente e cumprindo seus requisitos.
 
@@ -1486,7 +1488,7 @@ Após uma extensa seção de testes, a equipe levantou todos os relatos de bugs 
 16- Adicionar informações reais dos cachorros das ONGs parceiras da Cobasi.
 
 
-# <a name="c6"></a>6. Conclusões e trabalhos futuros (sprint 5)
+# 6. Conclusões e trabalhos futuros
 
 *Escreva de que formas a solução do jogo atingiu os objetivos descritos na seção 1 deste documento. Indique pontos fortes e pontos a melhorar de maneira geral.*
 
@@ -1494,7 +1496,7 @@ Após uma extensa seção de testes, a equipe levantou todos os relatos de bugs 
 
 *Relacione também quaisquer ideias que o grupo tenha para melhorias futuras*
 
-# <a name="c7"></a>7. Referências
+# 7. Referências
 
 CONSELHO ADMINISTRATIVO DE DEFESA ECONÔMICA (CADE). CADE clears merger of Petz and Cobasi. 23 jun. 2025. Disponível em: https://www.gov.br/cade/en/matters/news/cade-clears-merger-of-petz-and-cobasi. Acesso em: 27 fev. 2026.
 
@@ -1548,7 +1550,7 @@ WORLD ORGANISATION FOR ANIMAL HEALTH (WOAH). Animal welfare. Paris: WOAH, 2022. 
 INSTITUTO PET BRASIL. Dados do setor pet. São Paulo: Instituto Pet Brasil, 2024. Disponível em: https://institutopetbrasil.com/setor-pet/dados-do-setor-pet/. Acesso em: 24 mar. 2026.
 
 
-# <a name="c8"></a>Anexos
+# Anexos
 
 *Inclua aqui quaisquer complementos para seu projeto, como diagramas, imagens, tabelas etc. Organize em sub-tópicos utilizando headings menores (use ## ou ### para isso)*
 

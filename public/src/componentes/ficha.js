@@ -17,12 +17,12 @@ export class ficha extends Phaser.Scene {
         // Cria uma variável vazia para armazenar as informações do cachorro atual
         let pet;
         
-        // Verifica no estado global do jogo se o pet ativo no momento é o Herói
-        if (gameState.pets.cachorroHeroi) {
-            // Se for o Herói, pega os dados dele (posição 1 na nossa lista base)
+        // Verifica no estado global do jogo qual pet está ativo
+        if (gameState.pets.cachorroJoao) {
+            pet = cachorrosBase[2];
+        } else if (gameState.pets.cachorroHeroi) {
             pet = cachorrosBase[1];
         } else {
-            // Se não for o Herói, pega os dados do cachorro padrão, o Caramelo (posição 0)
             pet = cachorrosBase[0];
         }
 
@@ -40,7 +40,7 @@ export class ficha extends Phaser.Scene {
 
         // Guarda as configurações de fonte, tamanho e cor para padronizar os textos
         const estiloPixel = {
-            fontFamily: '"Press Start 2P"',
+            fontFamily: '"PRESS START 2P"',
             fontSize: "14px",
             color: "#000000"
         };
@@ -70,7 +70,7 @@ export class ficha extends Phaser.Scene {
             .setOrigin(0, 0.5);
 
         // Escreve a história de resgate do pet mesclando o estilo base com novas regras
-        const historia = this.add.text(-220, 120, `Historia: ${pet.historia}`, {
+        const historia = this.add.text(-220, 120, `História: ${pet.historia}`, {
             ...estiloPixel,          // Copia a fonte e cor definidas lá em cima
             align: "left",           // Alinha o parágrafo à esquerda
             wordWrap: { width: 420 } // Configura a largura máxima para forçar a quebra de linha
