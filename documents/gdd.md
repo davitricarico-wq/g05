@@ -452,6 +452,10 @@ Principais tarefas identificadas:
 
 </div>
 
+<div align="center">
+  <p>Feito pela própia equipe(2026)</p>
+</div>
+
 **Requisitos Funcionais:** São os requisitos que o sistema faz.
 Descrevem as funcionalidades, ações e comportamentos esperados.
 
@@ -460,10 +464,6 @@ Descrevem as funcionalidades, ações e comportamentos esperados.
 **Requisitos Não Funcionais:** São os requisitos que descrevem como o sistema deve ser ou como ele deve funcionar, mas não são funcionalidades diretas.
 
 **Exemplo:** No requisito 10, a Cena de Banho deverá apresentar feedback visual durante as interações realizadas pelo jogador, permitindo que ele perceba claramente o progresso da limpeza do animal. Durante esse processo, ao aplicar sabão deverá surgir espuma sobre o animal, ao enxaguar deverão aparecer efeitos de água escorrendo e, conforme a sujeira for removida, o animal deverá demonstrar reações positivas, como expressões de satisfação ou mudanças em sua aparência.
-
-<div align="center">
-  <p>Feito pela própia equipe(2026)</p>
-</div>
 
 &ensp;Os requisitos não operam de forma isolada, mas de maneira articulada. A definição das espécies estabelece o escopo temático; a mecânica de cuidado estrutura a jogabilidade; os cenários organizam as ações; o sistema de moedas promove progressão; a indicação visual aprimora a interação; e o momento de conscientização consolida o propósito social do projeto. O desenvolvimento será realizado de forma incremental nas sprints iniciais, priorizando a implementação da mecânica central e das interações básicas, e posteriormente incorporando o sistema de recompensas e o evento educativo, garantindo viabilidade técnica e coerência na evolução do jogo.
 
