@@ -26,7 +26,7 @@ export class cenaCuidado extends Phaser.Scene {
     }
 
     create() {
-         // Para garantir que a HUD não fique ativa ao iniciar
+        // Para garantir que a HUD não fique ativa ao iniciar
         this.scene.stop("HUD");
         this.transicao = false;
 
@@ -317,32 +317,31 @@ export class cenaCuidado extends Phaser.Scene {
         this.iconePinca.on("pointerdown", () => this.equiparFerramenta('pinca'));
     }
 
-    // NOVA FUNÇÃO: Desequipa as ferramentas e retorna tudo ao estado normal
-    desequiparFerramentas() {
-        this.ferramentaEquipada = null;
-        this.input.setDefaultCursor("default");
-        
-        // Esconde os cursores
-        if (this.cursorEspirrador) this.cursorEspirrador.setVisible(false);
-        if (this.cursorPinca) this.cursorPinca.setVisible(false);
-        
-        // Retorna a opacidade dos botões
-        if (this.iconeEspirrador) this.iconeEspirrador.setAlpha(1);
-        if (this.iconePinca) this.iconePinca.setAlpha(1);
+    desequiparFerramentas() {
+        this.ferramentaEquipada = null;
+        this.input.setDefaultCursor("default");
+        
+        // Esconde os cursores
+        if (this.cursorEspirrador) this.cursorEspirrador.setVisible(false);
+        if (this.cursorPinca) this.cursorPinca.setVisible(false);
+        
+        // Retorna a opacidade dos botões
+        if (this.iconeEspirrador) this.iconeEspirrador.setAlpha(1);
+        if (this.iconePinca) this.iconePinca.setAlpha(1);
 
-        // Se o jogador estiver segurando a pulga e clicar para soltar a ferramenta
-        if (this.pulgaSegurada) {
-            this.pulgaSegurada.setScale(0.12);
-            this.pulgaSegurada = null;
-        }
-    }
+        // Se o jogador estiver segurando a pulga e clicar para soltar a ferramenta
+        if (this.pulgaSegurada) {
+            this.pulgaSegurada.setScale(0.12);
+            this.pulgaSegurada = null;
+        }
+    }
 
     equiparFerramenta(nomeFerramenta) {
-        // LÓGICA ATUALIZADA: Se a ferramenta clicada for a que já está equipada, desequipa.
-        if (this.ferramentaEquipada === nomeFerramenta) {
-            this.desequiparFerramentas();
-            return;
-        }
+        // Se a ferramenta clicada for a que já está equipada, desequipa.
+        if (this.ferramentaEquipada === nomeFerramenta) {
+            this.desequiparFerramentas();
+            return;
+        }
 
         this.ferramentaEquipada = nomeFerramenta;
         this.input.setDefaultCursor("none"); 
@@ -446,12 +445,27 @@ export class cenaCuidado extends Phaser.Scene {
     // ==========================================
     //        FUNÇÕES DE TELA FINAL
     // ==========================================
+
+    perderMinigame() {
+        if (this.minigameFinalizado) return;
+        this.minigameFinalizado = true;
+        this.input.setDefaultCursor("default");
+        
+        if (this.cursorEspirrador) this.cursorEspirrador.setVisible(false);
+        if (this.cursorPinca) this.cursorPinca.setVisible(false);
+
+        this.pulgas.children.iterate((pulga) => {
+            this.tweens.killTweensOf(pulga);
+        });
+
+        this.mostrarPainelResultado(0, 0, 0); 
+    }
+
     finalizarMinigame() {
         if (this.minigameFinalizado) return;
         this.minigameFinalizado = true;
         this.input.setDefaultCursor("default");
         
-        // Esconde os cursores customizados
         if(this.cursorEspirrador) this.cursorEspirrador.setVisible(false);
         if(this.cursorPinca) this.cursorPinca.setVisible(false);
 
@@ -464,22 +478,15 @@ export class cenaCuidado extends Phaser.Scene {
             gameState.recompensas.cuidado[cachorroAtivo] = true;
         }
 
-        if (gameState.pets.cachorroJoao && !gameState.exibirQuiz) {
-            gameState.exibirQuiz = true;
-        }
-
-        if (this.minigameFinalizado) return;
-        this.minigameFinalizado = true;
-        this.input.setDefaultCursor("default");
-
-        if(this.cursorEspirrador) this.cursorEspirrador.setVisible(false);
-        if(this.cursorPinca) this.cursorPinca.setVisible(false);
+        if (gameState.pets.cachorroJoao && !gameState.exibirQuiz) {
+            gameState.exibirQuiz = true;
+        }
 
         this.pulgas.children.iterate((pulga) => {
             this.tweens.killTweensOf(pulga);
         });
 
-        this.mostrarPainelResultado(1, 0, 0); 
+        this.mostrarPainelResultado(estrelas, moedas, this.tempoRestante); 
     }
 
     calcularEstrelas(tempoRestante) {
@@ -499,7 +506,7 @@ export class cenaCuidado extends Phaser.Scene {
         const cy = this.scale.height / 2;
 
         const imagemFeedback = estrelas === 3 ? "feeedback3estrelas" : 
-                               estrelas === 2 ? "feedback2estrelas" : "feedback1estrela";
+                               estrelas === 2 ? "feedback2estrelas" : "feedback1estrela"; // Obs: se não tiver imagem "feedback0estrelas", ele vai usar a de 1 estrela ao perder.
 
         const fundoFeedback = this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.8)
             .setDepth(100).setInteractive(); 
