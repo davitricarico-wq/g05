@@ -89,8 +89,8 @@ export class GerenciadorCachorros {
       gameState.barras.limpeza <= 0 &&
       gameState.barras.saude <= 0;
 
-    // Se as necessidades foram atendidas e o cachorro está nas fases 0 ou 1, ativa a evolução
-    if (barrasZero && gameState.progressoCachorro <= 1) {
+    // A checagem !gameState.aguardandoEvolucao impede o loop infinito de reinicialização
+    if (barrasZero && gameState.progressoCachorro <= 2 && !gameState.aguardandoEvolucao) {
         // Avisa o jogo inteiro que o cachorro está pronto para ser evoluído/adotado
         gameState.aguardandoEvolucao = true;
         
@@ -98,7 +98,8 @@ export class GerenciadorCachorros {
         this.scene.scene.start("cenaPrincipal");
     }
   }
-   mudarParaCachorroJoao() {
+  
+  mudarParaCachorroJoao() {
     gameState.pets.cachorroCaramelo = false
     gameState.pets.cachorroHeroi = false
     gameState.pets.cachorroJoao = true
@@ -107,8 +108,8 @@ export class GerenciadorCachorros {
     
     gameState.barras.comida = 0
     gameState.barras.lazer = 11
-    gameState.barras.limpeza =0
-    gameState.barras.saude =0
+    gameState.barras.limpeza = 0
+    gameState.barras.saude = 0
 
     gameState.pulga = false
     

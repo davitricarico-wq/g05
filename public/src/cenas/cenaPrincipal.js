@@ -89,6 +89,9 @@ class CenaPopups extends Phaser.Scene {
                     this.txtContinuarFase3.setPosition(novoCentroX, novoPosicaoTextoF3Y);
                 }
             }
+
+            if (this.imgFinal && this.imgFinal.active) this.imgFinal.setPosition(novoCentroX, novoCentroY);
+            if (this.txtFinal && this.txtFinal.active) this.txtFinal.setPosition(novoCentroX, novoCentroY + 180);
         };
 
         // Armazena referência para limpeza correta
@@ -282,9 +285,14 @@ class CenaPopups extends Phaser.Scene {
         
         gameState.exibirQuiz = false;
         
-        // Devolve a HUD e fecha a cena
-        this.scene.bringToTop("HUD");
-        this.scene.stop();
+        // Verifica se estamos no fim do jogo para mostrar o popup final
+        if (gameState.progressoCachorro === 2) {
+            this.exibirPopupFinalJogo();
+        } else {
+            // Caso o quiz fosse jogado em outro momento, apenas fecha a tela
+            this.scene.bringToTop("HUD");
+            this.scene.stop();
+        }
     }
     // ----------------------------
 
@@ -303,7 +311,7 @@ class CenaPopups extends Phaser.Scene {
             textoEvolucao = "[ Clique para a Ultima Fase! ]";
         } else if (gameState.progressoCachorro === 2) {
             imagemConclusao = "conclusaoTerceiroRound";
-            textoEvolucao = "[ Clique para Finalizar ]";
+            textoEvolucao = "[ Clique para Iniciar o Quiz Final ]";
         }
 
         this.imgEvolucao = this.add.image(centroX, centroY, imagemConclusao)
@@ -319,17 +327,17 @@ class CenaPopups extends Phaser.Scene {
         this.imgEvolucao.on('pointerdown', () => {
             gameState.aguardandoEvolucao = false;
 
+            // SE FOR O FIM DO 3º ROUND, CHAMA O QUIZ EM VEZ DE ACABAR O JOGO
             if (gameState.progressoCachorro === 2) {
                 this.imgEvolucao.destroy();
                 this.txtEvolucao.destroy();
                 
-                gameState.progressoCachorro = 0;
-                gameState.pets = { cachorroCaramelo: true, cachorroHeroi: false, cachorroJoao: false };
-                gameState.instrucaoMissaoVista = false;
+                // CORREÇÃO: Resetamos as barras para que o verificarCompletude não seja 
+                // acionado repetidamente em segundo plano, travando a Cena Principal!
+                gameState.barras = { comida: 11, lazer: 11, limpeza: 11, saude: 11 };
                 
-                this.scene.stop("HUD");
-                this.scene.stop();
-                this.scene.get("cenaPrincipal").scene.start("cenaInicial");
+                gameState.exibirQuiz = true;
+                this.mostrarQuiz();
                 return;
             }
 
@@ -356,9 +364,43 @@ class CenaPopups extends Phaser.Scene {
 
                 this.imgEvolucao.destroy();
                 this.txtEvolucao.destroy();
-                // O quiz só aparecerá depois de cuidarmos do João.
+                this.mostrarInstrucaoTerceiraFase();
                 return;
             }
+        });
+    }
+
+    // NOVA FUNÇÃO: Tela de conclusão do jogo após o Quiz
+    exibirPopupFinalJogo() {
+        const centroX = this.scale.width / 2;
+        const centroY = this.scale.height / 2;
+
+        // Ajuste o nome da imagem aqui para a que representa o final real do jogo
+        this.imgFinal = this.add.image(centroX, centroY, "conclusaoTerceiroRound") 
+            .setScale(0.6)
+            .setInteractive({ useHandCursor: true }); 
+
+        this.txtFinal = this.add.text(centroX, centroY + 180, "PARABENS! [ Clique para Reiniciar ]", {
+            fontFamily: '"Press Start 2P"', 
+            fontSize: "16px", 
+            fill: "#ffffff",
+            stroke: "#000000",
+            strokeThickness: 4
+        }).setOrigin(0.5);
+
+        this.imgFinal.on('pointerdown', () => {
+            this.imgFinal.destroy();
+            this.txtFinal.destroy();
+            
+            // Reseta as variáveis globais para o começo do jogo
+            gameState.progressoCachorro = 0;
+            gameState.pets = { cachorroCaramelo: true, cachorroHeroi: false, cachorroJoao: false };
+            gameState.instrucaoMissaoVista = false;
+            gameState.barras = { comida: 11, lazer: 11, limpeza: 11, saude: 11 };
+            
+            this.scene.stop("HUD");
+            this.scene.stop();
+            this.scene.get("cenaPrincipal").scene.start("cenaInicial");
         });
     }
 
