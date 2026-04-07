@@ -15,6 +15,7 @@ import {cenaVeterinario } from "./cenas/cenaVeterinario.js";
 import {cenaEstanteRacao} from "./cenas/cenaEstanteRacao.js";
 
 
+
 // Objeto global para armazenar estados do jogo
 // No seu gameState dentro do main.js:
 export let gameState = {
@@ -71,7 +72,7 @@ const config = {
         default: "arcade",
         arcade: {
             gravity: { y: 0 },
-            debug: true
+            debug: false
         }
     },
 
