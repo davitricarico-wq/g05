@@ -132,7 +132,6 @@ export class cenaCarregamento extends Phaser.Scene {
         this.load.image("racaoSuperPremiumMedio", "assets/racoes/racaoSuperPremium_M.png");
         this.load.image("racaoSuperPremiumGrande", "assets/racoes/racaoSuperPremium_G.png");
 
-
        
         //Cenas feedback
         this.load.image("feeedback3estrelas", "assets/feedback/feedbackMineGame.png");
@@ -209,6 +208,7 @@ export class cenaCarregamento extends Phaser.Scene {
 
     create() {
         // Após carregar todos os assets, inicia a cena inicial do jogo
-        this.scene.start("cenaInicial"); 
+        //this.scene.start("cenaInicial"); 
+        this.scene.start("cenaEstanteRacao")
     }
 }

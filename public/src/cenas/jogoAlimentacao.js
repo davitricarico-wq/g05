@@ -231,14 +231,14 @@ export class jogoAlimentacao extends Phaser.Scene {
         }
 
         let pontosCalculados = 15;
-        let escalaCalculada = 0.1; 
+        let escalaCalculada = 0.2; 
 
         if (racao.tipo === "Premium") {
             pontosCalculados = 20;
-            escalaCalculada = 0.1; 
+            escalaCalculada = 0.2; 
         } else if (racao.tipo === "Super Premium") {
             pontosCalculados = 25;
-            escalaCalculada = 0.5; 
+            escalaCalculada = 0.2; 
         }
 
         return { 
