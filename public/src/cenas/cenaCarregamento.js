@@ -142,7 +142,10 @@ export class cenaCarregamento extends Phaser.Scene {
         //Cenas de instrução e Como Jogar
         this.load.image("instrucaoDescricaoBanho", "assets/feedback/instrucaoBanho.png");
         this.load.image("conclusaoPrimeiroRound", "assets/feedback/conclusaoPrimeiroRound.png");
+        this.load.image("conclusaoSegundoRound", "assets/feedback/conclusaoSegundoRound.png");
+        this.load.image("conclusaoTerceiroRound", "assets/feedback/conclusaoTerceiroRound.png");
         this.load.image("instrucaoSegundoRound", "assets/feedback/instrucaoSegundoRound.png");
+        this.load.image("instrucaoTerceiroRound", "assets/feedback/instrucaoTerceiroRound.png");
         this.load.image("instrucaoDescricaoRacao", "assets/feedback/instrucaoDescricaoRacao.png");
         this.load.image("instrucaoLazer", "assets/feedback/instrucaoLazer.png");
         this.load.image("instrucaoBanho", "assets/feedback/instrucaoBanho.png");
@@ -153,6 +156,7 @@ export class cenaCarregamento extends Phaser.Scene {
         this.load.image("comoJogarLazer", "assets/feedback/comoJogarLazer.png");
         this.load.image("comoJogarPulgas", "assets/feedback/comoJogarPulgas.png");
         this.load.image("comoJogarRacao", "assets/feedback/comoJogarRacao.png");
+        this.load.image("instrucaoQuiz", "assets/feedback/instrucaoQuiz.png");
 
        
         // Áudio
@@ -187,15 +191,19 @@ export class cenaCarregamento extends Phaser.Scene {
             frameHeight: 280 
         });
         this.load.spritesheet("cachorroHeroiCorrendo", "assets/cachorroHeroiCorrendo.png", {
-            frameWidth: 640,
-            frameHeight: 402 
+            frameWidth: 1202,
+            frameHeight: 1087 
         });
         this.load.spritesheet("cachorroJoaoCorrendo", "assets/cachorroJoaoCorrendo.png", {
-            frameWidth: 640,
-            frameHeight: 402 
+            frameWidth: 338,
+            frameHeight: 339 
+        });
+        this.load.spritesheet("espirradorPulgas", "assets/tela-cuidado/espirradorPulga.png", {
+            frameWidth: 232,
+            frameHeight: 239 
         });
 
-
+        this.load.image("pinca", "assets/tela-cuidado/pinca.png");
       
     }
 
