@@ -138,7 +138,7 @@ export class cenaEstanteRacao extends Phaser.Scene {
         this.estante = this.add.image(centroEsquerdaX, altura * 0.6, "estanteVazia").setScale(1).setDepth(-1);
 
         const colunasRacao = [largura * 0.18, largura * 0.30, largura * 0.42];
-        const linhasRacao = [altura * 0.37, altura * 0.605, altura * 0.845];
+        const linhasRacao = [altura * 0.35, altura * 0.605, altura * 0.855];
 
         // Instanciando as rações corretas importadas do dadosRacoes.js (Grid 3x3)
         this.racoes = [
@@ -239,7 +239,7 @@ export class cenaEstanteRacao extends Phaser.Scene {
             .setVisible(false).setAlpha(0);
 
         this.composicaoRacao = this.add.image(0, 0, "composicaoRacao");
-        this.imagemRacaoInfo = this.add.image(-160, -70, "").setScale(0.18);
+        this.imagemRacaoInfo = this.add.image(-160, -70, "").setScale(0.5);
 
         this.textoTipo = this.add.text(0, -217, "", { fontSize: "32px", color: "#000", fontFamily: '"Press Start 2P"', align: "center" }).setOrigin(0.5);
         this.textoPorte = this.add.text(75, -138, "", { fontSize: "16px", color: "#006600", fontFamily: '"Press Start 2P"' }).setOrigin(0, 0.5);
@@ -267,25 +267,26 @@ export class cenaEstanteRacao extends Phaser.Scene {
             let tamanhoNormal = 0.3;
             let tamanhoHover = 0.32;
 
-            // 👉 CONDIÇÃO INICIAL DE ESCALAS POR ÍNDICES
+            // CONDIÇÃO INICIAL DE ESCALAS POR ÍNDICES
             if (index >= 0 && index <= 2) {
                 // Rações Standard (Linha de cima)
-                tamanhoNormal = 0.13; 
-                tamanhoHover = 0.14;
+                tamanhoNormal = 0.3; 
+                tamanhoHover = 0.35;
+
             } else if (index >= 3 && index <= 5) {
                 // Rações Premium (Linha do meio)
-                tamanhoNormal = 0.13; 
-                tamanhoHover = 0.14;
+                tamanhoNormal = 0.3; 
+                tamanhoHover = 0.35;
             } else if (index >= 6 && index <= 8) {
                 // Rações Super Premium (Linha de baixo)
-                tamanhoNormal = 0.65; 
-                tamanhoHover = 0.67;
+                tamanhoNormal = 0.3; 
+                tamanhoHover = 0.35;
             }
 
             racao.sprite.escalaNormal = tamanhoNormal;
             racao.sprite.escalaHover = tamanhoHover;
 
-            // 🚨 APLICA O SETSCALE DIRETAMENTE AQUI
+            // APLICA O SETSCALE DIRETAMENTE AQUI
             racao.sprite.setScale(tamanhoNormal).setVisible(true).setInteractive({ useHandCursor: true });
             
             // Recria os eventos de hover com as escalas novas
@@ -382,7 +383,7 @@ export class cenaEstanteRacao extends Phaser.Scene {
                         let escalaBase = h * 0.0005;
                         let escalaHover = h * 0.00053;
 
-                        // 👉 CONDIÇÃO DE RESIZE POR ÍNDICES
+                        //  CONDIÇÃO DE RESIZE POR ÍNDICES
                         if (index >= 0 && index <= 2) {
                             // Rações Standard
                             escalaBase = h * 0.0005;
