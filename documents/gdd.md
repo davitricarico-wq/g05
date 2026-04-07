@@ -1562,11 +1562,56 @@ Após uma extensa seção de testes, a equipe levantou todos os relatos de bugs 
 
 # 6. Conclusões e trabalhos futuros
 
-*Escreva de que formas a solução do jogo atingiu os objetivos descritos na seção 1 deste documento. Indique pontos fortes e pontos a melhorar de maneira geral.*
+O desenvolvimento do jogo Cobasi Shelter permitiu atingir de forma consistente os objetivos propostos na Seção 1 deste documento, especialmente no que se refere à conscientização sobre os cuidados com animais domésticos e ao alinhamento com o propósito social da marca Cobasi.
 
-*Relacione os pontos de melhorias evidenciados nos testes com plano de ações para serem implementadas no jogo. O grupo não precisa implementá-las, pode deixar registrado aqui o plano para futuros desenvolvimentos.*
+A solução desenvolvida conseguiu integrar educação e entretenimento, utilizando mecânicas interativas que simulam situações reais de cuidado com pets, como higiene, alimentação, saúde e lazer. Dessa forma, o jogo atende diretamente ao objetivo de transformar o aprendizado em uma experiência prática, permitindo que o usuário compreenda, na prática, as responsabilidades envolvidas na adoção e manutenção de um animal.
 
-*Relacione também quaisquer ideias que o grupo tenha para melhorias futuras*
+Além disso, o projeto se mostrou eficaz ao incorporar elementos da identidade da Cobasi, utilizando produtos, ambientação e narrativa alinhados à missão, visão e valores da empresa. Esse fator contribui para o fortalecimento da marca e para a criação de uma experiência imersiva, aproximando o jogador do contexto real do cuidado animal.
+
+Outro ponto relevante foi a proposta inclusiva do jogo, com a escolha de uma protagonista jovem, representando o público-alvo da Geração Z, o que contribui para maior identificação e engajamento dos usuários. Também se destaca o caráter educativo do jogo, reforçado pelos minigames e pelo sistema de feedback, que orienta o jogador durante sua jornada.
+
+**Pontos Fortes**
+
+Entre os principais pontos fortes do projeto, destacam-se:
+
+* Integração entre aprendizado e jogabilidade de forma lúdica e acessível;
+* Alinhamento com o propósito social da Cobasi, especialmente no incentivo à adoção responsável;
+* Estrutura baseada em minigames, que torna a experiência dinâmica e interativa;
+* Sistema de progressão e recompensas, que estimula o engajamento do jogador;
+* Uso de feedback visual e mecânicas intuitivas, favorecendo a usabilidade.
+
+**Pontos a Melhorar**
+
+Apesar dos resultados positivos, foram identificadas algumas oportunidades de melhoria ao longo do desenvolvimento e dos testes realizados:
+
+* Necessidade de maior refinamento na interface do usuário (UI/UX);
+* Ajustes na responsividade e precisão das interações;
+* Presença de pequenos bugs em mecânicas específicas;
+* Limitações na variedade de conteúdos (animais, produtos e cenários);
+* Aprimoramento dos elementos visuais, como sprites e animações.
+
+**Trabalhos Futuros**
+
+Com base nos testes realizados e nas limitações identificadas, foram definidos alguns planos de ação para futuras evoluções do projeto:
+
+* Adição de novos animais, como gatos (RF1), ampliando a diversidade do jogo;
+* Expansão da lógica de produtos, incluindo novos tipos de ração e itens interativos (RF16);
+* Implementação completa e aprimoramento do quiz educativo (RF18);
+* Refatoração do código para melhoria de organização, manutenção e escalabilidade;
+* Aprimoramento dos sprites e da qualidade visual do jogo (RNF6);
+* Inclusão de mais efeitos sonoros e melhorias no sound design, visando maior imersão (RNF2);
+* Otimização de desempenho e redução de falhas técnicas (RNF9).
+
+Além disso, como evolução conceitual do projeto, o jogo pode incorporar novas funcionalidades, como:
+
+* Sistema mais aprofundado de narrativa e tomada de decisão;
+* Personalização dos animais;
+* Expansão do sistema educativo com novos temas (saúde, comportamento, adoção);
+* Integração com plataformas digitais ou ações reais da marca Cobasi.
+
+**Considerações Finais**
+
+De modo geral, o Cobasi Shelter se apresenta como uma solução viável, funcional e alinhada aos objetivos propostos, conseguindo unir tecnologia, educação e impacto social em uma única experiência digital. O projeto demonstra potencial de expansão e evolução, podendo se tornar uma ferramenta ainda mais completa de conscientização sobre o bem-estar animal.
 
 # 7. Referências
 
