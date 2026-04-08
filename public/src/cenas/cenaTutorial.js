@@ -21,7 +21,9 @@ export class cenaTutorial extends Phaser.Scene {
     create() {
 
         // Inicia a música da cutscene
-        iniciarMusica(this, 'musicaCutscene', true);
+        if (gameState.musicaLigada) {
+            iniciarMusica(this, 'musicaCutscene', true);
+        }
 
         // Reinicia o índice da imagem ao entrar na cena
         this.indiceAtual = 1;

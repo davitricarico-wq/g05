@@ -8,9 +8,6 @@ export class cenaConfiguracoes extends Phaser.Scene {
 
     create() {
 
-        // Inicia música aleatória
-        iniciarMusicaAleatoria(this);
-
         // Fundo semitransparente — dá o visual de popup sobre a cena anterior
         this.add.rectangle(
             this.scale.width / 2,
@@ -54,9 +51,23 @@ export class cenaConfiguracoes extends Phaser.Scene {
         
         // Alternar música
         gameState.alternarMusica = this.criarAlternar(
-            this.scale.width / 2 + 20, this.scale.height / 2 - 85, true,
-            () => { gameState.musica.resume(); },   // Ao ligar
-            () => { gameState.musica.pause(); }     // Ao desligar
+            this.scale.width / 2 + 20, this.scale.height / 2 - 85, gameState.musicaLigada,
+            () => {
+                gameState.musicaLigada = true;
+                if (gameState.musica) {
+                    if (gameState.musica.paused) {
+                        gameState.musica.resume();
+                    }
+                } else {
+                    iniciarMusicaAleatoria(this);
+                }
+            },
+            () => {
+                gameState.musicaLigada = false;
+                if (gameState.musica && gameState.musica.isPlaying) {
+                    gameState.musica.pause();
+                }
+            }
         );
 
         // Alternar som

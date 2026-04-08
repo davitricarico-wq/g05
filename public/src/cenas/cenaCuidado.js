@@ -30,8 +30,9 @@ export class cenaCuidado extends Phaser.Scene {
         this.scene.stop("HUD");
         this.transicao = false;
 
-        // Inicia música aleatória
-        iniciarMusicaAleatoria(this);
+        if (gameState.musicaLigada) {
+            iniciarMusicaAleatoria(this);
+        }
 
         const largura = this.scale.width;
         const altura = this.scale.height;

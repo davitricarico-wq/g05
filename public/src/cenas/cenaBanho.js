@@ -40,11 +40,11 @@ export class cenaBanho extends Phaser.Scene {
         }
         this.scene.bringToTop("HUD");
 
-        // Inicia música aleatória
-        iniciarMusicaAleatoria(this);
-
+		if (gameState.musicaLigada) {
+		    iniciarMusicaAleatoria(this);
+		}
+        
         const indiceAtivo = gameState.pets.cachorroJoao ? 2 : (gameState.pets.cachorroHeroi ? 1 : 0);
-        this.estadoCachorro = cachorrosBase[indiceAtivo]?.estado || "sujo";
         
         if (this.estadoCachorro !== "limpo") this.estadoCachorro = "sujo"; 
         cachorrosBase[indiceAtivo].estado = this.estadoCachorro;

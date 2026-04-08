@@ -25,8 +25,9 @@ export class jogoLazer extends Phaser.Scene {
         // Interrompe a HUD principal para focar no minigame
         this.scene.stop("HUD");
 
-        // Inicia música aleatória
-        iniciarMusicaAleatoria(this);
+        if (gameState.musicaLigada) {
+            iniciarMusicaAleatoria(this);
+        }
 
         // Configura o botão de voltar com interatividade e efeitos visuais
         this.botaoVoltar = this.add.text(60, 50, "Voltar", {

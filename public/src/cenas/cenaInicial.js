@@ -13,8 +13,9 @@ export class cenaInicial extends Phaser.Scene {
         this.scene.stop("HUD");
         this.transicao = false;
 
-        // Inicia música aleatória
-        iniciarMusicaAleatoria(this);
+        if (gameState.musicaLigada) {
+            iniciarMusicaAleatoria(this);
+        }
 
         // Fundo da cena inicial (responsivo)
         this.fundo = this.add

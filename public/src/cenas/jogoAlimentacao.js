@@ -36,20 +36,9 @@ export class jogoAlimentacao extends Phaser.Scene {
             this.scene.sleep("HUD");
         }
 
-        // Inicia música aleatória
-        iniciarMusicaAleatoria(this);
-
-        this.botaoVoltar = this.add.text(60, 50, "←", {
-            fontFamily: "Arial", fontSize: "52px", color: "#ffffff", stroke: "#000000", strokeThickness: 6
-        }).setOrigin(0.5).setDepth(100).setInteractive({ useHandCursor: true });
-
-        this.botaoVoltar.on("pointerover", () => this.botaoVoltar.setStyle({ color: "#ffdd00" }));
-        this.botaoVoltar.on("pointerout",  () => this.botaoVoltar.setStyle({ color: "#ffffff" }));
-        
-        this.botaoVoltar.on("pointerdown", () => {
-            if (this.scene.isSleeping("cenaHUD")) { this.scene.wake("cenaHUD"); }
-            this.scene.start("cenaComida");
-        });
+		if (gameState.musicaLigada) {
+		    iniciarMusicaAleatoria(this);
+		}
 
         this.larguraTela = this.scale.width;
         this.alturaTela = this.scale.height;
