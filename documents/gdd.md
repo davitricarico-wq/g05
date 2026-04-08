@@ -87,7 +87,7 @@ Valter Lucas Garcia de Lima
 
 [5. Casos de Teste](#5-casos-de-teste)  
 <small>
-[5.1 Casos de Teste](#51-casos-de-teste)  
+[5.1 Casos de Teste](#51-casos-de-teste)
 [5.2.1 Registros de testes](#521-registros-de-testes)  
 [5.2.2 Melhorias](#522-melhorias)  
 </small>
@@ -156,7 +156,7 @@ Por fim, os pet shops de bairro competem fortemente no mercado local, com foco e
 <div align="center">
   <p>Figura 1: Análise Swot</p>
   <img src="other/swot.png" width="800">
-  <p>Feito pela própia equipe(2026)</p>
+  <p>Feito pela própria equipe(2026)</p>
 </div>
 
 <h2 align="center" id="strengths">Strengths</h2>
@@ -402,7 +402,7 @@ Principais tarefas identificadas:
 
 \# | Quadro 1- Requisitos Funcionais do projeto
 | :---: | :---: |
-1 | O jogo deve possuir gatos e cães como animais disponíveis.
+1 | O jogo deve possuir cães como animais disponíveis.
 2 | A tela inicial do jogo deve possuir botões de "Jogar", "Tutorial", "Sair" e um ícone de engrenagem para configurações.
 3 | Ao clicar em "Jogar" pela primeira vez, o jogo deve iniciar uma cutscene interativa mostrando a história do primeiro resgate.
 4 | A cutscene deve possuir botões para avançar e voltar nas cenas da história.
@@ -443,13 +443,13 @@ Principais tarefas identificadas:
 6 | O jogo deve manter consistência visual entre cenários, menus e elementos gráficos.
 7 | O jogo deve possuir controles responsivos, garantindo que as ações do jogador sejam executadas rapidamente após a interação.
 8 | O jogo deve possuir compatibilidade com resolução de tela padrão de computadores, mantendo a interface corretamente ajustada.
-
-</div>
 9 | O jogo deve manter desempenho estável, evitando travamentos ou quedas significativas de desempenho durante a execução.
 10 | O jogo deve apresentar textos e informações legíveis, utilizando fontes e tamanhos adequados para facilitar a leitura pelo jogador.
 
+</div>
+
 <div align="center">
-  <p>Feito pela própia equipe(2026)</p>
+  <p>Feito pela própria equipe(2026)</p>
 </div>
 
 **Requisitos Funcionais:** São os requisitos que o sistema faz.
@@ -530,6 +530,7 @@ A proposta é “rodar um abrigo” com tarefas operacionais e cuidado dos anima
 
 ### 2.2.5 Tempo estimado de jogo 
 
+O tempo estimado de gameplay para o Cobasi Shelter, considerando a destreza com video games do público alvo, varia entre quatro a dez minutos (4 a 10 min). Sabendo disso, é bem provável que, com alterações e melhorias futuras, a complexidade do jogo aumente e, portanto, seu tempo de gameplay aumente também.
 
 
 --- 
@@ -654,7 +655,7 @@ A proposta é “rodar um abrigo” com tarefas operacionais e cuidado dos anima
   <a href="https://miro.com/app/board/uXjVG8ZyQIk=/?share_link_id=884951366758">
     <img src="other/diagramacenas.png" width="800">
   </a>
-  <p>Feito pela própia equipe(2026)</p>
+  <p>Feito pela própria equipe(2026)</p>
 </div>
 
 ## 3.6 Regras do Jogo 
@@ -675,31 +676,39 @@ A proposta é “rodar um abrigo” com tarefas operacionais e cuidado dos anima
 
 ### 3.6.2 Minigame de Alimentação
 
-&ensp;No minigame de alimentação, o jogador deve controlar o cachorro com o objetivo de coletar alimentos adequados e evitar itens prejudiciais. Durante a execução, rações são lançadas continuamente a partir da parte superior da tela.
+&ensp;Na escolha de rações, o jogador deve comprar o tipo de ração para o cachorro (Standard, Premium e Super Premium) baseando-se na ficha de informações dele.
 
-&ensp;As rações são classificadas em dois tipos. A ração Standard concede 10 pontos ao ser coletada. A ração Super Premium concede 15 pontos e possibilita a recuperação de uma vida, caso o jogador tenha perdido ao menos uma durante a partida.
+&ensp;No mini game de alimentação, o jogador deve controlar o cachorro com o objetivo de coletar as rações e evitar chocolates. Durante a execução, rações e chocolates são lançados continuamente a partir da parte superior da tela.
 
-&ensp;Itens prejudiciais, como chocolates, também aparecem na tela e devem ser evitados. Cada coleta de um item prejudicial resulta na perda de uma vida. O jogador inicia o minigame com três vidas e, ao perder todas, a atividade é reiniciada.
+&ensp;As rações são classificadas em três tipos de ração: Standard, Premium e Super Premium. Cada uma, ao completar o jogo preenche uma quantidade específica da barra de fome. 
 
-&ensp;O objetivo consiste em atingir a pontuação mínima de 150 pontos para concluir o minigame.
+* Standard: Preenche cinco (5) blocos da barra de fome;
+* Premium: Preenche sete (7) blocos da barra de fome;
+* Super Premium: Preenche dez (10) blocos da barra de fome;
 
-&ensp;No sistema de compra, a ração Standard possui o custo de 15 CobasiCoins, enquanto a ração Super Premium possui o custo de 20 CobasiCoins.
+&ensp;Itens prejudiciais, nesse caso os chocolates, também aparecem na tela e devem ser evitados. Cada coleta de um item prejudicial resulta na perda de uma vida. O jogador inicia o minigame com três vidas e, ao perder todas, a atividade é reiniciada.
 
-&ensp;Ao alcançar a pontuação necessária, o jogador retorna à cena de alimentação, ocorre a atualização da barra correspondente e as moedas são ajustadas conforme a compra realizada.
+&ensp;O objetivo consiste em atingir a pontuação de 150 pontos para concluir o minigame. Qualquer ração, independente do tipo, ao serem coletadas concedem 10 pontos.
+
+&ensp;No sistema de compra, a ração Standard possui o custo de 10 CobasiCoins, a ração Premium possui o custo de 15 CobasiCoins e a SUper Premium o custo de 20 CobasiCoins.
+
+&ensp;Ao alcançar a pontuação necessária, o jogador retorna à cena de alimentação, a barra de fome é atualizada e as moedas são ajustadas conforme a compra realizada.
 
 ### 3.6.3 Minigame Veterinário
 
-&ensp;No minigame veterinário, o jogador deve remover as pulgas presentes no animal utilizando uma pinça. A interação consiste em capturar as pulgas e transportá-las até uma bandeja específica.
+&ensp;No minigame veterinário, o jogador deve remover as pulgas presentes no animal utilizando um remédio anti-pulgas e uma pinça. A interação consiste em neutralizar as pulgas e transportá-las até uma bandeja específica.
 
-&ensp;A captura ocorre por meio da manutenção do clique do mouse, sendo que a pulga permanece presa apenas enquanto o botão estiver pressionado. Caso o jogador solte o botão antes de posicionar a pulga na bandeja, ela retorna à sua posição inicial.
+&ensp;A aplicação do remédio ocorre por meio da manutenção do clique do mouse, sendo que a pulga é neutralizada apenas quando o botão for pressionado.
 
-&ensp;O objetivo do minigame é coletar um total de 12 pulgas. Ao atingir esse valor, a atividade é encerrada, ocorre a atualização da barra de saúde e o jogador retorna à cena principal.
+&ensp;A captura ocorre por meio da manutenção do clique do mouse, sendo que a pulga permanece presa apenas enquanto o botão estiver pressionado. Caso o jogador solte o botão antes de posicionar a pulga na bandeja, ela retorna à sua última posição.
+
+&ensp;O objetivo do minigame é coletar um total de 12 pulgas. Ao atingir esse valor, a atividade é encerrada, a barra de saúde é atualizada e o jogador retorna à cena principal de cuidados.
 
 ### 3.6.4 Minigame de Lazer
 
 &ensp;No minigame de lazer, o jogador controla o cachorro em um cenário com movimentação automática, devendo realizar saltos para evitar obstáculos e coletar itens distribuídos ao longo do percurso.
 
-&ensp;A colisão com obstáculos resulta na reinicialização do minigame. Os itens coletáveis apresentam efeitos distintos, podendo aumentar ou reduzir a pontuação do jogador.
+&ensp;A colisão com obstáculos resulta na reinicialização do minigame. Os itens coletáveis apresentam efeitos distintos, sendo eles um osso e um osso podre, respectivamente aumentando e reduzindo a pontuação do jogador.
 
 &ensp;Ao final da fase, o jogador deve coletar um item especial que encerra o minigame. O desempenho obtido influencia diretamente o preenchimento da barra de felicidade, sendo total quando a pontuação é igual ou superior a cinco pontos, e parcial quando inferior a esse valor.
 
@@ -732,9 +741,9 @@ A proposta é “rodar um abrigo” com tarefas operacionais e cuidado dos anima
 
 ### 3.7.4 Mecânicas do Minigame Veterinário
 
-&ensp;No minigame veterinário, a interação ocorre por meio do mouse, permitindo ao jogador manipular a pinça para capturar as pulgas. A movimentação da ferramenta acompanha o cursor, e a captura depende da manutenção do clique durante o deslocamento.
+&ensp;No minigame veterinário, a interação ocorre por meio do mouse, permitindo o jogador manipular o remédio para neutralizar e a pinça para capturar as pulgas. A movimentação da ferramenta acompanha o cursor, e a neutralização depende da manutenção do clique durante o deslocamento.
 
-&ensp;A mecânica exige precisão no posicionamento e controle contínuo, uma vez que a liberação antecipada da pulga resulta em seu retorno à posição inicial.
+&ensp;A mecânica exige precisão no posicionamento e controle contínuo, uma vez que a neutralização da pulga só acontece quando o clique do remédio acontece exatamente na hitxbox determinada. 
 
 ### 3.7.5 Mecânicas do Minigame de Lazer
 
@@ -1066,7 +1075,7 @@ HALLIDAY, D.; RESNICK, R.; WALKER, J. Fundamentos de Física: Mecânica. Rio de 
 <div align="center">
   <p>Figura 10: Tela Inicial</p>
   <img src="other/telaprincipal.png" width="800">
-  <p>Feito pela própia equipe(2026)</p>
+  <p>Feito pela própria equipe(2026)</p>
 </div>
 
 **Dificuldades Enfrentadas**
@@ -1108,7 +1117,7 @@ O fluxo da atividade envolve:
 <div align="center">
   <p>Figura 11: Tela de lazer Geral</p>
   <img src="other/bgPrincipal.png" width="800">
-  <p>Feito pela própia equipe(2026)</p>
+  <p>Feito pela própria equipe(2026)</p>
 </div>
 
 <div align="center">
@@ -1149,6 +1158,8 @@ O fluxo da atividade envolve:
 
 &ensp;Neste minigame, o jogador utiliza o mouse para selecionar e utilizar três objetos principais: sabão, chuveiro e toalha. O processo de limpeza ocorre em três etapas:
 
+* Utilização do chuveiro para molhar o cachorro;
+
 * Aplicação do sabão sobre o animal, fazendo com que ele fique coberto por espuma;
 
 * Utilização do chuveiro para remover todas as bolhas de sabão;
@@ -1173,13 +1184,11 @@ O fluxo da atividade envolve:
 
 &ensp;Neste minigame, o jogador controla o cachorro utilizando as setas do teclado, movimentando o animal para a direita ou para a esquerda na tela. Durante a partida, diferentes itens caem do topo da tela:
 
-* Ração Standard, que concede 10 pontos;
+* Ração do tipo comprado, que concede 10 pontos;
 
-* Ração Super Premium, que concede 25 pontos e recupera uma vida;
+* Chocolates, que fazem o jogador perder uma vida.
 
-* Itens prejudiciais, como chocolate, que fazem o jogador perder uma vida.
-
-&ensp;O jogador inicia o minigame com três vidas e deve coletar apenas os alimentos corretos enquanto evita os itens prejudiciais. O objetivo é atingir a pontuação de 200 pontos para concluir o desafio.
+&ensp;O jogador inicia o minigame com três vidas e deve coletar apenas os alimentos corretos enquanto evita os itens prejudiciais. O objetivo é atingir a pontuação de 150 pontos para concluir o desafio.
 
 &ensp;Após atingir essa pontuação, o minigame é finalizado e o jogador recebe Cobasi Coins como recompensa.
 
@@ -1193,17 +1202,17 @@ O fluxo da atividade envolve:
 
 ### Implementação do Minigame Veterinário
 
-&ensp;Também foi desenvolvido o minigame veterinário, no qual o jogador deve ajudar a cuidar da saúde do animal removendo pulgas com o auxílio de uma pinça.
+&ensp;Também foi desenvolvido o minigame veterinário, no qual o jogador deve ajudar a cuidar da saúde do animal removendo pulgas com o auxílio de um remédio anti-pulgas e uma pinça.
 
-&ensp;Neste minigame, o jogador utiliza o mouse para selecionar a pinça e movimentá-la pela tela. Ao posicionar a ferramenta sobre uma pulga, o jogador deve clicar para removê-la.
+&ensp;Neste minigame, o jogador usa o mouse para selecionar o remédio e movimentá-lo pela tela. Ao posicionar o remédio sobre uma pulga e clicar, a pulga para de se mover e vira de ponta cabeça, indicando que ela morreu. Após isso, o jogador deve utilizar o mouse para selecionar a pinça e movimentá-la pela tela. Ao posicionar a ferramenta sobre uma pulga, clicar e segurar, a pulga pode ser arrastada para a bandeja.
 
-&ensp;O objetivo do minigame é retirar todas as pulgas do animal no menor tempo possível. Para avaliar o desempenho do jogador, foi implementado um sistema de classificação baseado em estrelas:
+&ensp;O objetivo do minigame é retirar todas as pulgas do animal no menor tempo possível. Para avaliar o desempenho do jogador, foi implementada uma contagem regressiva que parte de 50 segundos, além de um sistema de classificação baseado em estrelas:
 
-* 3 estrelas – tempo inferior a 30 segundos;
+* 3 estrelas – tempo entre 25 e 50;
 
-* 2 estrelas – tempo entre 31 e 45 segundos;
+* 2 estrelas – tempo entre 10 e 24;
 
-* 1 estrela – tempo superior a 45 segundos.
+* 1 estrela – tempo inferior a 10.
 
 &ensp;Após remover todas as pulgas e concluir o desafio, o jogador também recebe Cobasi Coins como recompensa.
 
@@ -1256,7 +1265,7 @@ Essa expansão está alinhada aos requisitos RF1, RF7 e RF8, que definem a prese
 <div align="center">
   <p>Figura 16: Tela de Cuidado </p>
   <img src="other/telaCuidadoInicial.png" width="800">
-  <p>Feito pela própia equipe(2026)</p>
+  <p>Feito pela própria equipe(2026)</p>
 </div>
 
 ### Implementação da Área de Lazer 
@@ -1268,7 +1277,7 @@ Essa expansão está alinhada aos requisitos RF1, RF7 e RF8, que definem a prese
 <div align="center">
   <p>Figura 17: Tela do minigame de Lazer </p>
   <img src="other/telaLazerMinigame.png" width="800">
-  <p>Feito pela própia equipe(2026)</p>
+  <p>Feito pela própria equipe(2026)</p>
 </div>
 
 ### Sistema de Progressão e Múltiplos Animais
@@ -1291,13 +1300,13 @@ Esse sistema reforça os requisitos RF5, RF7 e RF8, garantindo continuidade na j
 <div align="center">
   <p>Figura 18: Tela Inicial com o novo cachorro</p>
   <img src="other/telaInicialNovo.png" width="800">
-  <p>Feito pela própia equipe(2026)</p>
+  <p>Feito pela própria equipe(2026)</p>
 </div>
 
 <div align="center">
   <p>Figura 19: Tela de ração com o novo cachorro</p>
   <img src="other/telaRacaoInicial.png" width="800">
-  <p>Feito pela própia equipe(2026)</p>
+  <p>Feito pela própria equipe(2026)</p>
 </div>
 
 
@@ -1310,13 +1319,13 @@ Essas melhorias atendem aos requisitos não funcionais RNF2, RNF3, RNF4 e RNF9, 
 <div align="center">
   <p>Figura 20: Tela de Instrução de banho </p>
   <img src="other/instrucaoBanho.png" width="800">
-  <p>Feito pela própia equipe(2026)</p>
+  <p>Feito pela própria equipe(2026)</p>
 </div>
 
 <div align="center">
   <p>Figura 21:Tela da compra de rações </p>
   <img src="other/telaRacaoInstrucao.png" width="800">
-  <p>Feito pela própia equipe(2026)</p>
+  <p>Feito pela própria equipe(2026)</p>
 </div>
 
 
@@ -1390,6 +1399,15 @@ Essas melhorias atendem aos requisitos RF16, RF17, RF19, RF20, RF21 e RF22, alé
 
 <h1 align="center" id="5-casos-de-teste">5. Testes</h1>
 
+<h2 align="center" id="51-casos-de-teste">5.1. Casos de Teste</h2>
+
+&ensp;Um Caso de Teste (*Test Case*) é um roteiro detalhado de condições, variáveis, passos e resultados esperados, criado para verificar se uma funcionalidade específica de um software (ou jogo) está operando corretamente e cumprindo seus requisitos.
+
+&ensp;Eles são essenciais para garantir a qualidade do produto, identificar bugs de forma sistemática antes do lançamento e documentar o comportamento esperado do sistema.
+
+<div align="center">
+  <p>Quadro de casos de teste</p>
+</div>
 
 ## 5.1. Casos de Teste 
 
@@ -1468,7 +1486,7 @@ Essas melhorias atendem aos requisitos RF16, RF17, RF19, RF20, RF21 e RF22, alé
 </div>
 
 <div align="center">
-  <p>Feito pela própia equipe(2026)</p>
+  <p>Feito pela própria equipe(2026)</p>
 </div>
 
 <h2 align="center" id="52-testes-de-jogabilidade-playtests">5.2. Testes de jogabilidade (playtests)</h2>
@@ -1664,5 +1682,3 @@ INSTITUTO PET BRASIL. Dados do setor pet. São Paulo: Instituto Pet Brasil, 2024
 <h1 align="center" id="anexos">Anexos</h1>
 
 *Inclua aqui quaisquer complementos para seu projeto, como diagramas, imagens, tabelas etc. Organize em sub-tópicos utilizando headings menores (use ## ou ### para isso)*
-
-//adicionar as refrencias de diversidade aqui
