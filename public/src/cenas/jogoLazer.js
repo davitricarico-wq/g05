@@ -43,18 +43,6 @@ export class jogoLazer extends Phaser.Scene {
         // Define a gravidade do mundo físico
         this.physics.world.gravity.y = 800;
 
-        // Gerencia a transição de áudio entre o tutorial e o minigame
-        if (!gameState.musicaMenuPrincipal) {
-            gameState.musicaMenuPrincipal = this.sound.add("musicaMenuPrincipal", { loop: true, volume: 0.5 });
-        }
-        if (gameState.musicaTutorial?.isPlaying) {
-            gameState.musicaTutorial.stop();
-        }
-        if (!gameState.musicaMenuPrincipal.isPlaying) {
-            gameState.musicaMenuPrincipal.play();
-        }
-        gameState.musica = gameState.musicaMenuPrincipal;
-
         // Configura o fundo infinito (TileSprite) com ajuste de escala
         const largura = this.scale.width;
         const altura = this.scale.height;

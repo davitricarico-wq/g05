@@ -13,17 +13,7 @@ export class cenaInicial extends Phaser.Scene {
         this.scene.stop("HUD");
         this.transicao = false;
 
-        // Música de fundo da tela inicial
-        if (!gameState.musicaMenuPrincipal) {
-            gameState.musicaMenuPrincipal = this.sound.add("musicaMenuPrincipal", { loop: true, volume: 0.5 });
-        }
-        if (gameState.musicaTutorial?.isPlaying) {
-            gameState.musicaTutorial.stop();
-        }
-        if (!gameState.musicaMenuPrincipal.isPlaying) {
-            gameState.musicaMenuPrincipal.play();
-        }
-        gameState.musica = gameState.musicaMenuPrincipal;
+        
 
 
         // Fundo da cena inicial (responsivo)
