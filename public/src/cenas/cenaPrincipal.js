@@ -376,17 +376,9 @@ class CenaPopups extends Phaser.Scene {
         const centroY = this.scale.height / 2;
 
         // Ajuste o nome da imagem aqui para a que representa o final real do jogo
-        this.imgFinal = this.add.image(centroX, centroY, "conclusaoTerceiroRound") 
+        this.imgFinal = this.add.image(centroX, centroY, "final") 
             .setScale(0.6)
             .setInteractive({ useHandCursor: true }); 
-
-        this.txtFinal = this.add.text(centroX, centroY + 180, "PARABENS! [ Clique para Reiniciar ]", {
-            fontFamily: '"Press Start 2P"', 
-            fontSize: "16px", 
-            fill: "#ffffff",
-            stroke: "#000000",
-            strokeThickness: 4
-        }).setOrigin(0.5);
 
         this.imgFinal.on('pointerdown', () => {
             this.imgFinal.destroy();
