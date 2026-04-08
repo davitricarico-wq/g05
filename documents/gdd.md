@@ -16,7 +16,7 @@ Valter Lucas Garcia de Lima
 
 # Sumário
 
-[1. Introdução](#1-introdução)      
+[1. Introdução](#1-introdução)       
 <small>
 [1.1 Plano Estratégico do Projeto](#11-plano-estratégico-do-projeto)  
 [1.1.1 Contexto da Indústria](#111-contexto-da-indústria)  
