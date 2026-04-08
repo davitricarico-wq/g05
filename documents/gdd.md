@@ -106,68 +106,52 @@ Valter Lucas Garcia de Lima
 
 ### 1.1.1. Contexto da indústria 
 
-<p align="justify">
 &ensp; O varejo pet brasileiro é um setor em expansão, marcado pela transição de um mercado fragmentado, dominado por pequenos pet shops de bairro, para grandes redes especializadas e marketplaces. Impulsionado pela "humanização" dos animais e pela multicanalidade, o segmento movimenta bilhões anualmente. O cenário é ditado pela consolidação de grandes players, como a fusão entre Cobasi e Petz, que buscam escala e eficiência logística para ampliar a oferta de produtos e serviços em ambiente cada vez mais competitivo e digital (CONSELHO ADMINISTRATIVO DE DEFESA ECONÔMICA – CADE, 2025; INVESTING.COM, 2024). 
 Além disso, dados financeiros reforçam a estratégia de integração operacional e ganhos de sinergia entre as companhias, evidenciando a consolidação do setor (PETZCOBASI RI, 2026).
-</p>
 
 #### 1.1.1.1. Modelo de 5 Forças de Porter 
 
-<p align="justify">
 &ensp; As Cinco Forças de Porter são uma ferramenta usada para entender como funciona a competição dentro de um mercado. Dessa forma, ela analisa quem pode entrar no setor como novo concorrente, quais empresas já disputam clientes, se existem alternativas que podem substituir o serviço oferecido, e qual é o poder de negociação de fornecedores e consumidores.
 Neste projeto, utilizamos esse modelo para compreender melhor o mercado pet onde a marca está inserida. Isso ajuda a entender os desafios, oportunidades e o nível de concorrência do setor, permitindo que as decisões estratégicas do jogo estejam alinhadas à realidade do mercado em que a empresa atua.
-</p>
 
 ##### 1.1.1.2 Ameaça de Novos Entrantes
 
-<p align="justify">
 &ensp;A Ameaça de Novos Entrantes analisa o nível de dificuldade para novas empresas ingressarem no setor e competirem com os players já estabelecidos.
 O mercado pet brasileiro movimentou cerca de R$77,2 bilhões em 2025, com projeção de R$80 bilhões em 2026 (ABRAS, 2025), sendo um setor atrativo e em expansão. Embora a abertura de pequenos pet shops seja acessível, competir em escala nacional exige alto investimento em infraestrutura, logística, marketing e construção de marca (NEOFEED, 2024; CONSUMIDOR MODERNO, 2024). Grandes grupos como Petz e Cobasi possuem forte poder de negociação, capilaridade e estratégia omnichannel, dificultando a entrada de novos concorrentes relevantes (CADE, 2024).
 Assim, a ameaça é considerada baixa a moderada, restrita principalmente a nichos específicos ou modelos digitais inovadores.
-</p>
 
 
 ##### 1.1.1.3 Ameaça de Produtos ou Serviços Substitutos
 
-<p align="justify">
 &ensp;A Ameaça de Produtos ou Serviços Substitutos analisa a possibilidade de os consumidores atenderem à mesma necessidade por meio de alternativas diferentes das oferecidas pelas empresas do setor, podendo reduzir sua demanda ou pressionar preços, conforme o modelo das Cinco Forças (PORTER, 2008).
 No varejo pet, os principais substitutos estão relacionados a canais alternativos de compra, como supermercados, marketplaces generalistas, como Amazon, Shopee e Mercado Livre, e compras diretas de fabricantes, ampliadas pelo avanço do comércio eletrônico no Brasil (E-COMMERCE BRASIL, 2023). Esses canais oferecem produtos básicos, especialmente ração e acessórios, muitas vezes com preços mais competitivos e maior transparência de comparação (SBVC, 2024). Além disso, pequenas lojas de bairro também competem por conveniência local, oferecendo entregas rápidas em regiões específicas.  Entretanto, a Cobasi reduz essa ameaça ao investir em diferenciação por meio de ampla variedade de produtos, serviços especializados, como banho e tosa, e logística de entrega rápida, que exige infraestrutura, tecnologia e capilaridade nacional, especialmente após o movimento de consolidação com a Petz (CONSELHO ADMINISTRATIVO DE DEFESA ECONÔMICA – CADE, 2025). Dessa forma, embora existam alternativas disponíveis ao consumidor, a ameaça de substitutos é considerada moderada, sendo mais relevante no segmento de produtos padronizados e sensível a preço.
-</p>
 
 
 ##### 1.1.1.4 Poder de Barganha dos Fornecedores
 
-<p align="justify">
 &ensp;O Poder de Barganha dos Fornecedores, dentro do modelo das Cinco Forças de Porter, analisa o nível de influência que os fornecedores exercem sobre as empresas do setor, especialmente na definição de preços, condições comerciais e disponibilidade de produtos. Quanto maior a dependência das empresas em relação a poucos fornecedores estratégicos, maior tende a ser esse poder.
 No varejo pet brasileiro, os principais fornecedores são grandes indústrias de ração e produtos especializados, como BRF Pet, Special Dog e Premier Pet, que figuram entre as maiores do segmento nacional (Panorama PET VET, 2024). Com a unificação entre Petz e Cobasi, houve aumento da concentração de demanda em um único grande grupo varejista, ampliando seu poder de negociação sobre fabricantes, inclusive para exigência de exclusividades e melhores condições comerciais.
 Dessa forma, embora os fornecedores sejam relevantes e detenham marcas consolidadas, seu poder de barganha é considerado baixo a moderado, uma vez que grande parte das compras está concentrada em poucos varejistas de grande porte.
-</p>
 
 
 ##### 1.1.1.5 Poder de Barganha dos Clientes
 
-<p align="justify">
 &ensp;O Poder de Barganha dos Clientes, segundo o modelo das Cinco Forças de Porter, analisa o nível de influência que os consumidores possuem sobre as empresas do setor, especialmente em relação a preços, qualidade, variedade e condições de compra. Quanto maior a oferta de alternativas disponíveis no mercado, maior tende a ser o poder de negociação dos clientes.
 No mercado pet brasileiro, observa-se ampla presença de micro e pequenas empresas, que representam cerca de 98% do setor, sendo os microempreendedores individuais responsáveis por grande parcela da movimentação econômica. Pequenos e médios pet shops concentram aproximadamente 49% da receita do setor, enquanto grandes redes representam cerca de 9%. Clínicas e hospitais veterinários detêm 18% (Receita Federal, 2023). Esse cenário evidencia a elevada oferta de estabelecimentos e amplia as opções disponíveis aos consumidores finais, aumentando seu poder de escolha e sensibilidade a preço e qualidade.
 Por outro lado, a recente fusão entre Cobasi e Petz, que juntas somam mais de 500 lojas no país, representa uma estratégia para ampliar escala, fortalecer a marca e reduzir a influência do cliente por meio de diferenciação, conveniência e integração omnichannel. Ainda assim, diante da concorrência de lojas virtuais como Shopee e Amazon, o poder de barganha dos clientes pode ser considerado moderado, pois há diversas alternativas disponíveis no mercado.
-</p>
 
 
 ##### 1.1.1.6 Rivalidade entre os Concorrentes Existentes
 
-<p align="justify">
 &ensp; A Rivalidade entre os Concorrentes Existentes, no modelo das Cinco Forças de Porter, analisa o nível de competição direta entre as empresas que já atuam no setor. Essa força considera fatores como número de concorrentes, diferenciação de serviços, disputa por preço e intensidade das estratégias de mercado (PORTER, 2008).
 No varejo pet brasileiro, a rivalidade é considerada elevada, especialmente após o processo de consolidação entre grandes redes especializadas (CONSELHO ADMINISTRATIVO DE DEFESA ECONÔMICA – CADE, 2025). Entre os concorrentes especializados, destaca-se a Petlove, com forte atuação em e-commerce, oferta de serviços veterinários e presença física, competindo diretamente na venda de produtos e serviços (PETLOVE, 2026).
 Os marketplaces digitais, como Mercado Livre, Amazon, Shopee e TikTok Shop, exercem intensa concorrência no ambiente online, principalmente por meio de preços mais baixos, ampla variedade e alcance nacional, refletindo o crescimento do comércio eletrônico no Brasil (E-COMMERCE BRASIL, 2023). Já os supermercados, como Carrefour, Extra e Sonda, apresentam concorrência moderada, oferecendo produtos básicos e captando consumidores que realizam compras de rotina, embora não disponibilizem serviços especializados (SBVC, 2024).
 Por fim, os pet shops de bairro competem fortemente no mercado local, com foco em relacionamento, flexibilidade de preços e oferta de serviços como banho e tosa. Apesar de não possuírem a escala das grandes redes, mantêm relevância regional. A rivalidade no setor é alta, especialmente no e-commerce e na venda de produtos padronizados, exigindo diferenciação estratégica por parte das grandes redes.
-</p>
 
 
 ### 1.1.2. Análise SWOT 
 
-<p align="justify">
 &ensp; A análise SWOT (também denominada matriz FOFA) é um instrumento estratégico que permite avaliar a posição competitiva de uma organização a partir da interação entre fatores internos e externos. O modelo se estrutura em quatro dimensões: forças (strengths), que evidenciam vantagens internas; fraquezas (weaknesses), que apontam limitações internas; oportunidades (opportunities), relacionadas a condições externas favoráveis; e ameaças (threats), que representam riscos do ambiente externo (Casarotto, 2019). Ao organizar essas variáveis, a ferramenta apoia decisões mais consistentes e o direcionamento estratégico. Nesse contexto, apresenta-se a análise SWOT da Cobasi (Figura 1).
-</p>
 
 <div align="center">
   <p>Figura 1: Análise Swot</p>
@@ -177,79 +161,53 @@ Por fim, os pet shops de bairro competem fortemente no mercado local, com foco e
 
 <h2 align="center" id="strengths">Strengths</h2>
 
-<p align="justify">
 &ensp;As forças (strengths) correspondem aos atributos internos que sustentam a vantagem competitiva da organização (Casarotto, 2019). No caso da Cobasi, é possível destacar sua autoridade e credibilidade de marca como pioneira no setor pet, fator que fortalece a confiança do consumidor e a diferencia no mercado. Além disso, a empresa conta com um ecossistema omnichannel consolidado, com forte integração entre os canais físico e digital, proporcionando uma experiência de compra mais fluida.     Outro ponto relevante é a diversificação do portfólio, que abrange categorias complementares como jardinagem, aquarismo e casa, ampliando as oportunidades de venda. Por fim, o elevado poder de escala após a fusão fortalece sua capacidade de negociação com grandes fornecedores, gerando vantagens competitivas importantes.
-</p>
 
 
 <h2 align="center" id="weaknesses">Weaknesses</h2>
 
-<p align="justify">
 &ensp;As fraquezas (weaknesses) referem-se a limitações internas que podem restringir o desempenho ou a eficiência da organização (Casarotto, 2019). No caso da Cobasi, observa-se uma estrutura de custo fixo elevada, decorrente principalmente do modelo de megalojas, o que pode impactar a rentabilidade em cenários adversos. Além disso, a recente fusão com a Petz traz desafios relacionados à integração operacional e cultural, exigindo alinhamento entre processos, equipes e estratégias. Outro ponto de atenção é a concentração geográfica no mercado brasileiro, o que aumenta a exposição da empresa às variações econômicas locais e limita sua diversificação internacional.
-</p>
 
 
 <h2 align="center" id="opportunities">Opportunities</h2>
 
-<p align="justify">
 &ensp;As oportunidades (opportunities) dizem respeito a fatores externos positivos que podem ser explorados para promover crescimento e diferenciação (Casarotto, 2019). Para a Cobasi, destaca-se a possibilidade de verticalização do ecossistema de saúde pet, com expansão em serviços como hospitais e planos veterinários, agregando valor ao cliente. Também há espaço para acelerar o desenvolvimento de marcas próprias, o que permite maior controle sobre margens e posicionamento de produtos. Além disso, a tendência de aumento do número de pets por família impulsiona estruturalmente a demanda do setor, criando um cenário favorável para expansão dos negócios.
-</p>
 
 
 <h2 align="center" id="threats">Threats</h2>
 
-<p align="justify">
 &ensp;As ameaças (threats) envolvem elementos externos que podem impactar negativamente o desempenho da organização (Casarotto, 2019). Entre as principais ameaças para a Cobasi está a guerra de preços em marketplaces, com forte pressão competitiva de grandes plataformas como Amazon e Mercado Livre. Outro fator relevante é a resiliência dos pet shops de bairro, que competem principalmente por meio da proximidade e do atendimento personalizado. Soma-se a isso a possibilidade de restrições regulatórias associadas às exigências do CADE após a fusão, que podem limitar estratégias de crescimento. Por fim, a volatilidade no custo de commodities utilizadas na produção de rações também representa um risco, podendo impactar preços e margens.
-</p>
 
 
 ### 1.1.3. Missão / Visão / Valores 
 
-<p align="justify">
 &ensp;De modo geral, missão expressa o propósito central de uma organização, ou seja, por que ela existe. A visão representa onde a empresa pretende chegar no futuro, enquanto os valores correspondem aos princípios que orientam suas decisões e comportamentos (TOTVS, 2024). A seguir, apresentam-se esses elementos aplicados à Cobasi.
-</p>
 
 ###  Missão
 
-<p align="justify">
 &ensp;Proporcionar aos apaixonados por animais uma experiência de compra diferenciada, reunindo produtos de qualidade, atendimento especializado e preços competitivos em um ambiente confortável.
-</p>
 
 ###  Visão
 
-<p align="justify">
 &ensp;Apesar de não divulgar formalmente uma declaração de visão, a atuação da empresa indica a intenção de se consolidar como referência no varejo pet, fortalecendo continuamente a experiência do cliente e a confiança na marca.
-</p>
 
 ###  Valores
 
-<p align="justify">
 &ensp;O compromisso com o cliente é um dos pilares centrais, refletido na prioridade em oferecer um atendimento de qualidade e garantir a satisfação do consumidor em todas as interações. A ética também se destaca como um valor fundamental, orientando a conduta profissional com base na integridade e no respeito em todas as relações. Além disso, a transparência está presente na forma como a empresa se relaciona com clientes, parceiros e colaboradores, prezando sempre por comunicações claras e responsáveis.
-</p>
 
-<p align="justify">
 &ensp;Outro aspecto importante é a busca constante pela excelência, que se traduz no alto padrão de qualidade dos produtos, serviços e no atendimento oferecido. A responsabilidade também faz parte da essência da organização, guiando suas ações de maneira consciente em relação ao negócio, à sociedade e ao bem-estar animal. Por fim, o trabalho em equipe é valorizado como um diferencial, incentivando a colaboração entre os colaboradores para alcançar melhores resultados e fortalecer o desempenho coletivo.
-</p>
 
 ---
 
-<p align="justify">
 &ensp;A cultura organizacional da Cobasi evidencia forte orientação para a experiência do consumidor aliada a princípios éticos consistentes. Esses pilares sustentam a credibilidade da marca e direcionam a equipe na entrega de um atendimento de qualidade, favorecendo a fidelização do público pet.
-</p>
 
 ### 1.1.4. Proposta de Valor 
 
-<p align="justify">
 &ensp;O Canvas de Proposta de Valor, desenvolvido por Alexander Osterwalder, Yves Pigneur e Alan Smith, é uma ferramenta estratégica que permite analisar de que maneira um produto ou serviço atende às necessidades reais de um público específico. O modelo busca assegurar que a solução proposta não apenas ofereça funcionalidades, mas também gere valor concreto ao usuário, ao aliviar dificuldades existentes e proporcionar benefícios relevantes.
-</p>
 
-<p align="justify">
 &ensp;O Canvas é dividido em dois blocos complementares: o Perfil do Cliente, que descreve suas tarefas, dores e ganhos, e o Mapa de Valor, que apresenta os elementos da solução responsáveis por atender a essas necessidades. Essa estrutura permite avaliar a coerência entre o problema identificado e a proposta apresentada.
-</p>
 
-<p align="justify">
 &ensp;No contexto do Cobasi Shelter, a solução foi elaborada considerando não apenas as necessidades do público-alvo, mas também o ambiente competitivo do mercado pet brasileiro, que movimenta cerca de R$80 bilhões em 2026 (Abinpet & Instituto Pet Brasil, 2026). O projeto leva em conta a fusão Cobasi-Petz e a presença de concorrentes digitais relevantes, como Petlove, Amazon e marketplaces especializados. Os pet shops tradicionais também continuam desempenhando papel importante na proximidade local com os clientes. Dessa forma, o Canvas de Proposta de Valor foi desenvolvido alinhando essas demandas do mercado aos objetivos institucionais da Cobasi, especialmente no que se refere à conscientização sobre bem-estar animal, educação de tutores e incentivo à adoção responsável. Para melhor visualização desses elementos, a Figura 2 ilustra a organização do Canvas de Proposta de Valor.
-</p>
 
 
 <br>
@@ -262,46 +220,34 @@ Por fim, os pet shops de bairro competem fortemente no mercado local, com foco e
 
 <h2 align="center" id="perfil-do-cliente">Perfil do Cliente</h2>
 ### Tarefas do Cliente (Customer Jobs)
-<p align="justify">
 &ensp; As tarefas do cliente representam as atividades, objetivos ou problemas que o público busca resolver em seu cotidiano. Elas correspondem ao que o usuário tenta realizar funcionalmente, emocionalmente ou socialmente ao interagir com um produto, serviço ou situação específica. Nesse contexto, estão relacionadas ao cuidado com animais e ao consumo de conteúdos digitais sobre o tema. Identificá-las permite compreender quais demandas orientam o comportamento do usuário e quais aspectos devem ser considerados no desenvolvimento da solução.
 Principais tarefas identificadas: 
-</p>
 * Selecionar produtos adequados às necessidades do animal: Interesse em adquirir conhecimentos básicos e práticos para garantir uma rotina adequada e apropriada de cuidados com o pet.
 * Avaliar a própria capacidade de cuidar de um animal antes da adoção: Busca por compreender as responsabilidades envolvidas antes de assumir o compromisso.
 * Consumir conteúdos confiáveis associados a instituições ou marcas reconhecidas: Informações vinculadas a organizações respeitadas tendem a gerar maior credibilidade.
 * Buscar formas acessíveis de lazer digital: Preferência por entretenimento rápido, interativo e de fácil acesso, especialmente online.
 
 ### Dores (Pains)
-<p align="justify">
 &ensp; No segmento de dores, são identificados os principais obstáculos, inseguranças e frustrações enfrentados pelo cliente ao tentar realizar suas tarefas. Essa análise evidencia os fatores que dificultam uma experiência satisfatória e indica aspectos que devem ser reduzidos ou solucionados pela proposta. As dores também se relacionam diretamente aos aliviadores de dores, responsáveis por minimizar esses obstáculos. A partir dessa avaliação, foram identificadas as seguintes dificuldades:
-</p>
 * Dificuldade em compreender as diferenças entre tipos de alimentos e produtos para pets: Informações técnicas e variedade de opções podem gerar confusão na escolha adequada.
 * Insegurança sobre como cuidar corretamente: Medo de prejudicar a saúde ou o bem-estar do animal por falta de conhecimento.
 * Informações contraditórias na internet: Dificuldade em identificar orientações confiáveis para iniciantes.
 * Ansiedade diante da adoção: Receio de não conseguir manter os cuidados necessários ao longo do tempo.
 * Falta de experiência prática: Ausência de oportunidades para compreender a rotina real de cuidados antes de assumir a responsabilidade.
 
-<p align="justify">
 &ensp;Organizações de bem-estar animal apontam que a falta de preparo é um dos fatores associados ao abandono de animais no Brasil (Instituto Pet Brasil, 2023).
-</p>
 
 ### Ganhos (Gains)
-<p align="justify">
 &ensp; No segmento de ganhos, são apresentados os benefícios e resultados positivos que o cliente espera alcançar ao realizar suas tarefas. Essa seção evidencia aquilo que gera valor para o usuário, seja na forma de melhorias práticas, maior segurança ou experiências mais satisfatórias. Assim como ocorre com as dores, os ganhos possuem relação direta com os criadores de ganhos, que representam os elementos da solução responsáveis por torná-los possíveis. Foram identificados os seguintes benefícios esperados:
-</p>
 * Confiança para cuidar adequadamente de um pet: Informações claras reduzem a ansiedade relacionada à responsabilidade.
 * Sensação de preparo para adotar ou aprimorar os cuidados: O conhecimento adquirido favorece uma convivência mais estável e saudável.
 * Fortalecimento do vínculo emocional com os animais: Interações positivas geram satisfação, empatia e motivação para práticas responsáveis.
 * Aprendizado útil aliado ao entretenimento: Experiências que ensinam de forma leve e envolvente tendem a ser mais valorizadas pelo público.
 
 <h2 align="center" id="mapa-de-valor">Mapa de Valor</h2>
-<p align="justify">
 &ensp; A partir do perfil do cliente identificado, o Mapa de Valor apresenta como a solução proposta busca atender às suas necessidades e expectativas. Para isso, são descritos os produtos e serviços desenvolvidos, bem como os elementos responsáveis por gerar benefícios e reduzir as dificuldades enfrentadas pelo usuário.
-</p>
 ### Produtos e Serviços
-<p align="justify">
 &ensp;No segmento de produtos e serviços, são apresentados os elementos concretos que compõem a solução oferecida ao usuário, correspondendo às funcionalidades e experiências disponibilizadas pelo projeto. No caso do jogo digital Cobasi Shelter, destacam-se:
-</p>
 * Jogo digital casual acessível via navegador web: Permite acesso imediato sem necessidade de instalação, ampliando o alcance e reduzindo barreiras tecnológicas.
 * Simulação de cuidados e adoção com animais resgatados: Reproduz virtualmente atividades essenciais do cotidiano de um tutor, como alimentação, higiene, saúde e lazer.
 * Sistema de minigames interativos: Estrutura a experiência de forma dinâmica, associando entretenimento ao aprendizado prático.
@@ -310,9 +256,7 @@ Principais tarefas identificadas:
 * Mensagens educativas sobre bem-estar animal: Integra conteúdos informativos de forma contextualizada e acessível.
 
 ### Criadores de Ganhos (Gain Creators)
-<p align="justify">
 &ensp;Os criadores de ganhos correspondem aos elementos da solução responsáveis por gerar benefícios concretos ao usuário, contribuindo para uma experiência mais envolvente, informativa e satisfatória. Destacam-se: 
-</p>
 
 * Simulação prática de cuidados com o animal: Permite compreender de forma concreta as necessidades do pet, transformando o aprendizado em experiência ativa.
 * Sistema de progressão e recompensas virtuais: Incentiva a continuidade da interação e o interesse ao longo do tempo.
@@ -320,40 +264,26 @@ Principais tarefas identificadas:
 * Narrativa centrada no resgate, cuidado e adoção responsável: Favorece a empatia com os animais e a conscientização sobre adoção responsável.
 
 ### Aliviadores de Dores (Pain Relievers)
-<p align="justify">
 &ensp;Os aliviadores de dores representam os mecanismos pelos quais a solução reduz inseguranças, dificuldades e obstáculos enfrentados pelo usuário ao lidar com o cuidado de um animal. Com base nessa análise, a equipe identificou os seguintes aliviadores de dores:
-</p>
 * Conteúdos educativos apresentados de forma lúdica: Facilitam a compreensão de informações essenciais sem tornar o aprendizado cansativo.
 * Simulação segura da rotina de cuidados: Permite experimentar responsabilidades sem riscos reais, reduzindo a ansiedade associada à adoção.
 * Organização das tarefas em objetivos claros: Ajuda a compreender, de forma estruturada, o que é necessário para garantir o bem-estar do pet no dia a dia.
 * Acesso gratuito e via navegador web: Elimina barreiras financeiras e tecnológicas, ampliando o acesso à experiência.
 
-<p align="justify">
 &ensp;A proposta integra entretenimento, educação e impacto social em uma única experiência digital. Ao permitir que o usuário aprenda e vivencie virtualmente a rotina de cuidados com animais resgatados, o jogo Cobasi Shelter contribui para a formação de tutores mais preparados e conscientes. Dessa forma, a solução também fortalece a disseminação de práticas responsáveis de cuidado e adoção, ampliando o alcance das iniciativas de bem-estar animal e reforçando o posicionamento da Cobasi como referência no setor pet brasileiro.
-</p>
 
 
 ### 1.1.5. Descrição da Solução Desenvolvida
 
-<p align="justify">
 &ensp;A solução desenvolvida consiste em um jogo digital educativo voltado à conscientização de tutores sobre os cuidados adequados com cães, alinhado ao propósito da Cobasi de promover o bem-estar animal e a adoção responsável. O problema central abordado refere-se à falta de conhecimento prático sobre as necessidades específicas dos pets, especialmente no caso de animais resgatados ou recém-adotados. Essa lacuna contribui para situações de negligência involuntária e abandono, ainda frequentes no Brasil e reconhecidas como desafios para a proteção e o bem-estar animal (Organização Mundial da Saúde Animal, 2022).
-</p>
 
-<p align="justify">
 &ensp;Nesse contexto, o jogo busca transformar informação em experiência prática, permitindo que o usuário aprenda por meio da simulação de situações reais de cuidado. O mercado pet brasileiro apresenta crescimento contínuo e alta relevância econômica, o que reforça a importância de iniciativas que promovam educação do consumidor e uso responsável de produtos e serviços voltados aos animais (Instituto Pet Brasil, 2024). Assim, a proposta integra conscientização e engajamento, aproximando o público das práticas recomendadas e do universo da marca parceira.
-</p>
 
-<p align="justify">
 &ensp;A experiência inicia com uma breve narrativa na qual a protagonista encontra um cachorro abandonado e o leva a uma loja da Cobasi, onde recebe orientações e uma ficha com informações essenciais sobre o animal. A partir desse ponto, o jogo se organiza em fases compostas por três rounds, nos quais diferentes cães resgatados são apresentados ao jogador. Cada animal possui características próprias, exigindo análise das informações disponíveis e adaptação das decisões tomadas, o que promove progressão gradual de dificuldade e aprendizado.
-</p>
 
-<p align="justify">
 &ensp;Durante cada rodada, o usuário realiza ações relacionadas ao cuidado diário do pet, como higiene, alimentação, administração de medicamentos e atenção emocional, por meio de minigames interativos. As escolhas são baseadas na ficha do animal, como selecionar a ração adequada conforme idade e porte, e decisões incorretas geram explicações educativas que orientam o jogador. Situações envolvendo abandono prévio também são abordadas, destacando a importância do afeto e da estabilidade emocional. Ao final de cada fase, um quiz avaliativo verifica a assimilação dos conteúdos, oferecendo feedback explicativo em caso de erro.
-</p>
 
-<p align="justify">
 &ensp;Entre os principais benefícios da solução destacam-se a promoção da educação sobre cuidados responsáveis, a conscientização sobre os impactos do abandono e o incentivo à tomada de decisões informadas por parte dos tutores. Dessa forma, o jogo atua simultaneamente como ferramenta de aprendizagem e sensibilização, contribuindo para a formação de usuários mais preparados para a adoção e para o cuidado contínuo com os animais, ao mesmo tempo em que fortalece a conexão com os valores institucionais da Cobasi.
-</p>
 
 
 
@@ -369,82 +299,62 @@ Principais tarefas identificadas:
 
 🔴 **R01 – Bugs nas mecânicas dos minigames**
 
-<p align="justify">
 &ensp;Os bugs nas mecânicas possuem alto impacto, pois comprometem diretamente a jogabilidade e podem impedir o jogador de concluir tarefas básicas, como finalizar um minigame. Como essas mecânicas são o núcleo do jogo, qualquer falha afeta a experiência como um todo.  
-</p>
 
 **Ação de mitigação:** realizar testes contínuos a cada sprint e validar cada mecânica individualmente antes de integrá-la ao jogo completo.
 
 🔴 **R02 – Problemas com eventos de input (mouse/teclado)**
 
-<p align="justify">
 &ensp;Esse risco tem alto impacto, pois o jogo depende totalmente da interação do usuário. Caso cliques ou comandos não funcionem corretamente, o jogador não consegue jogar, tornando o sistema inutilizável.  
-</p>
 
 **Ação de mitigação:** testar todos os inputs de forma isolada e revisar constantemente os eventos (como pointerdown e teclado) durante o desenvolvimento.
 
 🔴 **R03 – Dificuldade no uso do Phaser**
 
-<p align="justify">
 &ensp;O uso do Phaser apresenta alto impacto, pois é a principal tecnologia do projeto. Dificuldades na ferramenta podem atrasar o desenvolvimento, gerar erros frequentes e limitar a implementação das funcionalidades planejadas.  
-</p>
 
  **Ação de mitigação:** estudar a documentação oficial, buscar tutoriais e dividir o desenvolvimento em pequenas entregas para facilitar o aprendizado progressivo.
 
 🟡 **R04 – Assets não carregarem corretamente**
 
-<p align="justify">
 &ensp;Esse risco tem impacto médio, pois, embora não impeça totalmente o funcionamento do jogo, compromete a parte visual e pode gerar erros de execução. A ausência de imagens ou sons prejudica a experiência do usuário.  
-</p>
 
 **Ação de mitigação:** organizar corretamente os arquivos e garantir que todos os assets sejam carregados na função de preload antes de serem utilizados.
 
 🟡 **R05 – Erros de posicionamento e escala de sprites**
 
-<p align="justify">
 &ensp;O impacto é médio, pois afeta a qualidade visual e a clareza das interações, podendo confundir o jogador, mas sem necessariamente travar o jogo.  
-</p>
 
  **Ação de mitigação:** padronizar resoluções dos sprites, testar diferentes escalas no canvas e ajustar posicionamentos durante o desenvolvimento.
 
 🟡 **R06 – Erro na transição entre cenas**
 
-<p align="justify">
 &ensp;Esse risco possui impacto médio, pois pode causar falhas na navegação do jogo, como travamentos ou telas que não carregam corretamente, prejudicando a continuidade da experiência.  
-</p>
 
  **Ação de mitigação:** padronizar a lógica de troca de cenas e testar o fluxo completo do jogo com frequência.
 
 🟢 **R07 – Incompatibilidade de código ou erros inesperados**
 
-<p align="justify">
 &ensp;Apesar de poder gerar problemas sérios, esse risco tem baixo controle e ocorrência menor, sendo classificado como impacto controlado. Geralmente são erros pontuais que podem ser corrigidos ao longo do desenvolvimento.  
-</p>
 
  **Ação de mitigação:** utilizar versionamento com Git e realizar commits frequentes para facilitar a identificação e correção de erros.
 
 🟢 **R08 – Pequenos bugs visuais (não críticos)**
 
-<p align="justify">
 &ensp;Esse risco tem baixo impacto, pois não impede o funcionamento do jogo, afetando apenas detalhes estéticos. Ainda assim, pode prejudicar levemente a percepção de qualidade.  
-</p>
 
 **Ação de mitigação:** revisar a interface visual nas etapas finais e corrigir inconsistências antes da entrega.
 
 🟢 **R09 – Ajustes finos de interface (HUD/sprites)**
 
-<p align="justify">
 &ensp;O impacto é baixo, pois são ajustes de refinamento que não comprometem a funcionalidade do jogo, mas contribuem para uma melhor experiência do usuário.  
-</p>
 
 **Ação de mitigação:** reservar tempo no final do projeto para polimento visual e organização das informações na tela.
 
 
 ### 1.1.7. Objetivos, Metas e Indicadores 
 
-<p align="justify">
 &ensp;Para garantir que o jogo não seja apenas uma experiência de entretenimento, mas também uma extensão estratégica do pilar social **Cobasi Cuida**, os objetivos do projeto foram definidos com base na metodologia SMART (Específico, Mensurável, Alcançável, Relevante e Temporal). As metas estão organizadas em três eixos centrais: Impacto Social, Engajamento com a Marca e Qualidade Técnica.
-</p>
 
 **Objetivo 1: Impacto Social e Educação (Alinhado ao Cobasi Cuida)**
 * **Específico (S):** Promover a conscientização dos usuários sobre as responsabilidades no cuidado animal e a importância da adoção responsável, por meio de mecânicas interativas de higiene, alimentação e saúde.
@@ -486,9 +396,7 @@ Principais tarefas identificadas:
 
 <h2 align="center" id="12-requisitos-do-jogo">1.2. Requisitos do Jogo</h2>
 
-<p align="justify">
 &ensp;Os requisitos do jogo foram definidos para estruturar a experiência do jogador a partir da mecânica central de cuidado com animais domésticos, garantindo alinhamento entre jogabilidade e propósito social. O jogo deverá possuir gatos e cães como espécies principais, delimitando o universo temático e aproximando a experiência da realidade dos animais mais adotados. Essa escolha fortalece a proposta de conscientização sobre responsabilidade no cuidado e na adoção.
-</p>
 
 <div align="center">
 
@@ -553,55 +461,41 @@ Descrevem as funcionalidades, ações e comportamentos esperados.
 
 **Exemplo:** No requisito 10, a Cena de Banho deverá apresentar feedback visual durante as interações realizadas pelo jogador, permitindo que ele perceba claramente o progresso da limpeza do animal. Durante esse processo, ao aplicar sabão deverá surgir espuma sobre o animal, ao enxaguar deverão aparecer efeitos de água escorrendo e, conforme a sujeira for removida, o animal deverá demonstrar reações positivas, como expressões de satisfação ou mudanças em sua aparência.
 
-<p align="justify">
 &ensp;Os requisitos não operam de forma isolada, mas de maneira articulada. A definição das espécies estabelece o escopo temático; a mecânica de cuidado estrutura a jogabilidade; os cenários organizam as ações; o sistema de moedas promove progressão; a indicação visual aprimora a interação; e o momento de conscientização consolida o propósito social do projeto. O desenvolvimento será realizado de forma incremental nas sprints iniciais, priorizando a implementação da mecânica central e das interações básicas, e posteriormente incorporando o sistema de recompensas e o evento educativo, garantindo viabilidade técnica e coerência na evolução do jogo.
-</p>
 
 <h2 align="center" id="13-público-alvo-do-projeto">1.3. Público-alvo do Projeto</h2>
 
-<p align="justify">
 &ensp;O Público alvo do nosso projeto é qualquer um que tenha interesse em aprender e dar uma qualidade de vida melhor ao seu Pet. Apesar de ser acessível para qualquer um, é previsto que a Geração Z tenha mais contato com o jogo pela seu apreço com jogos e pela crescente onda de pais de pets entre essa geração.
-</p>
 
 
 <h1 align="center" id="2-visão-geral-do-jogo">2. Visão Geral do Jogo</h1>
 
 <h2 align="center" id="21-objetivos-do-jogo">2.1. Objetivos do Jogo</h2>
 
-<p align="justify">
 &ensp;O jogo tem como objetivo central promover o cuidado e o bem-estar dos animais, em especial dos cachorros, dentro do projeto Cobasi Cuida. A experiência é organizada em fases progressivas, cada uma apresentando novos desafios e diferentes perfis de cães, variando em raça, porte, idade e peso.
 O jogador assume o papel de cuidador responsável e, para avançar no jogo, precisa realizar uma série de atividades interativas por meio de minigames. Esses minigames simulam tarefas de cuidado, como encher o pote de ração, oferecer brinquedos, dar banho ou proporcionar momentos de lazer. Cada ação realizada contribui para o aumento da barra de felicidade, indicador visual que demonstra o nível de satisfação e bem-estar do animal.
-</p>
 
-<p align="justify">
 &ensp;O progresso do jogador é medido pela sua capacidade de manter os cães felizes e saudáveis. A cada animal bem cuidado, o jogador recebe moedas virtuais como recompensa. Essas moedas desempenham um papel estratégico, pois permitem Comprar rações e equipamentos melhores, que facilitam os cuidados nas fases seguintes. Adquirir acessórios e itens de personalização, que tornam a experiência mais divertida e permitem enfeitar os animais, desbloquear novos conteúdos e desafios, ampliando a diversidade de cães e atividades disponíveis.Assim, os objetivos do jogo se dividem em duas partes principais: o primeiro é garantir garantir o cuidado adequado dos animais, mantendo a barra de felicidade sempre elevado e o secundario é acumular moedas para investir em melhorias, acessórios e desbloqueios, tornando a jornada mais rica e recompensadora.
-</p>
 
 
 <h2 align="center" id="22-características-do-jogo">2.2. Características do Jogo</h2>
 
 ### 2.2.1. Gênero do Jogo 
 
-<p align="justify">
 &ensp;O gênero do jogo é simulação, pois o jogador assume o papel de um voluntário do projeto Cobasi Cuida, responsável por cuidar de diferentes cães em situações variadas. A proposta é reproduzir, de forma lúdica e interativa, a experiência de oferecer atenção, carinho e cuidados básicos aos animais, aproximando o jogador da realidade de quem atua em abrigos ou projetos de adoção.
 Dentro do gênero de simulação, o jogo incorpora elementos de progressão e personalização, permitindo que o jogador evolua conforme realiza os cuidados e acumula moedas virtuais. Essa mecânica aproxima o jogo de características de RPG leve, já que há evolução de recursos, desbloqueio de fases e aquisição de itens que melhoram a experiência.
 Além disso, o jogo pode ser classificado como casual, pois apresenta minigames acessíveis e intuitivos, voltados para públicos diversos, sem exigir domínio de controles complexos ou estratégias avançadas. O foco está na diversão, na sensação de responsabilidade e na recompensa emocional de ver os animais felizes.
-</p>
 
 ### 2.2.2. Plataforma do Jogo 
 
-<p align="justify">
 &ensp;O jogo será disponibilizado para desktop, com execução diretamente em navegadores web modernos, como Google Chrome, Microsoft Edge, Safari e Opera. Essa escolha de plataforma garante maior acessibilidade e praticidade, já que não será necessário instalar programas adicionais ou realizar downloads complexos.
 A opção por navegadores permite que o jogo seja multiplataforma, funcionando em diferentes sistemas operacionais (Windows, macOS e Linux), desde que o usuário tenha acesso a um navegador compatível. Além disso, essa abordagem facilita a atualização contínua do jogo, pois qualquer melhoria ou correção pode ser aplicada diretamente no servidor, sem exigir que o jogador baixe novas versões.
 Outro ponto importante é que a execução em navegadores torna o jogo mais inclusivo e acessível, permitindo que seja jogado em computadores com diferentes níveis de desempenho, sem exigir configurações avançadas de hardware.
-</p>
 
 
 ### 2.2.3. Número de jogadores 
-<p align="justify">
 &ensp;O jogo foi projetado para apenas um jogador, com o objetivo de fortalecer o vínculo individual entre o cuidador e os animais. Essa escolha garante maior senso de responsabilidade, já que cada decisão e ação realizada impacta diretamente no bem-estar dos cães.
 A experiência single-player também permite que o jogador se envolva de forma mais imersiva e pessoal, sem distrações externas, reforçando a proposta central do projeto Cobasi Cuida: estimular a empatia, o cuidado e a dedicação aos animais.
-</p>
 
 ### 2.2.4. Títulos semelhantes e inspirações
 
@@ -636,7 +530,6 @@ A proposta é “rodar um abrigo” com tarefas operacionais e cuidado dos anima
 
 ### 2.2.5 Tempo estimado de jogo 
 
-O tempo estimado de gameplay para o Cobasi Shelter, considerando a destreza com video games do público alvo, varia entre quatro a dez minutos (4 a 10 min). Sabendo disso, é bem provável que, com alterações e melhorias futuras, a complexidade do jogo aumente e, portanto, seu tempo de gameplay aumente também.
 
 <h1 align="center" id="3-game-design">3. Game Design</h1>
 
@@ -660,21 +553,13 @@ O tempo estimado de gameplay para o Cobasi Shelter, considerando a destreza com 
 
 ### 3.2.3. Diversidade e Representatividade dos Personagens
 
-<p align="justify">
 &ensp;A diversidade e a inclusão são elementos cada vez mais essenciais na indústria de jogos digitais, pois garantem representatividade, acessibilidade e identificação para diferentes perfis de jogadores. No contexto dos games, esses princípios envolvem a construção respeitosa de personagens, narrativas e mecânicas que contemplem múltiplas realidades sociais, culturais e individuais.
-</p>
 
-<p align="justify">
 &ensp;Com base nessa compreensão, a diversidade e a inclusão foram incorporadas como pilares estratégicos no desenvolvimento deste projeto. A construção das personagens foi fundamentada em dados da realidade brasileira e alinhada ao público-alvo do jogo. A escolha de uma mulher jovem como protagonista baseia-se em pesquisas como o levantamento GoldeN/Opinion Box, que aponta maior engajamento feminino na adoção responsável e na busca por animais em ONGs e abrigos, além da forte participação da Geração Z nesse movimento. Essa decisão fortalece a identificação entre jogador e protagonista, promovendo pertencimento e coerência com o perfil dos consumidores da marca Cobasi.
-</p>
 
-<p align="justify">
 &ensp;Além disso, o personagem pet care foi desenvolvido com pele escura, reforçando a representatividade racial e ampliando a diversidade étnica dentro do universo do jogo. O personagem também utiliza o colar de identificação do autismo, símbolo associado à conscientização sobre o Transtorno do Espectro Autista (TEA), promovendo visibilidade à neurodiversidade de maneira respeitosa e não estereotipada. A proposta dialoga com princípios de equidade ao representar grupos historicamente invisibilizados de forma ativa e protagonista, indo além de uma diversidade apenas estética.
-</p>
 
-<p align="justify">
 &ensp;Dessa forma, o impacto esperado é duplo: fortalecer o vínculo emocional com o público-alvo e posicionar o jogo como uma experiência transformadora que reflete a pluralidade da sociedade brasileira e os valores de responsabilidade, cuidado e inclusão associados à marca.
-</p>
 
 
 <h2 align="center" id="33-mundo-do-jogo">3.3. Mundo do jogo</h2>
@@ -695,9 +580,7 @@ O tempo estimado de gameplay para o Cobasi Shelter, considerando a destreza com 
 
 ### 3.3.4. Concept Art 
 
-<p align="justify">
 &ensp;A concept art é uma etapa do desenvolvimento de jogos voltada à definição visual de personagens, cenários e elementos interativos, servindo como guia para a direção artística do projeto. Segundo Schell (2019), a visualização prévia contribui para alinhar a proposta estética entre os membros da equipe. Assim, as concept arts deste jogo foram elaboradas para evidenciar seus principais componentes visuais.
-</p>
 
 <br>
 <div align="center">
@@ -744,9 +627,7 @@ O tempo estimado de gameplay para o Cobasi Shelter, considerando a destreza com 
 <br>
 
 ### 3.3.5. Trilha Sonora
-<p align="justify">
 &ensp; A trilha sonora do jogo é composta por faixas originais criadas exclusivamente para o projeto, garantindo uma identidade sonora autêntica e perfeitamente alinhada à atmosfera do jogo. O foco atual da composição é estabelecer o tom correto nos primeiros contatos do jogador com a obra, criando imersão desde o menu inicial e ajudando a contar a história durante a introdução narrativa. As faixas presentes até o momento estão organizadas na tabela abaixo:
-</p>
 
 <div align="center">
 
@@ -762,13 +643,9 @@ O tempo estimado de gameplay para o Cobasi Shelter, considerando a destreza com 
 
 <h2 align="center" id="35-gameflow">3.5. Gameflow</h2>
 
-<p align="justify">
 &ensp;No desenvolvimento de jogos, o diagrama de cenas é uma ferramenta visual utilizada no GDD (Game Design Document) para organizar e representar a estrutura do jogo. Ele mostra, de forma esquemática, todas as telas ou cenas existentes — como menu inicial, tutorial, fases, configurações, pausa e game over (e como elas se conectam entre si).
-</p>
 
-<p align="justify">
 &ensp;Esse diagrama ajuda a equipe a entender o fluxo de navegação do jogador, indicando quais ações levam de uma cena para outra. Além disso, facilita o planejamento da programação, da interface e da experidência do usuário, evitando erros de estrutura e retrabalho. Assim, o diagrama de cenas funciona como um “mapa” do jogo, tornando o projeto mais claro, organizado e eficiente durante o desenvolvimento.
-</p>
 
 <div align="center">
   <p>Figura 9: Diagrama de Cenas</p>
@@ -780,85 +657,49 @@ O tempo estimado de gameplay para o Cobasi Shelter, considerando a destreza com 
 
 <h2 align="center" id="36-regras-do-jogo">3.6 REGRAS DO JOGO</h2>
 
-<p align="justify">
 &ensp;O jogo é composto por diferentes minigames que simulam atividades de cuidado com um animal doméstico. Em cada minigame, o jogador deve executar ações específicas para cumprir os objetivos propostos. Ao concluir cada atividade com sucesso, o jogador recebe CobasiCoins, que funcionam como indicador de progresso e incentivam a continuidade da experiência.
-</p>
 
-<p align="justify">
 &ensp;As regras são apresentadas gradualmente por meio de pop-ups informativos exibidos ao acessar cada cena pela primeira vez, permitindo a compreensão adequada das mecânicas e dos objetivos de cada atividade.
-</p>
 
 ### 3.6.1 Minigame de Banho
 
-<p align="justify">
 &ensp;No minigame de banho, o jogador deve realizar a limpeza completa do cachorro utilizando três ferramentas: sabão, chuveiro e toalha. O processo deve seguir uma ordem sequencial obrigatória.
-</p>
 
-<p align="justify">
 &ensp;Inicialmente, o jogador deve aplicar o sabão sobre o animal, gerando bolhas que representam a remoção da sujeira. Após atingir o limite de aplicação do sabão, o sistema apresenta um aviso indicando a necessidade de utilização do chuveiro.
-</p>
 
-<p align="justify">
 &ensp;Em seguida, o jogador deve utilizar o chuveiro para remover completamente o sabão por meio de uma animação de água. Após a remoção total das bolhas, o cachorro permanece molhado, sendo necessário utilizar a toalha para secá-lo.
-</p>
 
-<p align="justify">
 &ensp;O sistema impede a utilização das ferramentas fora da ordem estabelecida, apresentando mensagens de orientação ao jogador. O minigame é concluído apenas quando o animal se encontra totalmente limpo e seco. Ao final, o jogador recebe 20 CobasiCoins e ocorre a atualização da barra de felicidade.
-</p>
 
 ### 3.6.2 Minigame de Alimentação
 
-<p align="justify">
 &ensp;No minigame de alimentação, o jogador deve controlar o cachorro com o objetivo de coletar alimentos adequados e evitar itens prejudiciais. Durante a execução, rações são lançadas continuamente a partir da parte superior da tela.
-</p>
 
-<p align="justify">
 &ensp;As rações são classificadas em dois tipos. A ração Standard concede 10 pontos ao ser coletada. A ração Super Premium concede 15 pontos e possibilita a recuperação de uma vida, caso o jogador tenha perdido ao menos uma durante a partida.
-</p>
 
-<p align="justify">
 &ensp;Itens prejudiciais, como chocolates, também aparecem na tela e devem ser evitados. Cada coleta de um item prejudicial resulta na perda de uma vida. O jogador inicia o minigame com três vidas e, ao perder todas, a atividade é reiniciada.
-</p>
 
-<p align="justify">
 &ensp;O objetivo consiste em atingir a pontuação mínima de 150 pontos para concluir o minigame.
-</p>
 
-<p align="justify">
 &ensp;No sistema de compra, a ração Standard possui o custo de 15 CobasiCoins, enquanto a ração Super Premium possui o custo de 20 CobasiCoins.
-</p>
 
-<p align="justify">
 &ensp;Ao alcançar a pontuação necessária, o jogador retorna à cena de alimentação, ocorre a atualização da barra correspondente e as moedas são ajustadas conforme a compra realizada.
-</p>
 
 ### 3.6.3 Minigame Veterinário
 
-<p align="justify">
 &ensp;No minigame veterinário, o jogador deve remover as pulgas presentes no animal utilizando uma pinça. A interação consiste em capturar as pulgas e transportá-las até uma bandeja específica.
-</p>
 
-<p align="justify">
 &ensp;A captura ocorre por meio da manutenção do clique do mouse, sendo que a pulga permanece presa apenas enquanto o botão estiver pressionado. Caso o jogador solte o botão antes de posicionar a pulga na bandeja, ela retorna à sua posição inicial.
-</p>
 
-<p align="justify">
 &ensp;O objetivo do minigame é coletar um total de 12 pulgas. Ao atingir esse valor, a atividade é encerrada, ocorre a atualização da barra de saúde e o jogador retorna à cena principal.
-</p>
 
 ### 3.6.4 Minigame de Lazer
 
-<p align="justify">
 &ensp;No minigame de lazer, o jogador controla o cachorro em um cenário com movimentação automática, devendo realizar saltos para evitar obstáculos e coletar itens distribuídos ao longo do percurso.
-</p>
 
-<p align="justify">
 &ensp;A colisão com obstáculos resulta na reinicialização do minigame. Os itens coletáveis apresentam efeitos distintos, podendo aumentar ou reduzir a pontuação do jogador.
-</p>
 
-<p align="justify">
 &ensp;Ao final da fase, o jogador deve coletar um item especial que encerra o minigame. O desempenho obtido influencia diretamente o preenchimento da barra de felicidade, sendo total quando a pontuação é igual ou superior a cinco pontos, e parcial quando inferior a esse valor.
-</p>
 
 ---
 
@@ -866,325 +707,207 @@ O tempo estimado de gameplay para o Cobasi Shelter, considerando a destreza com 
 
 ### 3.7.1 Descrição Geral das Mecânicas
 
-<p align="justify">
 &ensp;As mecânicas do jogo definem as formas de interação entre o jogador e os elementos presentes em cada minigame. Essas interações ocorrem por meio do uso do mouse, para manipulação de objetos, e do teclado, para controle de movimentação.
-</p>
 
-<p align="justify">
 &ensp;O sistema apresenta feedback visual contínuo, incluindo animações, alterações de escala e exibição de elementos informativos, com o objetivo de orientar o jogador durante a execução das atividades.
-</p>
 
-<p align="justify">
 &ensp;O progresso do jogador é apresentado por meio de um HUD (Heads-Up Display), que exibe as CobasiCoins e as barras de bem-estar do animal, compreendendo os indicadores de higiene, alimentação, saúde e felicidade.
-</p>
 
 ### 3.7.2 Mecânicas do Minigame de Banho
 
-<p align="justify">
 &ensp;No minigame de banho, o jogador interage exclusivamente com o mouse para selecionar e movimentar as ferramentas. O clique esquerdo permite selecionar e manter ativa a ferramenta, enquanto o movimento do cursor possibilita sua aplicação sobre o animal.
-</p>
 
-<p align="justify">
 &ensp;A mecânica consiste na aplicação sequencial das ferramentas. O sabão gera bolhas ao ser utilizado, o chuveiro remove essas bolhas por meio de uma animação de água e a toalha realiza a secagem final do animal. O sistema controla a ordem de uso, impedindo ações incorretas e garantindo a execução adequada do processo.
-</p>
 
 ### 3.7.3 Mecânicas do Minigame de Alimentação
 
-<p align="justify">
 &ensp;No minigame de alimentação, o controle do personagem é realizado por meio do teclado, utilizando as teclas direcionais para deslocamento horizontal.
-</p>
 
-<p align="justify">
 &ensp;A mecânica baseia-se na coleta de itens que caem pela tela. Existem dois tipos de ração disponíveis: a ração Standard, que adiciona 10 pontos à pontuação do jogador, e a ração Super Premium, que adiciona 15 pontos e pode restaurar uma vida perdida.
-</p>
 
-<p align="justify">
 &ensp;Itens prejudiciais, como chocolates, também estão presentes e devem ser evitados, pois causam a perda de uma vida ao serem coletados.
-</p>
 
-<p align="justify">
 &ensp;O jogador inicia a partida com três vidas, sendo possível recuperar esse recurso por meio da coleta de rações específicas. A dinâmica do minigame exige movimentação constante e tomada de decisão rápida.
-</p>
 
 ### 3.7.4 Mecânicas do Minigame Veterinário
 
-<p align="justify">
 &ensp;No minigame veterinário, a interação ocorre por meio do mouse, permitindo ao jogador manipular a pinça para capturar as pulgas. A movimentação da ferramenta acompanha o cursor, e a captura depende da manutenção do clique durante o deslocamento.
-</p>
 
-<p align="justify">
 &ensp;A mecânica exige precisão no posicionamento e controle contínuo, uma vez que a liberação antecipada da pulga resulta em seu retorno à posição inicial.
-</p>
 
 ### 3.7.5 Mecânicas do Minigame de Lazer
 
-<p align="justify">
 &ensp;No minigame de lazer, o jogador utiliza o teclado para realizar saltos enquanto o personagem se desloca automaticamente pelo cenário.
-</p>
 
-<p align="justify">
 &ensp;A mecânica envolve tempo de reação para evitar obstáculos e coletar itens. Elementos específicos, como a cama elástica, permitem a execução de saltos com maior altura, ampliando as possibilidades de interação.
-</p>
 
 ### 3.7.6 Progressão do Jogo
 
-<p align="justify">
 &ensp;A progressão do jogo é baseada no preenchimento das barras de bem-estar do animal, correspondentes aos aspectos de higiene, alimentação, saúde e felicidade.
-</p>
 
-<p align="justify">
 &ensp;Cada minigame contribui diretamente para o preenchimento de uma dessas barras. Quando todas as barras são completamente preenchidas, um novo animal é disponibilizado ao jogador, reiniciando o ciclo de jogo.
-</p>
 
-<p align="justify">
 &ensp;As mecânicas permanecem inalteradas no novo ciclo, garantindo a continuidade da experiência.
-</p>
 
 <h2 align="center" id="38-implementação-matemática-de-animaçãomovimento">3.8. Implementação Matemática de Animação/Movimento</h2>
 
 ### 3.8.1 Parâmetros de entrada
 
-<p align="justify">
 &ensp;Nesta seção é apresentada a modelagem matemática responsável pela animação de deslocamento do personagem após a interação com a cama elástica localizada na área de lazer do jogo.
-</p>
 
-<p align="justify">
 &ensp;É importante destacar que a cama elástica não constitui a mecânica principal do minigame. Ela atua exclusivamente como um evento de conclusão: após cumprir os objetivos propostos, o jogador aciona esse objeto e o personagem é impulsionado para outra posição do cenário. Essa animação serve como um feedback visual claro de término da atividade e transição para o próximo estado do jogo.
-</p>
 
-<p align="justify">
 &ensp;O elemento gráfico modelado é o sprite do personagem (cachorro). A posição inicial corresponde exatamente às coordenadas ocupadas pelo personagem no instante do contato com a cama elástica.
-</p>
 
-<p align="justify">
 &ensp;No código, essas posições são obtidas diretamente por:
-</p>
 <p align="center">x<sub>0</sub> = cachorro.x  </p>
 <p align="center">y<sub>0</sub> = cachorro.y </p>
 
-<p align="justify">
 &ensp;Portanto, a posição inicial é dada por:
-</p>
 
 <p align="center">(x<sub>0</sub>  pixels, y<sub>0</sub> pixels)</p>
 
-<p align="justify">
 &ensp;A posição final não é fixa na tela, mas sim definida como um deslocamento relativo, garantindo que a animação funcione corretamente independentemente da posição em que o jogador finalize o minigame.
-</p>
 
-<p align="justify">
 &ensp;Define-se:
-</p>
 <p align="center">x<sub>f</sub> = x<sub>0</sub> + 150 pixels</p>
 <p align="center">y<sub>f</sub> = y<sub>0</sub> − 100 pixels  </p>
 
-<p align="justify">
 &ensp;Assim, a posição final desejada é:
-</p>
 <p align="center">(x<sub>0</sub> + 150 pixels, y<sub>0</sub> − 100 pixels)</p>
 
-<p align="justify">
 &ensp;O tempo total da animação é especificado explicitamente por:
-</p>
 <p align="center">T = 0,3 segundos</p>
 
-<p align="justify">
 &ensp;Esses parâmetros determinam completamente o movimento e permitem calcular todas as grandezas cinemáticas envolvidas.
-</p>
 
 ---
 
 ### 3.8.2 Definição do tempo total da animação
 
-<p align="justify">
 &ensp;O tempo total da animação foi definido de forma explícita, e não por contagem de quadros. Essa escolha torna o movimento independente da taxa de atualização do jogo, garantindo consistência entre diferentes dispositivos.
-</p>
 
-<p align="justify">
 &ensp;O jogo executa aproximadamente a 60 quadros por segundo (FPS), porém a engine Phaser fornece diretamente o intervalo de tempo entre frames por meio da variável delta, em milissegundos.
-</p>
 
-<p align="justify">
 &ensp;Assim, o tempo decorrido é acumulado segundo:
-</p>
 <p align="center">t = t + delta / 1000</p>
 
-<p align="justify">
 &ensp;onde t é o tempo em segundos.
-</p>
 
-<p align="justify">
 &ensp;A animação ocorre enquanto:
-</p>
 <p align="center">0 ≤ t ≤ T</p>
 
 
-<p align="justify">
 &ensp;Quando t atinge o valor T, o movimento matemático é interrompido e o personagem retorna ao controle físico normal.
-</p>
 
-<p align="justify">
 &ensp;Segundo a formulação clássica da cinemática apresentada por Halliday, Resnick e Walker (Fundamentos de Física — Mecânica), a descrição completa de um movimento requer a definição do intervalo de tempo e das condições iniciais, a partir dos quais as equações horárias determinam posição e velocidade em qualquer instante.
-</p>
 
 ---
 
 ### 3.8.3 Modelagem matemática
 
-<p align="justify">
 &ensp;O movimento foi decomposto em duas componentes independentes, conforme o princípio de independência dos movimentos em eixos ortogonais descrito na mecânica clássica.
-</p>
 
 • No eixo x ocorre Movimento Uniforme (MU), com velocidade constante 
 • No eixo y ocorre Movimento Uniformemente Variado (MUV), com velocidade inicial nula 
 
-<p align="justify">
 &ensp;A superposição desses movimentos gera uma trajetória parabólica, típica de movimentos sob aceleração constante em apenas uma direção.
-</p>
 
-<p align="justify">
 &ensp;Essa abordagem permite controlar completamente a trajetória sem utilizar o sistema de física da engine.
-</p>
 
 ---
 
 #### 3.8.3.1 Movimentação no eixo x (MU)
 
-<p align="justify">
 &ensp;No eixo horizontal assume-se aceleração nula, caracterizando movimento uniforme.
-</p>
 
-<p align="justify">
 &ensp;De acordo com a cinemática clássica, a posição em um MU é dada por:
-</p>
 <p align="center">x(t) = x<sub>0</sub> + vx · t</p>
 
-<p align="justify">
 &ensp;Para que o personagem percorra exatamente a distância desejada no tempo total T, calcula-se a velocidade constante necessária:
-</p>
 <p align="center">v<sub>x</sub> = (x<sub>f</sub> − x<sub>0</sub>) / T</p>
 
-<p align="justify">
 &ensp;onde:
-</p>
 <p align="center">x<sub>f</sub> − x<sub>0</sub> = deslocamento horizontal total </p>
 <p align="center">T = duração da animação</p>
 
-<p align="justify">
 &ensp;Como a aceleração é zero, a velocidade permanece constante durante todo o movimento:
-</p>
 <p align="center">v<sub>x</sub> = v<sub>0</sub>x</p>
 
 ---
 #### 3.8.3.2 Movimentação no eixo y (MUV)
 
-<p align="justify">
 &ensp;No eixo vertical o personagem parte do repouso:
-</p>
 
 <p align="center">v<sub>0</sub>y = 0</p>
 
-<p align="justify">
 &ensp;O movimento ocorre sob aceleração constante ay, caracterizando MUV.
-</p>
 
-<p align="justify">
 &ensp;Segundo as equações da cinemática (Halliday et al.), a posição em MUV é:
-</p>
 
 <p align="center">y(t) = y<sub>0</sub> + v<sub>0</sub>y · t + (a<sub>y</sub> · t²) / 2</p>
 
-<p align="justify">
 &ensp;Como v<sub>0</sub>y = 0:
-</p>
 
 <p align="center">y(t) = y<sub>0</sub> + (a<sub>y</sub> · t²) / 2</p>
 
-<p align="justify">
 &ensp;Para que o personagem alcance a posição final yf exatamente no instante T, substitui-se t = T:
-</p>
 
 <p align="center">y<sub>f</sub> = y<sub>0</sub> + (a<sub>y</sub> · T²) / 2</p>
 
-<p align="justify">
 &ensp;Isolando a<sub>y</sub>:
-</p>
 <p align="center">a<sub>y</sub> = 2 · (y<sub>F</sub> − y<sub>0</sub>) / T²</p>
 
-<p align="justify">
 &ensp;A velocidade vertical ao longo do tempo é:
-</p>
 <p align="center">v<sub>y</sub>(t) = a<sub>y</sub> · t</p>
 
 ---
 
 ### 3.8.4 Exemplo Numérico
 
-<p align="justify">
 &ensp;Com o objetivo de validar a modelagem matemática apresentada anteriormente e demonstrar sua aplicação prática dentro do jogo, constrói-se a seguir um exemplo numérico completo. Essa etapa é fundamental, pois permite verificar se as equações definidas são capazes de reproduzir corretamente o comportamento esperado da animação ao longo do tempo.
-</p>
 
-<p align="justify">
 &ensp;Para isso, considera-se uma situação representativa do minigame, em que o personagem interage com a cama elástica e é impulsionado a partir de uma posição inicial conhecida até uma posição final previamente definida. A partir desses valores, calcula-se cada uma das grandezas envolvidas no movimento, tanto no eixo horizontal (MU) quanto no eixo vertical (MUV).
-</p>
 
-<p align="justify">
 &ensp;Sejam:
-</p>
 <p align="center">x<sub>0</sub> = 200 pixels  </p>
 <p align="center">y<sub>0</sub> = 400 pixels  </p>
 
-<p align="justify">
 &ensp;Assim, definem-se as posições finais como:
-</p>
 <p align="center">x<sub>f</sub> = 350 pixels </p>
 <p align="center">y<sub>f</sub> = 300 pixels  </p>
 
-<p align="justify">
 &ensp;O tempo total da animação é dado por:
-</p>
 <p align="center">T = 0,3 s </p>
 
 ---
 
-<p align="justify">
 &ensp;Inicialmente, analisa-se o movimento no eixo x, que ocorre com velocidade constante (MU).
-</p>
 
-<p align="justify">
 &ensp;A velocidade horizontal é determinada por:
-</p>
 <p align="center">v<sub>x</sub> = (x<sub>f</sub> − x<sub>0</sub>) / T  </p>
 
 <p align="center">v<sub>x</sub> = (350 − 200) / 0,3  </p>
 <p align="center">v<sub>x</sub> = 500 pixels/s  </p>
 ---
 
-<p align="justify">
 &ensp;Em seguida, analisa-se o movimento no eixo y, caracterizado como MUV com velocidade inicial nula.
-</p>
 
-<p align="justify">
 &ensp;A aceleração vertical é calculada por:
-</p>
 <p align="center">a<sub>y</sub> = 2 · (y<sub>f</sub> − y<sub>0</sub>) / T²  </p>
 
 <p align="center">a<sub>y</sub> = 2 · (300 − 400) / (0,3²)  </p>
 <p align="center">a<sub>y</sub> ≈ −2222,22 pixels/s²  </p>
 
 ---
-<p align="justify">
 &ensp;Com a aceleração determinada, calcula-se a velocidade vertical ao final do movimento:
-</p>
 <p align="center">v<sub>y</sub>(T) = a<sub>y</sub> · T  </p>
 
 <p align="center">v<sub>y</sub>(T) ≈ −666,67 pixels/s  </p>
 
 ---
 
-<p align="justify">
 &ensp;Por fim, realiza-se a verificação da posição final no eixo y, substituindo os valores na equação horária:
-</p>
 <p align="center">y(T) = y<sub>0</sub> + (a<sub>y</sub> · T²) / 2  </p>
 
 <p align="center">y(T) = 400 + (−2222,22 · 0,3²) / 2  </p>
@@ -1194,14 +917,10 @@ O tempo estimado de gameplay para o Cobasi Shelter, considerando a destreza com 
 ---
 
 
-<p align="justify">
 &ensp;Dessa forma, confirma-se que a modelagem matemática está consistente, uma vez que a posição final calculada coincide com a posição previamente definida. Assim, a trajetória do personagem durante a animação é corretamente descrita pelas equações estabelecidas, validando a implementação proposta.
-</p>
 
 
-<p align="justify">
 &ensp;A posição final obtida é:
-</p>
 <p align="center">(350 pixels, 300 pixels) </p>
 
 
@@ -1211,9 +930,7 @@ O tempo estimado de gameplay para o Cobasi Shelter, considerando a destreza com 
 ### 3.8.5 Implementação no código
 
 
-<p align="justify">
 &ensp;A movimentação é controlada manualmente por equações dentro da função update(), sem utilização de funções prontas de física da engine.
-</p>
 
 
 Definição dos parâmetros na função create()
@@ -1299,29 +1016,17 @@ update(time, delta) {
 }
 ```
 
-<p align="justify">
 &ensp;A implementação foi realizada sem utilizar funções prontas de movimentação da engine, empregando apenas operações aritméticas elementares, conforme exigido.
-</p>
 
-<p align="justify">
 &ensp;Inicialmente, ao detectar a interação com a cama elástica, são calculados os parâmetros da trajetória e desativado temporariamente o movimento físico padrão do personagem.
-</p>
 
-<p align="justify">
 &ensp;Durante a execução da função update(), a posição é recalculada a cada frame utilizando diretamente as equações deduzidas anteriormente.
-</p>
 
-<p align="justify">
 &ensp;Os comandos console.log() imprimem posição, velocidade e aceleração, permitindo validar experimentalmente os resultados da modelagem matemática.
-</p>
 
-<p align="justify">
 &ensp;Quando t atinge T, o movimento é encerrado e o personagem retorna ao comportamento normal, podendo inclusive receber a velocidade vertical final calculada para manter a continuidade física.
-</p>
 
-<p align="justify">
 &ensp;Os comandos console.log() permitem validar experimentalmente os valores calculados pela modelagem matemática, conforme exigido.
-</p>
 
 
 ---
@@ -1329,9 +1034,7 @@ update(time, delta) {
 
 ### 3.8.6 Fonte teórica
 
-<p align="justify">
 &ensp;A modelagem baseia-se nas equações fundamentais da cinemática clássica apresentadas em:
-</p>
 
 HALLIDAY, D.; RESNICK, R.; WALKER, J. Fundamentos de Física: Mecânica. Rio de Janeiro: LTC.
 
@@ -1341,34 +1044,22 @@ HALLIDAY, D.; RESNICK, R.; WALKER, J. Fundamentos de Física: Mecânica. Rio de 
 
 <h2 align="center" id="41-desenvolvimento-preliminar-do-jogo">4.1. Desenvolvimento preliminar do jogo</h2>
  
-<p align="justify">
  &ensp;Durante a primeira fase de desenvolvimento, foram estabelecidas as prioridades do projeto com base nos requisitos funcionais definidos para o jogo, principalmente aqueles relacionados às mecânicas de cuidado com os animais (Requisitos 3 e 4). A equipe realizou sessões de brainstorming para consolidar a ideia central do jogo, definir como o jogador interagiria com os animais e estruturar o escopo do sistema. A partir dessas definições, foi feita a organização inicial do software, com a implementação das primeiras funcionalidades e a distribuição de funções entre os membros da equipe, estabelecendo uma estrutura promissora para as próximas sprints.
-</p>
 
-<p align="justify">
 &ensp;No desenvolvimento da narrativa, optou-se por um personagem principal que representa uma pessoa comum, aproximando o jogador da realidade proposta pelo jogo. A história foi estruturada em torno do resgate e cuidado de animais, alinhando-se diretamente à proposta educativa do projeto.
-</p>
 
-<p align="justify">
 &ensp;As mecânicas centrais foram definidas com base na interação do jogador com os animais, envolvendo ações como alimentar, limpar e cuidar, essenciais para a progressão no jogo.
 &ensp;Essa definição atende aos requisitos RF7 e RF8, que estabelecem o cuidado com os animais como mecânica principal, além de se relacionar com o requisito RF3, referente à introdução narrativa por meio da cutscene inicial.
-</p>
 
 **Implementação da Estrutura Inicial do Sistema**
 
-<p align="justify">
 &ensp;Nesta etapa, foi desenvolvida a estrutura técnica inicial do jogo, incluindo a implementação da tela inicial e do sistema básico de navegação entre cenas.
 &ensp;A tela inicial foi construída conforme o requisito RF2, contendo os botões “Jogar”, “Tutorial”, “Sair” e o ícone de configurações (engrenagem). Também foi implementado um sistema de transição entre telas, permitindo a navegação básica no jogo.
-</p>
 
-<p align="justify">
 &ensp;Além disso, os botões passaram a apresentar feedback visual ao serem selecionados ou ao passar o cursor do mouse, facilitando a identificação de elementos interativos.
 &ensp;Essa funcionalidade atende ao requisito não funcional RNF1, relacionado à indicação visual de áreas interativas, além de contribuir para RNF3, que trata da usabilidade da interface.
-</p>
 
-<p align="justify">
 &ensp;Inicialmente, o menu de configurações foi implementado de forma básica, permitindo acesso a uma tela dedicada, com previsão de expansão de suas funcionalidades nas próximas etapas.
-</p>
 
 <div align="center">
   <p>Figura 10: Tela Inicial</p>
@@ -1378,61 +1069,39 @@ HALLIDAY, D.; RESNICK, R.; WALKER, J. Fundamentos de Física: Mecânica. Rio de 
 
 **Dificuldades Enfrentadas**
 
-<p align="justify">
 &ensp;Durante esta primeira sprint, a equipe enfrentou desafios relacionados principalmente à criação das artes em pixel art, à utilização do GitLab para controle de versões e à organização das tarefas em grupo.
-</p>
 
-<p align="justify">
 &ensp;Também houve um período de adaptação à metodologia Scrum, o que impactou inicialmente o fluxo de trabalho da equipe.
 Apesar dessas dificuldades, foi possível entregar uma versão inicial funcional do sistema, que serviu como base estruturada para o avanço do projeto nas etapas seguintes.
-</p>
 
 <h2 align="center" id="42-desenvolvimento-básico-do-jogo">4.2. Desenvolvimento básico do jogo</h2>
 
-<p align="justify">
 &ensp;Na segunda sprint do projeto, a equipe concentrou esforços na estruturação das fases do jogo, definição das cenas e consolidação do storytelling, com o objetivo de organizar a progressão da experiência do jogador de forma coerente com a proposta educativa.
-</p>
 
-<p align="justify">
 &ensp;Essa etapa foi fundamental para estabelecer a base narrativa e estrutural que orienta as interações e os minigames, garantindo alinhamento com os requisitos definidos na Seção 1.2.
-</p>
 
 **Estruturação da Progressão e Interface Inicial**
 
-<p align="justify">
 &ensp;Durante esta fase, foi implementada a primeira versão da HUD (Head-Up Display), composta por botões interativos que direcionam o jogador para diferentes áreas de cuidado do animal.
-</p>
 
-<p align="justify">
 &ensp;Essa estrutura permite que o jogador navegue entre os ambientes do jogo, representando as diferentes necessidades do cachorro, como higiene, alimentação e lazer.
-</p>
 
-<p align="justify">
 &ensp;Essa implementação atende aos requisitos RF5 e RF6, relacionados à exibição dos status do animal e à navegação entre áreas interativas, além de reforçar o requisito RF7, que define o cuidado como mecânica central do jogo.
-</p>
 
 **Implementação do Minigame de Banho**
 
-<p align="justify">
 &ensp;O principal foco funcional desta sprint foi o desenvolvimento do minigame de higiene, localizado na área de banho.
-</p>
 
-<p align="justify">
 &ensp;Nesse minigame, o cachorro é inicialmente apresentado em estado sujo, exigindo a ação do jogador para realizar sua limpeza. A mecânica consiste na interação com elementos como sabão, chuveiro e toalha, que devem ser utilizados em sequência para completar o processo.
-</p>
 
 O fluxo da atividade envolve:
 * Aplicação do sabão;
 * Enxágue do animal;
 * Finalização com a exibição do estado limpo.
 
-<p align="justify">
 &ensp;Essa lógica reforça a progressão do jogador e a compreensão das etapas necessárias para o cuidado adequado do animal.
-</p>
 
-<p align="justify">
 &ensp;Essa funcionalidade atende aos requisitos RF10, RF12, RF13 e RF14, relacionados à área de banho e às mecânicas de limpeza.
-</p>
 
 <div align="center">
   <p>Figura 11: Tela de lazer Geral</p>
@@ -1449,56 +1118,34 @@ O fluxo da atividade envolve:
 
 **Desenvolvimento Visual e Elementos Gráficos**
 
-<p align="justify">
 &ensp;No aspecto visual, foram desenvolvidos os sprites dos personagens, incluindo os diferentes estados do cachorro (sujo e limpo), além do cenário da área de banho.
-</p>
 
-<p align="justify">
 &ensp;Esses elementos visuais são fundamentais para proporcionar feedback ao jogador e tornar a experiência mais imersiva.
-</p>
 
-<p align="justify">
 &ensp;Essas implementações contribuem para os requisitos não funcionais RNF2, RNF5 e RNF6, relacionados ao feedback visual, organização da interface e consistência gráfica.
-</p>
 
-<p align="justify">
 &ensp;Para as próximas etapas, foi planejada a ampliação da produção de sprites, o aprimoramento dos cenários em pixel art e o desenvolvimento do quiz educativo sobre alimentação, atendendo futuramente ao requisito RF18.
-</p>
 
 **Dificuldades Enfrentadas**
 
-<p align="justify">
 &ensp;Durante esta sprint, a equipe enfrentou desafios técnicos relacionados principalmente à utilização do framework Phaser, especialmente na implementação de mecânicas interativas baseadas em eventos de clique e execução sequencial de ações.
-</p>
 
-<p align="justify">
 &ensp;Além disso, foram identificadas dificuldades na criação e refinamento dos cenários em pixel art, exigindo maior atenção aos aspectos visuais nas etapas seguintes.
-</p>
 
-<p align="justify">
 &ensp;Apesar dessas limitações, a equipe conseguiu avançar na construção das principais mecânicas do jogo, consolidando uma base funcional importante para a continuidade do desenvolvimento.
-</p>
 
 
 <h2 align="center" id="43-desenvolvimento-intermediário-do-jogo">4.3. Desenvolvimento intermediário do jogo</h2>
 
-<p align="justify">
 &ensp;A terceira sprint teve como objetivo a implementação e o aprimoramento de elementos fundamentais da jogabilidade do Cobasi Shelter, focando principalmente no desenvolvimento dos minigames que simulam diferentes formas de cuidado com animais domésticos. Nesta etapa do projeto, a equipe concentrou seus esforços na implementação das mecânicas principais dos minigames, no refinamento das interações do jogador com os objetos do jogo e na estrutura de recompensas utilizando Cobasi Coins.
-</p>
 
-<p align="justify">
 &ensp;O desenvolvimento desta sprint foi essencial para transformar o protótipo inicial em uma versão mais completa e interativa do jogo, permitindo que os jogadores experimentem na prática as principais atividades relacionadas ao cuidado com os animais. A seguir, estão descritas as principais funcionalidades implementadas nesta fase do desenvolvimento.
-</p>
 
 ### Implementação do Minigame de Banho
 
-<p align="justify">
 &ensp;Um dos principais avanços desta sprint foi o desenvolvimento do minigame de banho, no qual o jogador deve limpar completamente um cachorro utilizando diferentes ferramentas disponíveis no ambiente do banheiro.
-</p>
 
-<p align="justify">
 &ensp;Neste minigame, o jogador utiliza o mouse para selecionar e utilizar três objetos principais: sabão, chuveiro e toalha. O processo de limpeza ocorre em três etapas:
-</p>
 
 * Aplicação do sabão sobre o animal, fazendo com que ele fique coberto por espuma;
 
@@ -1506,13 +1153,9 @@ O fluxo da atividade envolve:
 
 * Secagem completa do animal utilizando a toalha.
 
-<p align="justify">
 &ensp;O jogador deve passar cada ferramenta por todo o corpo do animal para que a etapa seja considerada concluída. Apenas após completar corretamente todas as fases do processo de limpeza o minigame é finalizado.
-</p>
 
-<p align="justify">
 &ensp;Ao concluir o desafio com sucesso, o jogador recebe Cobasi Coins, que funcionam como sistema de recompensa dentro do jogo.
-</p>
 
 **Cena do minigame de banho:**
 
@@ -1524,13 +1167,9 @@ O fluxo da atividade envolve:
 
 ### Implementação do Minigame de Alimentação
 
-<p align="justify">
 &ensp;Outro avanço importante desta sprint foi o desenvolvimento do minigame de alimentação, que tem como objetivo ensinar de forma lúdica quais alimentos são adequados ou prejudiciais para os animais.
-</p>
 
-<p align="justify">
 &ensp;Neste minigame, o jogador controla o cachorro utilizando as setas do teclado, movimentando o animal para a direita ou para a esquerda na tela. Durante a partida, diferentes itens caem do topo da tela:
-</p>
 
 * Ração Standard, que concede 10 pontos;
 
@@ -1538,13 +1177,9 @@ O fluxo da atividade envolve:
 
 * Itens prejudiciais, como chocolate, que fazem o jogador perder uma vida.
 
-<p align="justify">
 &ensp;O jogador inicia o minigame com três vidas e deve coletar apenas os alimentos corretos enquanto evita os itens prejudiciais. O objetivo é atingir a pontuação de 200 pontos para concluir o desafio.
-</p>
 
-<p align="justify">
 &ensp;Após atingir essa pontuação, o minigame é finalizado e o jogador recebe Cobasi Coins como recompensa.
-</p>
 
 **Cena do minigame de alimentação**
 
@@ -1556,17 +1191,11 @@ O fluxo da atividade envolve:
 
 ### Implementação do Minigame Veterinário
 
-<p align="justify">
 &ensp;Também foi desenvolvido o minigame veterinário, no qual o jogador deve ajudar a cuidar da saúde do animal removendo pulgas com o auxílio de uma pinça.
-</p>
 
-<p align="justify">
 &ensp;Neste minigame, o jogador utiliza o mouse para selecionar a pinça e movimentá-la pela tela. Ao posicionar a ferramenta sobre uma pulga, o jogador deve clicar para removê-la.
-</p>
 
-<p align="justify">
 &ensp;O objetivo do minigame é retirar todas as pulgas do animal no menor tempo possível. Para avaliar o desempenho do jogador, foi implementado um sistema de classificação baseado em estrelas:
-</p>
 
 * 3 estrelas – tempo inferior a 30 segundos;
 
@@ -1574,9 +1203,7 @@ O fluxo da atividade envolve:
 
 * 1 estrela – tempo superior a 45 segundos.
 
-<p align="justify">
 &ensp;Após remover todas as pulgas e concluir o desafio, o jogador também recebe Cobasi Coins como recompensa.
-</p>
 
 Cena do minigame veterinário
 
@@ -1588,23 +1215,15 @@ Cena do minigame veterinário
 
 ### Dificuldades encontradas durante a sprint
 
-<p align="justify">
 &ensp;Durante o desenvolvimento desta sprint, a equipe enfrentou algumas dificuldades técnicas relacionadas principalmente à implementação das interações entre os objetos e os personagens dentro dos minigames. Um dos principais desafios foi ajustar corretamente as colisões e interações entre os elementos da tela, garantindo que as ações do jogador fossem registradas de forma precisa.
-</p>
 
-<p align="justify">
 &ensp;Outro desafio foi a integração das diferentes mecânicas de controle entre os minigames, já que alguns utilizam o mouse enquanto outros utilizam o teclado. Além disso, a equipe também enfrentou dificuldades na organização do projeto no GitLab, principalmente no controle de versões e na sincronização do código entre os membros do grupo.
-</p>
 
-<p align="justify">
 &ensp;Apesar desses desafios, foi possível implementar com sucesso as principais mecânicas dos minigames e estruturar uma base sólida para as próximas etapas do desenvolvimento.
-</p>
 
 ### Próximos passos
 
-<p align="justify">
 &ensp;Para as próximas sprints, a equipe pretende continuar aprimorando a experiência do jogador, adicionando novos elementos ao jogo. Entre os próximos passos planejados estão:
-</p>
 
 * Implementação do quiz educativo ao final dos minigames;
 
@@ -1616,31 +1235,21 @@ Cena do minigame veterinário
 
 * Correção de possíveis bugs e otimização do desempenho do jogo.
 
-<p align="justify">
 &ensp;Essas melhorias têm como objetivo tornar o Cobasi Shelter uma experiência mais completa, interativa e educativa, reforçando a proposta do jogo de ensinar sobre os cuidados necessários com animais domésticos de forma lúdica.
-</p>
 
 <h2 align="center" id="44-desenvolvimento-final-do-mvp">4.4. Desenvolvimento final do MVP</h2>
 
-<p align="justify">
 &ensp;Na quarta sprint teve como objetivo consolidar o MVP do Cobasi Shelter, com foco no aprimoramento visual, expansão das mecânicas e integração dos sistemas desenvolvidos anteriormente. Nesta etapa, buscou-se alinhar a experiência do jogador aos requisitos definidos na Seção 1.2, garantindo maior coerência entre jogabilidade, interface e proposta educativa do projeto.
-</p>
 
 ### Aprimoramento Visual e Interface
 
-<p align="justify">
 &ensp;Durante esta fase, foram realizadas melhorias na identidade visual do jogo, incluindo a padronização das cores, menus e cenários, com base na estética da marca Cobasi. Também houve ajustes na tela inicial e na HUD, visando maior clareza e organização das informações.
-</p>
 
-<p align="justify">
 &ensp;Essas melhorias atendem aos requisitos não funcionais RNF5, RNF6 e RNF10, relacionados à organização visual, consistência gráfica e legibilidade, além de reforçar o requisito funcional RF2, referente à estrutura da tela inicial.
-</p>
 
 ### Expansão de Conteúdo e Elementos Gráficos
-<p align="justify">
 &ensp;Foram desenvolvidos novos sprites e elementos visuais, incluindo a adição de um segundo cachorro e novos objetos utilizados nos minigames, como itens de alimentação e elementos interativos.
 Essa expansão está alinhada aos requisitos RF1, RF7 e RF8, que definem a presença dos animais e a mecânica central baseada no cuidado por meio de interações.
-</p>
 
 <div align="center">
   <p>Figura 16: Tela de Cuidado </p>
@@ -1650,13 +1259,9 @@ Essa expansão está alinhada aos requisitos RF1, RF7 e RF8, que definem a prese
 
 ### Implementação da Área de Lazer 
 
-<p align="justify">
 &ensp;Foi implementado um novo minigame na área de lazer, com mecânicas de movimentação como andar, correr e pular, tornando a experiência mais dinâmica.Nele, o animal tem que capturar os petiscos e desviar dos obstáculos.
-</p>
 
-<p align="justify">
 &ensp;Essa funcionalidade atende ao requisito RF26, além de contribuir para os requisitos RF7 e RNF7, relacionados à interação e responsividade dos controles.
-</p>
 
 <div align="center">
   <p>Figura 17: Tela do minigame de Lazer </p>
@@ -1666,30 +1271,20 @@ Essa expansão está alinhada aos requisitos RF1, RF7 e RF8, que definem a prese
 
 ### Sistema de Progressão e Múltiplos Animais
 
-<p align="justify">
 &ensp;O jogo passou a contar com um sistema de progressão entre fases, permitindo ao jogador cuidar de mais de um animal ao longo da experiência.
 Esse sistema reforça os requisitos RF5, RF7 e RF8, garantindo continuidade na jogabilidade baseada no cuidado dos animais.
-</p>
 
 **Integração do Sistema de Cobasi Coins**
 
-<p align="justify">
 &ensp;O sistema de moedas foi integrado de forma funcional, permitindo ao jogador ganhar Cobasi Coins ao concluir minigames e utilizá-las na compra de itens, como rações.
-</p>
 
-<p align="justify">
 &ensp;Essa implementação atende ao requisito RF11 e se relaciona com RF16, RF17 e RF6, que envolvem os sistemas de alimentação e navegação entre áreas.
-</p>
 
 **Melhorias no Minigame de Alimentação**
 
-<p align="justify">
 &ensp;O minigame de alimentação foi aprimorado com a adição de informações sobre os tipos de ração e um sistema de escolhas que impacta o estado do animal.
-</p>
 
-<p align="justify">
 &ensp;Essas melhorias atendem aos requisitos RF16, RF19, RF20, RF21 e RF22, relacionados à lógica do minigame e à aprendizagem do jogador.
-</p>
 
 <div align="center">
   <p>Figura 18: Tela Inicial com o novo cachorro</p>
@@ -1706,10 +1301,8 @@ Esse sistema reforça os requisitos RF5, RF7 e RF8, garantindo continuidade na j
 
 ### Aprimoramento da Experiência do Usuário
 
-<p align="justify">
 &ensp;Foram adicionados elementos de UX, como trilha sonora, feedbacks visuais e telas de retorno, tornando a interação mais intuitiva e fluida.
 Essas melhorias atendem aos requisitos não funcionais RNF2, RNF3, RNF4 e RNF9, relacionados à usabilidade, feedback e desempenho do sistema.
-</p>
 
 
 <div align="center">
@@ -1727,19 +1320,13 @@ Essas melhorias atendem aos requisitos não funcionais RNF2, RNF3, RNF4 e RNF9, 
 
 ### Dificuldades Encontradas
 
-<p align="justify">
 &ensp;Durante a sprint, a equipe enfrentou desafios na integração do código no GitLab, principalmente em relação ao controle de versões e sincronização entre os membros. Também houve dificuldades de comunicação, impactando o andamento das atividades.
-</p>
 
-<p align="justify">
 &ensp;Apesar disso, os problemas foram contornados, contribuindo para o amadurecimento da equipe e melhoria dos processos de desenvolvimento.
-</p>
 
 ### Próximos Passos
 
-<p align="justify">
 &ensp;Para a continuidade do projeto, foram definidos os seguintes próximos passos:
-</p>
 * Implementar o quiz educativo (RF18);
 * Adicionar novas variações de ração (RF16);
 * Refinar testes e desempenho do sistema (RNF9);
@@ -1748,103 +1335,63 @@ Essas melhorias atendem aos requisitos não funcionais RNF2, RNF3, RNF4 e RNF9, 
 
 <h2 align="center" id="45-revisão-do-mvp">4.5. Revisão do MVP</h2>
 
-<p align="justify">
 &ensp;Nesta etapa final do desenvolvimento, foram priorizados ajustes relacionados à correção de bugs, melhorias na usabilidade e refinamento da experiência do usuário (UX Design). O objetivo foi  proporcionar uma experiência mais fluida e intuitiva ao jogador.
-</p>
 
 **Correções e Melhorias de Jogabilidade**
 
-<p align="justify">
 &ensp;Foram realizados ajustes em minigames já implementados, com foco na melhoria da jogabilidade e usabilidade.
-</p>
 
-<p align="justify">
 &ensp;No minigame da área de lazer, foram identificadas dificuldades relacionadas à movimentação e interação do jogador. Dessa forma, foram ajustados parâmetros como colisão e velocidade dos elementos do jogo, tornando a experiência mais responsiva e acessível.
-</p>
 
-<p align="justify">
 &ensp;Essas melhorias atendem ao requisito funcional RF26, além de reforçar os requisitos não funcionais RNF3 e RNF7, relacionados à usabilidade e responsividade dos controles.
-</p>
 
 **Aprimoramentos no Minigame de Banho**
 
-<p align="justify">
 &ensp;O minigame de banho passou por ajustes estruturais em sua lógica de progressão. Agora, o jogador deve obrigatoriamente molhar o animal antes de prosseguir para as próximas etapas, garantindo maior coerência com o processo real de higiene.
-</p>
 
-<p align="justify">
 &ensp;Além disso, foi implementada uma barra de progressão que indica o avanço em cada etapa do banho, tornando a experiência mais clara e orientada.
-</p>
 
-<p align="justify">
 &ensp;Essas alterações atendem aos requisitos RF12, RF13 e RF14, além de contribuírem para os requisitos não funcionais RNF2 e RNF3, relacionados ao feedback visual e à clareza da interface.
-</p>
 
 **Orientação ao Jogador e Fluxo de Progressão**
 
-<p align="justify">
 &ensp;Após a finalização de cada minigame, o jogador passou a receber orientações para prosseguir para as próximas atividades. Essa melhoria foi implementada com base nos resultados dos testes realizados, visando reduzir dúvidas e melhorar o fluxo de progressão.
-</p>
 
-<p align="justify">
 &ensp;Essa funcionalidade reforça os requisitos RF5, RF6 e RF7, além de atender ao requisito não funcional RNF3, relacionado à interface intuitiva.
-</p>
 
 **Melhorias no Minigame de Alimentação**
 
-<p align="justify">
 &ensp;O minigame de alimentação também foi reformulado visualmente e funcionalmente. Os modelos das rações foram redesenhados e a estante passou a contar com uma nova organização, dividida em categorias: standard, premium e super premium.
-</p>
 
-<p align="justify">
 &ensp;Cada tipo de ração passou a impactar de forma diferente a barra de alimentação do animal, agregando valor estratégico à escolha do jogador.
 Essas melhorias atendem aos requisitos RF16, RF17, RF19, RF20, RF21 e RF22, além de reforçar o aprendizado proposto pelo jogo.
-</p>
 
 **Implementação do Animal Final e Storytelling**
 
-<p align="justify">
 &ensp;Ao final desta etapa, foi implementado o último animal do jogo, responsável por concluir a narrativa principal. Diferentemente dos anteriores, este animal não necessita de cuidados básicos como banho ou alimentação, pois já foi tratado anteriormente e devolvido ao abrigo.
-</p>
 
-<p align="justify">
 &ensp;Nesse contexto, o jogador deve oferecer atenção e carinho, reforçando a mensagem educativa sobre responsabilidade e cuidado com animais adotados.
-</p>
 
-<p align="justify">
 &ensp;Após completar essa interação, o jogador conclui sua missão e é direcionado ao quiz educativo, que tem como objetivo reforçar o aprendizado adquirido ao longo do jogo.
-</p>
 
-<p align="justify">
 &ensp;Essa implementação atende aos requisitos RF1, RF8, RF9 e RF18, consolidando o propósito educativo do projeto.
-</p>
 
 **Dificuldades Enfrentadas**
 
-<p align="justify">
 &ensp;Durante este sprint final, a equipe enfrentou desafios relacionados principalmente à implementação de melhorias na interface do usuário, exigindo retrabalho e refinamento contínuo para atender às necessidades identificadas nos testes de usabilidade.
-</p>
 
-<p align="justify">
 &ensp;Além disso, houve dificuldades técnicas na implementação do sistema de quiz, uma vez que envolveu conceitos e estruturas ainda não explorados anteriormente pela equipe.
-</p>
 
-<p align="justify">
 &ensp;Apesar dos obstáculos, os problemas foram superados, contribuindo para o aprimoramento técnico e organizacional do grupo.
-</p>
 
 
 <h1 align="center" id="5-casos-de-teste">5. Testes</h1>
 
 <h2 align="center" id="51-casos-de-teste">5.1. Casos de Teste</h2>
 
-<p align="justify">
 &ensp;Um Caso de Teste (*Test Case*) é um roteiro detalhado de condições, variáveis, passos e resultados esperados, criado para verificar se uma funcionalidade específica de um software (ou jogo) está operando corretamente e cumprindo seus requisitos.
-</p>
 
-<p align="justify">
 &ensp;Eles são essenciais para garantir a qualidade do produto, identificar bugs de forma sistemática antes do lançamento e documentar o comportamento esperado do sistema.
-</p>
 
 <div align="center">
   <p>Quadro de casos de teste</p>
@@ -1852,13 +1399,9 @@ Essas melhorias atendem aos requisitos RF16, RF17, RF19, RF20, RF21 e RF22, alé
 
 ## 5.1. Casos de Teste 
 
-<p align="justify">
 &ensp;Um Caso de Teste (*Test Case*) é um roteiro detalhado de condições, variáveis, passos e resultados esperados, criado para verificar se uma funcionalidade específica de um software (ou jogo) está operando corretamente e cumprindo seus requisitos.
-</p>
 
-<p align="justify">
 &ensp;Eles são essenciais para garantir a qualidade do produto, identificar bugs de forma sistemática antes do lançamento e documentar o comportamento esperado do sistema.
-</p>
 
 <div align="center">
   <p>Quadro de casos de teste</p>
@@ -1936,44 +1479,129 @@ Essas melhorias atendem aos requisitos RF16, RF17, RF19, RF20, RF21 e RF22, alé
 
 <h2 align="center" id="52-testes-de-jogabilidade-playtests">5.2. Testes de jogabilidade (playtests)</h2>
 
-<p align="justify">
 &ensp;O teste de jogabilidade é uma metodologia sistemática de avaliação qualitativa e quantitativa, conduzida durante o ciclo de desenvolvimento de um software de entretenimento. Enquanto o Controle de Qualidade (QA) foca na integridade técnica do código, o playtesting concentra-se na validação da experiência do usuário (UX) e na eficácia do game design.
-</p>
 
 **Referências (Seção 7):** Unity Technologies; San Francisco: Game Developer
 
 ### 5.2.1 Registros de testes
 
-<p align="justify">
 &ensp;Os testes de jogabilidade são cruciais para este projeto pois funcionam como a principal ferramenta de validação do game design, garantindo que as mecânicas planejadas sejam intuitivas e divertidas para o público-alvo, e não apenas para os desenvolvedores. Ao observar a interação real de usuários externos, é possível identificar falhas na curva de aprendizado e pontos de frustração que a "cegueira do desenvolvedor" costuma ocultar, permitindo ajustes precisos no equilíbrio entre desafio e recompensa.
-</p>
 
-<p align="justify">
 &ensp;Além do aspecto criativo, o playtesting atua como uma estratégia de mitigação de riscos e custos, detectando problemas de usabilidade e fluxo antes que recursos significativos sejam investidos em polimento ou marketing. Em última análise, ele assegura que o produto final entregue uma experiência de usuário (UX) consistente e envolvente, aumentando drasticamente as chances de retenção de jogadores e o sucesso comercial do jogo no mercado.
-</p>
 
-<p align="justify">
-&ensp;A aplicação dos testes seguiu um padrão para cada pessoa que quis testar o jogo. Numa sala movimentada, um computador de um integrante do grupo foi disponibilizado com o jogo funcionando, tanto com mouse quanto com fones de ouvido disponíveis. Primeiro, o contexto e objetivos a serem atingidos foram apresentados ao 'tester'. Depois disso ele(a) foi instruido apenas a jogar, sem nunhuma explicação, tanto prévia, quanto se solicitada. Por fim, o usuário foi submetido a uma série de perguntas sobre a visão geral sobre o jogo e um formulário de questionamentos, semelhante ao levantamento presente a seguir. 
-</p>
+&ensp;A aplicação dos testes seguiu um padrão para cada pessoa que quis testar o jogo. Numa sala movimentada, um computador de um integrante do grupo foi disponibilizado com o jogo funcionando, tanto com mouse quanto com fones de ouvido disponíveis. Primeiro, o contexto e objetivos a serem atingidos foram apresentados ao 'tester'. Depois disso ele(a) foi instruido apenas a jogar, sem nunhuma explicação, tanto prévia, quanto se solicitada. Por fim, o usuário foi submetido a uma série de perguntas sobre a visão geral sobre o jogo e um formulário de questionamentos, semelhante ao levantamento presente a seguir. O processo de teste do jogo foi conduzido, dia 31/03/2026, por três integrantes do grupo, um contextualizando, outro gravando e outro para preencher o formulário.
 
 <div align="center">
 
-| Nome | João Jonas (use nomes fictícios) |
-| :---: | :---: |
-| Já possuía experiência prévia com games? | sim, é um jogador casual |
-| Conseguiu iniciar o jogo? | sim |
-| Entendeu as regras e mecânicas do jogo? | entendeu as regras, mas sobre as mecânicas, apenas as essenciais, não explorou os comandos complexos |
-| Conseguiu progredir no jogo? | sim, sem dificuldades |
-| Apresentou dificuldades? | Não, conseguiu jogar com facilidade e afirmou ser fácil |
-| Que nota deu ao jogo? | 9.0 |
-| O que gostou no jogo? | Gostou  de como o jogo vai ficando mais difícil ao longo do tempo sem deixar de ser divertido |
-| O que poderia melhorar no jogo? | A responsividade do personagem aos controles, disse que havia um pouco de atraso desde o momento do comando até a resposta do personagem |
+Nome | Soraya
+--- | ---
+Idade | 18 anos
+Curso | Ciência da Computação
+Tem ou já teve algum pet? | Sim, possuo
+Já possuía experiência prévia com games? | Sim, mas pouca
+Conseguiu iniciar o jogo? | Sim
+Entendeu as regras e mecânicas do jogo? | Entendeu com poucas dúvidas
+Conseguiu progredir no jogo? | Sim, mas não conseguiu concluir 
+Apresentou dificuldades? | Sim, no mini game de lazer
+Que nota deu ao jogo? | 9.0
+Qual mini game mais gostou? | Banho
+O que poderia melhorar no jogo? | Dificuldade alta e salto duplo no mini game de lazer
+
+Nome | Anthony
+--- | ---
+Idade | 19 anos
+Curso | Engenharia de Computação
+Tem ou já teve algum pet? | Não, mas tem vontade 
+Já possuía experiência prévia com games? | Sim, muita
+Conseguiu iniciar o jogo? | Sim
+Entendeu as regras e mecânicas do jogo? | Não teve dúvidas
+Conseguiu progredir no jogo? |  Sim. Concluiu com facilidade
+Apresentou dificuldades? | Sim, no mini game de cuidados (pegar pulgas)
+Que nota deu ao jogo? | 9.0
+Qual mini game mais gostou? | Cuidados
+O que poderia melhorar no jogo? | Hitbox dos ossos e obstáculos no mini game de lazer; Hitbox da pinça no mini game de cuidados
+
+Nome | Pedro
+--- | ---
+Idade | 18 anos
+Curso | Engenharia de Computação
+Tem ou já teve algum pet? | Sim, possuo
+Já possuía experiência prévia com games? | Sim
+Conseguiu iniciar o jogo? | Sim
+Entendeu as regras e mecânicas do jogo? | Não teve dúvidas
+Conseguiu progredir no jogo? | Sim, concluiu com facilidade
+Apresentou dificuldades? | Não, nenhuma
+Que nota deu ao jogo? | 9.0
+Qual mini game mais gostou? | Lazer
+O que poderia melhorar no jogo? | Intuitividade na sequência de tarefas; Hitbox da pinça no mini game de cuidados
+
+Nome | Ludmilla
+--- | ---
+Idade | 20 anos
+Curso |  Engenharia de Software
+Tem ou já teve algum pet? | Não, mas já possuí
+Já possuía experiência prévia com games? | Sim, mas pouca
+Conseguiu iniciar o jogo? | Sim
+Entendeu as regras e mecânicas do jogo? | Entendeu com poucas dúvidas
+Conseguiu progredir no jogo? | Sim, concluiu com dificuldade 
+Apresentou dificuldades? | Sim, no jogo de lazer
+Que nota deu ao jogo? | 9.0
+Qual mini game mais gostou? | Alimentação
+O que poderia melhorar no jogo? | Intuitividade na sequência de tarefas;
+
+Nome | Vitor
+--- | ---
+Idade | 18 anos
+Curso |  Engenharia de Software
+Tem ou já teve algum pet? | Sim, possui
+Já possuía experiência prévia com games? | Sim
+Conseguiu iniciar o jogo? | Sim
+Entendeu as regras e mecânicas do jogo? | Entendeu com poucas dúvidas
+Conseguiu progredir no jogo? | Sim, concluiu com facilidade
+Apresentou dificuldades? | Sim, no jogo de lazer
+Que nota deu ao jogo? | 9.0
+Qual mini game mais gostou? | Cuidados
+O que poderia melhorar no jogo? | Hitbox dos ossos e obstáculos no mini game de lazer
+
+Nome | Henrique
+--- | ---
+Idade | 17 anos
+Curso | Ciência da Computação
+Tem ou já teve algum pet? | Sim, possui
+Já possuía experiência prévia com games? | Sim
+Conseguiu iniciar o jogo? | Sim
+Entendeu as regras e mecânicas do jogo? | Não teve dúvidas 
+Conseguiu progredir no jogo? | Sim, concluiu com facilidade
+Apresentou dificuldades? | Poucas, no jogo de lazer
+Que nota deu ao jogo? | 9.0
+Qual mini game mais gostou? | Lazer
+O que poderia melhorar no jogo? | Cores das rações
 
 </div>
 
 ### 5.2.2 Melhorias
 
-*Descreva nesta seção um plano de melhorias sobre o jogo, com base nos resultados dos testes de jogabilidade*
+&ensp;Após uma extensa seção de testes, a equipe levantou todos os relatos de bugs e sugestões para revisar rigorosamente a qualidade do jogo para o usuário. Sendo assim, as melhorias a serem aplicadas são: 
+
+* Aprimoramento final dos sprites das rações, pinça e cachorro correndo;
+* Aprimoramento da intuitividade na sequência de atividades a serem feitas;
+* Aprimoramento da interface do usuário;
+* Diminução da dificuldade do mini game de lazer;
+* Substituição da pinça por um remédio; 
+* Ajuste na ordem das barras de status;
+* Ajuste na ordem da mecânica de limpeza do cachorro;
+* Ajuste dos pop-up's de feedback;
+* Ajuste da intuitividade da sequência de tarefas para o usuário;
+* Ajuste da distribuição das rações (Standard, Premium, Super Premium) em uma cena;
+* Ajuste no sprite presente o mini game de alimentação (adicionar o mesmo que é comprado)
+* Ajuste nas hitboxes do cachorro, ossos e obstáculos no mini game de lazer
+* Ajuste na posição dos ossos no mini game de lazer;
+* Ajuste no balanço do rabo dos cachorros;
+* Adicionar um temporizador em todos os mini games;
+* Adicionar um terceiro cachorro;
+* Adicionar informações reais dos cachorros das ONGs parceiras da Cobasi.
+
+---
 
 <h1 align="center" id="6-conclusões-e-trabalhos-futuros">6. Conclusões e trabalhos futuros</h1>
 
