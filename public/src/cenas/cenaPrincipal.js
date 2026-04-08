@@ -519,8 +519,9 @@ export class cenaPrincipal extends Phaser.Scene {
         }
         this.scene.bringToTop("HUD")
 
-        // Inicia a música do menu principal
-        iniciarMusica(this, 'menuPrincipal', true);
+        if (gameState.musicaLigada) {
+            iniciarMusica(this, 'menuPrincipal', true);
+        }
 
         // Registra e ativa a cena de popups
         if (!this.scene.get("CenaPopups")) {

@@ -54,6 +54,7 @@ export let gameState = {
         lazerDespreocupado: false,
         pegadasCrescidas: false
     },
+    musicaLigada: true,
     musica: null,
     chaveMusicaAtual: null
 };
@@ -62,6 +63,14 @@ export let gameState = {
 const musicasAleatorias = ['novoHorizonte', 'lazerDespreocupado', 'pegadasCrescidas'];
 
 export function iniciarMusica(scene, chaveMusica, loop = true) {
+    if (!gameState.musicaLigada) {
+        if (gameState.musica && gameState.musica.isPlaying) {
+            gameState.musica.stop();
+        }
+        gameState.chaveMusicaAtual = chaveMusica;
+        return;
+    }
+
     if (gameState.musica && gameState.musica.isPlaying) {
         gameState.musica.stop();
     }
@@ -71,6 +80,13 @@ export function iniciarMusica(scene, chaveMusica, loop = true) {
 }
 
 export function iniciarMusicaAleatoria(scene) {
+    if (!gameState.musicaLigada) {
+        if (gameState.musica && gameState.musica.isPlaying) {
+            gameState.musica.stop();
+        }
+        return;
+    }
+
     if (gameState.musica && gameState.musica.isPlaying) {
         gameState.musica.stop();
     }

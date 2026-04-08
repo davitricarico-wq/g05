@@ -16,8 +16,9 @@ export class cenaLazer extends Phaser.Scene {
         }
         this.scene.bringToTop("HUD");
 
-        // Inicia música aleatória
-        iniciarMusicaAleatoria(this);
+        if (gameState.musicaLigada) {
+            iniciarMusicaAleatoria(this);
+        }
 
         // define as dimensões e proporções baseadas na escala da tela
         const largura = this.scale.width;

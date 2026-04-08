@@ -23,8 +23,9 @@ export class cenaVeterinario extends Phaser.Scene {
         if (!this.scene.isActive("HUD")) this.scene.launch("HUD");
         this.scene.bringToTop("HUD");
 
-        // Inicia música aleatória
-        iniciarMusicaAleatoria(this);
+        if (gameState.musicaLigada) {
+            iniciarMusicaAleatoria(this);
+        }
 
         // Configurações de Tela
         const larguraTotal = this.scale.width;

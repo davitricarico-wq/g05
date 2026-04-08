@@ -26,8 +26,9 @@ export class cenaEstanteRacao extends Phaser.Scene {
     }
 
     create() {
-        // Inicia música aleatória
-        iniciarMusicaAleatoria(this);
+        if (gameState.musicaLigada) {
+            iniciarMusicaAleatoria(this);
+        }
 
         // obtendo as dimensões de largura e altura do canvas da aplicação
         let largura = this.scale.width;

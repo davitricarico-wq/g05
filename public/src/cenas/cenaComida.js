@@ -28,8 +28,9 @@ export class cenaComida extends Phaser.Scene {
         // Por padrão, a HUD começa no topo.
         this.scene.bringToTop("HUD");
 
-        // Inicia música aleatória
-        iniciarMusicaAleatoria(this);
+        if (gameState.musicaLigada) {
+            iniciarMusicaAleatoria(this);
+        }
 
         // Definição da área útil de gameplay, reservando espaço para a barra lateral da HUD (20%)
         const posicaoX = (this.scale.width - this.scale.width * 0.2);
