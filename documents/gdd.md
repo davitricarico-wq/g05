@@ -16,7 +16,7 @@ Valter Lucas Garcia de Lima
 
 # Sumário
 
-[1. Introdução](#1-introdução) 
+[1. Introdução](#1-introdução)      
 <small>
 [1.1 Plano Estratégico do Projeto](#11-plano-estratégico-do-projeto)  
 [1.1.1 Contexto da Indústria](#111-contexto-da-indústria)  
@@ -100,6 +100,7 @@ Valter Lucas Garcia de Lima
 
 
 # 1. Introdução
+
 
 ## 1.1. Plano Estratégico do Projeto
 
@@ -638,6 +639,7 @@ Fonte: material produzido pelos autores (2026).
 </div>
 
 
+
 ### 3.3.5. Trilha Sonora
 &ensp; A trilha sonora do jogo é composta por faixas originais criadas exclusivamente para o projeto, garantindo uma identidade sonora autêntica e perfeitamente alinhada à atmosfera do jogo. O foco atual da composição é estabelecer o tom correto nos primeiros contatos do jogador com a obra, criando imersão desde o menu inicial e ajudando a contar a história durante a introdução narrativa. As faixas presentes até o momento estão organizadas na tabela abaixo:
 
@@ -650,10 +652,10 @@ Fonte: material produzido pelos autores (2026).
 
 </div>
 
-<h2 align="center" id="34-inventário-e-bestiário">3.4. Inventário e Bestiário</h2>
+## 3.4. Inventário e Bestiário
 *Não se aplica ao projeto*
 
-<h2 align="center" id="35-gameflow">3.5. Gameflow</h2>
+## 3.5. Gameflow
 
 &ensp;No desenvolvimento de jogos, o diagrama de cenas é uma ferramenta visual utilizada no GDD (Game Design Document) para organizar e representar a estrutura do jogo. Ele mostra, de forma esquemática, todas as telas ou cenas existentes — como menu inicial, tutorial, fases, configurações, pausa e game over (e como elas se conectam entre si).
 
@@ -668,7 +670,7 @@ Fonte: material produzido pelos autores (2026).
     
 </div>
 
-<h2 align="center" id="36-regras-do-jogo">3.6 REGRAS DO JOGO</h2>
+## 3.6 Regras do Jogo
 
 &ensp;O jogo é composto por diferentes minigames que simulam atividades de cuidado com um animal doméstico. Em cada minigame, o jogador deve executar ações específicas para cumprir os objetivos propostos. Ao concluir cada atividade com sucesso, o jogador recebe CobasiCoins, que funcionam como indicador de progresso e incentivam a continuidade da experiência.
 
@@ -935,8 +937,6 @@ Fonte: material produzido pelos autores (2026).
 
 &ensp;A posição final obtida é:
 <p align="center">(350 pixels, 300 pixels) </p>
-
-
 
 
 ---
