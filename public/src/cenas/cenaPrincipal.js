@@ -1,5 +1,5 @@
 // Importa o estado global do jogo
-import { gameState } from "../main.js"
+import { gameState, iniciarMusica } from "../main.js"
 // Importa as dependências para gestão e dados dos animais
 import { GerenciadorCachorros } from "../componentes/controleCachorro/gerenciadorCachorros.js"
 import { cachorrosBase } from "../componentes/controleCachorro/cachorrosBase.js"
@@ -519,6 +519,9 @@ export class cenaPrincipal extends Phaser.Scene {
         }
         this.scene.bringToTop("HUD")
 
+        // Inicia a música do menu principal
+        iniciarMusica(this, 'menuPrincipal', true);
+
         // Registra e ativa a cena de popups
         if (!this.scene.get("CenaPopups")) {
             this.scene.add("CenaPopups", CenaPopups, false);
@@ -532,17 +535,7 @@ export class cenaPrincipal extends Phaser.Scene {
             this.scene.bringToTop("CenaPopups");
         }
 
-        // Controle da música de fundo garantindo a transição correta entre menus
-        if (!gameState.musicaMenuPrincipal) {
-            gameState.musicaMenuPrincipal = this.sound.add("musicaMenuPrincipal", { loop: true, volume: 0.5 })
-        }
-        if (gameState.musicaTutorial?.isPlaying) {
-            gameState.musicaTutorial.stop();
-        }
-        if (!gameState.musicaMenuPrincipal.isPlaying) {
-            gameState.musicaMenuPrincipal.play()
-        }
-        gameState.musica = gameState.musicaMenuPrincipal;
+
 
         // Configuração inicial do cenário respeitando a área útil de oitenta por cento da largura
         const larguraTotal = this.scale.width;

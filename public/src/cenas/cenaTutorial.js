@@ -1,5 +1,5 @@
 // Importa o estado global do jogo
-import { gameState } from "../main.js"
+import { gameState, iniciarMusica } from "../main.js"
 
 // Define a classe da cena de tutorial
 export class cenaTutorial extends Phaser.Scene {
@@ -19,6 +19,9 @@ export class cenaTutorial extends Phaser.Scene {
     }
 
     create() {
+
+        // Inicia a música da cutscene
+        iniciarMusica(this, 'musicaCutscene', true);
 
         // Reinicia o índice da imagem ao entrar na cena
         this.indiceAtual = 1;

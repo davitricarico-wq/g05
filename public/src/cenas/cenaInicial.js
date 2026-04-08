@@ -1,5 +1,5 @@
 // Importa o objeto global gameState do arquivo principal
-import { gameState } from "../main.js";
+import { gameState, iniciarMusicaAleatoria } from "../main.js";
 
 // Define a cena "CenaInicial", que é a tela principal do jogo
 export class cenaInicial extends Phaser.Scene {
@@ -13,8 +13,8 @@ export class cenaInicial extends Phaser.Scene {
         this.scene.stop("HUD");
         this.transicao = false;
 
-        
-
+        // Inicia música aleatória
+        iniciarMusicaAleatoria(this);
 
         // Fundo da cena inicial (responsivo)
         this.fundo = this.add
