@@ -530,6 +530,7 @@ A proposta é “rodar um abrigo” com tarefas operacionais e cuidado dos anima
 
 ### 2.2.5 Tempo estimado de jogo 
 
+O tempo estimado de gameplay para o Cobasi Shelter, considerando a destreza com video games do público alvo, varia entre quatro a dez minutos (4 a 10 min). Sabendo disso, é bem provável que, com alterações e melhorias futuras, a complexidade do jogo aumente e, portanto, seu tempo de gameplay aumente também.
 
 <h1 align="center" id="3-game-design">3. Game Design</h1>
 
