@@ -1,5 +1,5 @@
 // Importa o objeto global gameState do arquivo principal
-import { gameState } from "../main.js";
+import { gameState, iniciarMusicaAleatoria } from "../main.js";
  
 export class cenaConfiguracoes extends Phaser.Scene {
     constructor() {
@@ -7,6 +7,9 @@ export class cenaConfiguracoes extends Phaser.Scene {
     }
 
     create() {
+
+        // Inicia música aleatória
+        iniciarMusicaAleatoria(this);
 
         // Fundo semitransparente — dá o visual de popup sobre a cena anterior
         this.add.rectangle(

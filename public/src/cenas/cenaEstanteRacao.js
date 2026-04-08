@@ -14,7 +14,7 @@ import {
 // importando a classe modelo de ração e os controladores de estado do mascote
 import { Racao } from "../componentes/controleRacoes/racoes.js";
 import { cachorrosBase } from "../componentes/controleCachorro/cachorrosBase.js";
-import { gameState } from "../main.js";
+import { gameState, iniciarMusicaAleatoria } from "../main.js";
 import { ficha } from "../componentes/ficha.js";
 
 // definição da classe controladora da cena de rações
@@ -26,6 +26,9 @@ export class cenaEstanteRacao extends Phaser.Scene {
     }
 
     create() {
+        // Inicia música aleatória
+        iniciarMusicaAleatoria(this);
+
         // obtendo as dimensões de largura e altura do canvas da aplicação
         let largura = this.scale.width;
         let altura = this.scale.height;

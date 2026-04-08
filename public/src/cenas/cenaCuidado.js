@@ -1,5 +1,5 @@
 // o objeto global gameState do arquivo principal
-import { gameState } from "../main.js";
+import { gameState, iniciarMusicaAleatoria } from "../main.js";
 
 // Cena responsável pelo minigame de remover pulgas
 export class cenaCuidado extends Phaser.Scene {
@@ -29,6 +29,9 @@ export class cenaCuidado extends Phaser.Scene {
         // Para garantir que a HUD não fique ativa ao iniciar
         this.scene.stop("HUD");
         this.transicao = false;
+
+        // Inicia música aleatória
+        iniciarMusicaAleatoria(this);
 
         const largura = this.scale.width;
         const altura = this.scale.height;

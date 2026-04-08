@@ -1,5 +1,5 @@
 // Importação do estado global para persistência de dados (moedas, saúde, progresso)
-import { gameState } from "../main.js";
+import { gameState, iniciarMusicaAleatoria } from "../main.js";
 // Imports do sistema de cachorro
 import { GerenciadorCachorros } from "../componentes/controleCachorro/gerenciadorCachorros.js";
 import { cachorrosBase } from "../componentes/controleCachorro/cachorrosBase.js";
@@ -15,6 +15,9 @@ export class cenaLazer extends Phaser.Scene {
             this.scene.launch("HUD");
         }
         this.scene.bringToTop("HUD");
+
+        // Inicia música aleatória
+        iniciarMusicaAleatoria(this);
 
         // define as dimensões e proporções baseadas na escala da tela
         const largura = this.scale.width;

@@ -46,8 +46,43 @@ export let gameState = {
     trocar: false,
     superPremium: false,
     premium: false,
-    standard: false
+    standard: false,
+    musicas:{
+        menuPrincipal: false,
+        musicaCutscene: false,
+        novoHorizonte: false,
+        lazerDespreocupado: false,
+        pegadasCrescidas: false
+    },
+    musica: null,
+    chaveMusicaAtual: null
 };
+
+// Funções de gerenciamento de música
+const musicasAleatorias = ['novoHorizonte', 'lazerDespreocupado', 'pegadasCrescidas'];
+
+export function iniciarMusica(scene, chaveMusica, loop = true) {
+    if (gameState.musica && gameState.musica.isPlaying) {
+        gameState.musica.stop();
+    }
+    gameState.musica = scene.sound.add(chaveMusica, { loop: loop });
+    gameState.musica.play();
+    gameState.chaveMusicaAtual = chaveMusica;
+}
+
+export function iniciarMusicaAleatoria(scene) {
+    if (gameState.musica && gameState.musica.isPlaying) {
+        gameState.musica.stop();
+    }
+    const chaveAleatoria = Phaser.Utils.Array.GetRandom(musicasAleatorias);
+    gameState.musica = scene.sound.add(chaveAleatoria, { loop: false });
+    gameState.musica.play();
+    gameState.chaveMusicaAtual = chaveAleatoria;
+    // Quando acabar, tocar outra aleatória
+    gameState.musica.on('complete', () => {
+        iniciarMusicaAleatoria(scene);
+    });
+}
 
 // Configuração principal do Phaser
 const config = {

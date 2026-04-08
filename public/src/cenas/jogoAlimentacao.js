@@ -1,5 +1,5 @@
 // Importa o estado global do jogo
-import { gameState } from "../main.js";
+import { gameState, iniciarMusicaAleatoria } from "../main.js";
 
 // Define a classe da cena do minigame de alimentacao
 export class jogoAlimentacao extends Phaser.Scene {
@@ -35,6 +35,9 @@ export class jogoAlimentacao extends Phaser.Scene {
         if (this.scene.isActive("HUD")) {
             this.scene.sleep("HUD");
         }
+
+        // Inicia música aleatória
+        iniciarMusicaAleatoria(this);
 
         this.botaoVoltar = this.add.text(60, 50, "←", {
             fontFamily: "Arial", fontSize: "52px", color: "#ffffff", stroke: "#000000", strokeThickness: 6

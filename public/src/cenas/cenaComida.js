@@ -3,7 +3,7 @@ import { GerenciadorCachorros } from "../componentes/controleCachorro/gerenciado
 // Importa as configurações base (raças, atributos) dos cachorros
 import { cachorrosBase } from "../componentes/controleCachorro/cachorrosBase.js"
 // Importa o objeto de estado global para persistência de dados entre cenas
-import { gameState } from "../main.js";
+import { gameState, iniciarMusicaAleatoria } from "../main.js";
 
 // Exporta a cena responsável pela área de alimentação e visualização da ficha do pet
 export class cenaComida extends Phaser.Scene {
@@ -27,6 +27,9 @@ export class cenaComida extends Phaser.Scene {
         }
         // Por padrão, a HUD começa no topo.
         this.scene.bringToTop("HUD");
+
+        // Inicia música aleatória
+        iniciarMusicaAleatoria(this);
 
         // Definição da área útil de gameplay, reservando espaço para a barra lateral da HUD (20%)
         const posicaoX = (this.scale.width - this.scale.width * 0.2);

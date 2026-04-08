@@ -1,5 +1,5 @@
 // Importa o estado global do jogo
-import { gameState } from "../main.js"; 
+import { gameState, iniciarMusicaAleatoria } from "../main.js"; 
 
 // Define a classe da cena do minigame de lazer
 export class jogoLazer extends Phaser.Scene {
@@ -24,6 +24,9 @@ export class jogoLazer extends Phaser.Scene {
     create() {
         // Interrompe a HUD principal para focar no minigame
         this.scene.stop("HUD");
+
+        // Inicia música aleatória
+        iniciarMusicaAleatoria(this);
 
         // Configura o botão de voltar com interatividade e efeitos visuais
         this.botaoVoltar = this.add.text(60, 50, "Voltar", {
