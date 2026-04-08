@@ -1,5 +1,5 @@
 // Importa o estado global do jogo
-import { gameState } from "../main.js"
+import { gameState, iniciarMusica } from "../main.js"
 
 // Define a classe da cena de tutorial
 export class cenaTutorial extends Phaser.Scene {
@@ -19,23 +19,9 @@ export class cenaTutorial extends Phaser.Scene {
     }
 
     create() {
-        // Adiciona a música do tutorial caso ela ainda não exista
-        if (!gameState.musicaTutorial) {
-            gameState.musicaTutorial = this.sound.add("musicaTutorial", { loop: true, volume: 4.5 });
-        }
-        
-        // Para a música do menu principal se ela estiver tocando
-        if (gameState.musicaMenuPrincipal?.isPlaying) {
-            gameState.musicaMenuPrincipal.stop();
-        }
-        
-        // Toca a música do tutorial se não estiver tocando
-        if (!gameState.musicaTutorial.isPlaying) {
-            gameState.musicaTutorial.play();
-        }
-        
-        // Atualiza a música atual no estado global
-        gameState.musica = gameState.musicaTutorial;
+
+        // Inicia a música da cutscene
+        iniciarMusica(this, 'musicaCutscene', true);
 
         // Reinicia o índice da imagem ao entrar na cena
         this.indiceAtual = 1;

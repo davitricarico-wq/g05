@@ -1,5 +1,5 @@
 // Importa o objeto global gameState do arquivo principal
-import { gameState } from "../main.js";
+import { gameState, iniciarMusicaAleatoria } from "../main.js";
  
 export class cenaConfiguracoes extends Phaser.Scene {
     constructor() {
@@ -7,18 +7,9 @@ export class cenaConfiguracoes extends Phaser.Scene {
     }
 
     create() {
-        // Garante que a música continue tocando ao abrir as configurações
-        if (!gameState.musicaMenuPrincipal) {
-            // Cria música se ainda não existir
-            gameState.musicaMenuPrincipal = this.sound.add('musicaMenuPrincipal', { loop: true, volume: 0.5 });
-        }
-        if (gameState.musicaTutorial?.isPlaying) {
-            gameState.musicaTutorial.stop();
-        }
-        if (!gameState.musicaMenuPrincipal.isPlaying) {
-            gameState.musicaMenuPrincipal.play(); // Inicia música se não estiver tocando
-        }
-        gameState.musica = gameState.musicaMenuPrincipal;
+
+        // Inicia música aleatória
+        iniciarMusicaAleatoria(this);
 
         // Fundo semitransparente — dá o visual de popup sobre a cena anterior
         this.add.rectangle(

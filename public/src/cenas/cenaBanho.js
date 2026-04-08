@@ -1,5 +1,5 @@
 // Importa o estado global do jogo para sincronização de dados
-import { gameState } from "../main.js";
+import { gameState, iniciarMusicaAleatoria } from "../main.js";
 // Importa as definições base dos animais disponíveis
 import { cachorrosBase } from "../componentes/controleCachorro/cachorrosBase.js";
 // Importa a classe responsável por instanciar e gerenciar a lógica dos pets
@@ -39,6 +39,9 @@ export class cenaBanho extends Phaser.Scene {
             this.scene.wake("HUD");
         }
         this.scene.bringToTop("HUD");
+
+        // Inicia música aleatória
+        iniciarMusicaAleatoria(this);
 
         const indiceAtivo = gameState.pets.cachorroJoao ? 2 : (gameState.pets.cachorroHeroi ? 1 : 0);
         this.estadoCachorro = cachorrosBase[indiceAtivo]?.estado || "sujo";

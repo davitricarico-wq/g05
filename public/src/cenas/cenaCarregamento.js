@@ -132,7 +132,6 @@ export class cenaCarregamento extends Phaser.Scene {
         this.load.image("racaoSuperPremiumMedio", "assets/racoes/racaoSuperPremium_M.png");
         this.load.image("racaoSuperPremiumGrande", "assets/racoes/racaoSuperPremium_G.png");
 
-
        
         //Cenas feedback
         this.load.image("feeedback3estrelas", "assets/feedback/feedbackMineGame.png");
@@ -160,9 +159,11 @@ export class cenaCarregamento extends Phaser.Scene {
         this.load.image("final", "assets/feedback/final.png");
        
         // Áudio
-        this.load.audio("musicaMenuPrincipal", "assets/sons/menu-principal.mp3");
-        this.load.audio("musica", "assets/sons/menu-principal.mp3");
-        this.load.audio("musicaTutorial", "assets/sons/musica-cutscene.mp3");
+        this.load.audio("lazerDespreocupado", "assets/sons/lazerDespreocupado.mp3");
+        this.load.audio("menuPrincipal", "assets/sons/menuPrincipal.mp3");
+        this.load.audio("musicaCutscene", "assets/sons/musicaCutscene.mp3");
+        this.load.audio("novoHorizonte", "assets/sons/novoHorizonte.mp3");
+        this.load.audio("pegadasCrescidas", "assets/sons/pegadasCrescidas.mp3");
 
         // Spritesheets do cachorro e água
         this.load.spritesheet("pulgas", "assets/pulgaCachorro.png", {
@@ -178,7 +179,7 @@ export class cenaCarregamento extends Phaser.Scene {
             frameWidth: 626,
             frameHeight: 655
         });
-           this.load.spritesheet("cachorroJoao", "assets/cachorroJoao.png", {
+        this.load.spritesheet("cachorroJoao", "assets/cachorroJoao.png", {
             frameWidth: 626,
             frameHeight: 655
         });
@@ -209,6 +210,6 @@ export class cenaCarregamento extends Phaser.Scene {
 
     create() {
         // Após carregar todos os assets, inicia a cena inicial do jogo
-        this.scene.start("cenaInicial"); 
+        this.scene.start("cenaInicial");
     }
 }

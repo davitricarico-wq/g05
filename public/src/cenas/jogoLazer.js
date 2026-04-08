@@ -1,5 +1,5 @@
 // Importa o estado global do jogo
-import { gameState } from "../main.js"; 
+import { gameState, iniciarMusicaAleatoria } from "../main.js"; 
 
 // Define a classe da cena do minigame de lazer
 export class jogoLazer extends Phaser.Scene {
@@ -25,6 +25,9 @@ export class jogoLazer extends Phaser.Scene {
         // Interrompe a HUD principal para focar no minigame
         this.scene.stop("HUD");
 
+        // Inicia música aleatória
+        iniciarMusicaAleatoria(this);
+
         // Configura o botão de voltar com interatividade e efeitos visuais
         this.botaoVoltar = this.add.text(60, 50, "Voltar", {
             fontFamily: "Arial",
@@ -42,18 +45,6 @@ export class jogoLazer extends Phaser.Scene {
 
         // Define a gravidade do mundo físico
         this.physics.world.gravity.y = 800;
-
-        // Gerencia a transição de áudio entre o tutorial e o minigame
-        if (!gameState.musicaMenuPrincipal) {
-            gameState.musicaMenuPrincipal = this.sound.add("musicaMenuPrincipal", { loop: true, volume: 0.5 });
-        }
-        if (gameState.musicaTutorial?.isPlaying) {
-            gameState.musicaTutorial.stop();
-        }
-        if (!gameState.musicaMenuPrincipal.isPlaying) {
-            gameState.musicaMenuPrincipal.play();
-        }
-        gameState.musica = gameState.musicaMenuPrincipal;
 
         // Configura o fundo infinito (TileSprite) com ajuste de escala
         const largura = this.scale.width;

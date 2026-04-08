@@ -1,5 +1,5 @@
 // Importa o estado global do jogo e os arquivos necessarios para gerenciar o cachorro
-import { gameState } from "../main.js";
+import { gameState, iniciarMusicaAleatoria } from "../main.js";
 import { GerenciadorCachorros } from "../componentes/controleCachorro/gerenciadorCachorros.js";
 import { cachorrosBase } from "../componentes/controleCachorro/cachorrosBase.js";
 
@@ -23,13 +23,8 @@ export class cenaVeterinario extends Phaser.Scene {
         if (!this.scene.isActive("HUD")) this.scene.launch("HUD");
         this.scene.bringToTop("HUD");
 
-        if (!gameState.musicaMenuPrincipal) {
-            gameState.musicaMenuPrincipal = this.sound.add("musicaMenuPrincipal", { loop: true, volume: 1.0 });
-        }
-        if (gameState.musicaTutorial?.isPlaying) gameState.musicaTutorial.stop();
-        if (!gameState.musicaMenuPrincipal.isPlaying) gameState.musicaMenuPrincipal.play();
-        
-        gameState.musica = gameState.musicaMenuPrincipal;
+        // Inicia música aleatória
+        iniciarMusicaAleatoria(this);
 
         // Configurações de Tela
         const larguraTotal = this.scale.width;
