@@ -162,7 +162,7 @@ export class cenaCarregamento extends Phaser.Scene {
         this.load.audio("lazerDespreocupado", "assets/sons/lazerDespreocupado.mp3");
         this.load.audio("menuPrincipal", "assets/sons/menuPrincipal.mp3");
         this.load.audio("musicaCutscene", "assets/sons/musicaCutscene.mp3");
-        this.load.audio("musicaHorizonte", "assets/sons/musicaHorizonte.mp3");
+        this.load.audio("musicaHorizonte", "assets/sons/novoHorizonte.mp3");
         this.load.audio("pegadasCrescidas", "assets/sons/pegadasCrescidas.mp3");
 
         // Spritesheets do cachorro e água
