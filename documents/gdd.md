@@ -214,8 +214,7 @@ Por fim, os pet shops de bairro competem fortemente no mercado local, com foco e
 <div align="center">
 <p> Figura 2: Canva proposta de valor.
 <img src="other/canvasdevalor.png">
-
-Feito pela própria equipe (2026) com base no modelo de negócios elaborado por Alexander Osterwalder, Yves Pigneur e Alan Smith.
+<p>Feito pela própria equipe (2026) com base no modelo de negócios elaborado por Alexander Osterwalder, Yves Pigneur e Alan Smith.</p>
 <br>
 </div>
 
@@ -295,7 +294,7 @@ Principais tarefas identificadas:
 <div align="center">
 <p> Figura 3: Matriz de Risco.
 <img src="other/matrizDeRisco.png">
-Fonte: material produzido pelos autores (2026).
+<p>Fonte: material produzido pelos autores (2026).</p>
 <br>
 </div>
 
@@ -588,36 +587,31 @@ A proposta é “rodar um abrigo” com tarefas operacionais e cuidado dos anima
 <div align="center">
 <p> Figura 4: Tela de menu principal do jogo.
 <img src="other/telaprincipal.png">
-Fonte: material produzido pelos autores (2026).
-<br>
+<p>Fonte: material produzido pelos autores (2026).</p>
 </div>
-
+<br>
 
 <br>
 <div align="center">
-<p> Figura 5: HUD com botões que redirecionam para as telas de banheiro, alimentação, saúde e lazer do pet.
+<p> Figura 5: HUD com botões que redirecionam para as telas de banheiro, alimentação, saúde e lazer do pet.</p>
 <img src="other/hud.png">
-
-Fonte: material produzido pelos autores (2026).
-<br>
+<p>Fonte: material produzido pelos autores (2026).</p>
 </div>
-
-
 <br>
 
+<br>
 <div align="center">
-<p> Figura 6: Tela do banheiro, apresentando o pet no ambiente de higiene com itens interativos.
+<p> Figura 6: Tela do banheiro, apresentando o pet no ambiente de higiene com itens interativos.</p>
 <img src="other/telaBanhoCachorro.png">
-Fonte: Produzido pelos autores (2026)
-<br>
+<p>Fonte: Produzido pelos autores (2026)</p>
 </div>
-
+<br>
 
 <br>
 <div align="center">
 <p> Figura 7: Personagem protagonista do jogo, representada por uma mulher jovem e empoderada que cuidará dos pets.</p>
-<img src="other/Protagonista.png" width="300>
-Fonte: material produzido pelos autores (2026).
+<img src="other/Protagonista.png" width="300">
+<p>Fonte: material produzido pelos autores (2026).</p>
 <br>
 
 </div>
@@ -626,16 +620,12 @@ Fonte: material produzido pelos autores (2026).
 <br>
 
 <div align="center">
-<p> Figura 8: Personal Pet, personagem secundário do jogo, responsável por auxiliar o jogador durante a narrativa do jogo.
-</p>
-<img src="other/personalpet.png" width="300>
-Fonte: material produzido pelos autores (2026).
-
-
-</p>
+<p> Figura 8: Personal Pet, personagem secundário do jogo, responsável por auxiliar o jogador durante a narrativa do jogo.</p>
+<img src="other/personalpet.png" width="300">
+<p>Fonte: material produzido pelos autores (2026).</p>
 
 </div>
-
+<br>
 
 ### 3.3.5. Trilha Sonora
 &ensp; A trilha sonora do jogo é composta por faixas originais criadas exclusivamente para o projeto, garantindo uma identidade sonora autêntica e perfeitamente alinhada à atmosfera do jogo. O foco atual da composição é estabelecer o tom correto nos primeiros contatos do jogador com a obra, criando imersão desde o menu inicial e ajudando a contar a história durante a introdução narrativa. As faixas presentes até o momento estão organizadas na tabela abaixo:
@@ -664,7 +654,6 @@ Fonte: material produzido pelos autores (2026).
     <img src="other/diagramacenas.png" width="800">
   </a>
   <p>Feito pela própia equipe(2026)</p>
-    
 </div>
 
 <h2 align="center" id="36-regras-do-jogo">3.6 REGRAS DO JOGO</h2>
@@ -1126,8 +1115,8 @@ O fluxo da atividade envolve:
 <div align="center">
   <p>Figura 12: Tela de Banho</p>
   <img src="other/bath.png" width="800">
-   <p>Feito pela própria equipe (2026)</p> 
-   </div>
+  <p>Feito pela própria equipe (2026)</p> 
+</div>
 
 
 **Desenvolvimento Visual e Elementos Gráficos**
@@ -1174,9 +1163,9 @@ O fluxo da atividade envolve:
 **Cena do minigame de banho:**
 
 <div align="center">
-<p>Figura 13: Minigame de Banho</p>
-<img src="other/telaBanhoCachorro.png" width="800">
-<p>Feito pela própria equipe (2026)</p>
+  <p>Figura 13: Minigame de Banho</p>
+  <img src="other/telaBanhoCachorro.png" width="800">
+  <p>Feito pela própria equipe (2026)</p>
 </div>
 
 ### Implementação do Minigame de Alimentação
@@ -1198,10 +1187,10 @@ O fluxo da atividade envolve:
 **Cena do minigame de alimentação**
 
 <div align="center">
-<p>Figura 14: Minigame de Alimentação</p>
-<img src="other/sprint3-alimentacao.png" width="800">
- <p>Feito pela própria equipe (2026)</p> 
- </div>
+  <p>Figura 14: Minigame de Alimentação</p>
+  <img src="other/sprint3-alimentacao.png" width="800">
+  <p>Feito pela própria equipe (2026)</p> 
+</div>
 
 ### Implementação do Minigame Veterinário
 
@@ -1222,10 +1211,10 @@ O fluxo da atividade envolve:
 Cena do minigame veterinário
 
 <div align="center">
-<p>Figura 15: Minigame de Veterinário</p>
-<img src="other/telaPulga.png" width="800">
- <p>Feito pela própria equipe (2026)</p>
- </div>
+  <p>Figura 15: Minigame de Veterinário</p>
+  <img src="other/telaPulga.png" width="800">
+  <p>Feito pela própria equipe (2026)</p>
+</div>
 
 ### Dificuldades encontradas durante a sprint
 
@@ -1268,7 +1257,6 @@ Essa expansão está alinhada aos requisitos RF1, RF7 e RF8, que definem a prese
 <div align="center">
   <p>Figura 16: Tela de Cuidado </p>
   <img src="other/telaCuidadoInicial.png" width="800">
- 
   <p>Feito pela própia equipe(2026)</p>
 </div>
 
@@ -1281,7 +1269,6 @@ Essa expansão está alinhada aos requisitos RF1, RF7 e RF8, que definem a prese
 <div align="center">
   <p>Figura 17: Tela do minigame de Lazer </p>
   <img src="other/telaLazerMinigame.png" width="800">
- 
   <p>Feito pela própia equipe(2026)</p>
 </div>
 
@@ -1305,14 +1292,12 @@ Esse sistema reforça os requisitos RF5, RF7 e RF8, garantindo continuidade na j
 <div align="center">
   <p>Figura 18: Tela Inicial com o novo cachorro</p>
   <img src="other/telaInicialNovo.png" width="800">
- 
   <p>Feito pela própia equipe(2026)</p>
 </div>
 
 <div align="center">
   <p>Figrua 19: Tela de ração com o novo cachorro</p>
   <img src="other/telaRacaoInicial.png" width="800">
- 
   <p>Feito pela própia equipe(2026)</p>
 </div>
 
@@ -1326,14 +1311,12 @@ Essas melhorias atendem aos requisitos não funcionais RNF2, RNF3, RNF4 e RNF9, 
 <div align="center">
   <p>Figura 20: Tela de Instrução de banho </p>
   <img src="other/instrucaoBanho.png" width="800">
- 
   <p>Feito pela própia equipe(2026)</p>
 </div>
 
 <div align="center">
   <p>Figura 21:Tela da compra de rações </p>
   <img src="other/telaRacaoInstrucao.png" width="800">
- 
   <p>Feito pela própia equipe(2026)</p>
 </div>
 
