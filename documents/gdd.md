@@ -1387,6 +1387,7 @@ Essas melhorias atendem aos requisitos RF16, RF17, RF19, RF20, RF21 e RF22, alé
 &ensp;Apesar dos obstáculos, os problemas foram superados, contribuindo para o aprimoramento técnico e organizacional do grupo.
 
 --- 
+
 <h1 align="center" id="5-casos-de-teste">5. Testes</h1>
 
 
@@ -1659,7 +1660,7 @@ WORLD ORGANISATION FOR ANIMAL HEALTH (WOAH). Animal welfare. Paris: WOAH, 2022. 
 
 INSTITUTO PET BRASIL. Dados do setor pet. São Paulo: Instituto Pet Brasil, 2024. Disponível em: https://institutopetbrasil.com/setor-pet/dados-do-setor-pet/. Acesso em: 24 mar. 2026.
 
-
+---
 <h1 align="center" id="anexos">Anexos</h1>
 
 *Inclua aqui quaisquer complementos para seu projeto, como diagramas, imagens, tabelas etc. Organize em sub-tópicos utilizando headings menores (use ## ou ### para isso)*
