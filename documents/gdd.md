@@ -16,9 +16,9 @@ Valter Lucas Garcia de Lima
 
 # Sumário
 
-[1. Introdução](#1-introdução)       
+[1. Introdução](#1-introducao)  
 <small>
-[1.1 Plano Estratégico do Projeto](#11-plano-estratégico-do-projeto)  
+[1.1 Plano Estratégico do Projeto](#11-plano-estrategico-do-projeto)  
 [1.1.1 Contexto da Indústria](#111-contexto-da-indústria)  
 [1.1.1.1 Modelo de 5 Forças de Porter](#1111-modelo-de-5-forças-de-porter)  
 [1.1.1.2 Ameaça de Novos Entrantes](#1112-ameaça-de-novos-entrantes)  
@@ -98,11 +98,11 @@ Valter Lucas Garcia de Lima
 
 [Anexos](#anexos)
 
+<br>
 
-# 1. Introdução
+<h1 align="center" id="1-introducao">1. Introdução</h1>
 
-
-## 1.1. Plano Estratégico do Projeto
+<h2 align="center" id="11-plano-estrategico-do-projeto">1.1. Plano Estratégico do Projeto</h2>
 
 ### 1.1.1. Contexto da indústria 
 
@@ -212,15 +212,13 @@ Por fim, os pet shops de bairro competem fortemente no mercado local, com foco e
 
 <br>
 <div align="center">
-<p> Figura 2: Canva proposta de valor.
-<img src="other/canvasdevalor.png">
-<p>Feito pela própria equipe (2026) com base no modelo de negócios elaborado por Alexander Osterwalder, Yves Pigneur e Alan Smith.</p>
-<br>
+  <p>Figura 2: Canva proposta de valor.</p>
+  <img src="other/canvasdevalor.png">
+  <p>Feito pela própria equipe (2026) com base no modelo de negócios elaborado por Alexander Osterwalder, Yves Pigneur e Alan Smith.</p>
 </div>
-
+<br>
 
 <h2 align="center" id="perfil-do-cliente">Perfil do Cliente</h2>
-
 ### Tarefas do Cliente (Customer Jobs)
 &ensp; As tarefas do cliente representam as atividades, objetivos ou problemas que o público busca resolver em seu cotidiano. Elas correspondem ao que o usuário tenta realizar funcionalmente, emocionalmente ou socialmente ao interagir com um produto, serviço ou situação específica. Nesse contexto, estão relacionadas ao cuidado com animais e ao consumo de conteúdos digitais sobre o tema. Identificá-las permite compreender quais demandas orientam o comportamento do usuário e quais aspectos devem ser considerados no desenvolvimento da solução.
 Principais tarefas identificadas: 
@@ -248,7 +246,6 @@ Principais tarefas identificadas:
 
 <h2 align="center" id="mapa-de-valor">Mapa de Valor</h2>
 &ensp; A partir do perfil do cliente identificado, o Mapa de Valor apresenta como a solução proposta busca atender às suas necessidades e expectativas. Para isso, são descritos os produtos e serviços desenvolvidos, bem como os elementos responsáveis por gerar benefícios e reduzir as dificuldades enfrentadas pelo usuário.
-
 ### Produtos e Serviços
 &ensp;No segmento de produtos e serviços, são apresentados os elementos concretos que compõem a solução oferecida ao usuário, correspondendo às funcionalidades e experiências disponibilizadas pelo projeto. No caso do jogo digital Cobasi Shelter, destacam-se:
 * Jogo digital casual acessível via navegador web: Permite acesso imediato sem necessidade de instalação, ampliando o alcance e reduzindo barreiras tecnológicas.
@@ -294,11 +291,11 @@ Principais tarefas identificadas:
 
 <br>
 <div align="center">
-<p> Figura 3: Matriz de Risco.
-<img src="other/matrizDeRisco.png">
-<p>Fonte: material produzido pelos autores (2026).</p>
-<br>
+  <p>Figura 3: Matriz de Risco.</p>
+  <img src="other/matrizDeRisco.png">
+  <p>Fonte: material produzido pelos autores (2026).</p>
 </div>
+<br>
 
 🔴 **R01 – Bugs nas mecânicas dos minigames**
 
@@ -397,7 +394,7 @@ Principais tarefas identificadas:
   * Quantidade de bugs críticos na versão final (Meta: 0).
 
 
-## 1.2. Requisitos do Jogo
+<h2 align="center" id="12-requisitos-do-jogo">1.2. Requisitos do Jogo</h2>
 
 &ensp;Os requisitos do jogo foram definidos para estruturar a experiência do jogador a partir da mecânica central de cuidado com animais domésticos, garantindo alinhamento entre jogabilidade e propósito social. O jogo deverá possuir gatos e cães como espécies principais, delimitando o universo temático e aproximando a experiência da realidade dos animais mais adotados. Essa escolha fortalece a proposta de conscientização sobre responsabilidade no cuidado e na adoção.
 
@@ -466,14 +463,14 @@ Descrevem as funcionalidades, ações e comportamentos esperados.
 
 &ensp;Os requisitos não operam de forma isolada, mas de maneira articulada. A definição das espécies estabelece o escopo temático; a mecânica de cuidado estrutura a jogabilidade; os cenários organizam as ações; o sistema de moedas promove progressão; a indicação visual aprimora a interação; e o momento de conscientização consolida o propósito social do projeto. O desenvolvimento será realizado de forma incremental nas sprints iniciais, priorizando a implementação da mecânica central e das interações básicas, e posteriormente incorporando o sistema de recompensas e o evento educativo, garantindo viabilidade técnica e coerência na evolução do jogo.
 
-## 1.3. Público-alvo do Projeto
+<h2 align="center" id="13-público-alvo-do-projeto">1.3. Público-alvo do Projeto</h2>
 
 &ensp;O Público alvo do nosso projeto é qualquer um que tenha interesse em aprender e dar uma qualidade de vida melhor ao seu Pet. Apesar de ser acessível para qualquer um, é previsto que a Geração Z tenha mais contato com o jogo pela seu apreço com jogos e pela crescente onda de pais de pets entre essa geração.
 
 
-# 2. Visão Geral do Jogo
+<h1 align="center" id="2-visão-geral-do-jogo">2. Visão Geral do Jogo</h1>
 
-## 2.1. Objetivos do Jogo
+<h2 align="center" id="21-objetivos-do-jogo">2.1. Objetivos do Jogo</h2>
 
 &ensp;O jogo tem como objetivo central promover o cuidado e o bem-estar dos animais, em especial dos cachorros, dentro do projeto Cobasi Cuida. A experiência é organizada em fases progressivas, cada uma apresentando novos desafios e diferentes perfis de cães, variando em raça, porte, idade e peso.
 O jogador assume o papel de cuidador responsável e, para avançar no jogo, precisa realizar uma série de atividades interativas por meio de minigames. Esses minigames simulam tarefas de cuidado, como encher o pote de ração, oferecer brinquedos, dar banho ou proporcionar momentos de lazer. Cada ação realizada contribui para o aumento da barra de felicidade, indicador visual que demonstra o nível de satisfação e bem-estar do animal.
@@ -481,7 +478,7 @@ O jogador assume o papel de cuidador responsável e, para avançar no jogo, prec
 &ensp;O progresso do jogador é medido pela sua capacidade de manter os cães felizes e saudáveis. A cada animal bem cuidado, o jogador recebe moedas virtuais como recompensa. Essas moedas desempenham um papel estratégico, pois permitem Comprar rações e equipamentos melhores, que facilitam os cuidados nas fases seguintes. Adquirir acessórios e itens de personalização, que tornam a experiência mais divertida e permitem enfeitar os animais, desbloquear novos conteúdos e desafios, ampliando a diversidade de cães e atividades disponíveis.Assim, os objetivos do jogo se dividem em duas partes principais: o primeiro é garantir garantir o cuidado adequado dos animais, mantendo a barra de felicidade sempre elevado e o secundario é acumular moedas para investir em melhorias, acessórios e desbloqueios, tornando a jornada mais rica e recompensadora.
 
 
-## 2.2. Características do Jogo
+<h2 align="center" id="22-características-do-jogo">2.2. Características do Jogo</h2>
 
 ### 2.2.1. Gênero do Jogo 
 
@@ -534,15 +531,15 @@ A proposta é “rodar um abrigo” com tarefas operacionais e cuidado dos anima
 ### 2.2.5 Tempo estimado de jogo 
 
 
-# 3. Game Design
+<h1 align="center" id="3-game-design">3. Game Design</h1>
 
-## 3.1. Enredo do Jogo
+<h2 align="center" id="31-enredo-do-jogo">3.1. Enredo do Jogo</h2>
 
 *Descreva o enredo/história do jogo, criando contexto para os personagens (seção 3.2) e o mundo do jogo (seção 3.3). Uma boa história costuma ter um arco narrativo de contexto, conflito e resolução. Utilize etapas sequenciais para descrever esta história.* 
 
 *Caso seu jogo não possua enredo/história (ex. jogo Tetris), mencione os motivos de não existir e como o jogador pode se contextualizar com o ambiente do jogo.*
 
-## 3.2. Personagens
+<h2 align="center" id="32-personagens">3.2. Personagens</h2>
 
 ### 3.2.1. Controláveis
 
@@ -565,7 +562,7 @@ A proposta é “rodar um abrigo” com tarefas operacionais e cuidado dos anima
 &ensp;Dessa forma, o impacto esperado é duplo: fortalecer o vínculo emocional com o público-alvo e posicionar o jogo como uma experiência transformadora que reflete a pluralidade da sociedade brasileira e os valores de responsabilidade, cuidado e inclusão associados à marca.
 
 
-## 3.3. Mundo do jogo 
+<h2 align="center" id="33-mundo-do-jogo">3.3. Mundo do jogo</h2>
 
 ### 3.3.1. Locações Principais e/ou Mapas 
 
@@ -587,7 +584,7 @@ A proposta é “rodar um abrigo” com tarefas operacionais e cuidado dos anima
 
 <br>
 <div align="center">
-<p> Figura 4: Tela de menu principal do jogo.
+<p>Figura 4: Tela de menu principal do jogo.</p>
 <img src="other/telaprincipal.png">
 <p>Fonte: material produzido pelos autores (2026).</p>
 </div>
@@ -595,7 +592,7 @@ A proposta é “rodar um abrigo” com tarefas operacionais e cuidado dos anima
 
 <br>
 <div align="center">
-<p> Figura 5: HUD com botões que redirecionam para as telas de banheiro, alimentação, saúde e lazer do pet.</p>
+<p>Figura 5: HUD com botões que redirecionam para as telas de banheiro, alimentação, saúde e lazer do pet.</p>
 <img src="other/hud.png">
 <p>Fonte: material produzido pelos autores (2026).</p>
 </div>
@@ -603,7 +600,7 @@ A proposta é “rodar um abrigo” com tarefas operacionais e cuidado dos anima
 
 <br>
 <div align="center">
-<p> Figura 6: Tela do banheiro, apresentando o pet no ambiente de higiene com itens interativos.</p>
+<p>Figura 6: Tela do banheiro, apresentando o pet no ambiente de higiene com itens interativos.</p>
 <img src="other/telaBanhoCachorro.png">
 <p>Fonte: Produzido pelos autores (2026)</p>
 </div>
@@ -611,7 +608,7 @@ A proposta é “rodar um abrigo” com tarefas operacionais e cuidado dos anima
 
 <br>
 <div align="center">
-<p> Figura 7: Personagem protagonista do jogo, representada por uma mulher jovem e empoderada que cuidará dos pets.</p>
+<p>Figura 7: Personagem protagonista do jogo, representada por uma mulher jovem e empoderada que cuidará dos pets.</p>
 <img src="other/Protagonista.png" width="300">
 <p>Fonte: material produzido pelos autores (2026).</p>
 <br>
@@ -622,33 +619,29 @@ A proposta é “rodar um abrigo” com tarefas operacionais e cuidado dos anima
 <br>
 
 <div align="center">
-<p> Figura 8: Personal Pet, personagem secundário do jogo, responsável por auxiliar o jogador durante a narrativa do jogo.</p>
+<p>Figura 8: Personal Pet, personagem secundário do jogo, responsável por auxiliar o jogador durante a narrativa do jogo.</p>
 <img src="other/personalpet.png" width="300">
 <p>Fonte: material produzido pelos autores (2026).</p>
 
 </div>
 <br>
 
-
 ### 3.3.5. Trilha Sonora
-&ensp; A trilha sonora do jogo é composta por faixas originais criadas exclusivamente para o projeto, garantindo uma identidade sonora autêntica e perfeitamente alinhada à atmosfera do jogo. O foco atual da composição é estabelecer o tom correto nos primeiros contatos do jogador com a obra, criando imersão desde o menu inicial e ajudando a contar a história durante a introdução narrativa. Todas as faixas exceto a "Patas na Chuva" podem aparecer em qualquer uma das cenas, evitando repetição caso o jogador se mantenha por mais tempo em alguma parte. As faixas presentes até o momento estão organizadas na tabela abaixo:
+&ensp; A trilha sonora do jogo é composta por faixas originais criadas exclusivamente para o projeto, garantindo uma identidade sonora autêntica e perfeitamente alinhada à atmosfera do jogo. O foco atual da composição é estabelecer o tom correto nos primeiros contatos do jogador com a obra, criando imersão desde o menu inicial e ajudando a contar a história durante a introdução narrativa. As faixas presentes até o momento estão organizadas na tabela abaixo:
 
 <div align="center">
 
 \# | titulo | ocorrência | autoria
 | :---: | :---: | :---: | :---: |
-1 | Adotando e Cuidando | Qualquer cena | Composição Própria (Gustavo Fantasia)
+1 | Adotando e Cuidando | Menu Principal | Composição Própria (Gustavo Fantasia)
 2 | Patas na Chuva | Cutscene pós menu principal | Composição Própria (Gustavo Fantasia) 
-3 | Lazer Despreocupado | Qualquer cena | Composição Própria (Gustavo Fantasia)
-4 | Novo Horizonte | Qualquer cena | Composição Própria (Gustavo Fantasia)
-5 | Pegadas Crescidas | Qualquer cena | Composição Própria (Gustavo Fantasia)
 
 </div>
 
-## 3.4. Inventário e Bestiário
+<h2 align="center" id="34-inventário-e-bestiário">3.4. Inventário e Bestiário</h2>
 *Não se aplica ao projeto*
 
-## 3.5. Gameflow
+<h2 align="center" id="35-gameflow">3.5. Gameflow</h2>
 
 &ensp;No desenvolvimento de jogos, o diagrama de cenas é uma ferramenta visual utilizada no GDD (Game Design Document) para organizar e representar a estrutura do jogo. Ele mostra, de forma esquemática, todas as telas ou cenas existentes — como menu inicial, tutorial, fases, configurações, pausa e game over (e como elas se conectam entre si).
 
@@ -662,7 +655,7 @@ A proposta é “rodar um abrigo” com tarefas operacionais e cuidado dos anima
   <p>Feito pela própia equipe(2026)</p>
 </div>
 
-## 3.6 Regras do Jogo
+<h2 align="center" id="36-regras-do-jogo">3.6 REGRAS DO JOGO</h2>
 
 &ensp;O jogo é composto por diferentes minigames que simulam atividades de cuidado com um animal doméstico. Em cada minigame, o jogador deve executar ações específicas para cumprir os objetivos propostos. Ao concluir cada atividade com sucesso, o jogador recebe CobasiCoins, que funcionam como indicador de progresso e incentivam a continuidade da experiência.
 
@@ -710,7 +703,7 @@ A proposta é “rodar um abrigo” com tarefas operacionais e cuidado dos anima
 
 ---
 
-## 3.7 Mecânicas do jogo
+<h2 align="center" id="37-mecânicas-do-jogo">3.7 MECÂNICAS DO JOGO</h2>
 
 ### 3.7.1 Descrição Geral das Mecânicas
 
@@ -756,7 +749,7 @@ A proposta é “rodar um abrigo” com tarefas operacionais e cuidado dos anima
 
 &ensp;As mecânicas permanecem inalteradas no novo ciclo, garantindo a continuidade da experiência.
 
-## 3.8. Implementação Matemática de Animação/Movimento
+<h2 align="center" id="38-implementação-matemática-de-animaçãomovimento">3.8. Implementação Matemática de Animação/Movimento</h2>
 
 ### 3.8.1 Parâmetros de entrada
 
@@ -1047,9 +1040,9 @@ HALLIDAY, D.; RESNICK, R.; WALKER, J. Fundamentos de Física: Mecânica. Rio de 
 
 
 
-# 4. Desenvolvimento do Jogo
+<h1 align="center" id="4-desenvolvimento-do-jogo">4. Desenvolvimento do Jogo</h1>
 
-## 4.1. Desenvolvimento preliminar do jogo
+<h2 align="center" id="41-desenvolvimento-preliminar-do-jogo">4.1. Desenvolvimento preliminar do jogo</h2>
  
  &ensp;Durante a primeira fase de desenvolvimento, foram estabelecidas as prioridades do projeto com base nos requisitos funcionais definidos para o jogo, principalmente aqueles relacionados às mecânicas de cuidado com os animais (Requisitos 3 e 4). A equipe realizou sessões de brainstorming para consolidar a ideia central do jogo, definir como o jogador interagiria com os animais e estruturar o escopo do sistema. A partir dessas definições, foi feita a organização inicial do software, com a implementação das primeiras funcionalidades e a distribuição de funções entre os membros da equipe, estabelecendo uma estrutura promissora para as próximas sprints.
 
@@ -1069,7 +1062,7 @@ HALLIDAY, D.; RESNICK, R.; WALKER, J. Fundamentos de Física: Mecânica. Rio de 
 &ensp;Inicialmente, o menu de configurações foi implementado de forma básica, permitindo acesso a uma tela dedicada, com previsão de expansão de suas funcionalidades nas próximas etapas.
 
 <div align="center">
-  <p> Figura 10: Tela Inicial</p>
+  <p>Figura 10: Tela Inicial</p>
   <img src="other/telaprincipal.png" width="800">
   <p>Feito pela própia equipe(2026)</p>
 </div>
@@ -1081,7 +1074,7 @@ HALLIDAY, D.; RESNICK, R.; WALKER, J. Fundamentos de Física: Mecânica. Rio de 
 &ensp;Também houve um período de adaptação à metodologia Scrum, o que impactou inicialmente o fluxo de trabalho da equipe.
 Apesar dessas dificuldades, foi possível entregar uma versão inicial funcional do sistema, que serviu como base estruturada para o avanço do projeto nas etapas seguintes.
 
-## 4.2. Desenvolvimento básico do jogo
+<h2 align="center" id="42-desenvolvimento-básico-do-jogo">4.2. Desenvolvimento básico do jogo</h2>
 
 &ensp;Na segunda sprint do projeto, a equipe concentrou esforços na estruturação das fases do jogo, definição das cenas e consolidação do storytelling, com o objetivo de organizar a progressão da experiência do jogador de forma coerente com a proposta educativa.
 
@@ -1142,7 +1135,7 @@ O fluxo da atividade envolve:
 &ensp;Apesar dessas limitações, a equipe conseguiu avançar na construção das principais mecânicas do jogo, consolidando uma base funcional importante para a continuidade do desenvolvimento.
 
 
-## 4.3. Desenvolvimento intermediário do jogo
+<h2 align="center" id="43-desenvolvimento-intermediário-do-jogo">4.3. Desenvolvimento intermediário do jogo</h2>
 
 &ensp;A terceira sprint teve como objetivo a implementação e o aprimoramento de elementos fundamentais da jogabilidade do Cobasi Shelter, focando principalmente no desenvolvimento dos minigames que simulam diferentes formas de cuidado com animais domésticos. Nesta etapa do projeto, a equipe concentrou seus esforços na implementação das mecânicas principais dos minigames, no refinamento das interações do jogador com os objetos do jogo e na estrutura de recompensas utilizando Cobasi Coins.
 
@@ -1244,7 +1237,7 @@ Cena do minigame veterinário
 
 &ensp;Essas melhorias têm como objetivo tornar o Cobasi Shelter uma experiência mais completa, interativa e educativa, reforçando a proposta do jogo de ensinar sobre os cuidados necessários com animais domésticos de forma lúdica.
 
-## 4.4. Desenvolvimento final do MVP
+<h2 align="center" id="44-desenvolvimento-final-do-mvp">4.4. Desenvolvimento final do MVP</h2>
 
 &ensp;Na quarta sprint teve como objetivo consolidar o MVP do Cobasi Shelter, com foco no aprimoramento visual, expansão das mecânicas e integração dos sistemas desenvolvidos anteriormente. Nesta etapa, buscou-se alinhar a experiência do jogador aos requisitos definidos na Seção 1.2, garantindo maior coerência entre jogabilidade, interface e proposta educativa do projeto.
 
@@ -1300,7 +1293,7 @@ Esse sistema reforça os requisitos RF5, RF7 e RF8, garantindo continuidade na j
 </div>
 
 <div align="center">
-  <p>Figrua 19: Tela de ração com o novo cachorro</p>
+  <p>Figura 19: Tela de ração com o novo cachorro</p>
   <img src="other/telaRacaoInicial.png" width="800">
   <p>Feito pela própia equipe(2026)</p>
 </div>
@@ -1340,7 +1333,7 @@ Essas melhorias atendem aos requisitos não funcionais RNF2, RNF3, RNF4 e RNF9, 
 * Incluir novos animais (RF1);
 * Realizar ajustes finais de interface (RNF6 e RNF3).
 
-## 4.5. Revisão do MVP
+<h2 align="center" id="45-revisão-do-mvp">4.5. Revisão do MVP</h2>
 
 &ensp;Nesta etapa final do desenvolvimento, foram priorizados ajustes relacionados à correção de bugs, melhorias na usabilidade e refinamento da experiência do usuário (UX Design). O objetivo foi  proporcionar uma experiência mais fluida e intuitiva ao jogador.
 
@@ -1392,7 +1385,17 @@ Essas melhorias atendem aos requisitos RF16, RF17, RF19, RF20, RF21 e RF22, alé
 &ensp;Apesar dos obstáculos, os problemas foram superados, contribuindo para o aprimoramento técnico e organizacional do grupo.
 
 
-# 5. Testes
+<h1 align="center" id="5-casos-de-teste">5. Testes</h1>
+
+<h2 align="center" id="51-casos-de-teste">5.1. Casos de Teste</h2>
+
+&ensp;Um Caso de Teste (*Test Case*) é um roteiro detalhado de condições, variáveis, passos e resultados esperados, criado para verificar se uma funcionalidade específica de um software (ou jogo) está operando corretamente e cumprindo seus requisitos.
+
+&ensp;Eles são essenciais para garantir a qualidade do produto, identificar bugs de forma sistemática antes do lançamento e documentar o comportamento esperado do sistema.
+
+<div align="center">
+  <p>Quadro de casos de teste</p>
+</div>
 
 ## 5.1. Casos de Teste 
 
@@ -1474,8 +1477,7 @@ Essas melhorias atendem aos requisitos RF16, RF17, RF19, RF20, RF21 e RF22, alé
   <p>Feito pela própia equipe(2026)</p>
 </div>
 
-
-## 5.2. Testes de jogabilidade (playtests)
+<h2 align="center" id="52-testes-de-jogabilidade-playtests">5.2. Testes de jogabilidade (playtests)</h2>
 
 &ensp;O teste de jogabilidade é uma metodologia sistemática de avaliação qualitativa e quantitativa, conduzida durante o ciclo de desenvolvimento de um software de entretenimento. Enquanto o Controle de Qualidade (QA) foca na integridade técnica do código, o playtesting concentra-se na validação da experiência do usuário (UX) e na eficácia do game design.
 
@@ -1508,7 +1510,7 @@ Essas melhorias atendem aos requisitos RF16, RF17, RF19, RF20, RF21 e RF22, alé
 
 *Descreva nesta seção um plano de melhorias sobre o jogo, com base nos resultados dos testes de jogabilidade*
 
-# 6. Conclusões e trabalhos futuros
+<h1 align="center" id="6-conclusões-e-trabalhos-futuros">6. Conclusões e trabalhos futuros</h1>
 
 *Escreva de que formas a solução do jogo atingiu os objetivos descritos na seção 1 deste documento. Indique pontos fortes e pontos a melhorar de maneira geral.*
 
@@ -1516,7 +1518,7 @@ Essas melhorias atendem aos requisitos RF16, RF17, RF19, RF20, RF21 e RF22, alé
 
 *Relacione também quaisquer ideias que o grupo tenha para melhorias futuras*
 
-# 7. Referências
+<h1 align="center" id="7-referências">7. Referências</h1>
 
 CONSELHO ADMINISTRATIVO DE DEFESA ECONÔMICA (CADE). CADE clears merger of Petz and Cobasi. 23 jun. 2025. Disponível em: https://www.gov.br/cade/en/matters/news/cade-clears-merger-of-petz-and-cobasi. Acesso em: 27 fev. 2026.
 
@@ -1570,7 +1572,7 @@ WORLD ORGANISATION FOR ANIMAL HEALTH (WOAH). Animal welfare. Paris: WOAH, 2022. 
 INSTITUTO PET BRASIL. Dados do setor pet. São Paulo: Instituto Pet Brasil, 2024. Disponível em: https://institutopetbrasil.com/setor-pet/dados-do-setor-pet/. Acesso em: 24 mar. 2026.
 
 
-# Anexos
+<h1 align="center" id="anexos">Anexos</h1>
 
 *Inclua aqui quaisquer complementos para seu projeto, como diagramas, imagens, tabelas etc. Organize em sub-tópicos utilizando headings menores (use ## ou ### para isso)*
 
