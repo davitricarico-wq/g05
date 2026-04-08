@@ -443,10 +443,10 @@ Principais tarefas identificadas:
 6 | O jogo deve manter consistência visual entre cenários, menus e elementos gráficos.
 7 | O jogo deve possuir controles responsivos, garantindo que as ações do jogador sejam executadas rapidamente após a interação.
 8 | O jogo deve possuir compatibilidade com resolução de tela padrão de computadores, mantendo a interface corretamente ajustada.
-
-</div>
 9 | O jogo deve manter desempenho estável, evitando travamentos ou quedas significativas de desempenho durante a execução.
 10 | O jogo deve apresentar textos e informações legíveis, utilizando fontes e tamanhos adequados para facilitar a leitura pelo jogador.
+
+</div>
 
 <div align="center">
   <p>Feito pela própia equipe(2026)</p>
