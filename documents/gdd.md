@@ -156,7 +156,7 @@ Por fim, os pet shops de bairro competem fortemente no mercado local, com foco e
 <div align="center">
   <p>Figura 1: Análise Swot</p>
   <img src="other/swot.png" width="800">
-  <p>Feito pela própria equipe(2026)</p>
+  <p>Feito pela própria equipe (2026)</p>
 </div>
 
 <h2 align="center" id="strengths">Strengths</h2>
@@ -449,7 +449,7 @@ Principais tarefas identificadas:
 </div>
 
 <div align="center">
-  <p>Feito pela própria equipe(2026)</p>
+  <p>Feito pela própria equipe (2026)</p>
 </div>
 
 **Requisitos Funcionais:** São os requisitos que o sistema faz.
@@ -655,7 +655,7 @@ O tempo estimado de gameplay para o Cobasi Shelter, considerando a destreza com 
   <a href="https://miro.com/app/board/uXjVG8ZyQIk=/?share_link_id=884951366758">
     <img src="other/diagramacenas.png" width="800">
   </a>
-  <p>Feito pela própria equipe(2026)</p>
+  <p>Feito pela própria equipe (2026)</p>
 </div>
 
 ## 3.6 Regras do Jogo 
@@ -1075,7 +1075,7 @@ HALLIDAY, D.; RESNICK, R.; WALKER, J. Fundamentos de Física: Mecânica. Rio de 
 <div align="center">
   <p>Figura 10: Tela Inicial</p>
   <img src="other/telaprincipal.png" width="800">
-  <p>Feito pela própria equipe(2026)</p>
+  <p>Feito pela própria equipe (2026)</p>
 </div>
 
 **Dificuldades Enfrentadas**
@@ -1117,7 +1117,7 @@ O fluxo da atividade envolve:
 <div align="center">
   <p>Figura 11: Tela de lazer Geral</p>
   <img src="other/bgPrincipal.png" width="800">
-  <p>Feito pela própria equipe(2026)</p>
+  <p>Feito pela própria equipe (2026)</p>
 </div>
 
 <div align="center">
@@ -1265,7 +1265,7 @@ Essa expansão está alinhada aos requisitos RF1, RF7 e RF8, que definem a prese
 <div align="center">
   <p>Figura 16: Tela de Cuidado </p>
   <img src="other/telaCuidadoInicial.png" width="800">
-  <p>Feito pela própria equipe(2026)</p>
+  <p>Feito pela própria equipe (2026)</p>
 </div>
 
 ### Implementação da Área de Lazer 
@@ -1277,7 +1277,7 @@ Essa expansão está alinhada aos requisitos RF1, RF7 e RF8, que definem a prese
 <div align="center">
   <p>Figura 17: Tela do minigame de Lazer </p>
   <img src="other/telaLazerMinigame.png" width="800">
-  <p>Feito pela própria equipe(2026)</p>
+  <p>Feito pela própria equipe (2026)</p>
 </div>
 
 ### Sistema de Progressão e Múltiplos Animais
@@ -1300,13 +1300,13 @@ Esse sistema reforça os requisitos RF5, RF7 e RF8, garantindo continuidade na j
 <div align="center">
   <p>Figura 18: Tela Inicial com o novo cachorro</p>
   <img src="other/telaInicialNovo.png" width="800">
-  <p>Feito pela própria equipe(2026)</p>
+  <p>Feito pela própria equipe (2026)</p>
 </div>
 
 <div align="center">
   <p>Figura 19: Tela de ração com o novo cachorro</p>
   <img src="other/telaRacaoInicial.png" width="800">
-  <p>Feito pela própria equipe(2026)</p>
+  <p>Feito pela própria equipe (2026)</p>
 </div>
 
 
@@ -1319,13 +1319,13 @@ Essas melhorias atendem aos requisitos não funcionais RNF2, RNF3, RNF4 e RNF9, 
 <div align="center">
   <p>Figura 20: Tela de Instrução de banho </p>
   <img src="other/instrucaoBanho.png" width="800">
-  <p>Feito pela própria equipe(2026)</p>
+  <p>Feito pela própria equipe (2026)</p>
 </div>
 
 <div align="center">
-  <p>Figura 21:Tela da compra de rações </p>
+  <p>Figura 21: Tela da compra de rações </p>
   <img src="other/telaRacaoInstrucao.png" width="800">
-  <p>Feito pela própria equipe(2026)</p>
+  <p>Feito pela própria equipe (2026)</p>
 </div>
 
 
@@ -1399,16 +1399,6 @@ Essas melhorias atendem aos requisitos RF16, RF17, RF19, RF20, RF21 e RF22, alé
 
 <h1 align="center" id="5-casos-de-teste">5. Testes</h1>
 
-<h2 align="center" id="51-casos-de-teste">5.1. Casos de Teste</h2>
-
-&ensp;Um Caso de Teste (*Test Case*) é um roteiro detalhado de condições, variáveis, passos e resultados esperados, criado para verificar se uma funcionalidade específica de um software (ou jogo) está operando corretamente e cumprindo seus requisitos.
-
-&ensp;Eles são essenciais para garantir a qualidade do produto, identificar bugs de forma sistemática antes do lançamento e documentar o comportamento esperado do sistema.
-
-<div align="center">
-  <p>Quadro de casos de teste</p>
-</div>
-
 ## 5.1. Casos de Teste 
 
 &ensp;Um Caso de Teste (*Test Case*) é um roteiro detalhado de condições, variáveis, passos e resultados esperados, criado para verificar se uma funcionalidade específica de um software (ou jogo) está operando corretamente e cumprindo seus requisitos.
@@ -1424,7 +1414,7 @@ Essas melhorias atendem aos requisitos RF16, RF17, RF19, RF20, RF21 e RF22, alé
 | Pré-condição | Descrição do teste | Condição esperada |
 | :---: | :---: | :---: |
 | Jogo deve apresentar a tela na proporção correta | Abrir o jogo no navegador | O jogo apresenta os elementos visuais enquadrados na tela |
-| Presença funcional de feedback do usuário | Realizar interações na tela inicial | Ao passar o mouse sobre os botões, eles aumentam de tamanho |
+| Presença funcional de feedback do usuário | Realizar interações em todas as telas | Ao passar o mouse sobre os botões, eles aumentam de tamanho |
 | Botão "Settings" deve abrir a tela de configurações | Clicar no botão | A tela de configurações é exibida corretamente |
 | O áudio não deve ser reproduzido quando desativado | Desativar o áudio e realizar ações | Nenhum som é reproduzido |
 | Reativar o áudio deve restaurar os sons | Ativar o áudio nas configurações | Os sons voltam a ser reproduzidos |
@@ -1433,60 +1423,68 @@ Essas melhorias atendem aos requisitos RF16, RF17, RF19, RF20, RF21 e RF22, alé
 | Deve ser possível avançar no tutorial | Clicar na seta direita | A próxima cena é exibida |
 | Deve ser possível retornar no tutorial | Clicar na seta esquerda | A cena anterior é exibida |
 | Deve ser possível pular o tutorial | Clicar em "Pular" | O jogo retorna à tela inicial |
-| Deve aparecer um pop-up ao entrar na cena inicial pela primeira vez | Finalizar o tutorial | O pop-up aparece |
-| Deve ser possível fechar o pop-up | Clicar no pop-up | O pop-up desaparece |
-| Deve aparecer um pop-up de missão após fechar o anterior | Fechar o pop-up inicial | O pop-up de missão aparece |
-| Botão do banho deve redirecionar corretamente | Clicar no botão com ícone de pato | O jogo vai para a cena de banho |
-| Deve aparecer instrução do minigame de banho | Entrar na cena pela primeira vez | O pop-up é exibido |
-| Pop-up do minigame deve desaparecer | Clicar no pop-up | O pop-up desaparece |
+| Deve aparecer um pop-up da ficha do cachorro ao entrar na cena inicial pela primeira vez | Finalizar o tutorial | O pop-up aparece |
+| Deve ser possível fechar o pop-up da ficha do cachorro| Clicar no pop-up | O pop-up desaparece |
+| Deve aparecer um pop-up de missão após fechar o de ficha | Fechar o pop-up de fichal | O pop-up de missão aparece |
+| Cena de banho deve ser acessível | Clicar no botão com ícone de pato | O jogo vai para a cena de banho |
+| Deve aparecer um pop-up de instrução para o minigame de banho | Entrar no jogo de banho pela primeira vez | O pop-up é exibido |
+| Pop-up de instrução do minigame deve desaparecer | Clicar no pop-up | O pop-up desaparece |
+| Barra de progresso deve exibir progresso continuamente | Utilizar chuveiro, sabão ou toalha | Barra mostra evolução progressiva |
+| Deve ser possível arrastar o chuveiro | Clicar e arrastar | O chuveiro segue o cursor |
+| Chuveiro deve molhar o cachorro| Arrastar sobre o cachorro | O cachorro fica molhado |
 | Deve ser possível arrastar o sabão | Clicar e arrastar | O sabão segue o cursor |
 | Objetos devem continuar interativos | Usar e tentar reutilizar | O objeto continua funcional |
 | Sabão deve gerar bolhas ao ser usado | Arrastar sobre o cachorro | Bolhas aparecem indicando limpeza |
 | Deve haver limite de bolhas | Gerar bolhas | Um aviso para usar o chuveiro aparece |
-| Deve ser possível arrastar o chuveiro | Clicar e arrastar | O chuveiro segue o cursor |
-| Chuveiro deve remover o sabão | Arrastar sobre o cachorro | A água remove o sabão |
-| Deve aparecer aviso após remoção das bolhas | Usar o chuveiro | Surge aviso para usar a toalha |
+| Chuveiro deve remover as bolhas | Arrastar sobre o cachorro | A água remove as bolhas |
+| Deve aparecer um aviso após remoção das bolhas | Usar o chuveiro | Surge aviso para usar a toalha |
 | Deve ser possível usar a toalha | Clicar e arrastar | A toalha segue o cursor |
-| Uso da toalha gera recompensa | Utilizar completamente | Pop-up indica ganho de moedas |
-| HUD deve ser atualizado após uso da toalha | Usar a toalha | Felicidade e moedas são atualizadas |
-| Não deve ser possível reutilizar objetos após finalização | Tentar usar novamente | Nenhum objeto responde |
+| Uso da toalha gera recompensa | Utilizar completamente | Pop-up indica ganho de moedas e tempo de conclusão |
+| HUD deve ser atualizado após término do jogo | Usar a toalha | Limpeza e moedas são atualizadas |
 | Ordem de uso deve ser respeitada | Tentar usar fora de ordem | Aviso é exibido |
-| Cena de ração deve ser acessível | Clicar no botão correspondente | Cena de ração é exibida |
-| Pop-up da cena de ração deve aparecer | Entrar pela primeira vez | O pop-up aparece |
+| Cena de ração deve ser acessível | Clicar no botão com ícone de pote de ração | Cena de ração é exibida |
+| Pop-up de instrução da cena de ração deve aparecer | Entrar pela primeira vez | O pop-up aparece |
 | Pop-up deve fechar corretamente | Clicar no pop-up | O pop-up desaparece |
-| Card do cachorro deve destacar | Clicar no card | O card aumenta |
-| Card deve fechar ao clicar novamente | Clicar novamente | O card fecha |
+| Ficha do cachorro deve ser destacada | Fechar o pop-up de instrução | A ficha é destacada na tela |
+| Ficha do cachorro deve ser acessível | Clicar na ficha | A ficha abre com as informações do cachorro |
+| Ficha deve fechar ao clicar novamente | Clicar novamente | O card fecha |
+| Estante deve ser destacada | Fechar a ficha | Estante das rações é destacada |
 | Estante deve abrir seleção de rações | Clicar na estante | Nova cena aparece |
-| Tipos de ração devem ser filtráveis | Clicar em "Standard" | Apenas rações Standard aparecem |
-| Deve ser possível ver detalhes da ração | Clicar em uma ração | Informações aparecem |
+| Deve ser possível ver detalhes da ração | Clicar em uma ração | Informações específicas aparecem |
+| Compra deve diminuir a quantidade de moedas atuais | Clicar no preço | Quantidade de moedas diminuem |
 | Compra deve iniciar minigame | Clicar no preço | Minigame inicia |
 | Movimento do cachorro deve funcionar | Usar teclas esquerda/direita | Cachorro se movimenta |
-| Coleta de ração deve pontuar | Colidir com ração | Pontuação aumenta |
-| Chocolate deve causar penalidade | Colidir com chocolate | Vida é reduzida |
+| Coleta de ração deve pontuar | Colidir com ração | Pontuação aumenta em 10 |
+| Chocolate deve causar penalidade | Colidir com chocolate | Uma vida é reduzida |
 | Jogo reinicia após perder todas vidas | Perder 3 vidas | Jogo reinicia |
 | Pontuação alvo encerra o minigame | Atingir 150 pontos | Jogo encerra |
-| Moedas devem ser descontadas na compra | Comprar ração | Valor é atualizado no HUD |
-| Cena do veterinário deve funcionar | Acessar cena | Cena é exibida |
-| Lupa deve iniciar interação | Usar lupa | Minigame é iniciado |
-| Pinça deve capturar pulgas | Arrastar pulga | Pulga é coletada |
+| HUD deve ser atualizado após término do jogo | Atingir 150 pontos | Fome e moedas são atualizadas |
+| Cena do veterinário deve ser acessível | Clicar no botão com ícone de kit médico | Cena é exibida |
+| Lupa deve iniciar interação | Usar lupa | Redirecionamento para jogo da pulga |
+| Remédio anti-pulgas deve neutralizar pulgas | Clicar com o remédio na pulga  | Pulga é neutralizada |
+| Pinça deve capturar pulgas | Clicar e segurar em cima da pulga | Pulga é coletada |
 | Pontuação deve ser contabilizada | Depositar pulga | Pontos aumentam |
 | Minigame encerra ao atingir objetivo | Coletar 12 pulgas | Jogo encerra |
-| Cena de lazer deve iniciar corretamente | Clicar no botão | Cena é exibida |
-| Minigame de lazer deve iniciar | Clicar no osso | Minigame inicia |
-| Cachorro deve pular | Pressionar tecla | Salto ocorre |
+| HUD deve ser atualizado após término do jogo | Coletar 12 pulgas | Saúde e moedas são atualizadas |
+| Cena de lazer deve ser acessível | Clicar no botão com ícone de bola de basquete e de tênis | Cena de lazer é exibida |
+| Pop-up de instrução do jogo lazer deve aparecer | Clicar no osso | Minigame inicia |
+| Minigame de lazer deve iniciar | Clicar pop-up de instrução | Pop-up fecha e minigame inicia |
+| Cachorro deve pular | Pressionar tecla espaço ou seta para cima | Cachorro salta |
 | Colisão com obstáculo reinicia jogo | Colidir | Jogo reinicia |
 | Coleta de petiscos positivos | Coletar item | Pontos aumentam |
 | Coleta de petiscos negativos | Coletar item | Pontos diminuem |
 | Salto especial deve funcionar | Usar cama elástica | Salto mais alto ocorre |
 | Coleta do item final encerra jogo | Coletar item especial | Jogo encerra |
-| Pontuação afeta barra de felicidade | Finalizar jogo | Barra é atualizada |
+| HUD deve ser atualizado após término do jogo | Coletar item especial | Felicidade e moedas são atualizadas |
 | Sistema de progresso deve gerar novo cachorro | Completar barras | Novo ciclo inicia |
+| Nova fase deve exibir pop-up de parabéns | Completar barras | Pop-up aparece |
+| Exibir pop-up do segundo cachorro | Fechar pop-up de parabéns | Pop-up aparece |
 | Mecânicas devem funcionar no novo ciclo | Testar novamente | Tudo permanece funcional |
 
 </div>
 
 <div align="center">
-  <p>Feito pela própria equipe(2026)</p>
+  <p>Feito pela própria equipe (2026)</p>
 </div>
 
 <h2 align="center" id="52-testes-de-jogabilidade-playtests">5.2. Testes de jogabilidade (playtests)</h2>
