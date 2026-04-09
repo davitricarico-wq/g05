@@ -48,10 +48,6 @@ export class HUD extends Phaser.Scene {
         
         const painelX = larguraTela - configLayout.larguraPainel / 2;
         const centroY = alturaTela / 2;
-
-        // ========================================================================
-        // SEÇÃO DE ECONOMIA (MOEDAS)
-        // ========================================================================
         
         // Cria o ícone de moedas fixo na tela (ScrollFactor 0) e acima de tudo (Depth 1000)
         this.coinIcon = this.add.image(larguraTela * 0.9, alturaTela * 0.05, "cobasiCoin")
@@ -68,10 +64,6 @@ export class HUD extends Phaser.Scene {
             .setScrollFactor(0)
             .setDepth(1000)
             .setScale(configLayout.escalaTextoMoeda);
-
-        // ========================================================================
-        // SEÇÃO DE STATUS DO PET (BARRAS DE NECESSIDADE)
-        // ========================================================================
         
         // Array com configurações das necessidades para facilitar a criação via loop
         this.statusConfig = [
@@ -97,10 +89,6 @@ export class HUD extends Phaser.Scene {
             this.barrasStatus[config.id] = new Barra(this, larguraTela * 0.15, posY, config.estadoBase);
             this.barrasStatus[config.id].sprite.setScale(configLayout.escalaIconeNecessidade);
         });
-
-        // ========================================================================
-        // SEÇÃO DE NAVEGAÇÃO (PAINEL E BOTÕES)
-        // ========================================================================
         
         // Fundo branco do painel lateral
         this.painel = this.add.rectangle(painelX, centroY, configLayout.larguraPainel, alturaTela, 0xffffff, 1)
@@ -137,10 +125,6 @@ export class HUD extends Phaser.Scene {
             btn.on("pointerdown", () => navegarHud(cfg.alvo));
             this.botoes.push({ botao: btn, cfg: cfg });
         });
-
-        // ========================================================================
-        // RESPONSIVIDADE E GERENCIAMENTO DE TELA
-        // ========================================================================
         
         /**
          * @callback handleResizeHUD
