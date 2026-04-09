@@ -1356,6 +1356,16 @@ As mecânicas centrais foram definidas com base na interação do jogador com os
 
 &ensp;Apesar dessas dificuldades, foi possível entregar uma versão inicial funcional do sistema, que serviu como base estruturada para o avanço do projeto nas etapas seguintes.
 
+**Próximas Etapas**
+
+* Evoluir a estrutura inicial do sistema, incorporando novas funcionalidades interativas;
+* Iniciar o desenvolvimento dos primeiros minigames relacionados ao cuidado com os animais (RF7, RF8);
+* Aprimorar a interface da tela inicial e expandir o menu de configurações (RF2, RNF3);
+* Desenvolver os primeiros elementos visuais em pixel art, incluindo personagens e cenários (RNF5);
+* Melhorar a organização do fluxo de trabalho da equipe com base na metodologia Scrum.
+
+&ensp;Essas ações visam dar continuidade ao desenvolvimento do projeto, transformando a base estrutural inicial em uma experiência jogável e alinhada aos objetivos propostos.
+
 ## 4.2. Desenvolvimento básico do jogo 
 
 &ensp;Na segunda sprint do projeto, a equipe concentrou esforços na estruturação das fases do jogo, definição das cenas e consolidação do storytelling, com o objetivo de organizar a progressão da experiência do jogador de forma coerente com a proposta educativa.
@@ -1415,6 +1425,17 @@ Essas implementações contribuem para os requisitos não funcionais RNF2, RNF5 
 
 &ensp;Apesar dessas limitações, a equipe conseguiu avançar na construção das principais mecânicas do jogo, consolidando uma base funcional importante para a continuidade do desenvolvimento.
 
+**Próximas Etapas**
+
+* Implementar novos minigames relacionados às demais áreas de cuidado, como alimentação e saúde (RF16, RF23);
+* Refinar a HUD e os sistemas de navegação entre as áreas do jogo (RF5, RF6, RNF3);
+* Expandir os elementos visuais, incluindo novos sprites e cenários em pixel art (RNF5, RNF6);
+* Iniciar a implementação do sistema de recompensas com moedas (RF11);
+* Melhorar a responsividade das interações e o feedback visual ao jogador (RNF2, RNF7).
+
+&ensp;Essas melhorias têm como objetivo ampliar a jogabilidade e preparar o sistema para a implementação das mecânicas mais avançadas nas etapas seguintes.
+
+
 
 ## 4.3. Desenvolvimento intermediário do jogo 
 
@@ -1437,7 +1458,7 @@ Essas implementações contribuem para os requisitos não funcionais RNF2, RNF5 
 &ensp;O jogador deve passar cada ferramenta por todo o corpo do animal para que a etapa seja considerada concluída. Apenas após completar corretamente todas as fases do processo de limpeza o minigame é finalizado.
 Ao concluir o desafio com sucesso, o jogador recebe Cobasi Coins, que funcionam como sistema de recompensa dentro do jogo (RF11, RNF2).
 
-Cena do minigame de banho
+
 
 <div align="center">
  <p>Minigame de Banho</p>
@@ -1450,16 +1471,15 @@ Cena do minigame de banho
 &ensp;Outro avanço importante desta sprint foi o desenvolvimento do minigame de alimentação, que tem como objetivo ensinar de forma lúdica quais alimentos são adequados ou prejudiciais para os animais (RF16, RF18).
 Neste minigame, o jogador controla o cachorro utilizando as setas do teclado, movimentando o animal para a direita ou para a esquerda na tela. Durante a partida, diferentes itens caem do topo da tela (RF19, RF20, RF21, RF22):
 
-Ração Standard, que concede 10 pontos;
+* Ração Standard, que concede 10 pontos;
 
-Ração Super Premium, que concede 25 pontos e recupera uma vida;
+* Ração Super Premium, que concede 25 pontos e recupera uma vida;
 
-Itens prejudiciais, como chocolate, que fazem o jogador perder uma vida.
+* Itens prejudiciais, como chocolate, que fazem o jogador perder uma vida.
 
 &ensp;O jogador inicia o minigame com três vidas e deve coletar apenas os alimentos corretos enquanto evita os itens prejudiciais (RF22). O objetivo é atingir a pontuação de 200 pontos para concluir o desafio.
 Após atingir essa pontuação, o minigame é finalizado e o jogador recebe Cobasi Coins como recompensa (RF11).
 
-Cena do minigame de alimentação
 
 <div align="center"> 
 <p>Minigame de Alimentação</p> 
@@ -1502,15 +1522,15 @@ Neste minigame, o jogador utiliza o mouse para selecionar a pinça e movimentá-
 
 &ensp;Para as próximas sprints, a equipe pretende continuar aprimorando a experiência do jogador, adicionando novos elementos ao jogo. Entre os próximos passos planejados estão:
 
-&ensp;Implementação do quiz educativo ao final dos minigames (RF18);
+* Implementação do quiz educativo ao final dos minigames (RF18);
 
-&ensp;Aprimoramento das animações e feedbacks visuais durante as interações (RNF2, RNF3);
+* Aprimoramento das animações e feedbacks visuais durante as interações (RNF2, RNF3);
 
-&ensp;Integração completa do sistema de Cobasi Coins (RF11);
+* Integração completa do sistema de Cobasi Coins (RF11);
 
-&ensp;Melhorias na interface e na navegação entre telas (RNF3, RNF6);
+* Melhorias na interface e na navegação entre telas (RNF3, RNF6);
 
-&ensp;Correção de possíveis bugs e otimização do desempenho do jogo (RNF9).
+* Correção de possíveis bugs e otimização do desempenho do jogo (RNF9).
 
 &ensp;Essas melhorias têm como objetivo tornar o Cobasi Shelter uma experiência mais completa, interativa e educativa, reforçando a proposta do jogo de ensinar sobre os cuidados necessários com animais domésticos de forma lúdica.
 
@@ -1637,11 +1657,26 @@ Essas melhorias atendem ao requisito funcional RF26, além de reforçar os requi
 
 &ensp;Essas alterações atendem aos requisitos RF12, RF13 e RF14, além de contribuírem para os requisitos não funcionais RNF2 e RNF3, relacionados ao feedback visual e à clareza da interface.
 
+<div align="center">
+  <p>Tela Atualizada do Banho</p>
+  <img src="other/banhoNovo.png" width="800">
+ 
+  <p>Feito pela própia equipe(2026)</p>
+</div>
+
 **Orientação ao Jogador e Fluxo de Progressão**
 
 &ensp;Após a finalização de cada minigame, o jogador passou a receber orientações para prosseguir para as próximas atividades. Essa melhoria foi implementada com base nos resultados dos testes realizados, visando reduzir dúvidas e melhorar o fluxo de progressão.
 
 &ensp;Essa funcionalidade reforça os requisitos RF5, RF6 e RF7, além de atender ao requisito não funcional RNF3, relacionado à interface intuitiva.
+
+
+<div align="center">
+  <p>Tela de Feedback do usuário </p>
+  <img src="other/telaFeedbackFinal.png" width="800">
+  <p>Feito pela própia equipe(2026)</p>
+
+</div>
 
 
 **Implementação do Quiz Educativo Final**
@@ -1652,6 +1687,14 @@ Essas melhorias atendem ao requisito funcional RF26, além de reforçar os requi
 
 &ensp;Essa implementação atende diretamente ao requisito RF18, relacionado à presença de um quiz educativo na área de alimentação, além de reforçar os requisitos RF7 e RF8, que tratam do cuidado com os animais como mecânica central do jogo. Também contribui para o requisito não funcional RNF3, ao manter a interface intuitiva e de fácil compreensão.
 
+<div align="center">
+
+  <p>Tela de Quiz no Final do Jogo </p>
+  <img src="other/telaQuiz.png" width="800">
+  <p>Feito pela própia equipe(2026)</p>
+
+</div>
+
 **Reformulação do Minigame de Cuidados (Pulgas)**
 
 &ensp;O minigame da área de cuidados passou por uma reformulação significativa em sua mecânica, tornando o processo mais detalhado e realista. Agora, antes de remover as pulgas, o jogador deve utilizar um spray antipulgas, que paralisa os parasitas. Após essa etapa, o jogador deve utilizar a pinça para remover as pulgas e depositá-las em uma bandeja.
@@ -1660,6 +1703,13 @@ Essas melhorias atendem ao requisito funcional RF26, além de reforçar os requi
 
 &ensp;Essas alterações atendem aos requisitos RF23, RF24 e RF25, relacionados à área de cuidados, à mecânica de remoção de pulgas e à avaliação baseada em desempenho. Também reforçam o requisito RF11, referente ao sistema de recompensas, e o requisito não funcional RNF7, relacionado à responsividade das interações.
 
+<div align="center">
+  <p> Nova tela do minigame da pulga</p>
+  <img src="other/novasTelasPulgas.png" width="800">
+  <p>Feito pela própia equipe(2026)</p>
+
+</div>
+
 **Melhorias no Minigame de Alimentação**
 
 &ensp;O minigame de alimentação também foi reformulado visualmente e funcionalmente. Os modelos das rações foram redesenhados e a estante passou a contar com uma nova organização, dividida em categorias: standard, premium e super premium.
@@ -1667,11 +1717,26 @@ Essas melhorias atendem ao requisito funcional RF26, além de reforçar os requi
 &ensp;Cada tipo de ração passou a impactar de forma diferente a barra de alimentação do animal, agregando valor estratégico à escolha do jogador.
 Essas melhorias atendem aos requisitos RF16, RF17, RF19, RF20, RF21 e RF22, além de reforçar o aprendizado proposto pelo jogo.
 
+<div align="center">
+  <p>Tela com os novos sprites das Rações</p>
+  <img src="other/novasRacoes.png" width="800">
+  <p>Feito pela própia equipe(2026)</p>
+
+</div>
+
 **Implementação do Animal Final e Storytelling**
 
 &ensp;Ao final desta etapa, foi implementado o último animal do jogo, responsável por concluir a narrativa principal. Diferentemente dos anteriores, este animal não necessita de cuidados básicos como banho ou alimentação, pois já foi tratado anteriormente e devolvido ao abrigo.
 Nesse contexto, o jogador deve oferecer atenção e carinho, reforçando a mensagem educativa sobre responsabilidade e cuidado com animais adotados.
 Após completar essa interação, o jogador conclui sua missão e é direcionado ao quiz educativo, que tem como objetivo reforçar o aprendizado adquirido ao longo do jogo.
+
+<div align="center">
+  <p>Terceiro cachorro adicionado</p>
+  <img src="other/joaoCachorroPrincipal.png" width="800">
+  <p>Feito pela própia equipe(2026)</p>
+
+</div>
+
 
 &ensp;Essa implementação atende aos requisitos RF1, RF8, RF9 e RF18, consolidando o propósito educativo do projeto.
 
@@ -1683,7 +1748,7 @@ Após completar essa interação, o jogador conclui sua missão e é direcionado
 
 &ensp;Apesar dos obstáculos, os problemas foram superados, contribuindo para o aprimoramento técnico e organizacional do grupo.
 
-&ensp;Com a entrega desta sprint, o Cobasi Shelter alcança o estágio de MVP funcional, reunindo todas as mecânicas centrais, o arco narrativo completo e os elementos educativos propostos desde o início do projeto — consolidando uma base sólida para as evoluções futuras descritas na seção de conclusões.
+&ensp;Com a entrega desta sprint, o Cobasi Shelter alcança o estágio de MVP funcional, reunindo todas as mecânicas centrais, o arco narrativo completo e os elementos educativos propostos desde o início do projeto,consolidando uma base sólida para as evoluções futuras descritas na seção de conclusões.
 
 --- 
 
