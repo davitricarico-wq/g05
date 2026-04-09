@@ -1,32 +1,24 @@
-/*
-  Classificação Etária de Cães por Porte
-
-  Porte Pequeno (até 10 kg):
-    - Filhote: 0 a 6 meses
-    - Jovem: 6 meses a 2 anos
-    - Adulto: 2 a 7 anos
-    - Sênior: 7 a 10 anos
-    - Geriátrico: acima de 10 anos
-
-  Porte Médio (10 a 25 kg):
-    - Filhote: 0 a 6 meses
-    - Jovem: 6 meses a 2 anos
-    - Adulto: 2 a 6 anos
-    - Sênior: 6 a 9 anos
-    - Geriátrico: acima de 9 anos
-
-  Porte Grande (25 a 40 kg):
-    - Filhote: 0 a 6 meses
-    - Jovem: 6 meses a 2 anos
-    - Adulto: 2 a 5 anos
-    - Sênior: 5 a 8 anos
-    - Geriátrico: acima de 8 anos
-
-*/
+/**
+ * @typedef {Object} RacaoItem
+ * @property {string} nome - Nome de exibição na interface/loja.
+ * @property {number} id - Identificador do item. (NOTA DE ARQUITETURA: Como os IDs 1, 2 e 3 
+ * se repetem entre as categorias, ao fazer a lógica do Inventário/Loja, lembre-se de 
+ * buscar o item pelo `nome`, `sprite` ou criar um ID único real para cada um).
+ * @property {string} tipo - Categoria de qualidade (Standard, Premium, Super Premium).
+ * @property {string} porte - Tamanho do cão recomendado (Pequeno, Médio, Grande).
+ * @property {string} idade - Faixa etária recomendada.
+ * @property {string[]} caracteristicas - Tags curtas para exibir na UI da loja.
+ * @property {Object} nutrientes - Tabela nutricional, pode ser usada para calcular o 
+ * preenchimento extra da barra de saúde/fome no jogo.
+ * @property {string} descricao - Texto descritivo para o jogador ler na loja.
+ * @property {string[]} exemplos - Marcas reais correspondentes ao tier da ração.
+ * @property {string[]} ingredientes - Composição básica da ração.
+ * @property {number} valor - Preço da ração na moeda do jogo.
+ * @property {string} sprite - Chave da imagem carregada no Phaser.
+ */
 
 
-// Exportações das descrições das rações
-
+/** @type {RacaoItem} */
 export const racaoStandardPequeno = {
   nome: "Ração Standard para porte pequeno",
   id: 1,
@@ -40,8 +32,9 @@ export const racaoStandardPequeno = {
   ingredientes: ["Proteínas de origem animal", "Cereais selecionados", "Vitaminas e minerais essenciais", "Fibras naturais"],
   valor: 15,
   sprite: "racaoStandardPequeno"
-}
+};
 
+/** @type {RacaoItem} */
 export const racaoStandardMedio = {
   nome: "Ração Standard para porte médio",
   id: 2,
@@ -55,8 +48,9 @@ export const racaoStandardMedio = {
   ingredientes: ["Proteínas de origem animal", "Cereais selecionados", "Vitaminas e minerais", "Fibras naturais"],
   valor: 25,
   sprite: "racaoStandardMedio"
-}
+};
 
+/** @type {RacaoItem} */
 export const racaoStandardGrande = {
   nome: "Ração Standard para porte grande",
   id: 3,
@@ -70,8 +64,9 @@ export const racaoStandardGrande = {
   ingredientes: ["Proteínas de origem animal", "Cereais selecionados", "Vitaminas e minerais", "Fibras naturais"],
   valor: 20,
   sprite: "racaoStandardGrande"
-}
+};
 
+/** @type {RacaoItem} */
 export const racaoPremiumPequeno = {
   nome: "Ração Premium para porte pequeno",
   id: 1,
@@ -85,8 +80,9 @@ export const racaoPremiumPequeno = {
   ingredientes: ["Proteínas selecionadas", "Arroz e cereais de fácil digestão", "Vitaminas e minerais", "Fibras e prebióticos"],
   valor: 20,
   sprite: "racaoPremiumPequeno"
-}
+};
 
+/** @type {RacaoItem} */
 export const racaoPremiumMedio = {
   nome: "Ração Premium para porte médio",
   id: 2,
@@ -100,8 +96,9 @@ export const racaoPremiumMedio = {
   ingredientes: ["Proteínas nobres", "Vitaminas e minerais", "Ômega 3 e 6", "Fibras naturais"],
   valor: 20,
   sprite: "racaoPremiumMedio"
-}
+};
 
+/** @type {RacaoItem} */
 export const racaoPremiumGrande = {
   nome: "Ração Premium para porte grande",
   id: 3,
@@ -115,8 +112,9 @@ export const racaoPremiumGrande = {
   ingredientes: ["Proteínas selecionadas", "Vitaminas e minerais", "Ômega 3 e 6", "Fibras naturais"],
   valor: 20,
   sprite: "racaoPremiumGrande"
-}
+};
 
+/** @type {RacaoItem} */
 export const racaoSuperPremiumPequeno = {
   nome: "Ração Super Premium para porte pequeno",
   id: 1,
@@ -130,8 +128,9 @@ export const racaoSuperPremiumPequeno = {
   ingredientes: ["Proteínas de alta qualidade", "Vitaminas e minerais", "Ômega 3 e 6", "Prebióticos"],
   valor: 20,
   sprite: "racaoSuperPremiumPequeno"
-}
+};
 
+/** @type {RacaoItem} */
 export const racaoSuperPremiumMedio = {
   nome: "Ração Super Premium para porte médio",
   id: 2,
@@ -145,8 +144,9 @@ export const racaoSuperPremiumMedio = {
   ingredientes: ["Proteínas de alta qualidade", "Vitaminas e minerais", "Antioxidantes naturais", "Prebióticos"],
   valor: 20,
   sprite: "racaoSuperPremiumMedio"
-}
+};
 
+/** @type {RacaoItem} */
 export const racaoSuperPremiumGrande = {
   nome: "Ração Super Premium para porte grande",
   id: 3,
@@ -160,4 +160,4 @@ export const racaoSuperPremiumGrande = {
   ingredientes: ["Proteínas selecionadas", "Vitaminas e minerais", "Ômega 3 e 6", "Fibras e prebióticos"],
   valor: 20,
   sprite: "racaoSuperPremiumGrande"
-}
+};

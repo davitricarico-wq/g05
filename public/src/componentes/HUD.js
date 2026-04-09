@@ -1,177 +1,200 @@
 // Importa o estado global do jogo para acessar as moedas e valores das barras
 import { gameState } from "../main.js";
-// Importa a classe Barra para criar as representacoes visuais das necessidades
+// Importa a classe Barra para criar as representações visuais das necessidades
 import { Barra } from "./barras/barras.js";
 
-// Classe HUD que gerencia a interface do usuario sobreposta ao jogo
+/**
+ * @class HUD
+ * @extends Phaser.Scene
+ * @description Classe responsável por gerenciar a interface do usuário (Heads-Up Display).
+ * Roda simultaneamente ao jogo principal para exibir moedas, status e painel de navegação.
+ */
 export class HUD extends Phaser.Scene {
     constructor() {
-        // Define a chave da cena para o Phaser conseguir identifica la
+        // Define a chave identificadora da cena para o gerenciador do Phaser
         super({ key: "HUD" });
-        // Variavel de controle para evitar mais de uma transicao ao mesmo tempo
+        
+        // Variável de controle (Lock) para evitar que múltiplas transições de tela
+        // ocorram ao mesmo tempo, prevenindo bugs de sobreposição.
         this.transicao = false; 
+        
+        // Cache para armazenar os valores anteriores das barras e moedas.
+        // Isso evita redesenhar a tela (e gastar processamento) se os valores não mudaram.
+        this.estadoAnterior = {
+            comida: -1,
+            lazer: -1,
+            limpeza: -1,
+            saude: -1,
+            moedas: -1
+        };
     }
 
     create() {
-        // Garante que a variavel de controle inicie desligada
+        // Reinicia a variável de controle ao criar a cena
         this.transicao = false;
 
-        // Configuracao inicial das medidas do painel lateral
-        const larguraPainel = this.scale.width * 0.2;
-        const painelX = this.scale.width - larguraPainel / 2;
-        const centroY = this.scale.height / 2;
+        // Configurações base de layout (evitando "Magic Numbers")
+        const larguraTela = this.scale.width;
+        const alturaTela = this.scale.height;
+        
+        // Agrupa as proporções para facilitar manutenção e o redimensionamento
+        const configLayout = {
+            larguraPainel: larguraTela * 0.2,
+            escalaIconeNecessidade: alturaTela * 0.002,
+            escalaBotao: alturaTela * 0.001,
+            escalaMoeda: alturaTela * 0.0008,
+            escalaTextoMoeda: alturaTela * 0.0013
+        };
+        
+        const painelX = larguraTela - configLayout.larguraPainel / 2;
+        const centroY = alturaTela / 2;
 
-        // Cria o icone de moedas na tela
-        this.coinIcon = this.add.image(this.scale.width - this.scale.width*0.1, this.scale.height*0.05, "cobasiCoin")
-            .setScale(this.scale.height*0.0008)
+        // ========================================================================
+        // SEÇÃO DE ECONOMIA (MOEDAS)
+        // ========================================================================
+        
+        // Cria o ícone de moedas fixo na tela (ScrollFactor 0) e acima de tudo (Depth 1000)
+        this.coinIcon = this.add.image(larguraTela * 0.9, alturaTela * 0.05, "cobasiCoin")
+            .setScale(configLayout.escalaMoeda)
             .setScrollFactor(0)
             .setDepth(1000);
 
-        // Adiciona o texto que mostra a quantidade de moedas
-        this.coinText = this.add.text(this.scale.width - this.scale.width*0.09, this.scale.height*0.045,
-            gameState.cobasiCoins,
-            {
-                fontFamily: '"Press Start 2P"',
-                fontSize: "16px",
-                color: "#ffffff"
-            })
+        // Adiciona o texto dinâmico que exibe a quantidade atual de moedas
+        this.coinText = this.add.text(larguraTela * 0.91, alturaTela * 0.045, gameState.cobasiCoins, {
+            fontFamily: '"Press Start 2P"',
+            fontSize: "16px",
+            color: "#ffffff"
+        })
             .setScrollFactor(0)
             .setDepth(1000)
-            .setScale(this.scale.height*0.0013);
+            .setScale(configLayout.escalaTextoMoeda);
 
-        // Cria os icones e as barras de status do pet
-        this.iconeFome = this.add.image(this.scale.width*0.05, this.scale.height*0.16, "iconeFome").setScale(this.scale.height*0.002);
-        this.barraComida = new Barra(this, this.scale.width*0.15, this.scale.height*0.16, gameState.barras.comida);
-        this.barraComida.sprite.setScale(this.scale.height*0.002);
+        // ========================================================================
+        // SEÇÃO DE STATUS DO PET (BARRAS DE NECESSIDADE)
+        // ========================================================================
+        
+        // Array com configurações das necessidades para facilitar a criação via loop
+        this.statusConfig = [
+            { id: "comida", icone: "iconeFome", yRef: 0.16, estadoBase: gameState.barras.comida },
+            { id: "saude", icone: "iconeSaude", yRef: 0.24, estadoBase: gameState.barras.saude },
+            { id: "lazer", icone: "iconeFelicidade", yRef: 0.32, estadoBase: gameState.barras.lazer },
+            { id: "limpeza", icone: "iconeSujeira", yRef: 0.08, estadoBase: gameState.barras.limpeza }
+        ];
 
-        this.iconeFelicidade = this.add.image(this.scale.width*0.05, this.scale.height*0.32, "iconeFelicidade").setScale(this.scale.height*0.002);
-        this.barraLazer = new Barra(this, this.scale.width*0.15, this.scale.height*0.32, gameState.barras.lazer);
-        this.barraLazer.sprite.setScale(this.scale.height*0.002);
+        // Dicionários para guardar as instâncias criadas
+        this.iconesStatus = {};
+        this.barrasStatus = {};
 
-        this.iconeSujeira = this.add.image(this.scale.width*0.05, this.scale.height*0.08, "iconeSujeira").setScale(this.scale.height*0.002);
-        this.barraLimpeza = new Barra(this, this.scale.width*0.15, this.scale.height*0.08, gameState.barras.limpeza);
-        this.barraLimpeza.sprite.setScale(this.scale.height*0.002);
+        // Loop para instanciar os ícones e barras na tela dinamicamente
+        this.statusConfig.forEach(config => {
+            const posY = alturaTela * config.yRef;
+            
+            // Ícone da necessidade
+            this.iconesStatus[config.id] = this.add.image(larguraTela * 0.05, posY, config.icone)
+                .setScale(configLayout.escalaIconeNecessidade);
+            
+            // Barra da necessidade respectiva
+            this.barrasStatus[config.id] = new Barra(this, larguraTela * 0.15, posY, config.estadoBase);
+            this.barrasStatus[config.id].sprite.setScale(configLayout.escalaIconeNecessidade);
+        });
 
-        this.iconeSaude = this.add.image(this.scale.width*0.05, this.scale.height*0.24, "iconeSaude").setScale(this.scale.height*0.002);
-        this.barraSaude = new Barra(this, this.scale.width*0.15, this.scale.height*0.24, gameState.barras.saude);
-        this.barraSaude.sprite.setScale(this.scale.height*0.002);
-
-        // Cria o fundo branco do painel lateral
-        this.painel = this.add.rectangle(painelX, centroY, larguraPainel, this.scale.height, 0xffffff, 1)
+        // ========================================================================
+        // SEÇÃO DE NAVEGAÇÃO (PAINEL E BOTÕES)
+        // ========================================================================
+        
+        // Fundo branco do painel lateral
+        this.painel = this.add.rectangle(painelX, centroY, configLayout.larguraPainel, alturaTela, 0xffffff, 1)
             .setOrigin(0.5, 0.5)
             .setScrollFactor(0);
 
-        // Prepara uma lista para guardar os botoes criados
         this.botoes = [];
 
-        // Cria o botao de dar banho e configura o evento de clique
+        // Função helper interna para centralizar a lógica de clique nos botões
         const navegarHud = (cenaAlvo) => {
-            if (gameState.pets.cachorroJoao && cenaAlvo !== "cenaLazer") {
+            // Regra de negócio: Se for o "Cachorro João", ele só tem acesso à cena de Lazer
+            if (gameState.pets.cachorroJoao && cenaAlvo !== "cenaLazer" && cenaAlvo !== "cenaPrincipal") {
                 return this.exibirAvisoApenasLazer();
             }
             this.transicionarPara(cenaAlvo);
         };
 
-        const botaoBanho = this.add.image(painelX, this.scale.height*0.2, "iconeBanho")
-            .setInteractive({ useHandCursor: true })
-            .setScale(this.scale.height*0.001)
-            .setScrollFactor(0);
-        botaoBanho.on("pointerdown", () => navegarHud("cenaBanho"));
-        this.botoes.push({ botao: botaoBanho, cenaAlvo: "cenaBanho" });
+        // Configuração dos botões do menu lateral para instanciação iterativa
+        const configBotoes = [
+            { img: "iconeBanho", alvo: "cenaBanho", yRef: 0.2 },
+            { img: "iconeRacao", alvo: "cenaComida", yRef: 0.4 },
+            { img: "iconeCuidados", alvo: "cenaVeterinario", yRef: 0.6 },
+            { img: "iconeLazer", alvo: "cenaLazer", yRef: 0.8 },
+            { img: "iconeVoltar", alvo: "cenaPrincipal", yRef: 0.95 }
+        ];
 
-        // Cria o botao de dar racao e configura o evento de clique
-        const botaoRacao = this.add.image(painelX, this.scale.height*0.4, "iconeRacao")
-            .setInteractive({ useHandCursor: true })
-            .setScale(this.scale.height*0.001)
-            .setScrollFactor(0);
-        botaoRacao.on("pointerdown", () => navegarHud("cenaComida"));
-        this.botoes.push({ botao: botaoRacao, cenaAlvo: "cenaComida" });
+        // Instancia cada botão, adiciona interatividade do mouse/toque e evento de clique
+        configBotoes.forEach(cfg => {
+            const btn = this.add.image(painelX, alturaTela * cfg.yRef, cfg.img)
+                .setInteractive({ useHandCursor: true })
+                .setScale(configLayout.escalaBotao)
+                .setScrollFactor(0);
+            
+            btn.on("pointerdown", () => navegarHud(cfg.alvo));
+            this.botoes.push({ botao: btn, cfg: cfg });
+        });
 
-        // Cria o botao de cuidados medicos e configura o evento de clique
-        const botaoCuidados = this.add.image(painelX, this.scale.height*0.6, "iconeCuidados")
-            .setInteractive({ useHandCursor: true })
-            .setScale(this.scale.height*0.001)
-            .setScrollFactor(0);
-        botaoCuidados.on("pointerdown", () => navegarHud("cenaVeterinario"));
-        this.botoes.push({ botao: botaoCuidados, cenaAlvo: "cenaVeterinario" });
-
-        // Cria o botao de brincar e configura o evento de clique
-        const botaoLazer = this.add.image(painelX, this.scale.height*0.8, "iconeLazer")
-            .setInteractive({ useHandCursor: true })
-            .setScale(this.scale.height*0.001)
-            .setScrollFactor(0);
-        botaoLazer.on("pointerdown", () => navegarHud("cenaLazer"));
-        this.botoes.push({ botao: botaoLazer, cenaAlvo: "cenaLazer" });
-
-        // Cria o botao de voltar para a tela principal e configura o evento de clique
-        const botaoVoltar = this.add.image(painelX, this.scale.height*0.95, "iconeVoltar")
-            .setInteractive({ useHandCursor: true })
-            .setScale(this.scale.height*0.001)
-            .setScrollFactor(0);
-        botaoVoltar.on("pointerdown", () => navegarHud("cenaPrincipal"));
-        this.botoes.push({ botao: botaoVoltar, cenaAlvo: "cenaPrincipal" });
-
-        // Funcao interna para ajustar elementos dinamicamente quando a janela mudar de tamanho
+        // ========================================================================
+        // RESPONSIVIDADE E GERENCIAMENTO DE TELA
+        // ========================================================================
+        
+        /**
+         * @callback handleResizeHUD
+         * @description Realinha e reescala elementos da HUD dinamicamente se a janela mudar.
+         */
         const handleResizeHUD = (tamanhoTela) => {
             const { width: largura, height: altura } = tamanhoTela;
+            const novaLarguraPainel = largura * 0.2;
+            const novoPainelX = largura - novaLarguraPainel / 2;
 
-            const larguraPainel = largura * 0.2;
-            const painelX = largura - larguraPainel / 2;
-            const centroY = altura / 2;
+            // Atualiza painel e moedas
+            this.painel.setSize(novaLarguraPainel, altura).setPosition(novoPainelX, altura / 2);
+            this.coinIcon.setPosition(largura * 0.9, altura * 0.05).setScale(altura * 0.0008);
+            this.coinText.setPosition(largura * 0.91, altura * 0.045).setScale(altura * 0.0013);
 
-            // Ajusta o tamanho e posicao do painel lateral
-            this.painel.setSize(larguraPainel, altura).setPosition(painelX, centroY);
+            // Atualiza posições dos botões
+            this.botoes.forEach(item => {
+                item.botao.setPosition(novoPainelX, altura * item.cfg.yRef).setScale(altura * 0.001);
+            });
 
-            // Ajusta as posicoes e proporcoes dos botoes
-            this.botoes[0].botao.setPosition(painelX, altura * 0.2).setScale(altura * 0.001);
-            this.botoes[1].botao.setPosition(painelX, altura * 0.4).setScale(altura * 0.001);
-            this.botoes[2].botao.setPosition(painelX, altura * 0.6).setScale(altura * 0.001);
-            this.botoes[3].botao.setPosition(painelX, altura * 0.8).setScale(altura * 0.001);
-            this.botoes[4].botao.setPosition(painelX, altura * 0.95).setScale(altura * 0.001);
-
-            // Ajusta a posicao do icone e do texto de moedas
-            this.coinIcon.setPosition(largura - largura * 0.1, altura * 0.05).setScale(altura * 0.0008);
-            this.coinText.setPosition(largura - largura * 0.09, altura * 0.045).setScale(altura * 0.0013);
-
-            // Ajusta o espacamento proporcional dos icones e barras de necessidades
-            this.iconeFome.setPosition(largura * 0.05, altura * 0.08).setScale(altura * 0.002);
-            this.barraComida.sprite.setPosition(largura * 0.15, altura * 0.08).setScale(altura * 0.002);
-
-            this.iconeFelicidade.setPosition(largura * 0.05, altura * 0.16).setScale(altura * 0.002);
-            this.barraLazer.sprite.setPosition(largura * 0.15, altura * 0.16).setScale(altura * 0.002);
-
-            this.iconeSujeira.setPosition(largura * 0.05, altura * 0.24).setScale(altura * 0.002);
-            this.barraLimpeza.sprite.setPosition(largura * 0.15, altura * 0.24).setScale(altura * 0.002);
-
-            this.iconeSaude.setPosition(largura * 0.05, altura * 0.32).setScale(altura * 0.002);
-            this.barraSaude.sprite.setPosition(largura * 0.15, altura * 0.32).setScale(altura * 0.002);
+            // Atualiza posições dos status (ícones e barras) iterando pela config base
+            this.statusConfig.forEach(config => {
+                const posY = altura * config.yRef;
+                this.iconesStatus[config.id].setPosition(largura * 0.05, posY).setScale(altura * 0.002);
+                this.barrasStatus[config.id].sprite.setPosition(largura * 0.15, posY).setScale(altura * 0.002);
+            });
         };
 
-        // Ativa o ouvinte de eventos de redimensionamento de tela
+        // Registra o evento de resize global do Phaser
         this.scale.on("resize", handleResizeHUD);
 
-        // Remove o ouvinte de eventos quando a cena for destruida para evitar erros de memoria
+        // Limpa o evento quando a cena for destruída (Prevenção de Memory Leak)
         this.events.on('shutdown', () => {
             this.scale.off("resize", handleResizeHUD);
         });
-
     }
 
+    /**
+     * @method exibirAvisoApenasLazer
+     * @description Exibe um feedback visual temporário informando uma restrição de design.
+     */
     exibirAvisoApenasLazer() {
+        // Remove o aviso anterior caso o jogador clique freneticamente para não encavalar UI
         if (this.avisoContainer) {
             this.avisoContainer.destroy();
             this.avisoTimer?.remove(false);
         }
 
         const larguraAviso = this.scale.width * 0.18;
-        const alturaAviso = 60;
-        const x = this.scale.width - this.scale.width * 0.1;
+        const x = this.scale.width * 0.9;
         const y = this.scale.height * 0.38;
 
-        const fundoAviso = this.add.rectangle(x, y, larguraAviso, alturaAviso, 0x000000, 0.8)
-            .setOrigin(0.5)
-            .setScrollFactor(0)
-            .setDepth(1100);
+        const fundoAviso = this.add.rectangle(x, y, larguraAviso, 60, 0x000000, 0.8)
+            .setOrigin(0.5).setScrollFactor(0).setDepth(1100);
 
         const textoAviso = this.add.text(x, y, "Cachorro João só pode brincar. Clique no botão Lazer.", {
             fontFamily: '"Press Start 2P"',
@@ -179,112 +202,106 @@ export class HUD extends Phaser.Scene {
             color: "#ffffff",
             align: "center",
             wordWrap: { width: larguraAviso - 20 }
-        })
-            .setOrigin(0.5)
-            .setScrollFactor(0)
-            .setDepth(1101);
+        }).setOrigin(0.5).setScrollFactor(0).setDepth(1101);
 
         this.avisoContainer = this.add.container(0, 0, [fundoAviso, textoAviso]);
 
-        this.avisoTimer = this.time.addEvent({
-            delay: 2200,
-            callback: () => {
-                if (this.avisoContainer) {
-                    this.avisoContainer.destroy();
-                    this.avisoContainer = null;
-                }
-                this.avisoTimer = null;
+        // Timer que destrói o aviso automaticamente após 2.2 segundos
+        this.avisoTimer = this.time.delayedCall(2200, () => {
+            if (this.avisoContainer) {
+                this.avisoContainer.destroy();
+                this.avisoContainer = null;
             }
         });
     }
 
-    // Funcao responsavel por gerenciar as trocas de cena com efeito visual de escurecimento
+    /**
+     * @method transicionarPara
+     * @param {string} cenaAlvo - A chave da cena que deve ser iniciada
+     * @description Gerencia a troca de cenas com efeito de fade-out e fade-in suave,
+     * mantendo a HUD sempre ativa e sobreposta.
+     */
     transicionarPara(cenaAlvo) {
-        // Interrompe a execucao se ja houver uma transicao em andamento
-        if (this.transicao) return;
-        
-        // Verifica se a cena solicitada realmente existe configurada no jogo
+        if (this.transicao) return; // Trava de segurança
+
         if (!this.scene.manager.keys[cenaAlvo]) {
             console.error(`Cena não registrada: ${cenaAlvo}`);
             return;
         }
 
-        // Busca todas as cenas que estao ativas no momento
         const cenasAtivas = this.scene.manager.getScenes(true);
-        
-        // Descobre qual cena principal do jogo esta rodando por tras do HUD
-        const cenaJogo = cenasAtivas.find(cena => {
-            const chave = cena.scene.key;
-            return chave !== "cenaHUD" && chave !== "ficha";
-        });
+        // Filtra para encontrar qual minigame está aberto no momento
+        const cenaJogo = cenasAtivas.find(cena => cena.scene.key !== "HUD" && cena.scene.key !== "ficha");
 
-        // Ignora o comando se o jogador tentar ir para a cena onde ja esta
+        // Ignora caso o usuário tenha clicado no botão da cena atual
         if (cenaJogo?.scene.key === cenaAlvo) return;
 
-        // Ativa a trava de transicao e inicia o efeito de escurecer a tela
         this.transicao = true;
         this.cameras.main.fadeOut(300, 0, 0, 0);
         
-        // Aguarda a tela escurecer completamente antes de trocar as cenas
+        // Assim que a tela terminar de escurecer:
         this.cameras.main.once("camerafadeoutcomplete", () => {
-            // Desliga as cenas antigas que nao serao mais usadas
+            // Desliga apenas as cenas de gameplay antigas
             cenasAtivas.forEach(cena => {
                 const chave = cena.scene.key;
-                if (chave !== "cenaHUD" && chave !== cenaAlvo) {
+                if (chave !== "HUD" && chave !== cenaAlvo) {
                     this.scene.stop(chave);
                 }
             });
             
-            // Inicia a nova cena solicitada caso ainda nao esteja rodando
+            // Inicia a nova cena de minigame solicitada
             if (!this.scene.isActive(cenaAlvo)) {
                 this.scene.launch(cenaAlvo);
             }
             
-            // Garante que o HUD continue aparecendo por cima de tudo
-            this.scene.bringToTop("cenaHUD");
+            // Assegura que o HUD seja sempre a última camada (camada do topo)
+            this.scene.bringToTop("HUD");
             
-            // Clareia a tela revelando a nova cena
+            // Clareia a tela novamente
             this.cameras.main.fadeIn(300, 0, 0, 0);
-            
-            // Libera a trava permitindo futuras transicoes
-            this.transicao = false;
+            this.transicao = false; // Libera o lock
         });
     }
 
-
-    // Funcao do ciclo de vida que executa constantemente para atualizar os visuais
+    /**
+     * @method update
+     * @description Game Loop do HUD. Sincroniza os dados visuais com o estado global.
+     * Otimizado usando Cache (estadoAnterior) para atualizar a UI apenas quando há mudança.
+     */
     update() {
-        // Sincroniza os valores das barras com os dados globais atuais
-        this.barraComida.valor  = gameState.barras.comida;
-        this.barraLazer.valor   = gameState.barras.lazer;
-        this.barraLimpeza.valor = gameState.barras.limpeza;
-        this.barraSaude.valor   = gameState.barras.saude;
+        // Verifica e atualiza apenas as barras que sofreram alterações reais de valor
+        ['comida', 'lazer', 'limpeza', 'saude'].forEach(status => {
+            if (this.estadoAnterior[status] !== gameState.barras[status]) {
+                this.barrasStatus[status].valor = gameState.barras[status];
+                this.barrasStatus[status].atualizarBarra(); // Renderiza nova barra apenas se alterou
+                this.estadoAnterior[status] = gameState.barras[status]; // Atualiza o cache
+            }
+        });
 
-        // Pede para as barras desenharem seus tamanhos atualizados
-        this.barraComida.atualizarBarra();
-        this.barraLazer.atualizarBarra();
-        this.barraLimpeza.atualizarBarra();
-        this.barraSaude.atualizarBarra();
+        // Verifica e atualiza as moedas na tela apenas se o jogador gastou/recebeu mais
+        if (this.estadoAnterior.moedas !== gameState.cobasiCoins) {
+            this.coinText.setText(gameState.cobasiCoins);
+            this.estadoAnterior.moedas = gameState.cobasiCoins;
+        }
 
-        // Atualiza o numero escrito no marcador de moedas
-        this.coinText.setText(gameState.cobasiCoins);
-
-        // Chama a rotina para conferir se o cachorro precisa voltar a cena principal
+        // Checa as condições atuais do pet
         this.verificarManutencaoCachorro();
     }
 
-    // Funcao que avalia as condicoes atuais das necessidades do pet
+    /**
+     * @method verificarManutencaoCachorro
+     * @description Verifica se todas as necessidades do animal foram zeradas,
+     * forçando o encerramento do minigame e retornando à cena principal.
+     */
     verificarManutencaoCachorro() {
-        // Checa se os valores de todas as quatro necessidades chegaram a zero
         const barrasZero = 
             gameState.barras.comida <= 0 &&
             gameState.barras.lazer <= 0 &&
             gameState.barras.limpeza <= 0 &&
-            gameState.barras.saude <= 0
+            gameState.barras.saude <= 0;
 
-        // Forca o retorno para a tela principal caso as barras zerassem jogando com Caramelo ou Herói
         if (barrasZero && gameState.progressoCachorro < 2 && !this.transicao) {
-            this.transicionarPara("cenaPrincipal")
+            this.transicionarPara("cenaPrincipal");
         }
     }
 }

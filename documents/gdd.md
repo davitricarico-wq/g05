@@ -156,7 +156,7 @@ Por fim, os pet shops de bairro competem fortemente no mercado local, com foco e
 <div align="center">
   <p>Figura 1: Análise Swot</p>
   <img src="other/swot.png" width="800">
-  <p>Feito pela própria equipe(2026)</p>
+  <p>Feito pela própria equipe (2026)</p>
 </div>
 
 <h2 align="center" id="strengths">Strengths</h2>
@@ -449,7 +449,7 @@ Principais tarefas identificadas:
 </div>
 
 <div align="center">
-  <p>Feito pela própria equipe(2026)</p>
+  <p>Feito pela própria equipe (2026)</p>
 </div>
 
 **Requisitos Funcionais:** São os requisitos que o sistema faz.
@@ -472,65 +472,72 @@ Descrevem as funcionalidades, ações e comportamentos esperados.
 
 ## 2.1. Objetivos do Jogo
 
-&ensp;O jogo tem como objetivo central promover o cuidado e o bem-estar dos animais, em especial dos cachorros, dentro do projeto Cobasi Cuida. A experiência é organizada em fases progressivas, cada uma apresentando novos desafios e diferentes perfis de cães, variando em raça, porte, idade e peso.
-O jogador assume o papel de cuidador responsável e, para avançar no jogo, precisa realizar uma série de atividades interativas por meio de minigames. Esses minigames simulam tarefas de cuidado, como encher o pote de ração, oferecer brinquedos, dar banho ou proporcionar momentos de lazer. Cada ação realizada contribui para o aumento da barra de felicidade, indicador visual que demonstra o nível de satisfação e bem-estar do animal.
+&ensp;O jogo tem como objetivo central promover o cuidado e o bem-estar dos animais,com foco especial nos cães,em  sintonia com o projeto Cobasi Cuida. A experiência é estruturada em fases progressivas, cada uma trazendp novos desafios e diferentes perfis de pets, que variam em raça, porte, idade e peso.
 
-&ensp;O progresso do jogador é medido pela sua capacidade de manter os cães felizes e saudáveis. A cada animal bem cuidado, o jogador recebe moedas virtuais como recompensa. Essas moedas desempenham um papel estratégico, pois permitem Comprar rações e equipamentos melhores, que facilitam os cuidados nas fases seguintes. Adquirir acessórios e itens de personalização, que tornam a experiência mais divertida e permitem enfeitar os animais, desbloquear novos conteúdos e desafios, ampliando a diversidade de cães e atividades disponíveis.Assim, os objetivos do jogo se dividem em duas partes principais: o primeiro é garantir garantir o cuidado adequado dos animais, mantendo a barra de felicidade sempre elevado e o secundario é acumular moedas para investir em melhorias, acessórios e desbloqueios, tornando a jornada mais rica e recompensadora.
+&ensp;Ao longo da jornada, o jogador assume o papel de cuidador responsável e, para avançar, deve realizar uma série de atividades interativas por meio de minigames. Essas dinâmicas simulam tarefas essenciais de cuidado, como encher o pote de ração, oferecer brinquedos, dar banho e proporcionar momentos de lazer. Cada ação concluida contribui para o aumento da barra de felicidade, um indicador visual que demonstra o nível de satisfação e bem-estar do animal.
+
+&ensp;O progresso do jogador é medido por sua capacidade de manter os cães felizes e saudáveis. A cada animal bem cuidado, ele recebe moedas virtuais como recompensa. Essas moedas desempenham um papel estratégico no jogo, pois permitem a compra de rações e equipamentos melhores, que facilitam os cuidados nas fases seguintes, além da aquisição de acessórios e itens de personalização, que tornam a experiência mais divertida e possibilitam enfeitar os animaisTambém servem para desbloquear novos conteúdos e desafios, ampliando a diversidade de cães e de atividades disponíveis. 
+
+&ensp;Dessa forma, os objetivos do jogo se dividem em duas frentes principais: A primeira é garantir garantir o cuidado adequado dos animais, mantendo a barra de felicidade sempre elevada. A segunda é acumular moedas para investir em melhorias, acessórios e desbloqueios, tornando a jornada mais dinâmica e recompensadora.
 
 
-## 2.2. Características do Jogo 
+## 2.2. Características do Jogo
 
-### 2.2.1. Gênero do Jogo 
+### 2.2.1. Gênero do Jogo
 
-&ensp;O gênero do jogo é simulação, pois o jogador assume o papel de um voluntário do projeto Cobasi Cuida, responsável por cuidar de diferentes cães em situações variadas. A proposta é reproduzir, de forma lúdica e interativa, a experiência de oferecer atenção, carinho e cuidados básicos aos animais, aproximando o jogador da realidade de quem atua em abrigos ou projetos de adoção.
-Dentro do gênero de simulação, o jogo incorpora elementos de progressão e personalização, permitindo que o jogador evolua conforme realiza os cuidados e acumula moedas virtuais. Essa mecânica aproxima o jogo de características de RPG leve, já que há evolução de recursos, desbloqueio de fases e aquisição de itens que melhoram a experiência.
+ O gênero do jogo é simulação, pois o jogador assume o papel de um voluntário do projeto Cobasi Cuida, responsável por cuidar de diferentes cães em situações variadas. A proposta é reproduzir, de forma lúdica e interativa, a experiência de oferecer atenção, carinho e cuidados básicos aos animais, aproximando o jogador da realidade de quem atua em abrigos ou projetos de adoção.
+
+Dentro do gênero de simulação, o jogo incorpora elementos de progressão e personalização, permitindo que o jogador evolua à medida que realiza os cuidados e acumula moedas virtuais. Essa mecânica aproxima o jogo de características de um RPG leve, já que há evolução de recursos, desbloqueio de fases e aquisição de itens que aprimoram a experiência.
+
 Além disso, o jogo pode ser classificado como casual, pois apresenta minigames acessíveis e intuitivos, voltados para públicos diversos, sem exigir domínio de controles complexos ou estratégias avançadas. O foco está na diversão, na sensação de responsabilidade e na recompensa emocional de ver os animais felizes.
 
-### 2.2.2. Plataforma do Jogo 
+### 2.2.2. Plataforma do Jogo
 
-&ensp;O jogo será disponibilizado para desktop, com execução diretamente em navegadores web modernos, como Google Chrome, Microsoft Edge, Safari e Opera. Essa escolha de plataforma garante maior acessibilidade e praticidade, já que não será necessário instalar programas adicionais ou realizar downloads complexos.
-A opção por navegadores permite que o jogo seja multiplataforma, funcionando em diferentes sistemas operacionais (Windows, macOS e Linux), desde que o usuário tenha acesso a um navegador compatível. Além disso, essa abordagem facilita a atualização contínua do jogo, pois qualquer melhoria ou correção pode ser aplicada diretamente no servidor, sem exigir que o jogador baixe novas versões.
+ O jogo será disponibilizado para desktop, com execução diretamente em navegadores web modernos, como Google Chrome, Microsoft Edge, Safari e Opera. Essa escolha de plataforma garante maior acessibilidade e praticidade, já que não será necessário instalar programas adicionais nem realizar downloads complexos.
+
+A opção pelos navegadores permite que o jogo seja multiplataforma, funcionando em diferentes sistemas operacionais, como Windows, macOS e Linux, desde que o usuário tenha acesso a um navegador compatível. Além disso, essa abordagem facilita a atualização contínua do jogo, pois qualquer melhoria ou correção pode ser aplicada diretamente no servidor, sem exigir que o jogador baixe novas versões.
+
 Outro ponto importante é que a execução em navegadores torna o jogo mais inclusivo e acessível, permitindo que seja jogado em computadores com diferentes níveis de desempenho, sem exigir configurações avançadas de hardware.
 
+### 2.2.3. Número de jogadores
 
-### 2.2.3. Número de jogadores 
-&ensp;O jogo foi projetado para apenas um jogador, com o objetivo de fortalecer o vínculo individual entre o cuidador e os animais. Essa escolha garante maior senso de responsabilidade, já que cada decisão e ação realizada impacta diretamente no bem-estar dos cães.
+ O jogo foi projetado para apenas um jogador, com o objetivo de fortalecer o vínculo individual entre o cuidador e os animais. Essa escolha garante um maior senso de responsabilidade, já que cada decisão e ação realizada impacta diretamente o bem-estar dos cães.
+
 A experiência single-player também permite que o jogador se envolva de forma mais imersiva e pessoal, sem distrações externas, reforçando a proposta central do projeto Cobasi Cuida: estimular a empatia, o cuidado e a dedicação aos animais.
 
 ### 2.2.4. Títulos semelhantes e inspirações
 
-#### 2.2.4.1 Meu Talking Tom - Android ou IOS
+#### 2.2.4.1 Meu Talking Tom - Android ou iOS
 
-É a principal inspiração para nosso protótipo. Jogo simples com o objetivo de cuidar do Tom.
+É a principal inspiração para o nosso protótipo. Trata-se de um jogo simples, cujo objetivo é cuidar do Tom.
 
 *Ideias de funcionalidades:*
-- Toque interativo (tocar no pet e ele reagir).
-- Pet ouvir sua fala e replicar com uma voz diferente (não seria original).
-- Vestir o pet .
-- Alimentar o pet (diferentes alimentos; não só ração ou sachês).
-- Nível de pet (conforme atividades são realizadas o nível sobe) → possível integração com a ideia de fases.
-- Troca de ambientação (sala, quarto, banheiro, quintal, parque, loja…).
-- Estilo de interface (felicidade, fome, sede, sono, foguinho).
 
-#### 2.2.4.2 Nintendogs - Nintendo DS/3DS:
+* Toque interativo, permitindo tocar no pet e observar sua reação.
+* O pet ouvir a fala do jogador e reproduzi-la com uma voz diferente.
+* Vestir o pet.
+* Alimentar o pet com diferentes alimentos, e não apenas ração ou sachês.
+* Sistema de nível do pet, em que o progresso aumenta conforme as atividades são realizadas, com possível integração à ideia de fases.
+* Troca de ambientação, como sala, quarto, banheiro, quintal, parque e loja.
+* Estilo de interface com indicadores como felicidade, fome, sede, sono e energia.
 
-- Referência em funcionalidades de cuidados com o Pet. 
-- Pet reage às ações: seu visual muda conforme o cuidado (sujo/limpo/feliz/triste)
-- Toque sensível na tela é usada para acariciar o Pet
-- O jogo inclui diversas raças de diferentes de cães e gatos
+#### 2.2.4.2 Nintendogs - Nintendo DS/3DS
 
-#### 2.2.4.3 Animal Shelter Simulator - Google Play e IOS: 
+* Referência em funcionalidades de cuidado com o pet.
+* O pet reage às ações do jogador, e sua aparência muda conforme o nível de cuidado, podendo ficar sujo, limpo, feliz ou triste.
+* A tela sensível ao toque é utilizada para acariciar o pet.
+* O jogo inclui diversas raças de cães e gatos.
 
-A proposta é “rodar um abrigo” com tarefas operacionais e cuidado dos animais.
+#### 2.2.4.3 Animal Shelter Simulator - Google Play e iOS
 
-- Loop de tarefas (higiene, alimentação, rotina)
-- Progressão (desbloqueios / expansão)
+A proposta do jogo é administrar um abrigo, envolvendo tarefas operacionais e o cuidado com os animais.
 
+* Loop de tarefas, como higiene, alimentação e rotina.
+* Progressão por meio de desbloqueios e expansão.
 
-### 2.2.5 Tempo estimado de jogo 
+### 2.2.5 Tempo estimado de jogo
 
-O tempo estimado de gameplay para o Cobasi Shelter, considerando a destreza com video games do público alvo, varia entre quatro a dez minutos (4 a 10 min). Sabendo disso, é bem provável que, com alterações e melhorias futuras, a complexidade do jogo aumente e, portanto, seu tempo de gameplay aumente também.
-
+ O tempo estimado de gameplay para o *Cobasi Shelter*, considerando a familiaridade do público-alvo com videogames, varia entre quatro e dez minutos. É provável, no entanto, que, com futuras alterações e melhorias, a complexidade do jogo aumente e, consequentemente, o tempo de gameplay também seja ampliado.
 
 --- 
 # 3. Game Design
@@ -1531,16 +1538,6 @@ Apesar dos obstáculos, os problemas foram superados, contribuindo para o aprimo
 
 # 5. Testes
 
-<h2 align="center" id="51-casos-de-teste">5.1. Casos de Teste</h2>
-
-&ensp;Um Caso de Teste (*Test Case*) é um roteiro detalhado de condições, variáveis, passos e resultados esperados, criado para verificar se uma funcionalidade específica de um software (ou jogo) está operando corretamente e cumprindo seus requisitos.
-
-&ensp;Eles são essenciais para garantir a qualidade do produto, identificar bugs de forma sistemática antes do lançamento e documentar o comportamento esperado do sistema.
-
-<div align="center">
-  <p>Quadro de casos de teste</p>
-</div>
-
 ## 5.1. Casos de Teste 
 
 &ensp;Um Caso de Teste (*Test Case*) é um roteiro detalhado de condições, variáveis, passos e resultados esperados, criado para verificar se uma funcionalidade específica de um software (ou jogo) está operando corretamente e cumprindo seus requisitos.
@@ -1556,7 +1553,7 @@ Apesar dos obstáculos, os problemas foram superados, contribuindo para o aprimo
 | Pré-condição | Descrição do teste | Condição esperada |
 | :---: | :---: | :---: |
 | Jogo deve apresentar a tela na proporção correta | Abrir o jogo no navegador | O jogo apresenta os elementos visuais enquadrados na tela |
-| Presença funcional de feedback do usuário | Realizar interações na tela inicial | Ao passar o mouse sobre os botões, eles aumentam de tamanho |
+| Presença funcional de feedback do usuário | Realizar interações em todas as telas | Ao passar o mouse sobre os botões, eles aumentam de tamanho |
 | Botão "Settings" deve abrir a tela de configurações | Clicar no botão | A tela de configurações é exibida corretamente |
 | O áudio não deve ser reproduzido quando desativado | Desativar o áudio e realizar ações | Nenhum som é reproduzido |
 | Reativar o áudio deve restaurar os sons | Ativar o áudio nas configurações | Os sons voltam a ser reproduzidos |
@@ -1565,187 +1562,197 @@ Apesar dos obstáculos, os problemas foram superados, contribuindo para o aprimo
 | Deve ser possível avançar no tutorial | Clicar na seta direita | A próxima cena é exibida |
 | Deve ser possível retornar no tutorial | Clicar na seta esquerda | A cena anterior é exibida |
 | Deve ser possível pular o tutorial | Clicar em "Pular" | O jogo retorna à tela inicial |
-| Deve aparecer um pop-up ao entrar na cena inicial pela primeira vez | Finalizar o tutorial | O pop-up aparece |
-| Deve ser possível fechar o pop-up | Clicar no pop-up | O pop-up desaparece |
-| Deve aparecer um pop-up de missão após fechar o anterior | Fechar o pop-up inicial | O pop-up de missão aparece |
-| Botão do banho deve redirecionar corretamente | Clicar no botão com ícone de pato | O jogo vai para a cena de banho |
-| Deve aparecer instrução do minigame de banho | Entrar na cena pela primeira vez | O pop-up é exibido |
-| Pop-up do minigame deve desaparecer | Clicar no pop-up | O pop-up desaparece |
+| Deve aparecer um pop-up da ficha do cachorro ao entrar na cena inicial pela primeira vez | Finalizar o tutorial | O pop-up aparece |
+| Deve ser possível fechar o pop-up da ficha do cachorro| Clicar no pop-up | O pop-up desaparece |
+| Deve aparecer um pop-up de missão após fechar o de ficha | Fechar o pop-up de fichal | O pop-up de missão aparece |
+| Cena de banho deve ser acessível | Clicar no botão com ícone de pato | O jogo vai para a cena de banho |
+| Deve aparecer um pop-up de instrução para o minigame de banho | Entrar no jogo de banho pela primeira vez | O pop-up é exibido |
+| Pop-up de instrução do minigame deve desaparecer | Clicar no pop-up | O pop-up desaparece |
+| Barra de progresso deve exibir progresso continuamente | Utilizar chuveiro, sabão ou toalha | Barra mostra evolução progressiva |
+| Deve ser possível arrastar o chuveiro | Clicar e arrastar | O chuveiro segue o cursor |
+| Chuveiro deve molhar o cachorro| Arrastar sobre o cachorro | O cachorro fica molhado |
 | Deve ser possível arrastar o sabão | Clicar e arrastar | O sabão segue o cursor |
 | Objetos devem continuar interativos | Usar e tentar reutilizar | O objeto continua funcional |
 | Sabão deve gerar bolhas ao ser usado | Arrastar sobre o cachorro | Bolhas aparecem indicando limpeza |
 | Deve haver limite de bolhas | Gerar bolhas | Um aviso para usar o chuveiro aparece |
-| Deve ser possível arrastar o chuveiro | Clicar e arrastar | O chuveiro segue o cursor |
-| Chuveiro deve remover o sabão | Arrastar sobre o cachorro | A água remove o sabão |
-| Deve aparecer aviso após remoção das bolhas | Usar o chuveiro | Surge aviso para usar a toalha |
+| Chuveiro deve remover as bolhas | Arrastar sobre o cachorro | A água remove as bolhas |
+| Deve aparecer um aviso após remoção das bolhas | Usar o chuveiro | Surge aviso para usar a toalha |
 | Deve ser possível usar a toalha | Clicar e arrastar | A toalha segue o cursor |
-| Uso da toalha gera recompensa | Utilizar completamente | Pop-up indica ganho de moedas |
-| HUD deve ser atualizado após uso da toalha | Usar a toalha | Felicidade e moedas são atualizadas |
-| Não deve ser possível reutilizar objetos após finalização | Tentar usar novamente | Nenhum objeto responde |
+| Uso da toalha gera recompensa | Utilizar completamente | Pop-up indica ganho de moedas e tempo de conclusão |
+| HUD deve ser atualizado após término do jogo | Usar a toalha | Limpeza e moedas são atualizadas |
 | Ordem de uso deve ser respeitada | Tentar usar fora de ordem | Aviso é exibido |
-| Cena de ração deve ser acessível | Clicar no botão correspondente | Cena de ração é exibida |
-| Pop-up da cena de ração deve aparecer | Entrar pela primeira vez | O pop-up aparece |
+| Cena de ração deve ser acessível | Clicar no botão com ícone de pote de ração | Cena de ração é exibida |
+| Pop-up de instrução da cena de ração deve aparecer | Entrar pela primeira vez | O pop-up aparece |
 | Pop-up deve fechar corretamente | Clicar no pop-up | O pop-up desaparece |
-| Card do cachorro deve destacar | Clicar no card | O card aumenta |
-| Card deve fechar ao clicar novamente | Clicar novamente | O card fecha |
+| Ficha do cachorro deve ser destacada | Fechar o pop-up de instrução | A ficha é destacada na tela |
+| Ficha do cachorro deve ser acessível | Clicar na ficha | A ficha abre com as informações do cachorro |
+| Ficha deve fechar ao clicar novamente | Clicar novamente | O card fecha |
+| Estante deve ser destacada | Fechar a ficha | Estante das rações é destacada |
 | Estante deve abrir seleção de rações | Clicar na estante | Nova cena aparece |
-| Tipos de ração devem ser filtráveis | Clicar em "Standard" | Apenas rações Standard aparecem |
-| Deve ser possível ver detalhes da ração | Clicar em uma ração | Informações aparecem |
+| Deve ser possível ver detalhes da ração | Clicar em uma ração | Informações específicas aparecem |
+| Compra deve diminuir a quantidade de moedas atuais | Clicar no preço | Quantidade de moedas diminuem |
 | Compra deve iniciar minigame | Clicar no preço | Minigame inicia |
 | Movimento do cachorro deve funcionar | Usar teclas esquerda/direita | Cachorro se movimenta |
-| Coleta de ração deve pontuar | Colidir com ração | Pontuação aumenta |
-| Chocolate deve causar penalidade | Colidir com chocolate | Vida é reduzida |
+| Coleta de ração deve pontuar | Colidir com ração | Pontuação aumenta em 10 |
+| Chocolate deve causar penalidade | Colidir com chocolate | Uma vida é reduzida |
 | Jogo reinicia após perder todas vidas | Perder 3 vidas | Jogo reinicia |
 | Pontuação alvo encerra o minigame | Atingir 150 pontos | Jogo encerra |
-| Moedas devem ser descontadas na compra | Comprar ração | Valor é atualizado no HUD |
-| Cena do veterinário deve funcionar | Acessar cena | Cena é exibida |
-| Lupa deve iniciar interação | Usar lupa | Minigame é iniciado |
-| Pinça deve capturar pulgas | Arrastar pulga | Pulga é coletada |
+| HUD deve ser atualizado após término do jogo | Atingir 150 pontos | Fome e moedas são atualizadas |
+| Cena do veterinário deve ser acessível | Clicar no botão com ícone de kit médico | Cena é exibida |
+| Lupa deve iniciar interação | Usar lupa | Redirecionamento para jogo da pulga |
+| Remédio anti-pulgas deve neutralizar pulgas | Clicar com o remédio na pulga  | Pulga é neutralizada |
+| Pinça deve capturar pulgas | Clicar e segurar em cima da pulga | Pulga é coletada |
 | Pontuação deve ser contabilizada | Depositar pulga | Pontos aumentam |
 | Minigame encerra ao atingir objetivo | Coletar 12 pulgas | Jogo encerra |
-| Cena de lazer deve iniciar corretamente | Clicar no botão | Cena é exibida |
-| Minigame de lazer deve iniciar | Clicar no osso | Minigame inicia |
-| Cachorro deve pular | Pressionar tecla | Salto ocorre |
+| HUD deve ser atualizado após término do jogo | Coletar 12 pulgas | Saúde e moedas são atualizadas |
+| Cena de lazer deve ser acessível | Clicar no botão com ícone de bola de basquete e de tênis | Cena de lazer é exibida |
+| Pop-up de instrução do jogo lazer deve aparecer | Clicar no osso | Minigame inicia |
+| Minigame de lazer deve iniciar | Clicar pop-up de instrução | Pop-up fecha e minigame inicia |
+| Cachorro deve pular | Pressionar tecla espaço ou seta para cima | Cachorro salta |
 | Colisão com obstáculo reinicia jogo | Colidir | Jogo reinicia |
 | Coleta de petiscos positivos | Coletar item | Pontos aumentam |
 | Coleta de petiscos negativos | Coletar item | Pontos diminuem |
 | Salto especial deve funcionar | Usar cama elástica | Salto mais alto ocorre |
 | Coleta do item final encerra jogo | Coletar item especial | Jogo encerra |
-| Pontuação afeta barra de felicidade | Finalizar jogo | Barra é atualizada |
+| HUD deve ser atualizado após término do jogo | Coletar item especial | Felicidade e moedas são atualizadas |
 | Sistema de progresso deve gerar novo cachorro | Completar barras | Novo ciclo inicia |
+| Nova fase deve exibir pop-up de parabéns | Completar barras | Pop-up aparece |
+| Exibir pop-up do segundo cachorro | Fechar pop-up de parabéns | Pop-up aparece |
 | Mecânicas devem funcionar no novo ciclo | Testar novamente | Tudo permanece funcional |
 
 </div>
 
 <div align="center">
-  <p>Feito pela própria equipe(2026)</p>
+  <p>Feito pela própria equipe (2026)</p>
 </div>
 
 ## 5.2. Testes de jogabilidade (playtests)
 
-&ensp;O teste de jogabilidade é uma metodologia sistemática de avaliação qualitativa e quantitativa, conduzida durante o ciclo de desenvolvimento de um software de entretenimento. Enquanto o Controle de Qualidade (QA) foca na integridade técnica do código, o playtesting concentra-se na validação da experiência do usuário (UX) e na eficácia do game design.
+ O teste de jogabilidade é uma metodologia sistemática de avaliação qualitativa e quantitativa, conduzida durante o ciclo de desenvolvimento de um software de entretenimento. Enquanto o Controle de Qualidade (QA) foca na integridade técnica do código, o playtesting concentra-se na validação da experiência do usuário (UX) e na eficácia do game design.
 
 **Referências (Seção 7):** Unity Technologies; San Francisco: Game Developer
 
 ### 5.2.1 Registros de testes
 
-&ensp;Os testes de jogabilidade são cruciais para este projeto pois funcionam como a principal ferramenta de validação do game design, garantindo que as mecânicas planejadas sejam intuitivas e divertidas para o público-alvo, e não apenas para os desenvolvedores. Ao observar a interação real de usuários externos, é possível identificar falhas na curva de aprendizado e pontos de frustração que a "cegueira do desenvolvedor" costuma ocultar, permitindo ajustes precisos no equilíbrio entre desafio e recompensa.
+&ensp;Os testes de jogabilidade são cruciais para este projeto, pois funcionam como a principal ferramenta de validação do game design, garantindo que as mecânicas planejadas sejam intuitivas e divertidas para o público-alvo, e não apenas para os desenvolvedores. Ao observar a interação real de usuários externos, é possível identificar falhas na curva de aprendizado e pontos de frustração que a "cegueira do desenvolvedor" costuma ocultar, permitindo ajustes precisos no equilíbrio entre desafio e recompensa.
 
-&ensp;Além do aspecto criativo, o playtesting atua como uma estratégia de mitigação de riscos e custos, detectando problemas de usabilidade e fluxo antes que recursos significativos sejam investidos em polimento ou marketing. Em última análise, ele assegura que o produto final entregue uma experiência de usuário (UX) consistente e envolvente, aumentando drasticamente as chances de retenção de jogadores e o sucesso comercial do jogo no mercado.
+&ensp;Além do aspecto criativo, o playtesting atua como uma estratégia de mitigação de riscos e custos, detectando problemas de usabilidade e de fluxo antes que recursos significativos sejam investidos em polimento ou marketing. Em última análise, ele assegura que o produto final entregue uma experiência de usuário (UX) consistente e envolvente, aumentando drasticamente as chances de retenção de jogadores e o sucesso comercial do jogo no mercado.
 
-&ensp;A aplicação dos testes seguiu um padrão para cada pessoa que quis testar o jogo. Numa sala movimentada, um computador de um integrante do grupo foi disponibilizado com o jogo funcionando, tanto com mouse quanto com fones de ouvido disponíveis. Primeiro, o contexto e objetivos a serem atingidos foram apresentados ao 'tester'. Depois disso ele(a) foi instruido apenas a jogar, sem nunhuma explicação, tanto prévia, quanto se solicitada. Por fim, o usuário foi submetido a uma série de perguntas sobre a visão geral sobre o jogo e um formulário de questionamentos, semelhante ao levantamento presente a seguir. O processo de teste do jogo foi conduzido, dia 31/03/2026, por três integrantes do grupo, um contextualizando, outro gravando e outro para preencher o formulário.
+&ensp;A aplicação dos testes seguiu um padrão para cada pessoa que quis testar o jogo. Em uma sala movimentada, um computador de um integrante do grupo foi disponibilizado com o jogo funcionando, tanto com mouse quanto com fones de ouvido disponíveis. Primeiro, o contexto e os objetivos a serem atingidos foram apresentados ao tester. Depois disso, ele(a) foi instruído(a) apenas a jogar, sem nenhuma explicação, tanto prévia quanto solicitada. Por fim, o usuário foi submetido a uma série de perguntas sobre a visão geral do jogo e a um formulário de questionamentos, semelhante ao levantamento apresentado a seguir. O processo de teste do jogo foi conduzido, no dia 31/03/2026, por três integrantes do grupo: um contextualizando, outro gravando e outro preenchendo o formulário.
 
-<div align="center">
+<div align="left">
 
-Nome | Soraya
---- | ---
-Idade | 18 anos
-Curso | Ciência da Computação
-Tem ou já teve algum pet? | Sim, possuo
-Já possuía experiência prévia com games? | Sim, mas pouca
-Conseguiu iniciar o jogo? | Sim
-Entendeu as regras e mecânicas do jogo? | Entendeu com poucas dúvidas
-Conseguiu progredir no jogo? | Sim, mas não conseguiu concluir 
-Apresentou dificuldades? | Sim, no mini game de lazer
-Que nota deu ao jogo? | 9.0
-Qual mini game mais gostou? | Banho
-O que poderia melhorar no jogo? | Dificuldade alta e salto duplo no mini game de lazer
+| Nome                                     | Soraya                                               |
+| ---------------------------------------- | ---------------------------------------------------- |
+| Idade                                    | 18 anos                                              |
+| Curso                                    | Ciência da Computação                                |
+| Tem ou já teve algum pet?                | Sim, possuo                                          |
+| Já possuía experiência prévia com games? | Sim, mas pouca                                       |
+| Conseguiu iniciar o jogo?                | Sim                                                  |
+| Entendeu as regras e mecânicas do jogo?  | Entendeu com poucas dúvidas                          |
+| Conseguiu progredir no jogo?             | Sim, mas não conseguiu concluir                      |
+| Apresentou dificuldades?                 | Sim, no mini game de lazer                           |
+| Que nota deu ao jogo?                    | 9.0                                                  |
+| Qual mini game mais gostou?              | Banho                                                |
+| O que poderia melhorar no jogo?          | Dificuldade alta e salto duplo no mini game de lazer |
 
-Nome | Anthony
---- | ---
-Idade | 19 anos
-Curso | Engenharia de Computação
-Tem ou já teve algum pet? | Não, mas tem vontade 
-Já possuía experiência prévia com games? | Sim, muita
-Conseguiu iniciar o jogo? | Sim
-Entendeu as regras e mecânicas do jogo? | Não teve dúvidas
-Conseguiu progredir no jogo? |  Sim. Concluiu com facilidade
-Apresentou dificuldades? | Sim, no mini game de cuidados (pegar pulgas)
-Que nota deu ao jogo? | 9.0
-Qual mini game mais gostou? | Cuidados
-O que poderia melhorar no jogo? | Hitbox dos ossos e obstáculos no mini game de lazer; Hitbox da pinça no mini game de cuidados
+| Nome                                     | Anthony                                                                                       |
+| ---------------------------------------- | --------------------------------------------------------------------------------------------- |
+| Idade                                    | 19 anos                                                                                       |
+| Curso                                    | Engenharia de Computação                                                                      |
+| Tem ou já teve algum pet?                | Não, mas tem vontade                                                                          |
+| Já possuía experiência prévia com games? | Sim, muita                                                                                    |
+| Conseguiu iniciar o jogo?                | Sim                                                                                           |
+| Entendeu as regras e mecânicas do jogo?  | Não teve dúvidas                                                                              |
+| Conseguiu progredir no jogo?             | Sim. Concluiu com facilidade                                                                  |
+| Apresentou dificuldades?                 | Sim, no mini game de cuidados (pegar pulgas)                                                  |
+| Que nota deu ao jogo?                    | 9.0                                                                                           |
+| Qual mini game mais gostou?              | Cuidados                                                                                      |
+| O que poderia melhorar no jogo?          | Hitbox dos ossos e obstáculos no mini game de lazer; Hitbox da pinça no mini game de cuidados |
 
-Nome | Pedro
---- | ---
-Idade | 18 anos
-Curso | Engenharia de Computação
-Tem ou já teve algum pet? | Sim, possuo
-Já possuía experiência prévia com games? | Sim
-Conseguiu iniciar o jogo? | Sim
-Entendeu as regras e mecânicas do jogo? | Não teve dúvidas
-Conseguiu progredir no jogo? | Sim, concluiu com facilidade
-Apresentou dificuldades? | Não, nenhuma
-Que nota deu ao jogo? | 9.0
-Qual mini game mais gostou? | Lazer
-O que poderia melhorar no jogo? | Intuitividade na sequência de tarefas; Hitbox da pinça no mini game de cuidados
+| Nome                                     | Pedro                                                                           |
+| ---------------------------------------- | ------------------------------------------------------------------------------- |
+| Idade                                    | 18 anos                                                                         |
+| Curso                                    | Engenharia de Computação                                                        |
+| Tem ou já teve algum pet?                | Sim, possuo                                                                     |
+| Já possuía experiência prévia com games? | Sim                                                                             |
+| Conseguiu iniciar o jogo?                | Sim                                                                             |
+| Entendeu as regras e mecânicas do jogo?  | Não teve dúvidas                                                                |
+| Conseguiu progredir no jogo?             | Sim, concluiu com facilidade                                                    |
+| Apresentou dificuldades?                 | Não, nenhuma                                                                    |
+| Que nota deu ao jogo?                    | 9.0                                                                             |
+| Qual mini game mais gostou?              | Lazer                                                                           |
+| O que poderia melhorar no jogo?          | Intuitividade na sequência de tarefas; Hitbox da pinça no mini game de cuidados |
 
-Nome | Ludmilla
---- | ---
-Idade | 20 anos
-Curso |  Engenharia de Software
-Tem ou já teve algum pet? | Não, mas já possuí
-Já possuía experiência prévia com games? | Sim, mas pouca
-Conseguiu iniciar o jogo? | Sim
-Entendeu as regras e mecânicas do jogo? | Entendeu com poucas dúvidas
-Conseguiu progredir no jogo? | Sim, concluiu com dificuldade 
-Apresentou dificuldades? | Sim, no jogo de lazer
-Que nota deu ao jogo? | 9.0
-Qual mini game mais gostou? | Alimentação
-O que poderia melhorar no jogo? | Intuitividade na sequência de tarefas;
+| Nome                                     | Ludmilla                               |
+| ---------------------------------------- | -------------------------------------- |
+| Idade                                    | 20 anos                                |
+| Curso                                    | Engenharia de Software                 |
+| Tem ou já teve algum pet?                | Não, mas já possuí                     |
+| Já possuía experiência prévia com games? | Sim, mas pouca                         |
+| Conseguiu iniciar o jogo?                | Sim                                    |
+| Entendeu as regras e mecânicas do jogo?  | Entendeu com poucas dúvidas            |
+| Conseguiu progredir no jogo?             | Sim, concluiu com dificuldade          |
+| Apresentou dificuldades?                 | Sim, no jogo de lazer                  |
+| Que nota deu ao jogo?                    | 9.0                                    |
+| Qual mini game mais gostou?              | Alimentação                            |
+| O que poderia melhorar no jogo?          | Intuitividade na sequência de tarefas; |
 
-Nome | Vitor
---- | ---
-Idade | 18 anos
-Curso |  Engenharia de Software
-Tem ou já teve algum pet? | Sim, possui
-Já possuía experiência prévia com games? | Sim
-Conseguiu iniciar o jogo? | Sim
-Entendeu as regras e mecânicas do jogo? | Entendeu com poucas dúvidas
-Conseguiu progredir no jogo? | Sim, concluiu com facilidade
-Apresentou dificuldades? | Sim, no jogo de lazer
-Que nota deu ao jogo? | 9.0
-Qual mini game mais gostou? | Cuidados
-O que poderia melhorar no jogo? | Hitbox dos ossos e obstáculos no mini game de lazer
+| Nome                                     | Vitor                                               |
+| ---------------------------------------- | --------------------------------------------------- |
+| Idade                                    | 18 anos                                             |
+| Curso                                    | Engenharia de Software                              |
+| Tem ou já teve algum pet?                | Sim, possui                                         |
+| Já possuía experiência prévia com games? | Sim                                                 |
+| Conseguiu iniciar o jogo?                | Sim                                                 |
+| Entendeu as regras e mecânicas do jogo?  | Entendeu com poucas dúvidas                         |
+| Conseguiu progredir no jogo?             | Sim, concluiu com facilidade                        |
+| Apresentou dificuldades?                 | Sim, no jogo de lazer                               |
+| Que nota deu ao jogo?                    | 9.0                                                 |
+| Qual mini game mais gostou?              | Cuidados                                            |
+| O que poderia melhorar no jogo?          | Hitbox dos ossos e obstáculos no mini game de lazer |
 
-Nome | Henrique
---- | ---
-Idade | 17 anos
-Curso | Ciência da Computação
-Tem ou já teve algum pet? | Sim, possui
-Já possuía experiência prévia com games? | Sim
-Conseguiu iniciar o jogo? | Sim
-Entendeu as regras e mecânicas do jogo? | Não teve dúvidas 
-Conseguiu progredir no jogo? | Sim, concluiu com facilidade
-Apresentou dificuldades? | Poucas, no jogo de lazer
-Que nota deu ao jogo? | 9.0
-Qual mini game mais gostou? | Lazer
-O que poderia melhorar no jogo? | Cores das rações
+| Nome                                     | Henrique                     |
+| ---------------------------------------- | ---------------------------- |
+| Idade                                    | 17 anos                      |
+| Curso                                    | Ciência da Computação        |
+| Tem ou já teve algum pet?                | Sim, possui                  |
+| Já possuía experiência prévia com games? | Sim                          |
+| Conseguiu iniciar o jogo?                | Sim                          |
+| Entendeu as regras e mecânicas do jogo?  | Não teve dúvidas             |
+| Conseguiu progredir no jogo?             | Sim, concluiu com facilidade |
+| Apresentou dificuldades?                 | Poucas, no jogo de lazer     |
+| Que nota deu ao jogo?                    | 9.0                          |
+| Qual mini game mais gostou?              | Lazer                        |
+| O que poderia melhorar no jogo?          | Cores das rações             |
 
 </div>
 
+
 ### 5.2.2 Melhorias
 
-&ensp;Após uma extensa seção de testes, a equipe levantou todos os relatos de bugs e sugestões para revisar rigorosamente a qualidade do jogo para o usuário. Sendo assim, as melhorias a serem aplicadas são: 
+&ensp;Após uma extensa seção de testes, a equipe levantou todos os relatos de bugs e sugestões para revisar rigorosamente a qualidade do jogo para o usuário. Sendo assim, as melhorias a serem aplicadas são:
 
-* Aprimoramento final dos sprites das rações, pinça e cachorro correndo;
+* Aprimoramento final dos sprites das rações, da pinça e do cachorro correndo;
 * Aprimoramento da intuitividade na sequência de atividades a serem feitas;
 * Aprimoramento da interface do usuário;
-* Diminução da dificuldade do mini game de lazer;
-* Substituição da pinça por um remédio; 
+* Diminuição da dificuldade do minigame de lazer;
+* Substituição da pinça por um remédio;
 * Ajuste na ordem das barras de status;
 * Ajuste na ordem da mecânica de limpeza do cachorro;
-* Ajuste dos pop-up's de feedback;
+* Ajuste dos pop-ups de feedback;
 * Ajuste da intuitividade da sequência de tarefas para o usuário;
 * Ajuste da distribuição das rações (Standard, Premium, Super Premium) em uma cena;
-* Ajuste no sprite presente o mini game de alimentação (adicionar o mesmo que é comprado)
-* Ajuste nas hitboxes do cachorro, ossos e obstáculos no mini game de lazer
-* Ajuste na posição dos ossos no mini game de lazer;
+* Ajuste no sprite presente no minigame de alimentação (adicionar o mesmo que é comprado);
+* Ajuste nas hitboxes do cachorro, dos ossos e dos obstáculos no minigame de lazer;
+* Ajuste na posição dos ossos no minigame de lazer;
 * Ajuste no balanço do rabo dos cachorros;
-* Adicionar um temporizador em todos os mini games;
+* Adicionar um temporizador em todos os minigames;
 * Adicionar um terceiro cachorro;
 * Adicionar informações reais dos cachorros das ONGs parceiras da Cobasi.
 
 ---
+
 
 # 6. Conclusões e trabalhos futuros
 
