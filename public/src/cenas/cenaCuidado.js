@@ -636,46 +636,85 @@ export class cenaCuidado extends Phaser.Scene {
                                estrelas === 2 ? "feedback2estrelas" : "feedback1estrela"; // O fallback cobre 1 estrela ou Game Over (0)
 
         // Backdrop negro opaco
-        const fundoFeedback = this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.8)
+        this.fundoFeedback = this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.8)
             .setDepth(100).setInteractive(); 
 
-        const telaFeedback = this.add.image(cx, cy, imagemFeedback).setDepth(101);
+        this.telaFeedback = this.add.image(cx, cy, imagemFeedback).setDepth(101);
 
         // Garante que o popup não estoure os limites da tela (Responsividade)
         const limiteLargura = this.scale.width * 0.8;
         const limiteAltura = this.scale.height * 0.8;
-        const escalaFinal = Math.min(limiteLargura / telaFeedback.width, limiteAltura / telaFeedback.height);
-        telaFeedback.setScale(escalaFinal); 
+        const escalaFinal = Math.min(limiteLargura / this.telaFeedback.width, limiteAltura / this.telaFeedback.height);
+        this.telaFeedback.setScale(escalaFinal); 
 
-        // Rótulos de recompensas dinamicamente calculados em cima do popup gerado
-        let posMoedasY = cy + (telaFeedback.displayHeight * 0.12);
-        this.add.text(cx-12, posMoedasY, `${moedas} Moedas`, {
+        let posMoedasY = cy + (this.telaFeedback.displayHeight * 0.12);
+        this.textoMoedas = this.add.text(cx-12, posMoedasY, `${moedas} Moedas`, {
             fontFamily: '"Press Start 2P", Arial', fontSize: "22px", color: "#005e64"
         }).setOrigin(0.5).setDepth(102);
 
-        let posTempoY = cy + (telaFeedback.displayHeight * 0.31); 
-        this.add.text(cx-20, posTempoY, `${segundos}s`, {
+        let posTempoY = cy + (this.telaFeedback.displayHeight * 0.31); 
+        this.textoTempo = this.add.text(cx-20, posTempoY, `${segundos}s`, {
             fontFamily: '"Press Start 2P", Arial', fontSize: "22px", color: "#005e64" 
         }).setOrigin(0.5).setDepth(102);
 
-        const textoContinuar = this.add.text(cx, cy + (telaFeedback.displayHeight / 2) + 40, "[ Clique para continuar ]", {
+        this.textoContinuar = this.add.text(cx, cy + (this.telaFeedback.displayHeight / 2) + 40, "[ Clique para continuar ]", {
             fontFamily: '"Press Start 2P", Arial', fontSize: "15px", color: "#ffffff"
         }).setOrigin(0.5).setDepth(102);
         
-        this.tweens.add({ targets: textoContinuar, alpha: 0.5, duration: 600, yoyo: true, loop: -1 });
+        this.tweens.add({ targets: this.textoContinuar, alpha: 0.5, duration: 600, yoyo: true, loop: -1 });
 
-        // Transição de cenas com base no cachorro equipado (Branching Narrative)
-        const fecharPainel = () => { 
-            if (gameState.pets.cachorroJoao) {
-                this.scene.start("cenaPrincipal");
+        const fecharPainel = () => {
+            if (this.fundoFeedback) this.fundoFeedback.destroy();
+            if (this.telaFeedback) this.telaFeedback.destroy();
+            if (this.textoMoedas) this.textoMoedas.destroy();
+            if (this.textoTempo) this.textoTempo.destroy();
+            if (this.textoContinuar) this.textoContinuar.destroy();
+
+            if (estrelas > 0) {
+                this.exibirDirecaoJogador();
             } else {
-                // A maioria dos cachorros retorna à cena do veterinário
-                this.scene.start("cenaVeterinario");
+                if (gameState.pets.cachorroJoao) {
+                    this.scene.start("cenaPrincipal");
+                } else {
+                    this.scene.start("cenaVeterinario");
+                }
             }
         };
         
-        // Finaliza ao clicar em qualquer lugar da tela
-        fundoFeedback.on('pointerdown', fecharPainel);
-        telaFeedback.setInteractive().on('pointerdown', fecharPainel);
+        this.fundoFeedback.on('pointerdown', fecharPainel);
+        this.telaFeedback.setInteractive().on('pointerdown', fecharPainel);
+    }
+
+    /** Exibe o popup de direcionamento após a vitória em cenaCuidado */
+    exibirDirecaoJogador() {
+        const cx = this.scale.width / 2;
+        const cy = this.scale.height / 2;
+
+        const fundoEscuro = this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.8)
+            .setDepth(100).setInteractive();
+        const imgDirecao = this.add.image(cx, cy, "direcaoJogador")
+            .setDepth(101).setInteractive({ useHandCursor: true });
+
+        const limiteLargura = this.scale.width * 0.8;
+        const limiteAltura = this.scale.height * 0.8;
+        const escalaFinal = Math.min(limiteLargura / imgDirecao.width, limiteAltura / imgDirecao.height);
+        imgDirecao.setScale(escalaFinal);
+
+        const txtContinuar = this.add.text(cx, cy + (imgDirecao.displayHeight / 2) + 40, "[ Clique para Continuar ]", {
+            fontFamily: '"Press Start 2P", Arial', fontSize: "15px", color: "#ffffff"
+        }).setOrigin(0.5).setDepth(102);
+
+        this.tweens.add({ targets: txtContinuar, alpha: 0.5, duration: 600, yoyo: true, loop: -1 });
+
+        const proximaCena = () => {
+            if (gameState.pets.cachorroJoao) {
+                this.scene.start("cenaPrincipal");
+            } else {
+                this.scene.start("cenaVeterinario");
+            }
+        };
+
+        fundoEscuro.on('pointerdown', proximaCena);
+        imgDirecao.on('pointerdown', proximaCena);
     }
 }

@@ -223,7 +223,7 @@ export class cenaVeterinario extends Phaser.Scene {
                 // Após a animação, aguarda 1.5 segundos e exibe direcionamento
                 this.time.delayedCall(1500, () => {
                     gameState.cachorroTemPulga = true; // Atualiza a flag global
-                    this.exibirDirecaoJogador();
+                    this.scene.start("cenaCuidado");
                 });
             }
         });
