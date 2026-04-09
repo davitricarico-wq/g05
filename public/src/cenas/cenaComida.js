@@ -269,12 +269,12 @@ export class cenaComida extends Phaser.Scene {
         const cx = this.scale.width / 2;
         const cy = this.scale.height / 2;
 
-        this.fundoEscuroInstrucao = this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.7).setDepth(9999).setInteractive(); 
-        this.imgInstrucao = this.add.image(cx, cy, "instrucaoRacao").setDepth(10000).setScale(0.5);
+        this.fundoEscuroInstrucao = this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.7).setDepth(1200).setInteractive(); 
+        this.imgInstrucao = this.add.image(cx, cy, "instrucaoRacao").setDepth(2000).setScale(0.5);
 
         this.txtContinuarInstrucao = this.add.text(cx, cy + (this.imgInstrucao.displayHeight / 2) + 30, "[ Clique para continuar ]", {
             fontFamily: '"Press Start 2P", Arial', fontSize: "15px", color: "#ffffff", stroke: "#000000", strokeThickness: 4
-        }).setOrigin(0.5).setDepth(10000);
+        }).setOrigin(0.5).setDepth(2000);
 
         this.tweens.add({ targets: this.txtContinuarInstrucao, alpha: 0.4, duration: 800, yoyo: true, loop: -1 });
 
@@ -290,12 +290,12 @@ export class cenaComida extends Phaser.Scene {
     /** Cria um "foco" visual no objeto de Ficha técnica */
     destacarFicha() {
         this.scene.bringToTop("cenaComida");
-        this.overlayFicha = this.add.rectangle(this.scale.width/2, this.scale.height/2, this.scale.width, this.scale.height, 0x000000, 0.7).setDepth(9999).setInteractive(); 
-        gameState.bilhete.setDepth(10000);
+        this.overlayFicha = this.add.rectangle(this.scale.width/2, this.scale.height/2, this.scale.width, this.scale.height, 0x000000, 0.7).setDepth(1200).setInteractive(); 
+        gameState.bilhete.setDepth(2000);
 
         this.txtCliqueFicha = this.add.text(gameState.bilhete.x, gameState.bilhete.y + 60, "Clique na ficha!", {
             fontFamily: '"Press Start 2P", Arial', fontSize: "12px", color: "#ffffff", stroke: "#000000", strokeThickness: 3
-        }).setOrigin(0.5).setDepth(10000);
+        }).setOrigin(0.5).setDepth(2000);
 
         this.tweens.add({ targets: this.txtCliqueFicha, alpha: 0.4, duration: 600, yoyo: true, loop: -1 });
     }
@@ -303,12 +303,12 @@ export class cenaComida extends Phaser.Scene {
     /** Cria um "foco" visual na estante para guiar o jogador ao minigame */
     destacarEstante() {
         this.scene.bringToTop("cenaComida");
-        this.overlayEstante = this.add.rectangle(this.scale.width/2, this.scale.height/2, this.scale.width, this.scale.height, 0x000000, 0.7).setDepth(9999).setInteractive(); 
-        this.estante.setDepth(10000);
+        this.overlayEstante = this.add.rectangle(this.scale.width/2, this.scale.height/2, this.scale.width, this.scale.height, 0x000000, 0.7).setDepth(1200).setInteractive(); 
+        this.estante.setDepth(2000);
 
         this.txtCliqueEstante = this.add.text(this.estante.x, this.estante.y - 100, "Clique na estante!", {
             fontFamily: '"Press Start 2P", Arial', fontSize: "12px", color: "#ffffff", stroke: "#000000", strokeThickness: 3
-        }).setOrigin(0.5).setDepth(10000);
+        }).setOrigin(0.5).setDepth(2000);
 
         this.tweens.add({ targets: this.txtCliqueEstante, alpha: 0.4, duration: 600, yoyo: true, loop: -1 });
     }

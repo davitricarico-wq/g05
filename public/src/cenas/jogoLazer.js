@@ -435,9 +435,9 @@ export class jogoLazer extends Phaser.Scene {
         const cy = this.scale.height / 2;
 
         const fundoFeedback = this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.8)
-            .setDepth(100).setScrollFactor(0).setInteractive(); 
+                .setDepth(1200).setScrollFactor(0).setInteractive(); 
 
-        const telaFeedback = this.add.image(cx, cy, imagemFeedback).setDepth(101).setScrollFactor(0).setInteractive();
+        const telaFeedback = this.add.image(cx, cy, imagemFeedback).setDepth(2000).setScrollFactor(0).setInteractive();
         const escalaFinal = Math.min((this.scale.width * 0.8) / telaFeedback.width, (this.scale.height * 0.8) / telaFeedback.height);
         telaFeedback.setScale(escalaFinal);
 

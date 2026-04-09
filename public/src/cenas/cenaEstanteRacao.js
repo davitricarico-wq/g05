@@ -502,13 +502,13 @@ export class cenaEstanteRacao extends Phaser.Scene {
         const centroX = largura / 2;
         const centroY = altura / 2;
 
-        // Máscara escura cobrindo todo o fundo para destacar o tutorial (Profundidade 1000)
+        // Máscara escura cobrindo todo o fundo para destacar o tutorial (Profundidade 1200)
         this.fundoEscuroInstrucao = this.add.rectangle(centroX, centroY, largura, altura, 0x000000, 0.7)
-            .setDepth(1000)
+            .setDepth(1200)
             .setInteractive(); 
 
         this.imgInstrucao = this.add.image(centroX, centroY, "instrucaoDescricaoRacao")
-            .setDepth(1001)
+            .setDepth(2000)
             .setScale(0.5); 
 
         const posicaoTextoY = centroY + (this.imgInstrucao.displayHeight / 2) + 30;
@@ -520,7 +520,7 @@ export class cenaEstanteRacao extends Phaser.Scene {
             color: "#ffffff",
             stroke: "#000000",
             strokeThickness: 4
-        }).setOrigin(0.5).setDepth(1001);
+        }).setOrigin(0.5).setDepth(2000);
 
         this.tweens.add({
             targets: this.txtContinuarInstrucao, 

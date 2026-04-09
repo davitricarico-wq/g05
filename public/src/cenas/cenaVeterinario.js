@@ -253,10 +253,10 @@ export class cenaVeterinario extends Phaser.Scene {
 
         // Máscara escura para focar a atenção na imagem de tutorial
         const fundoEscuro = this.add.rectangle(centroX, centroY, this.scale.width, this.scale.height, 0x000000, 0.85)
-            .setDepth(100).setInteractive(); // Bloqueia cliques fora
+            .setDepth(1200).setInteractive(); // Bloqueia cliques fora
 
         const telaInstrucao = this.add.image(centroX, centroY, "instrucaoPulgas")
-            .setDepth(101).setInteractive({ useHandCursor: true }); 
+            .setDepth(2000).setInteractive({ useHandCursor: true }); 
 
         // Escala responsável ("contain") que impede a imagem de sair dos limites da tela
         const escalaFinal = Math.min((this.scale.width * 0.8) / telaInstrucao.width, (this.scale.height * 0.8) / telaInstrucao.height);
@@ -267,7 +267,7 @@ export class cenaVeterinario extends Phaser.Scene {
             fontFamily: '"Press Start 2P", Arial',
             fontSize: "15px",
             color: "#ffffff"
-        }).setOrigin(0.5).setDepth(101);
+        }).setOrigin(0.5).setDepth(2000);
         
         // Faz o texto piscar suavemente mudando o Alpha entre 0.5 e 1.0
         this.tweens.add({ targets: textoIniciar, alpha: 0.5, duration: 600, yoyo: true, loop: -1 });

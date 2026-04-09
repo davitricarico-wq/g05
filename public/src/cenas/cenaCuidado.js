@@ -233,10 +233,10 @@ export class cenaCuidado extends Phaser.Scene {
         const cy = this.scale.height / 2;
 
         this.fundoInstrucao = this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.85)
-            .setDepth(200).setScrollFactor(0).setInteractive(); 
+            .setDepth(1200).setScrollFactor(0).setInteractive(); 
 
         this.imgInstrucao = this.add.image(cx, cy, "comoJogarPulgas")
-            .setDepth(201).setScrollFactor(0).setInteractive();
+            .setDepth(2000).setScrollFactor(0).setInteractive();
 
         // Escala a imagem do tutorial garantindo margens
         const limiteLargura = this.scale.width * 0.8;
@@ -247,7 +247,7 @@ export class cenaCuidado extends Phaser.Scene {
 
         this.textoIniciar = this.add.text(cx, cy + (this.imgInstrucao.displayHeight / 2) + 40, "[ Clique ou aperte ESPAÇO para começar ]", {
             fontFamily: '"Press Start 2P", Arial', fontSize: "15px", color: "#ffffff"
-        }).setOrigin(0.5).setDepth(201).setScrollFactor(0);
+        }).setOrigin(0.5).setDepth(2000).setScrollFactor(0);
         
         // Efeito de "Blink/Piscar" para o texto de iniciar
         this.tweens.add({
@@ -298,7 +298,7 @@ export class cenaCuidado extends Phaser.Scene {
         const textoPopup = this.add.text(cx, cy, "MATE as pulgas com o Espirrador,\ndepois PEGUE com a Pinça!", {
             fontFamily: '"Press Start 2P", Arial', fontSize: "16px", color: "#ffd166",
             stroke: "#000000", strokeThickness: 8, align: "center"
-        }).setOrigin(0.5).setDepth(80);
+        }).setOrigin(0.5).setDepth(2000);
         
         this.time.delayedCall(3000, () => { textoPopup.destroy(); });
     }
@@ -477,11 +477,11 @@ export class cenaCuidado extends Phaser.Scene {
         const larguraFundo = Math.min(700, this.scale.width * 0.9);
 
         const fundo = this.add.rectangle(cx, cy, larguraFundo, 50, 0x000000, 0.8)
-            .setStrokeStyle(4, 0x9be564).setDepth(20);
+            .setStrokeStyle(4, 0x9be564).setDepth(1200);
             
         const texto = this.add.text(cx, cy, "Metade das\npulgas recolhidas!", {
             fontFamily: '"Press Start 2P", Arial', fontSize: "15px", color: "#ffffff", align: "center"
-        }).setOrigin(0.5).setDepth(81);
+        }).setOrigin(0.5).setDepth(2000);
 
         this.time.delayedCall(2000, () => { fundo.destroy(); texto.destroy(); });
     }
@@ -637,9 +637,9 @@ export class cenaCuidado extends Phaser.Scene {
 
         // Backdrop negro opaco
         const fundoFeedback = this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.8)
-            .setDepth(100).setInteractive(); 
+            .setDepth(1200).setInteractive(); 
 
-        const telaFeedback = this.add.image(cx, cy, imagemFeedback).setDepth(101);
+        const telaFeedback = this.add.image(cx, cy, imagemFeedback).setDepth(2000);
 
         // Garante que o popup não estoure os limites da tela (Responsividade)
         const limiteLargura = this.scale.width * 0.8;
@@ -651,16 +651,16 @@ export class cenaCuidado extends Phaser.Scene {
         let posMoedasY = cy + (telaFeedback.displayHeight * 0.12);
         this.add.text(cx-12, posMoedasY, `${moedas} Moedas`, {
             fontFamily: '"Press Start 2P", Arial', fontSize: "22px", color: "#005e64"
-        }).setOrigin(0.5).setDepth(102);
+        }).setOrigin(0.5).setDepth(2001);
 
         let posTempoY = cy + (telaFeedback.displayHeight * 0.31); 
         this.add.text(cx-20, posTempoY, `${segundos}s`, {
             fontFamily: '"Press Start 2P", Arial', fontSize: "22px", color: "#005e64" 
-        }).setOrigin(0.5).setDepth(102);
+        }).setOrigin(0.5).setDepth(2001);
 
         const textoContinuar = this.add.text(cx, cy + (telaFeedback.displayHeight / 2) + 40, "[ Clique para continuar ]", {
             fontFamily: '"Press Start 2P", Arial', fontSize: "15px", color: "#ffffff"
-        }).setOrigin(0.5).setDepth(102);
+        }).setOrigin(0.5).setDepth(2001);
         
         this.tweens.add({ targets: textoContinuar, alpha: 0.5, duration: 600, yoyo: true, loop: -1 });
 
