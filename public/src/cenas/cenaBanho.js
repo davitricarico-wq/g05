@@ -24,8 +24,8 @@ export class cenaBanho extends Phaser.Scene {
         // Posição anterior do ponteiro — usada para detectar fricção (delta de movimento)
         this.ultimoX = 0;
         this.ultimoY = 0;
-
-        this.estadoCachorro = "sujo";
+        
+        /** @type {GerenciadorCachorros} */
         this.gerenciadorCachorros = null;
         this.cachorro = null;
 
@@ -43,7 +43,10 @@ export class cenaBanho extends Phaser.Scene {
         if (gameState.musicaLigada) iniciarMusicaAleatoria(this);
 
         const indiceAtivo = gameState.pets.cachorroJoao ? 2 : (gameState.pets.cachorroHeroi ? 1 : 0);
-        if (this.estadoCachorro !== "limpo") this.estadoCachorro = "sujo";
+        
+        // Usa o estado salvo do cachorro ativo para não resetar para \"sujo\" a cada abertura da cena.
+        const estadoPersistido = cachorrosBase[indiceAtivo].estado || "sujo";
+        this.estadoCachorro = estadoPersistido;
         cachorrosBase[indiceAtivo].estado = this.estadoCachorro;
 
         const largura = this.scale.width;
