@@ -11,7 +11,7 @@ Davi Viana Tricarico
 Gustavo Luz Fantasia Barbosa  
 Isaac Nicolas Alves Silva  
 João Pedro Fuzzo Poveda  
-Pedro Lemos Negri
+Pedro Lemos Negri.    
 Valter Lucas Garcia de Lima
 
 # Sumário
@@ -106,8 +106,9 @@ Valter Lucas Garcia de Lima
 
 ### 1.1.1. Contexto da indústria 
 
-&ensp; O varejo pet brasileiro é um setor em expansão, marcado pela transição de um mercado fragmentado, dominado por pequenos pet shops de bairro, para grandes redes especializadas e marketplaces. Impulsionado pela "humanização" dos animais e pela multicanalidade, o segmento movimenta bilhões anualmente. O cenário é ditado pela consolidação de grandes players, como a fusão entre Cobasi e Petz, que buscam escala e eficiência logística para ampliar a oferta de produtos e serviços em ambiente cada vez mais competitivo e digital (CONSELHO ADMINISTRATIVO DE DEFESA ECONÔMICA – CADE, 2025; INVESTING.COM, 2024). 
-Além disso, dados financeiros reforçam a estratégia de integração operacional e ganhos de sinergia entre as companhias, evidenciando a consolidação do setor (PETZCOBASI RI, 2026).
+&ensp;O varejo pet brasileiro é um dos setores que mais cresce no país, tendo movimentado R$ 77,2 bilhões em 2025 e com previsão de ultrapassar R$ 80 bilhões em 2026 (ABRAS, 2025; MANZONI NEWS, 2026). Esse crescimento é impulsionado principalmente pelo tratamento dos pets como membros da família, ou seja, tutores cada vez mais exigentes com os cuidados, e pelo crescimento das compras online, que vem mudando a forma como as empresas competem no mercado. Nesse contexto, o jogo Cobasi Shelter se insere diretamente nesse cenário: desenvolvido pela Bardot Studios para a Cobasi, o projeto utiliza a simulação de cuidados com cães resgatados como uma forma de conscientizar sobre adoção responsável e bem-estar animal.
+
+&ensp;O cenário competitivo do setor pode ser organizado em três frentes principais. A união entre Cobasi e Petz, aprovada pelo CADE em 2025, resultou em um grupo com mais de 500 lojas e forte capacidade de competir com plataformas digitais (CADE, 2025; PETZCOBASI RI, 2026). Ao mesmo tempo, e-commerces especializados como a Petlove vêm ganhando espaço com modelos de assinatura e serviços veterinários integrados. Já os grandes marketplaces, como Amazon e Mercado Livre, ampliam sua participação nas vendas de ração e acessórios, apoiados em preços competitivos e logística eficiente em todo o país (E-COMMERCE BRASIL, 2023). Compreender esse cenário é importante para contextualizar as decisões estratégicas do projeto e o posicionamento da Cobasi que o jogo busca reforçar.
 
 #### 1.1.1.1. Modelo de 5 Forças de Porter 
 
@@ -151,7 +152,8 @@ Por fim, os pet shops de bairro competem fortemente no mercado local, com foco e
 
 ### 1.1.2. Análise SWOT 
 
-&ensp; A análise SWOT (também denominada matriz FOFA) é um instrumento estratégico que permite avaliar a posição competitiva de uma organização a partir da interação entre fatores internos e externos. O modelo se estrutura em quatro dimensões: forças (strengths), que evidenciam vantagens internas; fraquezas (weaknesses), que apontam limitações internas; oportunidades (opportunities), relacionadas a condições externas favoráveis; e ameaças (threats), que representam riscos do ambiente externo (Casarotto, 2019). Ao organizar essas variáveis, a ferramenta apoia decisões mais consistentes e o direcionamento estratégico. Nesse contexto, apresenta-se a análise SWOT da Cobasi (Figura 1).
+&ensp;Inserida em um mercado que projeta R$ 80 bilhões para 2026 (ABRAS, 2025; MANZONI NEWS, 2026), a Cobasi compete em três frentes simultâneas: a Petlove avança no e-commerce especializado com assinaturas e serviços veterinários; Amazon e Mercado Livre pressionam preços e dominam o alcance digital; e os pet shops de bairro mantêm competitividade local por relacionamento e conveniência. É nesse cenário que a análise SWOT posiciona a Cobasi, mapeando os fatores internos (Forças e Fraquezas) e externos (Oportunidades e Ameaças) que moldam sua estratégia, e que diretamente fundamentam a proposta do Cobasi Shelter como ferramenta de diferenciação por experiência e propósito (Figura 1).
+
 
 <div align="center">
   <p>Figura 1: Análise Swot</p>
@@ -161,12 +163,12 @@ Por fim, os pet shops de bairro competem fortemente no mercado local, com foco e
 
 <h2 align="center" id="strengths">Strengths</h2>
 
-&ensp;As forças (strengths) correspondem aos atributos internos que sustentam a vantagem competitiva da organização (Casarotto, 2019). No caso da Cobasi, é possível destacar sua autoridade e credibilidade de marca como pioneira no setor pet, fator que fortalece a confiança do consumidor e a diferencia no mercado. Além disso, a empresa conta com um ecossistema omnichannel consolidado, com forte integração entre os canais físico e digital, proporcionando uma experiência de compra mais fluida.     Outro ponto relevante é a diversificação do portfólio, que abrange categorias complementares como jardinagem, aquarismo e casa, ampliando as oportunidades de venda. Por fim, o elevado poder de escala após a fusão fortalece sua capacidade de negociação com grandes fornecedores, gerando vantagens competitivas importantes.
+&ensp;As forças (strengths) correspondem aos atributos internos que sustentam a vantagem competitiva da organização (Casarotto, 2019). A Cobasin destaca sua autoridade e credibilidade de marca como pioneira no setor pet, fator que fortalece a confiança do consumidor e a diferencia no mercado. Além disso, a empresa conta com um ecossistema omnichannel consolidado, com forte integração entre os canais físico e digital, proporcionando uma experiência de compra mais fluida. Outro ponto relevante é a diversificação do portfólio, que abrange categorias complementares como jardinagem, aquarismo e casa, ampliando as oportunidades de venda. Por fim, o elevado poder de escala após a fusão fortalece sua capacidade de negociação com grandes fornecedores, gerando vantagens competitivas importantes.
 
 
 <h2 align="center" id="weaknesses">Weaknesses</h2>
 
-&ensp;As fraquezas (weaknesses) referem-se a limitações internas que podem restringir o desempenho ou a eficiência da organização (Casarotto, 2019). No caso da Cobasi, observa-se uma estrutura de custo fixo elevada, decorrente principalmente do modelo de megalojas, o que pode impactar a rentabilidade em cenários adversos. Além disso, a recente fusão com a Petz traz desafios relacionados à integração operacional e cultural, exigindo alinhamento entre processos, equipes e estratégias. Outro ponto de atenção é a concentração geográfica no mercado brasileiro, o que aumenta a exposição da empresa às variações econômicas locais e limita sua diversificação internacional.
+&ensp;As fraquezas (weaknesses) referem-se a limitações internas que podem restringir o desempenho ou a eficiência da organização (Casarotto, 2019). No caso da Cobasi, observa-se uma estrutura de custo fixo elevada, decorrente do modelo de megalojas, representa um risco de rentabilidade diante da agilidade de preços de Amazon e Mercado Livre, que operam com custo operacional significativamente menor. A integração operacional e cultural pós-fusão com a Petz ainda demanda tempo e recursos, podendo gerar inconsistências na experiência do consumidor durante o período de transição. A concentração geográfica no mercado brasileiro exposta o grupo a variações econômicas locais, enquanto margens pressionadas pelos custos logísticos e pela alta dependência de categorias físicas limitam a rentabilidade no canal digital.
 
 
 <h2 align="center" id="opportunities">Opportunities</h2>
@@ -219,6 +221,7 @@ Por fim, os pet shops de bairro competem fortemente no mercado local, com foco e
 <br>
 
 <h2 align="center" id="perfil-do-cliente">Perfil do Cliente</h2>
+
 ### Tarefas do Cliente (Customer Jobs)
 &ensp; As tarefas do cliente representam as atividades, objetivos ou problemas que o público busca resolver em seu cotidiano. Elas correspondem ao que o usuário tenta realizar funcionalmente, emocionalmente ou socialmente ao interagir com um produto, serviço ou situação específica. Nesse contexto, estão relacionadas ao cuidado com animais e ao consumo de conteúdos digitais sobre o tema. Identificá-las permite compreender quais demandas orientam o comportamento do usuário e quais aspectos devem ser considerados no desenvolvimento da solução.
 Principais tarefas identificadas: 
@@ -246,6 +249,7 @@ Principais tarefas identificadas:
 
 <h2 align="center" id="mapa-de-valor">Mapa de Valor</h2>
 &ensp; A partir do perfil do cliente identificado, o Mapa de Valor apresenta como a solução proposta busca atender às suas necessidades e expectativas. Para isso, são descritos os produtos e serviços desenvolvidos, bem como os elementos responsáveis por gerar benefícios e reduzir as dificuldades enfrentadas pelo usuário.
+
 ### Produtos e Serviços
 &ensp;No segmento de produtos e serviços, são apresentados os elementos concretos que compõem a solução oferecida ao usuário, correspondendo às funcionalidades e experiências disponibilizadas pelo projeto. No caso do jogo digital Cobasi Shelter, destacam-se:
 * Jogo digital casual acessível via navegador web: Permite acesso imediato sem necessidade de instalação, ampliando o alcance e reduzindo barreiras tecnológicas.
@@ -465,7 +469,15 @@ Descrevem as funcionalidades, ações e comportamentos esperados.
 
 ## 1.3. Público-alvo do Projeto
 
-&ensp;O Público alvo do nosso projeto é qualquer um que tenha interesse em aprender e dar uma qualidade de vida melhor ao seu Pet. Apesar de ser acessível para qualquer um, é previsto que a Geração Z tenha mais contato com o jogo pela seu apreço com jogos e pela crescente onda de pais de pets entre essa geração.
+&ensp;O público-alvo do projeto é composto por indivíduos interessados em aprender e proporcionar melhor qualidade de vida aos seus animais de estimação, indo além de uma segmentação exclusivamente demográfica. Nesse sentido, o jogo busca atender usuários que valorizam experiências interativas, educativas e práticas, com potencial de aplicação no cuidado real com pets.
+
+&ensp;Do ponto de vista comportamental, o público-alvo caracteriza-se pela familiaridade com tecnologias digitais, preferência por conteúdos dinâmicos e interativos e engajamento com propostas que integram entretenimento e aprendizado. Esses usuários tendem a valorizar experiências que ofereçam autonomia, feedback imediato e progressão clara, aspectos diretamente incorporados nas mecânicas do jogo, como minigames, sistema de recompensas e indicadores visuais de evolução.
+
+Quanto ao contexto de uso, o jogo foi projetado para ser utilizado em ambientes cotidianos, como residências ou espaços educacionais, podendo ser acessado em sessões de curta ou média duração. Dessa forma, o sistema se apresenta tanto como uma ferramenta de entretenimento quanto como um recurso complementar para a aprendizagem sobre cuidados com animais domésticos.
+
+&ensp;Embora o jogo seja acessível a diferentes perfis de usuários, observa-se maior aderência por parte da Geração Z. Esse grupo apresenta maior proximidade com jogos digitais, além de forte inserção na cultura de cuidado com animais de estimação. As características dessa geração, como a busca por experiências rápidas, interativas e personalizadas, estão diretamente relacionadas às mecânicas propostas no jogo, como a progressão por tarefas, feedback visual imediato e interação constante.
+
+&ensp;Dessa forma, o projeto procura alinhar suas funcionalidades às expectativas desse público, oferecendo uma experiência que combina engajamento, aprendizado e relevância prática, contribuindo para a conscientização sobre o cuidado responsável com animais.
 
 --- 
 # 2. Visão Geral do Jogo 
