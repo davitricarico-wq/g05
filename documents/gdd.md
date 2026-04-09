@@ -639,9 +639,6 @@ O tempo estimado de gameplay para o Cobasi Shelter, considerando a destreza com 
 
 &ensp;Dessa forma, o impacto esperado é duplo: fortalecer o vínculo emocional com o público-alvo e posicionar o jogo como uma experiência transformadora que reflete a pluralidade da sociedade brasileira e os valores de responsabilidade, cuidado e inclusão associados à marca.
 
-&ensp;**Referências:**  
-OPINION BOX; GOLDEN. Adoção de Animais no Brasil: comportamento e perfil dos adotantes. 2023. Disponível em: https://blog.opinionbox.com/pesquisa-adocao-de-animais/
-.
 
 ## 3.3. Mundo do jogo
 
@@ -1790,6 +1787,9 @@ Disponível em: https://manzoni.com.br/manzoni-news-panorama-do-mercado-pet-bras
 WORLD ORGANISATION FOR ANIMAL HEALTH (WOAH). Animal welfare. Paris: WOAH, 2022. Disponível em: https://www.woah.org/en/what-we-do/animal-health-and-welfare/animal-welfare/. Acesso em: 24 mar. 2026.
 
 INSTITUTO PET BRASIL. Dados do setor pet. São Paulo: Instituto Pet Brasil, 2024. Disponível em: https://institutopetbrasil.com/setor-pet/dados-do-setor-pet/. Acesso em: 24 mar. 2026.
+
+OPINION BOX; GOLDEN. Pesquisa sobre adoção de animais no Brasil: comportamento e perfil dos adotantes. 2023. Disponível em: https://blog.opinionbox.com/pesquisa-adocao-de-animais/
+. Acesso em: 27 fev. 2026.
 
 ---
 # Anexos
