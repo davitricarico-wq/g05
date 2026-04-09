@@ -108,6 +108,7 @@ class CenaPopups extends Phaser.Scene {
         // Limpa o container anterior se existir (para quando avançar a pergunta)
         if (this.containerQuiz) this.containerQuiz.destroy(); 
         if (this.containerFeedback) this.containerFeedback.destroy();
+        if (this.feedbackText) this.feedbackText.destroy();
         this.exibindoFeedback = false;
 
         const centroX = this.scale.width / 2;
@@ -214,7 +215,7 @@ class CenaPopups extends Phaser.Scene {
         const texto = acertou ? "✓ CORRETO!" : "✗ ERRADO!";
         const cor = acertou ? "#00AA00" : "#FF0000";
         
-        const feedback = this.add.text(centroX, centroY + 230, texto, {
+        this.feedbackText = this.add.text(centroX, centroY + 230, texto, {
             fontFamily: '"Press Start 2P"',
             fontSize: "24px",
             color: cor,
@@ -223,7 +224,7 @@ class CenaPopups extends Phaser.Scene {
         }).setOrigin(0.5);
         
         this.tweens.add({
-            targets: feedback,
+            targets: this.feedbackText,
             scale: { from: 0.8, to: 1.1 },
             duration: 200,
             yoyo: true
@@ -232,6 +233,8 @@ class CenaPopups extends Phaser.Scene {
     
     exibirTelaResultados() {
         if (this.containerQuiz) this.containerQuiz.destroy();
+        if (this.containerFeedback) this.containerFeedback.destroy();
+        if (this.feedbackText) this.feedbackText.destroy();
         
         const centroX = this.scale.width / 2;
         const centroY = this.scale.height / 2;
@@ -282,6 +285,7 @@ class CenaPopups extends Phaser.Scene {
     finalizarQuiz() {
         if (this.containerQuiz) this.containerQuiz.destroy();
         if (this.containerFeedback) this.containerFeedback.destroy();
+        if (this.feedbackText) this.feedbackText.destroy();
         
         gameState.exibirQuiz = false;
         
@@ -377,7 +381,7 @@ class CenaPopups extends Phaser.Scene {
 
         // Ajuste o nome da imagem aqui para a que representa o final real do jogo
         this.imgFinal = this.add.image(centroX, centroY, "final") 
-            .setScale(0.6)
+            .setScale(1)
             .setInteractive({ useHandCursor: true }); 
 
         this.imgFinal.on('pointerdown', () => {

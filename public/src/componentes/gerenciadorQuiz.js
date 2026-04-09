@@ -1,6 +1,19 @@
+/**
+ * @class GerenciadorQuiz
+ * @description Classe controladora (Controller) para o minigame de perguntas e respostas.
+ * * Arquitetura: Esta classe isola completamente a lógica de negócios (pontuação, validação) 
+ * da interface de usuário (Phaser). Ela não "sabe" como o jogo é desenhado na tela, 
+ * apenas fornece os dados para quem pedir.
+ */
 export class GerenciadorQuiz {
+    /**
+     * @constructor
+     * @description Inicializa o banco de dados local do quiz e os controladores de estado (pontuação e progresso).
+     */
     constructor() {
-        // Banco de perguntas baseado no seu roteiro
+        // Banco de perguntas estruturado em objetos.
+        // * Boa prática: Se o jogo crescer muito, no futuro você pode mover esse array 
+        // para um arquivo JSON externo e apenas carregá-lo aqui.
         this.perguntas = [
             {
                 texto: "Por que as rações Super Premium são consideradas a melhor opção nutricional para os cães?",
@@ -10,7 +23,7 @@ export class GerenciadorQuiz {
                     "C. Elas são iguais às rações Standard, mas possuem embalagens mais atrativas e caras.",
                     "D. Elas são feitas com muitos corantes artificiais para atrair o paladar do animal."
                 ],
-                indiceCorreto: 1 // Letra B
+                indiceCorreto: 1 // Letra B (Índice 1 no array de opções)
             },
             {
                 texto: "Um dos benefícios visíveis ao se alimentar um cão com ração Super Premium é em relação às fezes. O que costuma acontecer?",
@@ -74,20 +87,35 @@ export class GerenciadorQuiz {
             }
         ];
         
+        // Ponteiro de navegação (qual pergunta está sendo exibida no momento)
         this.indiceAtual = 0;
+        
+        // Variável de estado para armazenar a pontuação do jogador
         this.pontuacao = 0;
     }
 
-    // Retorna o objeto da pergunta atual para você desenhar na tela
+    /**
+     * @method obterPerguntaAtual
+     * @description Consulta o banco de dados e retorna o objeto da pergunta em que o jogador está.
+     * @returns {Object} Objeto contendo texto, opções e índice correto.
+     */
     obterPerguntaAtual() {
         return this.perguntas[this.indiceAtual];
     }
 
-    // Processa a resposta do jogador (passe o índice de 0 a 3 referente ao botão que ele clicou)
+    /**
+     * @method responder
+     * @description Processa a tentativa do jogador, valida contra o gabarito e gerencia a pontuação.
+     * @param {number} indiceEscolhido - O índice (0 a 3) do botão que o jogador clicou.
+     * @returns {boolean} Retorna `true` se acertou ou `false` se errou. Útil para a cena tocar um som de acerto/erro.
+     */
     responder(indiceEscolhido) {
         const pergunta = this.obterPerguntaAtual();
+        
+        // Validação estrita de igualdade
         const acertou = (indiceEscolhido === pergunta.indiceCorreto);
         
+        // Se a resposta for verdadeira, incrementa a pontuação
         if (acertou) {
             this.pontuacao++;
         }
@@ -95,13 +123,25 @@ export class GerenciadorQuiz {
         return acertou;
     }
 
-    // Avança para a próxima pergunta. Retorna false se o quiz acabou
+    /**
+     * @method avancarPergunta
+     * @description Move o ponteiro do quiz para a próxima pergunta.
+     * * Detalhe de Design: Separar o "responder" do "avançar" permite que a interface gráfica 
+     * faça uma pausa (ex: mostre a cor verde no botão certo por 2 segundos) antes de mudar de tela.
+     * @returns {boolean} Retorna `true` se houver uma próxima pergunta, ou `false` se o quiz chegou ao fim.
+     */
     avancarPergunta() {
         this.indiceAtual++;
+        
+        // Verifica se o ponteiro ultrapassou o tamanho total do array
         return this.indiceAtual < this.perguntas.length; 
     }
 
-    // Retorna a pontuação total (útil para a tela de fim de jogo)
+    /**
+     * @method obterPontuacao
+     * @description Formata e devolve os dados finais de desempenho do jogador.
+     * @returns {Object} Um objeto contendo a quantidade de acertos e o total de questões.
+     */
     obterPontuacao() {
         return {
             acertos: this.pontuacao,
@@ -109,7 +149,11 @@ export class GerenciadorQuiz {
         };
     }
 
-    // Zera o quiz para caso o jogador queira jogar novamente
+    /**
+     * @method reiniciar
+     * @description Zera os estados de controle, permitindo que o minigame seja jogado novamente 
+     * sem precisar recarregar a página ou instanciar a classe outra vez.
+     */
     reiniciar() {
         this.indiceAtual = 0;
         this.pontuacao = 0;
