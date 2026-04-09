@@ -226,10 +226,7 @@ export class cenaEstanteRacao extends Phaser.Scene {
             fontSize: "14px", color: "#ff0000", fontFamily: '"Press Start 2P"', align: "center", wordWrap: { width: 350 }
         }).setOrigin(0.5);
 
-        // ==============================================================================
-        // LÓGICA DE COMPRA E TRANSIÇÃO DE ESTADOS
-        // ==============================================================================
-        
+        // Lógica de compra: Botão para confirmar a compra da ração selecionada, inicialmente invisível até que uma ração seja escolhida      
         this.botaoComprarSuperPremium = criarBotao(
             centroDireitaX, altura * 0.75,
             "botaoComprarSuperPremium", "botaoComprarSuperPremiumPressionado",
@@ -296,26 +293,25 @@ export class cenaEstanteRacao extends Phaser.Scene {
             .setScale(altura * 0.0009)
             .setVisible(false).setAlpha(0);
 
-        this.composicaoRacao = this.add.image(0, 0, "composicaoRacao");
+        this.composicaoRacao = this.add.image(35, 10, "composicaoRacao").setScale(0.75);
         this.imagemRacaoInfo = this.add.image(-160, -70, "").setScale(0.5);
 
-        // Textos descritivos (Tipo, Porte, Idade e Características Especiais)
-        this.textoTipo = this.add.text(0, -217, "", { fontSize: "32px", color: "#000", fontFamily: '"Press Start 2P"', align: "center" }).setOrigin(0.5);
-        this.textoPorte = this.add.text(75, -138, "", { fontSize: "16px", color: "#006600", fontFamily: '"Press Start 2P"' }).setOrigin(0, 0.5);
-        this.textoIdade = this.add.text(75, -102, "", { fontSize: "16px", color: "#006600", fontFamily: '"Press Start 2P"' }).setOrigin(0, 0.5);
-        this.textoChar1 = this.add.text(80, -44, "", { fontSize: "16px", color: "#000", fontFamily: '"Press Start 2P"', align: "center", wordWrap: { width: 300 } }).setOrigin(0.5);
-        this.textoChar2 = this.add.text(80, 18, "", { fontSize: "16px", color: "#000", fontFamily: '"Press Start 2P"', align: "center", wordWrap: { width: 300 } }).setOrigin(0.5);
+        // Textos descritivos (Tipo, Porte e Características Especiais)
+        this.textoTipo = this.add.text(0, -217, "", { fontSize: "32px", color: "#005e64", fontFamily: '"Press Start 2P"', align: "center" }).setOrigin(0.5);
+        this.textoPorte = this.add.text(150, -150, "", { fontSize: "22px", color: "#006600", fontFamily: '"Press Start 2P"' }).setOrigin(0, 0.5);
+        this.textoChar1 = this.add.text(120, -60, "", { fontSize: "16px", color: "#000", fontFamily: '"Press Start 2P"', align: "center", wordWrap: { width: 300 } }).setOrigin(0.5);
+        this.textoChar2 = this.add.text(120, 15, "", { fontSize: "16px", color: "#000", fontFamily: '"Press Start 2P"', align: "center", wordWrap: { width: 300 } }).setOrigin(0.5);
 
         // Porcentagens Nutricionais
-        const porcentagem = { fontSize: "12px", color: "#8B4513", fontFamily: '"Press Start 2P"' };
-        this.textoTrigo = this.add.text(-170, 204, "", porcentagem).setOrigin(0.5);
-        this.textoCarne = this.add.text(-60, 204, "", porcentagem).setOrigin(0.5);
-        this.textoOsso = this.add.text(51, 204, "", porcentagem).setOrigin(0.5);
-        this.textoGordura = this.add.text(165, 204, "", porcentagem).setOrigin(0.5);
+        const porcentagem = { fontSize: "16px", color: "#8B4513", fontFamily: '"Press Start 2P"' };
+        this.textoTrigo = this.add.text(-180, 208, "", porcentagem).setOrigin(0.5);
+        this.textoCarne = this.add.text(-53, 208, "", porcentagem).setOrigin(0.5);
+        this.textoOsso = this.add.text(78, 208, "", porcentagem).setOrigin(0.5);
+        this.textoGordura = this.add.text(197, 208, "", porcentagem).setOrigin(0.5);
 
         // Acoplando todos os elementos ao contêiner de informações
         this.containerInfo.add([
-            this.composicaoRacao, this.imagemRacaoInfo, this.textoTipo, this.textoPorte, this.textoIdade, 
+            this.composicaoRacao, this.imagemRacaoInfo, this.textoTipo, this.textoPorte, 
             this.textoChar1, this.textoChar2, this.textoTrigo, this.textoCarne, this.textoOsso, this.textoGordura
         ]);
 
@@ -364,7 +360,6 @@ export class cenaEstanteRacao extends Phaser.Scene {
                 // Atualiza em tempo real as referências de texto com as informações do pacote clicado
                 this.textoTipo.setText(racao.tipo || "Super Premium");
                 this.textoPorte.setText(racao.porte || "-");
-                this.textoIdade.setText(racao.idade || "-");
                 this.textoChar1.setText(racao.caracteristicas ? racao.caracteristicas[0] : "");
                 this.textoChar2.setText(racao.caracteristicas ? racao.caracteristicas[1] : "");
                 this.textoTrigo.setText(racao.nutrientes ? racao.nutrientes.trigo : "");
