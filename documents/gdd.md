@@ -16,9 +16,9 @@ Valter Lucas Garcia de Lima
 
 # Sumário
 
-[1. Introdução](#1-introducao)  
+[1. Introdução](#1-introdução)  
 <small>
-[1.1 Plano Estratégico do Projeto](#11-plano-estrategico-do-projeto)  
+[1.1 Plano Estratégico do Projeto](#11-plano-estratégico-do-projeto)  
 [1.1.1 Contexto da Indústria](#111-contexto-da-indústria)  
 [1.1.1.1 Modelo de 5 Forças de Porter](#1111-modelo-de-5-forças-de-porter)  
 [1.1.1.2 Ameaça de Novos Entrantes](#1112-ameaça-de-novos-entrantes)  
@@ -100,9 +100,9 @@ Valter Lucas Garcia de Lima
 
 <br>
 
-<h1 align="center" id="1-introducao">1. Introdução</h1>
+# 1. Introdução
 
-<h2 align="center" id="11-plano-estrategico-do-projeto">1.1. Plano Estratégico do Projeto</h2>
+## 1.1. Plano Estratégico do Projeto
 
 ### 1.1.1. Contexto da indústria 
 
@@ -468,7 +468,7 @@ Descrevem as funcionalidades, ações e comportamentos esperados.
 &ensp;O Público alvo do nosso projeto é qualquer um que tenha interesse em aprender e dar uma qualidade de vida melhor ao seu Pet. Apesar de ser acessível para qualquer um, é previsto que a Geração Z tenha mais contato com o jogo pela seu apreço com jogos e pela crescente onda de pais de pets entre essa geração.
 
 --- 
-<h1 align="center" id="2-visão-geral-do-jogo">2. Visão Geral do Jogo</h1>
+# 2. Visão Geral do Jogo 
 
 ## 2.1. Objetivos do Jogo
 
@@ -527,14 +527,13 @@ A proposta é “rodar um abrigo” com tarefas operacionais e cuidado dos anima
 - Progressão (desbloqueios / expansão)
 
 
-
 ### 2.2.5 Tempo estimado de jogo 
 
 O tempo estimado de gameplay para o Cobasi Shelter, considerando a destreza com video games do público alvo, varia entre quatro a dez minutos (4 a 10 min). Sabendo disso, é bem provável que, com alterações e melhorias futuras, a complexidade do jogo aumente e, portanto, seu tempo de gameplay aumente também.
 
 
 --- 
-<h1 align="center" id="3-game-design">3. Game Design</h1>
+# 3. Game Design
 
 ## 3.1. Enredo do Jogo
 
@@ -1050,7 +1049,7 @@ HALLIDAY, D.; RESNICK, R.; WALKER, J. Fundamentos de Física: Mecânica. Rio de 
 
 
 ---
-<h1 align="center" id="4-desenvolvimento-do-jogo">4. Desenvolvimento do Jogo</h1>
+# 4. Desenvolvimento do Jogo
 
 
 ## 4.1. Desenvolvimento preliminar do jogo
@@ -1397,7 +1396,7 @@ Essas melhorias atendem aos requisitos RF16, RF17, RF19, RF20, RF21 e RF22, alé
 
 --- 
 
-<h1 align="center" id="5-casos-de-teste">5. Testes</h1>
+# 5. Testes
 
 <h2 align="center" id="51-casos-de-teste">5.1. Casos de Teste</h2>
 
@@ -1489,7 +1488,7 @@ Essas melhorias atendem aos requisitos RF16, RF17, RF19, RF20, RF21 e RF22, alé
   <p>Feito pela própria equipe(2026)</p>
 </div>
 
-<h2 align="center" id="52-testes-de-jogabilidade-playtests">5.2. Testes de jogabilidade (playtests)</h2>
+## 5.2. Testes de jogabilidade (playtests)
 
 &ensp;O teste de jogabilidade é uma metodologia sistemática de avaliação qualitativa e quantitativa, conduzida durante o ciclo de desenvolvimento de um software de entretenimento. Enquanto o Controle de Qualidade (QA) foca na integridade técnica do código, o playtesting concentra-se na validação da experiência do usuário (UX) e na eficácia do game design.
 
@@ -1615,7 +1614,7 @@ O que poderia melhorar no jogo? | Cores das rações
 
 ---
 
-<h1 align="center" id="6-conclusões-e-trabalhos-futuros">6. Conclusões e trabalhos futuros</h1>
+# 6. Conclusões e trabalhos futuros
 
 *Escreva de que formas a solução do jogo atingiu os objetivos descritos na seção 1 deste documento. Indique pontos fortes e pontos a melhorar de maneira geral.*
 
@@ -1625,7 +1624,7 @@ O que poderia melhorar no jogo? | Cores das rações
 
 ---
 
-<h1 align="center" id="7-referências">7. Referências</h1>
+# 7. Referências
 
 CONSELHO ADMINISTRATIVO DE DEFESA ECONÔMICA (CADE). CADE clears merger of Petz and Cobasi. 23 jun. 2025. Disponível em: https://www.gov.br/cade/en/matters/news/cade-clears-merger-of-petz-and-cobasi. Acesso em: 27 fev. 2026.
 
@@ -1679,6 +1678,6 @@ WORLD ORGANISATION FOR ANIMAL HEALTH (WOAH). Animal welfare. Paris: WOAH, 2022. 
 INSTITUTO PET BRASIL. Dados do setor pet. São Paulo: Instituto Pet Brasil, 2024. Disponível em: https://institutopetbrasil.com/setor-pet/dados-do-setor-pet/. Acesso em: 24 mar. 2026.
 
 ---
-<h1 align="center" id="anexos">Anexos</h1>
+# Anexos
 
 *Inclua aqui quaisquer complementos para seu projeto, como diagramas, imagens, tabelas etc. Organize em sub-tópicos utilizando headings menores (use ## ou ### para isso)*
