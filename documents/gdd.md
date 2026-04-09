@@ -537,21 +537,97 @@ O tempo estimado de gameplay para o Cobasi Shelter, considerando a destreza com 
 
 ## 3.1. Enredo do Jogo
 
-*Descreva o enredo/história do jogo, criando contexto para os personagens (seção 3.2) e o mundo do jogo (seção 3.3). Uma boa história costuma ter um arco narrativo de contexto, conflito e resolução. Utilize etapas sequenciais para descrever esta história.* 
+&ensp;O jogo se passa no contexto de uma unidade da Cobasi, onde o jogador assume o papel de um cuidador responsável por animais resgatados. A experiência se inicia quando o usuário chega ao local com um cachorro abandonado, sendo recepcionado por Maycon, o Personal Pet, que introduz o jogador às atividades e responsabilidades dentro do ambiente.
 
-*Caso seu jogo não possua enredo/história (ex. jogo Tetris), mencione os motivos de não existir e como o jogador pode se contextualizar com o ambiente do jogo.*
+&ensp;A narrativa é construída a partir da jornada de recuperação do animal, que passa por diferentes etapas de cuidado até estar pronto para adoção. Cada etapa é representada por um minigame, que simula situações reais do dia a dia de um tutor responsável.
+
+**Mini Game 1: Banho** 
+
+&ensp;No primeiro desafio, o jogador deve realizar a higiene completa do cachorro. Para isso, utiliza três ferramentas principais: o chuveiro, a barra de sabão e a toalha.
+
+&ensp;O objetivo é seguir a sequência correta de limpeza (molhar o Pet, ensaboar, enxaguar e secar) garantindo que o animal fique totalmente limpo. Esse Mini Game introduz o jogador às mecânicas básicas de interação e reforça a importância da higiene para a saúde do pet.
+
+**Mini Game 2: Alimentação**
+
+&ensp;O segundo momento do jogo é dividido em duas etapas.
+
+&ensp;Na primeira, o jogador deve selecionar e efetuar a compra da ração correta para o cachorro. Essa escolha é fundamental, pois impacta diretamente a próxima fase do minigame. Caso escolha corretamente, ele avança para a fase principal.
+
+&ensp;Na segunda etapa, o jogador controla o cachorro utilizando as setas do teclado, movimentando-o lateralmente para capturar os alimentos que caem na tela. Diferente da versão anterior, a ração que aparece é exclusivamente aquela que o jogador escolheu e comprou na etapa inicial.
+
+&ensp;Ao mesmo tempo, continuam surgindo alimentos prejudiciais, como chocolate, que devem ser evitados. O desafio consiste em equilibrar rapidez e precisão, garantindo que o animal consuma apenas os itens adequados e desvie dos elementos perigosos.
+
+**Mini Game 3: Cuidados**
+
+&ensp;Nesta fase, o jogador precisa cuidar da saúde do animal, removendo todas as pulgas presentes em seu pelo.
+
+&ensp;O processo acontece em duas etapas:
+
+* Aplicação do spray sobre as pulgas
+* Remoção utilizando a pinça
+
+&ensp;O jogador deve completar ambas as ações corretamente para eliminar completamente os parasitas. Esse minigame reforça a importância dos cuidados veterinários e da atenção aos detalhes.
+
+**Mini Game 4: Lazer**
+
+&ensp;O último minigame representa um momento de lazer e interação entre o jogador e o animal, após os cuidados básicos terem sido realizados.
+
+&ensp;A fase consiste em uma corrida de obstáculos, onde o jogador deve executar comandos para fazer com que o cachorro:
+- Desvie dos obstáculos
+- Colete ossos saudáveis
+- Evite ossos estragados
+
+&ensp;Esse momento simboliza a recuperação do animal e o fortalecimento do vínculo com o cuidador, além de trazer dinamismo e diversão para a experiência.
+
 
 ## 3.2. Personagens
 
 ### 3.2.1. Controláveis
 
-*Descreva os personagens controláveis pelo jogador. Mencione nome, objetivos, características, habilidades, diferenciais etc. Utilize figuras (character art, sprite sheets etc.) para ilustrá-los. Caso utilize material de terceiros em licença Creative Commons, não deixe de citar os autores/fontes.* 
+&ensp;O jogador assume o papel de um cuidador, representando o próprio usuário dentro do jogo. Esse personagem é responsável por realizar todas as ações relacionadas ao cuidado dos animais, sendo o principal agente da experiência.
 
-*Caso não existam personagens (ex. jogo Tetris), mencione os motivos de não existirem e como o jogador pode interpretar tal fato.*
+* Nome: Cuidador (avatar do jogador)
+* Objetivo: Cuidar dos animais resgatados e prepará-los para adoção
+* Características: Atento, responsável e empático
+* Habilidades:  
+  * Realizar atividades de cuidado (banho, alimentação e tratamento).   
+  * Interagir com objetos do ambiente. 
+  * Tomar decisões rápidas durante os minigames
 
+### Animais (Personagens Centrais)
+&ensp;Os animais são parte essencial da experiência, funcionando como personagens com identidade própria e evolução ao longo do jogo.
+
+**Adriel**
+
+- Primeiro cachorro apresentado ao jogador;
+- Personagem original criado pelo grupo;
+- Representa o início da jornada de aprendizado do jogador.
+
+**Herói**
+- Baseado em um animal real da plataforma Cobasi Cuida;
+- Possui uma característica marcante: não possui um dos olhos;
+- Representa a realidade de muitos animais resgatados, trazendo um forte apelo emocional e conscientização.
+
+**João**
+- Também presente na plataforma Cobasi Cuida;
+- Não possui nenhuma deficiência física;
+- Representa um perfil mais comum de animal disponível para adoção.
+ 
 ### 3.2.2. Non-Playable Characters (NPC)
 
-*\<opcional\> Se existirem coadjuvantes ou vilões, aqui é o local para descrevê-los e ilustrá-los. Utilize listas ou tabelas para organizar esta seção. Caso utilize material de terceiros em licença Creative Commons, não deixe de citar os autores/fontes. Caso não existam NPCs, remova esta seção.*
+&ensp;O jogo conta com NPCs que enriquecem a narrativa e reforçam o contexto do universo da Cobasi.
+
+**Maycon — Personal Pet**
+
+&ensp;Maycon é o principal NPC do jogo e atua como um Personal Pet, sendo responsável por recepcionar o jogador logo no início da experiência, quando o usuário chega à loja da Cobasi com um animal resgatado.
+
+&ensp;Ele funciona como um guia, introduzindo o jogador às mecânicas do jogo e orientando sobre os cuidados necessários com o pet.
+
+- **Função:** Tutorial e guia do jogador
+- **Características:** Prestativo, acolhedor e didático
+- **Diferencial:** Utiliza um colar que representa o espectro autista, contribuindo para a inclusão e representatividade dentro do jogo.
+
+&ensp;Sua presença fortalece a conexão emocional do jogador com o ambiente e torna a experiência mais humanizada.
 
 ### 3.2.3. Diversidade e Representatividade dos Personagens
 
@@ -568,17 +644,52 @@ O tempo estimado de gameplay para o Cobasi Shelter, considerando a destreza com 
 
 ### 3.3.1. Locações Principais e/ou Mapas 
 
-*Descreva o ambiente do jogo, em que locais ele ocorre. Ilustre com imagens. Se houverem mapas, posicione-os aqui, descrevendo as áreas em acordo com o enredo. Se houverem fases, descreva-as também em acordo com o enredo (pode ser um jogo de uma fase só). Utilize listas ou tabelas para organizar esta seção. Caso utilize material de terceiros em licença Creative Commons, não deixe de citar os autores/fontes.*
+&ensp;O jogo se passa em uma unidade da Cobasi adaptada para o cuidado de animais resgatados. O ambiente é dividido em diferentes áreas funcionais, cada uma representando uma etapa essencial da recuperação do pet, diretamente conectada aos minigames do jogo.
+
+&ensp;As principais locações são:
+
+**Área de Banho**     
+&ensp;O background é representado por um banheiro, espaço destinado à higiene do animal, equipado com chuveiro, sabonete e toalha. Este ambiente é utilizado no primeiro minigame, onde o jogador realiza a limpeza completa do cachorro.
+
+**Área de Alimentação**       
+&ensp;Ambiente onde ocorre tanto a escolha da ração quanto a alimentação do animal. Inicialmente, o jogador seleciona o tipo de ração adequado, e em seguida participa da fase dinâmica onde o cachorro coleta os alimentos corretos e desvia dos que são prejudiciais à saúde dele.
+
+**Área de Cuidados (Veterinário)**    
+&ensp;Local voltado para o tratamento do animal, especialmente a remoção de parasitas. O background é inspirado em uma sala de veterinário. Assim que o usuário começa o Mini Game, ele é redirecionado a uma tela onde demos um zoom no pelo do Pet. Essa tela contém ferramentas como spray e pinça, utilizadas para eliminar as pulgas.
+
+**Área de Lazer**   
+&ensp;Espaço destinado à interação e recreação com o animal. Esse ambiente é inteiro inspirado no espaço Pet da loja da Cobasi, colocamos a logo da empresa no fundo da tela, fazendo com que ele apareça sempre durante a corrida de obstáculos. Representa a fase final da jornada, onde o jogador participa de um Mini Game interativo, simbolizando a recuperação e bem-estar do pet.
+
 
 ### 3.3.2. Navegação pelo mundo 
 
-*Descreva como os personagens se movem no mundo criado e as relações entre as locações – como as áreas/fases são acessadas ou desbloqueadas, o que é necessário para serem acessadas etc. Utilize listas ou tabelas para organizar esta seção.*
+&ensp;A navegação no jogo ocorre por meio de uma interface central (HUD), onde o jogador seleciona os Mini Games disponíveis.
+
+&ensp;O fluxo de progressão é estruturado de forma sequencial:
+
+1. O jogador inicia na recepção com o NPC Maycon;
+2. A partir daí, acessa os minigames conforme a ordem de cuidado do animal;
+3. Ao finalizar uma atividade, o jogador retorna ao menu principal.
+
+&ensp;Dentro dos minigames, a movimentação varia conforme a mecânica:
+- Uso do mouse para interações (banho e cuidados);
+- Uso do teclado para movimentação (alimentação e lazer).
+
+&ensp;Esse sistema garante uma progressão guiada, intuitiva e alinhada com a narrativa do jogo.
+
 
 ### 3.3.3. Condições climáticas e temporais 
 
-*\<opcional\> Descreva diferentes condições de clima que podem afetar o mundo e as fases, se aplicável*
+&ensp;O jogo não apresenta variações climáticas, pois todas as atividades ocorrem em ambientes internos controlados.
 
-*Caso seja relevante, descreva como o tempo passa, se ele é um fator limitante ao jogo (ex. contagem de tempo para terminar uma fase)*
+&ensp;No entanto, o fator tempo é utilizado como elemento de desafio em determinadas fases:
+
+- No minigame de alimentação, a velocidade de queda dos itens exige rapidez do jogador;
+- No minigame de lazer, o ritmo da corrida aumenta progressivamente;
+- Algumas ações exigem execução dentro de um tempo ideal para melhor desempenho.
+
+&ensp;Dessa forma, o tempo atua como um mecanismo de dificuldade e engajamento, incentivando o jogador a melhorar sua performance.
+
 
 ### 3.3.4. Concept Art 
 
