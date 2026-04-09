@@ -48,7 +48,6 @@ export class jogoLazer extends Phaser.Scene {
             iniciarMusicaAleatoria(this);
         }
 
-        // === UI: BOTÃO VOLTAR ===
         // Criado com interatividade e feedback visual (Hover) para boa UX
         this.botaoVoltar = this.add.text(60, 50, "Voltar", {
             fontFamily: "Arial", fontSize: "24px", color: "#ffffff",
@@ -61,7 +60,6 @@ export class jogoLazer extends Phaser.Scene {
             this.scene.start("cenaLazer"); // Aborta o jogo e volta pro menu de lazer
         });
 
-        // === CONFIGURAÇÃO DO MUNDO FÍSICO ===
         this.physics.world.gravity.y = 800; // Gravidade padrão para o pulo ter um "peso" agradável
 
         // Calcula dinamicamente o tamanho da tela para o cenário responsivo
@@ -79,7 +77,6 @@ export class jogoLazer extends Phaser.Scene {
         this.physics.world.setBounds(0, 0, 8000, alturaDoChao);
         this.cameras.main.setBounds(0, 0, 8000, altura);
 
-        // === JOGADOR (Cachorro) ===
         // Puxa o sprite correto dependendo da evolução do pet no estado global
         const spriteCorrendo = gameState.pets.cachorroJoao ? 'cachorroJoaoCorrendo' : (gameState.pets.cachorroHeroi ? 'cachorroHeroiCorrendo' : 'cachorroCorrendo'); 
 
@@ -88,7 +85,7 @@ export class jogoLazer extends Phaser.Scene {
         this.cachorro.setDepth(10); 
         
         // Define a proporção visual do pet selecionado
-        this.escalaBase = gameState.pets.cachorroJoao ? 0.7 : (gameState.pets.cachorroHeroi ? 0.18 : 0.5);
+        this.escalaBase = gameState.pets.cachorroJoao ? 0.6 : (gameState.pets.cachorroHeroi ? 0.18 : 0.5);
         this.cachorro.setScale(this.escalaBase); 
         
         // Ajuste fino da Hitbox (Caixa de Colisão):
@@ -112,11 +109,10 @@ export class jogoLazer extends Phaser.Scene {
         // A câmera segue o jogador com um offset, deixando mais espaço na frente para ver obstáculos
         this.cameras.main.startFollow(this.cachorro, true, 1, 1, -largura * 0.2, 0);
         
-        // === CONTROLES ===
+        // Controles de teclado para pular e abaixar (setas ou espaço para pular)
         this.teclado = this.input.keyboard.createCursorKeys();
         this.teclaSpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
-        // === OBJETOS DO CENÁRIO ===
         // Grupos sem gravidade e imóveis (não são empurrados pelo jogador)
         this.petiscos = this.physics.add.group({ allowGravity: false, immovable: true });
         this.obstaculos = this.physics.add.group({ allowGravity: false, immovable: true });
@@ -129,7 +125,7 @@ export class jogoLazer extends Phaser.Scene {
         this.physics.add.collider(this.cachorro, this.obstaculos, this.baterNoObstaculo, null, this);
         this.physics.add.collider(this.cachorro, this.camasElasticas, this.usarCamaElastica, null, this);
 
-        // === HUD INTERNA ===
+        // HUD de Pontuação e Tempo (fixo na tela, não segue a câmera)
         this.textoPontos = this.add.text(largura - 30, 30, 'Petiscos: 0', { 
             fontFamily: '"Press Start 2P", monospace', fontSize: '24px', fill: '#fff', stroke: '#000', strokeThickness: 4
         }).setOrigin(1, 0).setScrollFactor(0).setDepth(20);
@@ -224,7 +220,7 @@ export class jogoLazer extends Phaser.Scene {
             return; 
         }
 
-        // === PROCESSAMENTO DE INPUTS ===
+        //Principais controles de pulo e abaixar, com feedback visual e animação pausada durante o voo
         const querPular = this.teclado.up.isDown || Phaser.Input.Keyboard.JustDown(this.teclaSpace);
         
         if (querPular) {
@@ -490,7 +486,7 @@ export class jogoLazer extends Phaser.Scene {
           gameState.barras.limpeza <= 0 &&
           gameState.barras.saude <= 0;
 
-        // === CONSTRUÇÃO DO POPUP FINAL ===
+        //  Construção dinâmica da tela de feedback final baseada na performance (1, 2 ou 3 estrelas)
         let imagemFeedback = estrelas === 3 ? "feeedback3estrelas" : (estrelas === 2 ? "feedback2estrelas" : "feedback1estrela");
 
         const cx = this.scale.width / 2;
