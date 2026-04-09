@@ -507,7 +507,7 @@ export class cenaEstanteRacao extends Phaser.Scene {
             .setDepth(1200)
             .setInteractive(); 
 
-        this.imgInstrucao = this.add.image(centroX, centroY, "instrucaoDescricaoRacao")
+        this.imgInstrucao = this.add.image(centroX, centroY, "instrucaoRacao")
             .setDepth(2000)
             .setScale(0.5); 
 

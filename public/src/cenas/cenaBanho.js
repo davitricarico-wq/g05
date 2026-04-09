@@ -663,9 +663,9 @@ export class cenaBanho extends Phaser.Scene {
         const centroY = this.scale.height / 2;
 
         const fundoEscuro = this.add.rectangle(centroX, centroY, 8000, 8000, 0x000000, 0.7)
-            .setDepth(1200).setInteractive();
+            .setDepth(300).setInteractive();
         const telaInstrucao = this.add.image(centroX, centroY, "instrucaoBanho")
-            .setDepth(2000).setInteractive({ useHandCursor: true });
+            .setDepth(301).setInteractive({ useHandCursor: true });
 
         const escalaFinal = Math.min(
             (this.scale.width * 0.8) / telaInstrucao.width,

@@ -233,10 +233,10 @@ export class cenaCuidado extends Phaser.Scene {
         const cy = this.scale.height / 2;
 
         this.fundoInstrucao = this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.85)
-            .setDepth(1200).setScrollFactor(0).setInteractive(); 
+            .setDepth(200).setScrollFactor(0).setInteractive(); 
 
         this.imgInstrucao = this.add.image(cx, cy, "comoJogarPulgas")
-            .setDepth(2000).setScrollFactor(0).setInteractive();
+            .setDepth(201).setScrollFactor(0).setInteractive();
 
         // Escala a imagem do tutorial garantindo margens
         const limiteLargura = this.scale.width * 0.8;
@@ -247,7 +247,7 @@ export class cenaCuidado extends Phaser.Scene {
 
         this.textoIniciar = this.add.text(cx, cy + (this.imgInstrucao.displayHeight / 2) + 40, "[ Clique ou aperte ESPAÇO para começar ]", {
             fontFamily: '"Press Start 2P", Arial', fontSize: "15px", color: "#ffffff"
-        }).setOrigin(0.5).setDepth(2000).setScrollFactor(0);
+        }).setOrigin(0.5).setDepth(201).setScrollFactor(0);
         
         // Efeito de "Blink/Piscar" para o texto de iniciar
         this.tweens.add({

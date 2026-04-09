@@ -216,10 +216,10 @@ export class jogoAlimentacao extends Phaser.Scene {
 
         // Overlay escuro (interativo para bloquear cliques no jogo atrás dele)
         this.fundoInstrucao = this.add.rectangle(cx, cy, this.larguraTela, this.alturaTela, 0x000000, 0.8)
-            .setDepth(1200).setScrollFactor(0).setInteractive(); 
+            .setDepth(200).setScrollFactor(0).setInteractive(); 
 
         this.imgInstrucao = this.add.image(cx, cy, "comoJogarRacao")
-            .setDepth(2000).setScrollFactor(0).setInteractive();
+            .setDepth(201).setScrollFactor(0).setInteractive();
 
         // Escala responsiva "contain" para a imagem não estourar os limites
         const limiteLargura = this.larguraTela * 0.8;
@@ -230,7 +230,7 @@ export class jogoAlimentacao extends Phaser.Scene {
 
         this.textoIniciar = this.add.text(cx, cy + (this.imgInstrucao.displayHeight / 2) + 40, "[ Clique ou aperte ESPAÇO para começar ]", {
             fontFamily: '"Press Start 2P", Arial', fontSize: "15px", color: "#ffffff"
-        }).setOrigin(0.5).setDepth(2000).setScrollFactor(0);
+        }).setOrigin(0.5).setDepth(201).setScrollFactor(0);
         
         // Efeito de piscar no texto para chamar a atenção
         this.tweens.add({ targets: this.textoIniciar, alpha: 0.5, duration: 600, yoyo: true, loop: -1 });
@@ -564,19 +564,19 @@ export class jogoAlimentacao extends Phaser.Scene {
         this.itensComida.clear(true, true);
 
         // UI de Game Over Simples
-        this.add.rectangle(this.larguraTela / 2, this.alturaTela / 2, this.larguraTela, this.alturaTela, 0x000000, 0.55).setDepth(1200);
+        this.add.rectangle(this.larguraTela / 2, this.alturaTela / 2, this.larguraTela, this.alturaTela, 0x000000, 0.55).setDepth(20);
 
         this.add.text(this.larguraTela / 2, this.alturaTela / 2 - 60, 'GAME OVER', {
             fontFamily: 'Arial', fontSize: '64px', color: '#ffffff'
-        }).setOrigin(0.5).setDepth(2001);
+        }).setOrigin(0.5).setDepth(21);
 
         this.add.text(this.larguraTela / 2, this.alturaTela / 2, 'Pontuacao final: ' + this.pontuacao, {
             fontFamily: 'Arial', fontSize: '30px', color: '#ffffff'
-        }).setOrigin(0.5).setDepth(2001);
+        }).setOrigin(0.5).setDepth(21);
 
         this.add.text(this.larguraTela / 2, this.alturaTela / 2 + 55, 'Pressione ESPAÇO para reiniciar', {
             fontFamily: 'Arial', fontSize: '24px', color: '#ffffff'
-        }).setOrigin(0.5).setDepth(2001);
+        }).setOrigin(0.5).setDepth(21);
 
         // Aguarda 200ms por segurança para não reiniciar instantaneamente se ele já estiver apertando espaço
         this.time.delayedCall(200, () => {
