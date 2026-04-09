@@ -1,4 +1,4 @@
-﻿<p align="center"><img src="../assets/logointeli.png"></p>
+﻿<p align="center"><img src="other/logointeli.png"></p>
 
 
 <h1 align="center" id="gdd-game-design-document-módulo-1-inteli">GDD - Game Design Document - Módulo 1 - Inteli</h1>
