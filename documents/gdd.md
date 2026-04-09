@@ -1587,9 +1587,20 @@ Essas melhorias atendem aos requisitos RF16, RF17, RF19, RF20, RF21 e RF22, alé
 | Coleta do item final encerra jogo | Coletar item especial | Jogo encerra |
 | HUD deve ser atualizado após término do jogo | Coletar item especial | Felicidade e moedas são atualizadas |
 | Sistema de progresso deve gerar novo cachorro | Completar barras | Novo ciclo inicia |
-| Nova fase deve exibir pop-up de parabéns | Completar barras | Pop-up aparece |
+| Conclusão da primeira fase deve exibir pop-up de parabéns | Completar barras | Pop-up aparece |
 | Exibir pop-up do segundo cachorro | Fechar pop-up de parabéns | Pop-up aparece |
-| Mecânicas devem funcionar no novo ciclo | Testar novamente | Tudo permanece funcional |
+| Mecânicas devem funcionar na segunda fase | Jogar minigames novamente | Tudo permanece igualmente funcional |
+| Conclusão da segunda fase deve exibir pop-up de parabéns | Completar barras da segunda fase | Pop-up aparece |
+| Exibir pop-up do terceiro cachorro | Fechar pop-up de parabéns da segunda fase | Pop-up aparece |
+| Mecânicas devem funcionar na terceira fase | Jogar minigames novamente | Tudo permanece igualmente funcional |
+| Conclusão da terceira fase deve exibir pop-up de conclusão da terceira fase | Completar barras da terceira fase | Pop-up aparece |
+| Exibir pop-up de instrução para quiz | Clicar no pop-up de conclusão da terceira fase | Pop-up aparece |
+| Quiz sobre rações deve ser acessível | Clicar no pop-up de instrução do quiz | Primeira pergunta aparece |
+| Quiz sobre rações deve ter progressão de acertos | Clicar na resposta correta | Mensagem de resposta correta |
+| Quiz sobre rações deve ter gerenciamento de erros | Clicar na resposta errada | Mensagem de resposta errada e exibir resposta correta |
+| Exibir pop-up de conclusão do jogo | Concluir o quiz | Pop-up de conclusão do jogo aparece |
+| O jogo deve se tornar estático | Concluir o quiz | Tela com pop-up de conclusão do jogo |
+
 
 </div>
 
