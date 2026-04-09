@@ -1534,6 +1534,7 @@ Essa implementação atende aos requisitos RF1, RF8, RF9 e RF18, consolidando o 
 Durante este sprint final, a equipe enfrentou desafios relacionados principalmente à implementação de melhorias na interface do usuário, exigindo retrabalho e refinamento contínuo para atender às necessidades identificadas nos testes de usabilidade.
 Além disso, houve dificuldades técnicas na implementação do sistema de quiz, uma vez que envolveu conceitos e estruturas ainda não explorados anteriormente pela equipe.
 Apesar dos obstáculos, os problemas foram superados, contribuindo para o aprimoramento técnico e organizacional do grupo.
+
 --- 
 
 # 5. Testes
