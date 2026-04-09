@@ -54,7 +54,7 @@ export class cenaLazer extends Phaser.Scene {
         this.gerenciadorCachorros = new GerenciadorCachorros(this);
         
         // Lógica condicional (ternário) para definir o índice do array do pet ativo no gameState
-        const indiceAtivo = gameState.pets.cachorroJoao ? 2 : (gameState.pets.cachorroHeroi ? 1 : 0)
+        const indiceAtivo = gameState.pets.cachorroJoao ? 2 : (gameState.pets.cachorroHeroi ? 1 : 0);
         
         // Cria a sprite do pet na coordenada local (0,0) pois ele será atrelado a um Container
         this.cachorro = this.gerenciadorCachorros.criarCachorro(0, 0, cachorrosBase[indiceAtivo]);
@@ -157,8 +157,10 @@ export class cenaLazer extends Phaser.Scene {
      * @param {number} posicaoY - Altura util da tela para cálculo de centro
      */
     mostrarInstrucoes(posicaoX, posicaoY) {
-        // Traz esta cena para o topo temporariamente para garantir que as instruções cubram outros elementos
-        this.scene.bringToTop();
+        // [NOVO] Atraso sutil para garantir que a cena atual passe por cima da HUD no Scene Manager
+        this.time.delayedCall(50, () => {
+            this.scene.bringToTop("cenaLazer");
+        });
 
         const centroX = this.scale.width / 2;
         const centroY = this.scale.height / 2;
@@ -193,12 +195,50 @@ export class cenaLazer extends Phaser.Scene {
             telaInstrucao.destroy();
             // Flag de persistência para não exibir na próxima vez que acessar a cena
             gameState.instrucoesLazerVistas = true; 
-            // Restaura a HUD como camada mais alta da interface
+            
+            // [NOVO] Restaura a HUD como camada mais alta da interface após fechar o modal
             this.scene.bringToTop("HUD");
         };
 
         // Atrela a função de fechamento tanto ao clique na tela preta quanto na própria imagem
         fundoEscuro.on('pointerdown', fecharInstrucoes);
         telaInstrucao.on('pointerdown', fecharInstrucoes);
+    }
+
+    /** Exibe o popup de direcionamento para voltar à cena principal */
+    exibirDirecaoJogadorVoltar() {
+        // [NOVO] Garante que o popup fique por cima da HUD
+        this.time.delayedCall(50, () => {
+            this.scene.bringToTop("cenaLazer");
+        });
+
+        const cx = this.scale.width / 2;
+        const cy = this.scale.height / 2;
+
+        const fundoEscuro = this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.8)
+            .setDepth(200).setInteractive();
+        const imgDirecao = this.add.image(cx, cy, "direcaoJogador")
+            .setDepth(201).setInteractive({ useHandCursor: true });
+
+        const escalaFinal = Math.min(
+            (this.scale.width * 0.8) / imgDirecao.width,
+            (this.scale.height * 0.8) / imgDirecao.height
+        );
+        imgDirecao.setScale(escalaFinal);
+
+        const txtContinuar = this.add.text(cx, cy + (imgDirecao.displayHeight / 2) + 40, "[ Clique para Continuar ]", {
+            fontFamily: '"Press Start 2P", Arial', fontSize: "15px", color: "#ffffff"
+        }).setOrigin(0.5).setDepth(202);
+
+        this.tweens.add({ targets: txtContinuar, alpha: 0.5, duration: 600, yoyo: true, loop: -1 });
+
+        const voltarCena = () => {
+            // [NOVO] Devolve o topo para a HUD antes de transicionar de cena
+            this.scene.bringToTop("HUD");
+            this.scene.start("cenaPrincipal");
+        };
+        
+        fundoEscuro.on('pointerdown', voltarCena);
+        imgDirecao.on('pointerdown', voltarCena);
     }
 }

@@ -199,7 +199,7 @@ export class cenaVeterinario extends Phaser.Scene {
     /**
      * @method darZoomNaPulga
      * @description Função disparada quando a condição de vitória do minigame é atingida.
-     * Trava as interações, faz a animação do monstro (pulga) pulando na tela e troca de cena.
+     * Trava as interações, faz a animação do monstro (pulga) pulando na tela e exibe direcionamento.
      */
     darZoomNaPulga() {
         if (this.achouPulga) return;
@@ -220,13 +220,50 @@ export class cenaVeterinario extends Phaser.Scene {
             duration: 600,
             ease: 'Back.easeOut', // Efeito elástico ao crescer
             onComplete: () => {
-                // Após a animação, aguarda 1.5 segundos e redireciona para a cena de banho/cuidado
+                // Após a animação, aguarda 1.5 segundos e exibe direcionamento
                 this.time.delayedCall(1500, () => {
                     gameState.cachorroTemPulga = true; // Atualiza a flag global
-                    this.scene.start("cenaCuidado");
+                    this.exibirDirecaoJogador();
                 });
             }
         });
+    }
+
+    /** Exibe o popup de direcionamento para ir ao cuidado do pet */
+    exibirDirecaoJogador() {
+        // [NOVO] Garante que a cena atual fique por cima da HUD no Scene Manager
+        this.time.delayedCall(50, () => {
+            this.scene.bringToTop("cenaVeterinario");
+        });
+
+        const cx = this.scale.width / 2;
+        const cy = this.scale.height / 2;
+
+        const fundoEscuro = this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.8)
+            .setDepth(200).setScrollFactor(0).setInteractive();
+        const imgDirecao = this.add.image(cx, cy, "direcaoJogador")
+            .setDepth(201).setScrollFactor(0).setInteractive({ useHandCursor: true });
+
+        const escalaFinal = Math.min(
+            (this.scale.width * 0.8) / imgDirecao.width,
+            (this.scale.height * 0.8) / imgDirecao.height
+        );
+        imgDirecao.setScale(escalaFinal);
+
+        const txtContinuar = this.add.text(cx, cy + (imgDirecao.displayHeight / 2) + 40, "[ Clique para Continuar ]", {
+            fontFamily: '"Press Start 2P", Arial', fontSize: "15px", color: "#ffffff"
+        }).setOrigin(0.5).setDepth(202).setScrollFactor(0);
+
+        this.tweens.add({ targets: txtContinuar, alpha: 0.5, duration: 600, yoyo: true, loop: -1 });
+
+        const proximaCena = () => {
+            // [NOVO] Devolve o topo para a HUD antes de transicionar de cena
+            this.scene.bringToTop("HUD");
+            this.scene.start("cenaCuidado");
+        };
+
+        fundoEscuro.on('pointerdown', proximaCena);
+        imgDirecao.on('pointerdown', proximaCena);
     }
 
     /**
@@ -247,7 +284,11 @@ export class cenaVeterinario extends Phaser.Scene {
      * Inclui um texto piscante (feedback visual) e suporta fechamento por clique ou teclado.
      */
     mostrarInstrucoes() {
-        this.scene.bringToTop();
+        // [NOVO] Atraso sutil para garantir que a cena atual passe por cima da HUD no Scene Manager
+        this.time.delayedCall(50, () => {
+            this.scene.bringToTop("cenaVeterinario");
+        });
+
         const centroX = this.scale.width / 2;
         const centroY = this.scale.height / 2;
 
@@ -286,7 +327,8 @@ export class cenaVeterinario extends Phaser.Scene {
             
             // Atualiza a flag global para não abrir novamente nesta sessão
             gameState.instrucoesPulgasVistas = true; 
-            // Garante que a HUD volte a reinar no topo
+            
+            // [MANTIDO] Garante que a HUD volte a reinar no topo
             this.scene.bringToTop("HUD");
         };
 

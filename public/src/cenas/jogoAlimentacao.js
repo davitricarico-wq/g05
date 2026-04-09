@@ -507,44 +507,83 @@ export class jogoAlimentacao extends Phaser.Scene {
         const cx = this.larguraTela / 2;
         const cy = this.alturaTela / 2;
 
-        const fundoFeedback = this.add.rectangle(cx, cy, this.larguraTela, this.alturaTela, 0x000000, 0.8)
+        this.fundoFeedback = this.add.rectangle(cx, cy, this.larguraTela, this.alturaTela, 0x000000, 0.8)
             .setDepth(100).setScrollFactor(0).setInteractive(); 
-        const telaFeedback = this.add.image(cx, cy, imagemFeedback)
+        this.telaFeedback = this.add.image(cx, cy, imagemFeedback)
             .setDepth(101).setScrollFactor(0).setInteractive();
 
         // Lógica de "Contain" para responsividade da imagem
         const limiteLargura = this.larguraTela * 0.8;
         const limiteAltura = this.alturaTela * 0.8;
-        const escalaFinal = Math.min(limiteLargura / telaFeedback.width, limiteAltura / telaFeedback.height);
-        telaFeedback.setScale(escalaFinal);
+        const escalaFinal = Math.min(limiteLargura / this.telaFeedback.width, limiteAltura / this.telaFeedback.height);
+        this.telaFeedback.setScale(escalaFinal);
 
         // Posicionamentos relativos dinâmicos para suportar telas diferentes (Mobile/Desktop)
-        let posMoedasY = cy + (telaFeedback.displayHeight * 0.12);
-        this.add.text(this.scale.width / 2 - 12, posMoedasY, `${moedas} Moedas`, {
+        let posMoedasY = cy + (this.telaFeedback.displayHeight * 0.12);
+        this.textoMoedas = this.add.text(this.scale.width / 2 - 12, posMoedasY, `${moedas} Moedas`, {
             fontFamily: '"Press Start 2P", Arial', fontSize: "22px", color: "#005e64"
         }).setOrigin(0.5).setDepth(102);
 
-        let posTempoY = cy + (telaFeedback.displayHeight * 0.35); 
-        this.add.text(this.scale.width / 2 - 20, posTempoY, `${segundos}s`, {
+        let posTempoY = cy + (this.telaFeedback.displayHeight * 0.35); 
+        this.textoTempo = this.add.text(this.scale.width / 2 - 20, posTempoY, `${segundos}s`, {
             fontFamily: '"Press Start 2P", Arial', fontSize: "22px", color: "#005e64"
         }).setOrigin(0.5).setDepth(102);
 
-        const textoContinuar = this.add.text(cx, cy + (telaFeedback.displayHeight / 2) + 40, "[ Pressione ESPAÇO ou Clique ]", {
+        this.textoContinuar = this.add.text(cx, cy + (this.telaFeedback.displayHeight / 2) + 40, "[ Pressione ESPAÇO ou Clique ]", {
             fontFamily: '"Press Start 2P", Arial', fontSize: "15px", color: "#ffffff"
         }).setOrigin(0.5).setDepth(101).setScrollFactor(0);
         
-        this.tweens.add({ targets: textoContinuar, alpha: 0.5, duration: 600, yoyo: true, loop: -1 });
+        this.tweens.add({ targets: this.textoContinuar, alpha: 0.5, duration: 600, yoyo: true, loop: -1 });
 
         const voltarCena = () => {
-            this.scene.start("cenaComida"); // Retorna o jogador ao jogo principal
+            // Destruir elementos do popup de estrelas
+            if (this.fundoFeedback) this.fundoFeedback.destroy();
+            if (this.telaFeedback) this.telaFeedback.destroy();
+            if (this.textoMoedas) this.textoMoedas.destroy();
+            if (this.textoTempo) this.textoTempo.destroy();
+            if (this.textoContinuar) this.textoContinuar.destroy();
+            this.exibirDirecaoJogador();
         };
 
-        fundoFeedback.on('pointerdown', voltarCena);
-        telaFeedback.on('pointerdown', voltarCena);
+        this.fundoFeedback.on('pointerdown', voltarCena);
+        this.telaFeedback.on('pointerdown', voltarCena);
 
         // Evita que cliques indesejados encerrem o menu muito rapidamente
         this.time.delayedCall(200, () => {
             this.input.keyboard.once('keydown-SPACE', voltarCena);
+        });
+    }
+
+    /** Exibe o popup de direcionamento para voltar à cena de comida */
+    exibirDirecaoJogador() {
+        const cx = this.larguraTela / 2;
+        const cy = this.alturaTela / 2;
+
+        const fundoEscuro = this.add.rectangle(cx, cy, this.larguraTela, this.alturaTela, 0x000000, 0.8)
+            .setDepth(100).setScrollFactor(0).setInteractive();
+        const imgDirecao = this.add.image(cx, cy, "direcaoJogador")
+            .setDepth(101).setScrollFactor(0).setInteractive({ useHandCursor: true });
+
+        const limiteLargura = this.larguraTela * 0.8;
+        const limiteAltura = this.alturaTela * 0.8;
+        const escalaFinal = Math.min(limiteLargura / imgDirecao.width, limiteAltura / imgDirecao.height);
+        imgDirecao.setScale(escalaFinal);
+
+        const txtContinuar = this.add.text(cx, cy + (imgDirecao.displayHeight / 2) + 40, "[ Clique para Continuar ]", {
+            fontFamily: '"Press Start 2P", Arial', fontSize: "15px", color: "#ffffff"
+        }).setOrigin(0.5).setDepth(102).setScrollFactor(0);
+
+        this.tweens.add({ targets: txtContinuar, alpha: 0.5, duration: 600, yoyo: true, loop: -1 });
+
+        const proximaCena = () => {
+            this.scene.start("cenaComida");
+        };
+        
+        fundoEscuro.on('pointerdown', proximaCena);
+        imgDirecao.on('pointerdown', proximaCena);
+
+        this.time.delayedCall(200, () => {
+            this.input.keyboard.once('keydown-SPACE', proximaCena);
         });
     }
 

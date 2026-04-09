@@ -14,7 +14,7 @@ export class cenaCuidado extends Phaser.Scene {
         // Define a chave de identificação única da cena no Phaser
         super({ key: "cenaCuidado" });
 
-        this.totalPulgas = 12;          // Quantidade de pulgas a serem geradas
+        this.totalPulgas = 12; // Quantidade de pulgas a serem geradas
         this.pulgasRemovidas = 0;       // Contador de progresso atual
         this.pontuacao = 0;             // Pontuação bruta acumulada
         this.minigameFinalizado = false;// Flag de estado para travar interações no fim do jogo
@@ -152,7 +152,7 @@ export class cenaCuidado extends Phaser.Scene {
             }
         });
 
-        // --- SISTEMA DE RESPONSIVIDADE ---
+        // SISTEMA DE RESPONSIVIDADE 
         const handleResize = (gameSize) => {
             const novaLargura = gameSize.width;
             const novaAltura = gameSize.height;
