@@ -484,9 +484,9 @@ Quanto ao contexto de uso, o jogo foi projetado para ser utilizado em ambientes 
 
 ## 2.1. Objetivos do Jogo
 
-&ensp;O jogo tem como objetivo central promover o cuidado e o bem-estar dos animais,com foco especial nos cães,em  sintonia com o projeto Cobasi Cuida. A experiência é estruturada em fases progressivas, cada uma trazendp novos desafios e diferentes perfis de pets, que variam em raça, porte, idade e peso.
+&ensp;O jogo tem como objetivo central promover o cuidado e o bem-estar dos animais,com foco especial nos cães,em  sintonia com o projeto Cobasi Cuida. A experiência é estruturada em fases progressivas, cada uma trazendo novos desafios e diferentes perfis de pets, que variam em raça, porte, idade e peso.
 
-&ensp;Ao longo da jornada, o jogador assume o papel de cuidador responsável e, para avançar, deve realizar uma série de atividades interativas por meio de minigames. Essas dinâmicas simulam tarefas essenciais de cuidado, como encher o pote de ração, oferecer brinquedos, dar banho e proporcionar momentos de lazer. Cada ação concluida contribui para o aumento da barra de felicidade, um indicador visual que demonstra o nível de satisfação e bem-estar do animal.
+&ensp;Ao longo da jornada, o jogador assume o papel de cuidador responsável e, para avançar, deve realizar uma série de atividades interativas por meio de minigames. Essas dinâmicas simulam tarefas essenciais de cuidado, como encher o pote de ração, oferecer brinquedos, dar banho e proporcionar momentos de lazer. Cada ação concluída contribui para o aumento da barra de felicidade, um indicador visual que demonstra o nível de satisfação e bem-estar do animal.
 
 &ensp;O progresso do jogador é medido por sua capacidade de manter os cães felizes e saudáveis. A cada animal bem cuidado, ele recebe moedas virtuais como recompensa. Essas moedas desempenham um papel estratégico no jogo, pois permitem a compra de rações e equipamentos melhores, que facilitam os cuidados nas fases seguintes, além da aquisição de acessórios e itens de personalização, que tornam a experiência mais divertida e possibilitam enfeitar os animaisTambém servem para desbloquear novos conteúdos e desafios, ampliando a diversidade de cães e de atividades disponíveis. 
 
@@ -572,7 +572,7 @@ A proposta do jogo é administrar um abrigo, envolvendo tarefas operacionais e o
 
 &ensp;Na primeira, o jogador deve selecionar e efetuar a compra da ração correta para o cachorro. Essa escolha é fundamental, pois impacta diretamente a próxima fase do minigame. Caso escolha corretamente, ele avança para a fase principal.
 
-&ensp;Na segunda etapa, o jogador controla o cachorro utilizando as setas do teclado, movimentando-o lateralmente para capturar os alimentos que caem na tela. Diferente da versão anterior, a ração que aparece é exclusivamente aquela que o jogador escolheu e comprou na etapa inicial.
+&ensp;Na segunda etapa, o jogador controla o cachorro utilizando as setas do teclado, movimentando-o lateralmente para capturar os alimentos que caem na tela. Diferentemente da versão anterior, a ração que aparece é exclusivamente aquela que o jogador escolheu e comprou na etapa inicial.
 
 &ensp;Ao mesmo tempo, continuam surgindo alimentos prejudiciais, como chocolate, que devem ser evitados. O desafio consiste em equilibrar rapidez e precisão, garantindo que o animal consuma apenas os itens adequados e desvie dos elementos perigosos.
 
@@ -777,7 +777,7 @@ A proposta do jogo é administrar um abrigo, envolvendo tarefas operacionais e o
 
 &ensp;No desenvolvimento de jogos, o diagrama de cenas é uma ferramenta visual utilizada no GDD (Game Design Document) para organizar e representar a estrutura do jogo. Ele mostra, de forma esquemática, todas as telas ou cenas existentes — como menu inicial, tutorial, fases, configurações, pausa e game over (e como elas se conectam entre si).
 
-&ensp;Esse diagrama ajuda a equipe a entender o fluxo de navegação do jogador, indicando quais ações levam de uma cena para outra. Além disso, facilita o planejamento da programação, da interface e da experidência do usuário, evitando erros de estrutura e retrabalho. Assim, o diagrama de cenas funciona como um “mapa” do jogo, tornando o projeto mais claro, organizado e eficiente durante o desenvolvimento.Para acessar o diagrama completo em alta resolução, clique na imagem que o redirecionará pra 
+&ensp;Esse diagrama ajuda a equipe a entender o fluxo de navegação do jogador, indicando quais ações levam de uma cena para outra. Além disso, facilita o planejamento da programação, da interface e da experiência do usuário, evitando erros de estrutura e retrabalho. Assim, o diagrama de cenas funciona como um “mapa” do jogo, tornando o projeto mais claro, organizado e eficiente durante o desenvolvimento.Para acessar o diagrama completo em alta resolução, clique na imagem que o redirecionará pra 
 
 <div align="center">
   <p>Figura 9: Diagrama de Cenas Completo</p>
@@ -852,7 +852,7 @@ A proposta do jogo é administrar um abrigo, envolvendo tarefas operacionais e o
 
 &ensp;O objetivo consiste em atingir a pontuação de 150 pontos para concluir o minigame. Qualquer ração, independente do tipo, ao serem coletadas concedem 10 pontos.
 
-&ensp;No sistema de compra, a ração Standard possui o custo de 10 CobasiCoins, a ração Premium possui o custo de 15 CobasiCoins e a SUper Premium o custo de 20 CobasiCoins.
+&ensp;No sistema de compra, a ração Standard possui o custo de 10 CobasiCoins, a ração Premium possui o custo de 15 CobasiCoins e a Super Premium o custo de 20 CobasiCoins.
 
 &ensp;Ao alcançar a pontuação necessária, o jogador retorna à cena de alimentação, a barra de fome é atualizada e as moedas são ajustadas conforme a compra realizada.
 
@@ -895,7 +895,7 @@ A proposta do jogo é administrar um abrigo, envolvendo tarefas operacionais e o
 
 &ensp;No minigame de alimentação, o controle do personagem é realizado por meio do teclado, utilizando as teclas direcionais para deslocamento horizontal.
 
-&ensp;A mecânica baseia-se na coleta de itens que caem pela tela. Existem dois tipos de ração disponíveis: a ração Standard, que adiciona 10 pontos à pontuação do jogador, e a ração Super Premium, que adiciona 15 pontos e pode restaurar uma vida perdida.
+&ensp;A mecânica baseia-se na coleta de itens que caem pela tela. Existem três tipos de ração disponíveis: a ração Standard, que adiciona 10 pontos à pontuação do jogador, a ração Premium e a ração Super Premium, que adiciona 15 pontos e pode restaurar uma vida perdida.
 
 &ensp;Itens prejudiciais, como chocolates, também estão presentes e devem ser evitados, pois causam a perda de uma vida ao serem coletados.
 
@@ -1418,7 +1418,7 @@ Essa expansão está alinhada aos requisitos RF1, RF7 e RF8, que definem a prese
 
 **Implementação da Área de Lazer**
 
-Foi implementado um novo minigame na área de lazer, com mecânicas de movimentação como andar, correr e pular, tornando a experiência mais dinâmica.Nele, o animal tem que capturar os petiscos e desviar dos obstáculos.
+Foi implementado um novo minigame na área de lazer, com mecânicas de movimentação como andar, correr e pular, tornando a experiência mais dinâmica.Nele, o animal tem de capturar os petiscos e desviar dos obstáculos.
 Essa funcionalidade atende ao requisito RF26, além de contribuir para os requisitos RF7 e RNF7, relacionados à interação e responsividade dos controles.
 
 <div align="center">
@@ -1563,7 +1563,7 @@ Apesar dos obstáculos, os problemas foram superados, contribuindo para o aprimo
 
 <div align="center">
 
-| Pré-condição | Descrição do teste | Condição esperada |
+| Pré-condição | Descrição do teste | Resultado esperado |
 | :---: | :---: | :---: |
 | Jogo deve apresentar a tela na proporção correta | Abrir o jogo no navegador | O jogo apresenta os elementos visuais enquadrados na tela |
 | Presença funcional de feedback do usuário | Realizar interações em todas as telas | Ao passar o mouse sobre os botões, eles aumentam de tamanho |
@@ -1755,7 +1755,7 @@ Apesar dos obstáculos, os problemas foram superados, contribuindo para o aprimo
 
 ### 5.2.2 Melhorias
 
-&ensp;Após uma extensa seção de testes, a equipe levantou todos os relatos de bugs e sugestões para revisar rigorosamente a qualidade do jogo para o usuário. Sendo assim, as melhorias a serem aplicadas são:
+&ensp;Após uma extensa sessão de testes, a equipe levantou todos os relatos de bugs e sugestões para revisar rigorosamente a qualidade do jogo para o usuário. Sendo assim, as melhorias a serem aplicadas são:
 
 * Aprimoramento final dos sprites das rações, da pinça e do cachorro correndo;
 * Aprimoramento da intuitividade na sequência de atividades a serem feitas;
