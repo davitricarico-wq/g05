@@ -11,7 +11,7 @@ Davi Viana Tricarico
 Gustavo Luz Fantasia Barbosa  
 Isaac Nicolas Alves Silva  
 João Pedro Fuzzo Poveda  
-Pedro Lemos Negri.    
+Pedro Lemos Negri                         
 Valter Lucas Garcia de Lima
 
 # Sumário
@@ -1837,7 +1837,8 @@ Após completar essa interação, o jogador conclui sua missão e é direcionado
 
 &ensp;O desenvolvimento do jogo Cobasi Shelter permitiu atingir de forma consistente os objetivos propostos na Seção 1 deste documento, especialmente no que se refere à conscientização sobre os cuidados com animais domésticos e ao alinhamento com o propósito social da marca Cobasi.
 A solução desenvolvida conseguiu integrar educação e entretenimento, utilizando mecânicas interativas que simulam situações reais de cuidado com pets, como higiene, alimentação, saúde e lazer. Dessa forma, o jogo atende diretamente ao objetivo de transformar o aprendizado em uma experiência prática, permitindo que o usuário compreenda, na prática, as responsabilidades envolvidas na adoção e manutenção de um animal.
-Além disso, o projeto se mostrou eficaz ao incorporar elementos da identidade da Cobasi, utilizando produtos, ambientação e narrativa alinhados à missão, visão e valores da empresa. Esse fator contribui para o fortalecimento da marca e para a criação de uma experiência imersiva, aproximando o jogador do contexto real do cuidado animal.
+
+&ensp;Além disso, o projeto se mostrou eficaz ao incorporar elementos da identidade da Cobasi, utilizando produtos, ambientação e narrativa alinhados à missão, visão e valores da empresa. Esse fator contribui para o fortalecimento da marca e para a criação de uma experiência imersiva, aproximando o jogador do contexto real do cuidado animal.
 
 &ensp;Outro ponto relevante foi a proposta inclusiva do jogo, com a escolha de uma protagonista jovem, representando o público-alvo da Geração Z, o que contribui para maior identificação e engajamento dos usuários. Também se destaca o caráter educativo do jogo, reforçado pelos minigames e pelo sistema de feedback, que orienta o jogador durante sua jornada.
 
