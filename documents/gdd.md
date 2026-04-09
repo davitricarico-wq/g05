@@ -481,59 +481,63 @@ Descrevem as funcionalidades, ações e comportamentos esperados.
 &ensp;Dessa forma, os objetivos do jogo se dividem em duas frentes principais: A primeira é garantir garantir o cuidado adequado dos animais, mantendo a barra de felicidade sempre elevada. A segunda é acumular moedas para investir em melhorias, acessórios e desbloqueios, tornando a jornada mais dinâmica e recompensadora.
 
 
-## 2.2. Características do Jogo 
+## 2.2. Características do Jogo
 
-### 2.2.1. Gênero do Jogo 
+### 2.2.1. Gênero do Jogo
 
-&ensp;O gênero do jogo é simulação, pois o jogador assume o papel de um voluntário do projeto Cobasi Cuida, responsável por cuidar de diferentes cães em situações variadas. A proposta é reproduzir, de forma lúdica e interativa, a experiência de oferecer atenção, carinho e cuidados básicos aos animais, aproximando o jogador da realidade de quem atua em abrigos ou projetos de adoção.
-Dentro do gênero de simulação, o jogo incorpora elementos de progressão e personalização, permitindo que o jogador evolua conforme realiza os cuidados e acumula moedas virtuais. Essa mecânica aproxima o jogo de características de RPG leve, já que há evolução de recursos, desbloqueio de fases e aquisição de itens que melhoram a experiência.
+ O gênero do jogo é simulação, pois o jogador assume o papel de um voluntário do projeto Cobasi Cuida, responsável por cuidar de diferentes cães em situações variadas. A proposta é reproduzir, de forma lúdica e interativa, a experiência de oferecer atenção, carinho e cuidados básicos aos animais, aproximando o jogador da realidade de quem atua em abrigos ou projetos de adoção.
+
+Dentro do gênero de simulação, o jogo incorpora elementos de progressão e personalização, permitindo que o jogador evolua à medida que realiza os cuidados e acumula moedas virtuais. Essa mecânica aproxima o jogo de características de um RPG leve, já que há evolução de recursos, desbloqueio de fases e aquisição de itens que aprimoram a experiência.
+
 Além disso, o jogo pode ser classificado como casual, pois apresenta minigames acessíveis e intuitivos, voltados para públicos diversos, sem exigir domínio de controles complexos ou estratégias avançadas. O foco está na diversão, na sensação de responsabilidade e na recompensa emocional de ver os animais felizes.
 
-### 2.2.2. Plataforma do Jogo 
+### 2.2.2. Plataforma do Jogo
 
-&ensp;O jogo será disponibilizado para desktop, com execução diretamente em navegadores web modernos, como Google Chrome, Microsoft Edge, Safari e Opera. Essa escolha de plataforma garante maior acessibilidade e praticidade, já que não será necessário instalar programas adicionais ou realizar downloads complexos.
-A opção por navegadores permite que o jogo seja multiplataforma, funcionando em diferentes sistemas operacionais (Windows, macOS e Linux), desde que o usuário tenha acesso a um navegador compatível. Além disso, essa abordagem facilita a atualização contínua do jogo, pois qualquer melhoria ou correção pode ser aplicada diretamente no servidor, sem exigir que o jogador baixe novas versões.
+ O jogo será disponibilizado para desktop, com execução diretamente em navegadores web modernos, como Google Chrome, Microsoft Edge, Safari e Opera. Essa escolha de plataforma garante maior acessibilidade e praticidade, já que não será necessário instalar programas adicionais nem realizar downloads complexos.
+
+A opção pelos navegadores permite que o jogo seja multiplataforma, funcionando em diferentes sistemas operacionais, como Windows, macOS e Linux, desde que o usuário tenha acesso a um navegador compatível. Além disso, essa abordagem facilita a atualização contínua do jogo, pois qualquer melhoria ou correção pode ser aplicada diretamente no servidor, sem exigir que o jogador baixe novas versões.
+
 Outro ponto importante é que a execução em navegadores torna o jogo mais inclusivo e acessível, permitindo que seja jogado em computadores com diferentes níveis de desempenho, sem exigir configurações avançadas de hardware.
 
+### 2.2.3. Número de jogadores
 
-### 2.2.3. Número de jogadores 
-&ensp;O jogo foi projetado para apenas um jogador, com o objetivo de fortalecer o vínculo individual entre o cuidador e os animais. Essa escolha garante maior senso de responsabilidade, já que cada decisão e ação realizada impacta diretamente no bem-estar dos cães.
+ O jogo foi projetado para apenas um jogador, com o objetivo de fortalecer o vínculo individual entre o cuidador e os animais. Essa escolha garante um maior senso de responsabilidade, já que cada decisão e ação realizada impacta diretamente o bem-estar dos cães.
+
 A experiência single-player também permite que o jogador se envolva de forma mais imersiva e pessoal, sem distrações externas, reforçando a proposta central do projeto Cobasi Cuida: estimular a empatia, o cuidado e a dedicação aos animais.
 
 ### 2.2.4. Títulos semelhantes e inspirações
 
-#### 2.2.4.1 Meu Talking Tom - Android ou IOS
+#### 2.2.4.1 Meu Talking Tom - Android ou iOS
 
-É a principal inspiração para nosso protótipo. Jogo simples com o objetivo de cuidar do Tom.
+É a principal inspiração para o nosso protótipo. Trata-se de um jogo simples, cujo objetivo é cuidar do Tom.
 
 *Ideias de funcionalidades:*
-- Toque interativo (tocar no pet e ele reagir).
-- Pet ouvir sua fala e replicar com uma voz diferente (não seria original).
-- Vestir o pet .
-- Alimentar o pet (diferentes alimentos; não só ração ou sachês).
-- Nível de pet (conforme atividades são realizadas o nível sobe) → possível integração com a ideia de fases.
-- Troca de ambientação (sala, quarto, banheiro, quintal, parque, loja…).
-- Estilo de interface (felicidade, fome, sede, sono, foguinho).
 
-#### 2.2.4.2 Nintendogs - Nintendo DS/3DS:
+* Toque interativo, permitindo tocar no pet e observar sua reação.
+* O pet ouvir a fala do jogador e reproduzi-la com uma voz diferente.
+* Vestir o pet.
+* Alimentar o pet com diferentes alimentos, e não apenas ração ou sachês.
+* Sistema de nível do pet, em que o progresso aumenta conforme as atividades são realizadas, com possível integração à ideia de fases.
+* Troca de ambientação, como sala, quarto, banheiro, quintal, parque e loja.
+* Estilo de interface com indicadores como felicidade, fome, sede, sono e energia.
 
-- Referência em funcionalidades de cuidados com o Pet. 
-- Pet reage às ações: seu visual muda conforme o cuidado (sujo/limpo/feliz/triste)
-- Toque sensível na tela é usada para acariciar o Pet
-- O jogo inclui diversas raças de diferentes de cães e gatos
+#### 2.2.4.2 Nintendogs - Nintendo DS/3DS
 
-#### 2.2.4.3 Animal Shelter Simulator - Google Play e IOS: 
+* Referência em funcionalidades de cuidado com o pet.
+* O pet reage às ações do jogador, e sua aparência muda conforme o nível de cuidado, podendo ficar sujo, limpo, feliz ou triste.
+* A tela sensível ao toque é utilizada para acariciar o pet.
+* O jogo inclui diversas raças de cães e gatos.
 
-A proposta é “rodar um abrigo” com tarefas operacionais e cuidado dos animais.
+#### 2.2.4.3 Animal Shelter Simulator - Google Play e iOS
 
-- Loop de tarefas (higiene, alimentação, rotina)
-- Progressão (desbloqueios / expansão)
+A proposta do jogo é administrar um abrigo, envolvendo tarefas operacionais e o cuidado com os animais.
 
+* Loop de tarefas, como higiene, alimentação e rotina.
+* Progressão por meio de desbloqueios e expansão.
 
-### 2.2.5 Tempo estimado de jogo 
+### 2.2.5 Tempo estimado de jogo
 
-O tempo estimado de gameplay para o Cobasi Shelter, considerando a destreza com video games do público alvo, varia entre quatro a dez minutos (4 a 10 min). Sabendo disso, é bem provável que, com alterações e melhorias futuras, a complexidade do jogo aumente e, portanto, seu tempo de gameplay aumente também.
-
+ O tempo estimado de gameplay para o *Cobasi Shelter*, considerando a familiaridade do público-alvo com videogames, varia entre quatro e dez minutos. É provável, no entanto, que, com futuras alterações e melhorias, a complexidade do jogo aumente e, consequentemente, o tempo de gameplay também seja ampliado.
 
 --- 
 # 3. Game Design
