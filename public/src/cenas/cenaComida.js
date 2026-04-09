@@ -94,9 +94,17 @@ export class cenaComida extends Phaser.Scene {
 
         gameState.bilhete.on('pointerdown', () => this.abrirFichaDetatilhada());
 
-        // Tigela decorativa
+        // Tigela decorativa interativa (agora inicia o minigame/efeito de chuva)
         this.racaoVazia = this.add.image((areaUtilX / 2) + (areaUtilX / 2) * 0.1, areaUtilY / 2 + areaUtilY * 0.4, "racaoVazia")
-            .setScale(areaUtilY * 0.0002);
+            .setScale(areaUtilY * 0.0002)
+            .setInteractive({ useHandCursor: true });
+
+        passarPressionarEfeito(this.racaoVazia, this.racaoVazia.scaleX, this.racaoVazia.scaleX * 1.1);
+
+        // Dispara a chuva de petiscos ao clicar na tigela
+        this.racaoVazia.on("pointerdown", () => {
+            this.fazerChoverPetiscos();
+        });
 
         // Configurações do pet
         this.gerenciadorCachorros = new GerenciadorCachorros(this);
@@ -133,6 +141,32 @@ export class cenaComida extends Phaser.Scene {
         }
     }
 
+    /**
+     * @method fazerChoverPetiscos
+     * @description Cria um efeito INTENSO de chuva de petiscos para aumentar a dificuldade.
+     */
+    fazerChoverPetiscos() {
+        // Altere 'petisco' para a chave da imagem que você quer que caia (ex: 'racao', 'biscoito')
+        const emitter = this.add.particles(0, 0, 'petisco', {
+            x: { min: 0, max: this.scale.width }, // Cai por toda a tela
+            y: -50, // Nasce fora da tela
+            speedY: { min: 400, max: 800 }, // Velocidade muito mais alta (cai rápido)
+            speedX: { min: -100, max: 100 }, // Movimento lateral errático
+            rotate: { min: 0, max: 360 }, // Gira enquanto cai
+            scale: { start: 0.1, end: 0.1 }, // Ajuste conforme o tamanho da sua imagem
+            lifespan: 2000, // Tempo de vida menor, já que estão caindo mais rápido
+            quantity: 8, // Nasce muitos de uma vez (aumenta o volume)
+            frequency: 50 // Intervalo super curto entre os nascimentos (chuva densa)
+        });
+
+        emitter.setDepth(5);
+
+        // Para o efeito após 10 segundos de chuva intensa
+        this.time.delayedCall(10000, () => {
+            emitter.stop();
+        });
+    }
+
     /** * Centraliza a lógica de abertura da cena de ficha. 
      * @private
      */
@@ -165,7 +199,7 @@ export class cenaComida extends Phaser.Scene {
             this.anims.create({
                 key: "pulgaAnim",
                 frames: this.anims.generateFrameNumbers("pulgas", { start: 0, end: 1 }), 
-                frameRate: 1, repeat: -1     
+                frameRate: 1, repeat: -1     
             });
         }
     }

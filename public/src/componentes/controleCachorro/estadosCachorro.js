@@ -2,11 +2,6 @@
  * @constant {Object} ESTADOS_CACHORRO
  * @enum {string}
  * @description Funciona como um Enumerador (Enum) para a Máquina de Estados (Finite State Machine) do pet.
- * * * Arquitetura e Clean Code: 
- * Centralizar essas strings em uma constante exportada evita o uso de "Magic Strings" 
- * (textos soltos e repetidos pelo código). Isso previne bugs difíceis de rastrear causados 
- * por erros de digitação (ex: escrever "Sujo" em um arquivo e "sujo" no outro) e facilita 
- * manutenções futuras (se o estado "feliz" mudar para "alegre", altera-se apenas aqui).
  */
 export const ESTADOS_CACHORRO = {
     /** * @property {string} FELIZ

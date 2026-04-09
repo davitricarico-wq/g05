@@ -27,7 +27,6 @@ export class cenaTutorial extends Phaser.Scene {
      */
     preload() {
         // Carrega todas as imagens do tutorial dinamicamente através de um loop,
-        // evitando a repetição de 11 linhas de código (DRY - Don't Repeat Yourself).
         for (let i = 1; i <= this.totalImagens; i++) {
             this.load.image(`tutorial${i}`, `assets/tutorial${i}.png`);
         }
@@ -40,18 +39,14 @@ export class cenaTutorial extends Phaser.Scene {
      */
     create() {
         // Verifica a preferência do usuário e inicia a música temática da cutscene.
-        // O parâmetro 'true' provavelmente indica que a música deve entrar em loop.
         if (gameState.musicaLigada) {
             iniciarMusica(this, 'musicaCutscene', true);
         }
 
         // Garante que, caso o jogador retorne ao tutorial depois de já ter jogado,
-        // ele sempre recomece do slide 1.
         this.indiceAtual = 1;
 
         // Imagem centralizada que servirá como a "tela" do slide.
-        // setOrigin(0.5) centraliza o eixo (pivot) da imagem.
-        // setDepth(0) garante que fique no fundo, atrás dos botões e textos.
         this.imagemAtual = this.add.image(
             this.scale.width / 2,
             this.scale.height / 2,
@@ -59,8 +54,7 @@ export class cenaTutorial extends Phaser.Scene {
         ).setOrigin(0.5).setDepth(0)
          .setDisplaySize(this.scale.width, this.scale.height);
 
-        // Texto que indica o progresso atual do jogador (ex: "1 / 11").
-        // Posicionado na parte inferior central da tela.
+        // Texto que indica o progresso atual do jogador 
         this.textoProgresso = this.add.text(
             this.scale.width / 2,
             this.scale.height - 40,
@@ -129,7 +123,6 @@ export class cenaTutorial extends Phaser.Scene {
         this.botaoPular.on('pointerdown', () => this.scene.start('cenaPrincipal'));
 
         // Chama a função de atualização para configurar a visibilidade correta dos botões 
-        // no slide inicial (ex: esconder a seta de voltar no slide 1).
         this.atualizarBotoes();
 
         /**
@@ -169,8 +162,7 @@ export class cenaTutorial extends Phaser.Scene {
      * @param {number} novoIndice - O número do slide a ser carregado.
      */
     irParaImagem(novoIndice) {
-        // Lógica de finalização: Se o jogador tentar avançar além da última imagem,
-        // encerramos o tutorial com um efeito suave (fade out) e iniciamos o jogo.
+        // Lógica de finalização: Se o jogador tentar avançar além da última imagem, encerramos o tutorial com um efeito suave (fade out) e iniciamos o jogo.
         if (novoIndice > this.totalImagens) {
             this.cameras.main.fadeOut(300, 0, 0, 0);
             this.cameras.main.once('camerafadeoutcomplete', () => {

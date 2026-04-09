@@ -45,23 +45,19 @@ export class Racao {
         // Registra o evento de clique/toque no item
         this.sprite.on("pointerdown", () => {
 
-            // 1. Lógica de Deseleção (Radio Button):
             // Se já existe uma ração selecionada no jogo, nós removemos o filtro de cor (Tint) dela
             // para que ela volte à aparência original.
             if (Racao.selecionada) {
                 Racao.selecionada.sprite.clearTint();
             }
 
-            // 2. Atualização do Estado:
             // Define esta própria instância atual como a nova ração selecionada globalmente.
             Racao.selecionada = this;
 
-            // 3. Feedback Visual:
             // Aplica um filtro de cor amarela (0xffff00) sobre este sprite para indicar ao jogador 
             // que este é o item ativo no momento.
             this.sprite.setTint(0xffff00);
 
-            // 4. Comunicação com a Cena (Baixo Acoplamento):
             // Em vez da classe Racao tentar manipular o painel de texto diretamente, ela apenas 
             // verifica se a Cena possui uma função 'atualizarPainel' e passa a si mesma (this) como argumento.
             // Isso significa que o card da ração não precisa saber como o painel funciona por dentro.
