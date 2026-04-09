@@ -79,6 +79,9 @@ export class cenaComida extends Phaser.Scene {
         passarPressionarEfeito(this.estante, this.estante.scaleX, this.estante.scaleX * 1.1);
 
         this.estante.on("pointerdown", () => {
+            // TRAVA DE SEGURANÇA: Se a ficha estiver aberta, o clique na estante é ignorado!
+            if (this.scene.isActive('ficha')) return; 
+
             this.encerrarTutorialEstante();
             this.navegarParaEstante();
         });
@@ -103,6 +106,9 @@ export class cenaComida extends Phaser.Scene {
 
         // Dispara a chuva de petiscos ao clicar na tigela
         this.racaoVazia.on("pointerdown", () => {
+            // TRAVA DE SEGURANÇA: Impede interações se a ficha estiver aberta
+            if (this.scene.isActive('ficha')) return; 
+
             this.fazerChoverPetiscos();
         });
 
@@ -175,16 +181,15 @@ export class cenaComida extends Phaser.Scene {
             return; 
         }
 
-        // Remove os destaques visuais do tutorial antes de abrir a ficha, se existirem
+        // NOVO: Apenas destruímos o TEXTO. O Fundo Escuro (overlayFicha) FICA AQUI para continuar bloqueando
+        // a tela até que o jogador feche a ficha obrigatoriamente.
         if (this.overlayFicha) {
-            this.overlayFicha.destroy();
-            this.overlayFicha = null;
             if (this.txtCliqueFicha) {
                 this.txtCliqueFicha.destroy();
                 this.txtCliqueFicha = null;
             }
-            gameState.bilhete.setDepth(this.profundidadeOriginalBilhete);
             gameState.enfaseFichaVista = true; 
+            // A HUD NÃO dá resume aqui. Fica travada de propósito.
         }
 
         // Inicia a cena da ficha
@@ -193,8 +198,9 @@ export class cenaComida extends Phaser.Scene {
 
         const cenaFicha = this.scene.manager.getScene('ficha');
         
-        // Eventos de encadeamento: após fechar a ficha, limpa sobreposições e destaca a estante
+        // Eventos de encadeamento: ISSO AQUI SÓ RODA QUANDO A FICHA FOR FECHADA
         const finalizarFicha = () => {
+            // Agora sim, como a ficha foi fechada, destruímos a tela escura que bloqueava os cliques
             if (this.overlayFicha) {
                 this.overlayFicha.destroy();
                 this.overlayFicha = null;
@@ -206,8 +212,13 @@ export class cenaComida extends Phaser.Scene {
             
             gameState.bilhete.setDepth(this.profundidadeOriginalBilhete);
             
+            // AGORA SIM descongelamos a HUD, liberando o jogo
+            this.scene.resume("HUD"); 
             this.scene.bringToTop("HUD");
-            if (!gameState.enfaseEstanteVista) this.destacarEstante();
+            
+            if (!gameState.enfaseEstanteVista) {
+                this.destacarEstante();
+            }
         };
         
         cenaFicha.events.once('shutdown', finalizarFicha);
@@ -232,6 +243,8 @@ export class cenaComida extends Phaser.Scene {
             if (this.txtCliqueEstante) this.txtCliqueEstante.destroy();
             this.estante.setDepth(this.profundidadeOriginalEstante);
             gameState.enfaseEstanteVista = true; 
+            
+            this.scene.resume("HUD"); 
             this.scene.bringToTop("HUD");
         }
     }
@@ -286,8 +299,6 @@ export class cenaComida extends Phaser.Scene {
 
     /** Exibe o guia visual principal da cena de alimentação */
     mostrarInstrucaoRacao() {
-        // Atraso sutil para dar tempo à HUD de ser registrada no Scene Manager e, 
-        // assim, garantimos que cenaComida vai ficar realmente por cima da HUD
         this.time.delayedCall(50, () => {
             this.scene.bringToTop("cenaComida");
         });
@@ -310,7 +321,6 @@ export class cenaComida extends Phaser.Scene {
             this.txtContinuarInstrucao.destroy();
             gameState.instrucaoRacaoVista = true; 
             
-            // Traz a HUD de volta pro topo quando fecha o alerta
             this.scene.bringToTop("HUD");
             this.gerenciarTutorialInicial();
         });
@@ -318,11 +328,16 @@ export class cenaComida extends Phaser.Scene {
 
     /** Cria um "foco" visual no objeto de Ficha técnica */
     destacarFicha() {
+        this.scene.pause("HUD"); 
+        
         this.time.delayedCall(50, () => {
             this.scene.bringToTop("cenaComida");
         });
 
         this.overlayFicha = this.add.rectangle(this.scale.width/2, this.scale.height/2, this.scale.width, this.scale.height, 0x000000, 0.7).setDepth(9999).setInteractive(); 
+        
+        this.overlayFicha.on('pointerdown', (pointer, localX, localY, event) => { event.stopPropagation(); });
+
         gameState.bilhete.setDepth(10000);
 
         this.txtCliqueFicha = this.add.text(gameState.bilhete.x, gameState.bilhete.y + 60, "Clique na ficha!", {
@@ -334,11 +349,16 @@ export class cenaComida extends Phaser.Scene {
 
     /** Cria um "foco" visual na estante para guiar o jogador ao minigame */
     destacarEstante() {
+        this.scene.pause("HUD"); 
+        
         this.time.delayedCall(50, () => {
             this.scene.bringToTop("cenaComida");
         });
 
         this.overlayEstante = this.add.rectangle(this.scale.width/2, this.scale.height/2, this.scale.width, this.scale.height, 0x000000, 0.7).setDepth(9999).setInteractive(); 
+        
+        this.overlayEstante.on('pointerdown', (pointer, localX, localY, event) => { event.stopPropagation(); });
+
         this.estante.setDepth(10000);
 
         this.txtCliqueEstante = this.add.text(this.estante.x, this.estante.y - 100, "Clique na estante!", {
