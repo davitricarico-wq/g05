@@ -1618,77 +1618,77 @@ Essas melhorias atendem aos requisitos RF16, RF17, RF19, RF20, RF21 e RF22, alé
 
 &ensp;A aplicação dos testes seguiu um padrão para cada pessoa que quis testar o jogo. Em uma sala movimentada, um computador de um integrante do grupo foi disponibilizado com o jogo funcionando, tanto com mouse quanto com fones de ouvido disponíveis. Primeiro, o contexto e os objetivos a serem atingidos foram apresentados ao tester. Depois disso, ele(a) foi instruído(a) apenas a jogar, sem nenhuma explicação, tanto prévia quanto solicitada. Por fim, o usuário foi submetido a uma série de perguntas sobre a visão geral do jogo e a um formulário de questionamentos, semelhante ao levantamento apresentado a seguir. O processo de teste do jogo foi conduzido, no dia 31/03/2026, por três integrantes do grupo: um contextualizando, outro gravando e outro preenchendo o formulário.
 
-<div align="center">
+<div align="left">
 
-| Nome                                     | Soraya                                              |
+| Nome                                     | Soraya                                               |
+| ---------------------------------------- | ---------------------------------------------------- |
+| Idade                                    | 18 anos                                              |
+| Curso                                    | Ciência da Computação                                |
+| Tem ou já teve algum pet?                | Sim, possuo                                          |
+| Já possuía experiência prévia com games? | Sim, mas pouca                                       |
+| Conseguiu iniciar o jogo?                | Sim                                                  |
+| Entendeu as regras e mecânicas do jogo?  | Entendeu com poucas dúvidas                          |
+| Conseguiu progredir no jogo?             | Sim, mas não conseguiu concluir                      |
+| Apresentou dificuldades?                 | Sim, no mini game de lazer                           |
+| Que nota deu ao jogo?                    | 9.0                                                  |
+| Qual mini game mais gostou?              | Banho                                                |
+| O que poderia melhorar no jogo?          | Dificuldade alta e salto duplo no mini game de lazer |
+
+| Nome                                     | Anthony                                                                                       |
+| ---------------------------------------- | --------------------------------------------------------------------------------------------- |
+| Idade                                    | 19 anos                                                                                       |
+| Curso                                    | Engenharia de Computação                                                                      |
+| Tem ou já teve algum pet?                | Não, mas tem vontade                                                                          |
+| Já possuía experiência prévia com games? | Sim, muita                                                                                    |
+| Conseguiu iniciar o jogo?                | Sim                                                                                           |
+| Entendeu as regras e mecânicas do jogo?  | Não teve dúvidas                                                                              |
+| Conseguiu progredir no jogo?             | Sim. Concluiu com facilidade                                                                  |
+| Apresentou dificuldades?                 | Sim, no mini game de cuidados (pegar pulgas)                                                  |
+| Que nota deu ao jogo?                    | 9.0                                                                                           |
+| Qual mini game mais gostou?              | Cuidados                                                                                      |
+| O que poderia melhorar no jogo?          | Hitbox dos ossos e obstáculos no mini game de lazer; Hitbox da pinça no mini game de cuidados |
+
+| Nome                                     | Pedro                                                                           |
+| ---------------------------------------- | ------------------------------------------------------------------------------- |
+| Idade                                    | 18 anos                                                                         |
+| Curso                                    | Engenharia de Computação                                                        |
+| Tem ou já teve algum pet?                | Sim, possuo                                                                     |
+| Já possuía experiência prévia com games? | Sim                                                                             |
+| Conseguiu iniciar o jogo?                | Sim                                                                             |
+| Entendeu as regras e mecânicas do jogo?  | Não teve dúvidas                                                                |
+| Conseguiu progredir no jogo?             | Sim, concluiu com facilidade                                                    |
+| Apresentou dificuldades?                 | Não, nenhuma                                                                    |
+| Que nota deu ao jogo?                    | 9.0                                                                             |
+| Qual mini game mais gostou?              | Lazer                                                                           |
+| O que poderia melhorar no jogo?          | Intuitividade na sequência de tarefas; Hitbox da pinça no mini game de cuidados |
+
+| Nome                                     | Ludmilla                               |
+| ---------------------------------------- | -------------------------------------- |
+| Idade                                    | 20 anos                                |
+| Curso                                    | Engenharia de Software                 |
+| Tem ou já teve algum pet?                | Não, mas já possuí                     |
+| Já possuía experiência prévia com games? | Sim, mas pouca                         |
+| Conseguiu iniciar o jogo?                | Sim                                    |
+| Entendeu as regras e mecânicas do jogo?  | Entendeu com poucas dúvidas            |
+| Conseguiu progredir no jogo?             | Sim, concluiu com dificuldade          |
+| Apresentou dificuldades?                 | Sim, no jogo de lazer                  |
+| Que nota deu ao jogo?                    | 9.0                                    |
+| Qual mini game mais gostou?              | Alimentação                            |
+| O que poderia melhorar no jogo?          | Intuitividade na sequência de tarefas; |
+
+| Nome                                     | Vitor                                               |
 | ---------------------------------------- | --------------------------------------------------- |
 | Idade                                    | 18 anos                                             |
-| Curso                                    | Ciência da Computação                               |
-| Tem ou já teve algum pet?                | Sim, possuo                                         |
-| Já possuía experiência prévia com games? | Sim, mas pouca                                      |
+| Curso                                    | Engenharia de Software                              |
+| Tem ou já teve algum pet?                | Sim, possui                                         |
+| Já possuía experiência prévia com games? | Sim                                                 |
 | Conseguiu iniciar o jogo?                | Sim                                                 |
 | Entendeu as regras e mecânicas do jogo?  | Entendeu com poucas dúvidas                         |
-| Conseguiu progredir no jogo?             | Sim, mas não conseguiu concluir                     |
-| Apresentou dificuldades?                 | Sim, no minigame de lazer                           |
+| Conseguiu progredir no jogo?             | Sim, concluiu com facilidade                        |
+| Apresentou dificuldades?                 | Sim, no jogo de lazer                               |
 | Que nota deu ao jogo?                    | 9.0                                                 |
-| Qual minigame mais gostou?               | Banho                                               |
-| O que poderia melhorar no jogo?          | Dificuldade alta e salto duplo no minigame de lazer |
-
-| Nome                                     | Anthony                                                                                     |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------- |
-| Idade                                    | 19 anos                                                                                     |
-| Curso                                    | Engenharia de Computação                                                                    |
-| Tem ou já teve algum pet?                | Não, mas tem vontade                                                                        |
-| Já possuía experiência prévia com games? | Sim, muita                                                                                  |
-| Conseguiu iniciar o jogo?                | Sim                                                                                         |
-| Entendeu as regras e mecânicas do jogo?  | Não teve dúvidas                                                                            |
-| Conseguiu progredir no jogo?             | Sim. Concluiu com facilidade                                                                |
-| Apresentou dificuldades?                 | Sim, no minigame de cuidados (pegar pulgas)                                                 |
-| Que nota deu ao jogo?                    | 9.0                                                                                         |
-| Qual minigame mais gostou?               | Cuidados                                                                                    |
-| O que poderia melhorar no jogo?          | Hitbox dos ossos e obstáculos no minigame de lazer; hitbox da pinça no minigame de cuidados |
-
-| Nome                                     | Pedro                                                                          |
-| ---------------------------------------- | ------------------------------------------------------------------------------ |
-| Idade                                    | 18 anos                                                                        |
-| Curso                                    | Engenharia de Computação                                                       |
-| Tem ou já teve algum pet?                | Sim, possuo                                                                    |
-| Já possuía experiência prévia com games? | Sim                                                                            |
-| Conseguiu iniciar o jogo?                | Sim                                                                            |
-| Entendeu as regras e mecânicas do jogo?  | Não teve dúvidas                                                               |
-| Conseguiu progredir no jogo?             | Sim, concluiu com facilidade                                                   |
-| Apresentou dificuldades?                 | Não, nenhuma                                                                   |
-| Que nota deu ao jogo?                    | 9.0                                                                            |
-| Qual minigame mais gostou?               | Lazer                                                                          |
-| O que poderia melhorar no jogo?          | Intuitividade na sequência de tarefas; hitbox da pinça no minigame de cuidados |
-
-| Nome                                     | Ludmilla                              |
-| ---------------------------------------- | ------------------------------------- |
-| Idade                                    | 20 anos                               |
-| Curso                                    | Engenharia de Software                |
-| Tem ou já teve algum pet?                | Não, mas já possuí                    |
-| Já possuía experiência prévia com games? | Sim, mas pouca                        |
-| Conseguiu iniciar o jogo?                | Sim                                   |
-| Entendeu as regras e mecânicas do jogo?  | Entendeu com poucas dúvidas           |
-| Conseguiu progredir no jogo?             | Sim, concluiu com dificuldade         |
-| Apresentou dificuldades?                 | Sim, no jogo de lazer                 |
-| Que nota deu ao jogo?                    | 9.0                                   |
-| Qual minigame mais gostou?               | Alimentação                           |
-| O que poderia melhorar no jogo?          | Intuitividade na sequência de tarefas |
-
-| Nome                                     | Vitor                                              |
-| ---------------------------------------- | -------------------------------------------------- |
-| Idade                                    | 18 anos                                            |
-| Curso                                    | Engenharia de Software                             |
-| Tem ou já teve algum pet?                | Sim, possui                                        |
-| Já possuía experiência prévia com games? | Sim                                                |
-| Conseguiu iniciar o jogo?                | Sim                                                |
-| Entendeu as regras e mecânicas do jogo?  | Entendeu com poucas dúvidas                        |
-| Conseguiu progredir no jogo?             | Sim, concluiu com facilidade                       |
-| Apresentou dificuldades?                 | Sim, no jogo de lazer                              |
-| Que nota deu ao jogo?                    | 9.0                                                |
-| Qual minigame mais gostou?               | Cuidados                                           |
-| O que poderia melhorar no jogo?          | Hitbox dos ossos e obstáculos no minigame de lazer |
+| Qual mini game mais gostou?              | Cuidados                                            |
+| O que poderia melhorar no jogo?          | Hitbox dos ossos e obstáculos no mini game de lazer |
 
 | Nome                                     | Henrique                     |
 | ---------------------------------------- | ---------------------------- |
@@ -1701,10 +1701,11 @@ Essas melhorias atendem aos requisitos RF16, RF17, RF19, RF20, RF21 e RF22, alé
 | Conseguiu progredir no jogo?             | Sim, concluiu com facilidade |
 | Apresentou dificuldades?                 | Poucas, no jogo de lazer     |
 | Que nota deu ao jogo?                    | 9.0                          |
-| Qual minigame mais gostou?               | Lazer                        |
+| Qual mini game mais gostou?              | Lazer                        |
 | O que poderia melhorar no jogo?          | Cores das rações             |
 
 </div>
+
 
 ### 5.2.2 Melhorias
 
