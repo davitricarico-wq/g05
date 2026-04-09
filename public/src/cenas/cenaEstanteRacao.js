@@ -66,45 +66,31 @@ export class cenaEstanteRacao extends Phaser.Scene {
 
         /**
          * Helper dinâmico para criar botões interativos com efeitos de tween (animação) nos estados de ponteiro.
-         * @param {number} x - Posição no eixo X
-         * @param {number} y - Posição no eixo Y
-         * @param {string} texturaNormal - Chave da imagem em estado de repouso
-         * @param {string} texturaPressionado - Chave da imagem quando clicada/focada
-         * @param {number} escalaBase - Tamanho em estado de repouso
-         * @param {number} escalaAumentada - Tamanho durante o hover (pointerover)
-         * @param {number} escalaPressionada - Tamanho durante o clique (pointerdown)
-         * @param {function} callback - Função executada no pointerup (soltar o clique)
-         * @returns {Phaser.GameObjects.Image} Objeto botão retornado para manipulação futura
          */
         const criarBotao = (x, y, texturaNormal, texturaPressionado, escalaBase, escalaAumentada, escalaPressionada, callback) => {
             const botao = this.add.image(x, y, texturaNormal)
                 .setScale(escalaBase)
                 .setInteractive({ useHandCursor: true });
 
-            // Armazenamento das escalas como propriedades customizadas para uso no evento de resize
             botao.escalaNormal = escalaBase;
             botao.escalaHover = escalaAumentada;
             botao.escalaPress = escalaPressionada;
 
-            // Efeito Hover (passar o mouse)
             botao.on("pointerover", () => {
                 botao.setTexture(texturaPressionado);
                 this.tweens.add({ targets: botao, scale: botao.escalaHover, duration: 150, ease: "Power2" });
             });
 
-            // Efeito Out (tirar o mouse)
             botao.on("pointerout", () => {
                 botao.setTexture(texturaNormal);
                 this.tweens.add({ targets: botao, scale: botao.escalaNormal, duration: 150, ease: "Power2" });
             });
 
-            // Efeito Down (clicar e segurar)
             botao.on("pointerdown", () => {
                 botao.setTexture(texturaPressionado);
                 this.tweens.add({ targets: botao, scale: botao.escalaPress, duration: 100, ease: "Power2" });
             });
 
-            // Efeito Up (soltar o clique - aciona o callback)
             botao.on("pointerup", () => {
                 botao.setTexture(texturaPressionado);
                 this.tweens.add({ targets: botao, scale: botao.escalaHover, duration: 100, ease: "Power2" });
@@ -116,9 +102,6 @@ export class cenaEstanteRacao extends Phaser.Scene {
 
         /**
          * Helper para adicionar efeito de "pulsar" a um elemento não clicável por padrão.
-         * @param {Phaser.GameObjects.GameObject} alvo - O elemento a ser animado
-         * @param {number} escalaNormal - Escala de repouso
-         * @param {number} escalaPassar - Escala de hover
          */
         const passarPressionarEfeito = (alvo, escalaNormal, escalaPassar) => {
             alvo.escalaNormal = escalaNormal;
@@ -137,9 +120,6 @@ export class cenaEstanteRacao extends Phaser.Scene {
             });
         };
 
-        /**
-         * Controla a sobreposição da cena "Ficha" (perfil do pet) como um modal alternável (toggle).
-         */
         const alternarFicha = () => {
             if (this.scene.isActive("ficha")) {
                 this.scene.stop("ficha");
@@ -152,12 +132,12 @@ export class cenaEstanteRacao extends Phaser.Scene {
         // Background e transição inicial
         this.fundo = this.add.image(largura / 2, altura / 2, "bgLimpo")
             .setDisplaySize(largura, altura)
-            .setDepth(-1); // Depth -1 garante que ficará atrás de todos os elementos
+            .setDepth(-1); 
 
         this.cameras.main.setBounds(0, 0, largura, altura);
         this.cameras.main.fadeIn(this.duracaoFade, 0, 0, 0);
 
-        // Botão para retornar à cena principal de alimentação
+        // Botão para retornar à cena principal
         this.botaoVoltar = criarBotao(
             largura * 0.95, altura * 0.9, "iconeVoltar", "iconeVoltar",
             0.8, 1, 0.6,
@@ -170,7 +150,7 @@ export class cenaEstanteRacao extends Phaser.Scene {
             fontSize: "20px", color: "#ffffff", fontFamily: '"Press Start 2P"', align: "center"
         }).setOrigin(0.5);  
 
-        // Botão flutuante para acessar a ficha do Pet ativo
+        // Botão flutuante para acessar a ficha
         gameState.bilhete = this.add.image(largura * 0.94, altura * 0.3, 'mineFicha')
             .setScale(0.12)
             .setDepth(20)
@@ -182,29 +162,24 @@ export class cenaEstanteRacao extends Phaser.Scene {
         // Renderização do móvel "Estante"
         this.estante = this.add.image(centroEsquerdaX, altura * 0.6, "estanteVazia").setScale(1).setDepth(-1);
 
-        // Coordenadas relativas do grid de disposição das rações na estante (3 colunas x 3 linhas)
         const colunasRacao = [largura * 0.18, largura * 0.30, largura * 0.42];
         const linhasRacao = [altura * 0.35, altura * 0.605, altura * 0.855];
 
-        // Instanciando as rações importadas do catálogo (dadosRacoes.js) baseadas no modelo Racao
         this.racoes = [
-            // Linha superior: Rações Standard
             new Racao(this, colunasRacao[0], linhasRacao[0], racaoStandardPequeno),
             new Racao(this, colunasRacao[1], linhasRacao[0], racaoStandardMedio),
             new Racao(this, colunasRacao[2], linhasRacao[0], racaoStandardGrande),
             
-            // Linha central: Rações Premium
             new Racao(this, colunasRacao[0], linhasRacao[1], racaoPremiumPequeno),
             new Racao(this, colunasRacao[1], linhasRacao[1], racaoPremiumMedio),
             new Racao(this, colunasRacao[2], linhasRacao[1], racaoPremiumGrande),
             
-            // Linha inferior: Rações Super Premium
             new Racao(this, colunasRacao[0], linhasRacao[2], racaoSuperPremiumPequeno),
             new Racao(this, colunasRacao[1], linhasRacao[2], racaoSuperPremiumMedio),
             new Racao(this, colunasRacao[2], linhasRacao[2], racaoSuperPremiumGrande),
         ];
         
-        // Painel lateral de detalhes e compra
+        // Painel lateral
         this.fundoTemplateRacao = this.add.image(centroDireitaX, altura * 0.56, "fundoTemplateRacao")
             .setScale(altura * 0.00075);
 
@@ -221,74 +196,104 @@ export class cenaEstanteRacao extends Phaser.Scene {
 
         this.containerTexto.add([this.titulo, this.subtitulo]);
 
-        // Texto de feedback para exibir mensagens de erro/sucesso nas operações de compra
         this.textoFeedback = this.add.text(centroDireitaX, altura * 0.93, "", {
             fontSize: "14px", color: "#ff0000", fontFamily: '"Press Start 2P"', align: "center", wordWrap: { width: 350 }
         }).setOrigin(0.5);
 
-        // Lógica de compra: Botão para confirmar a compra da ração selecionada, inicialmente invisível até que uma ração seja escolhida      
-        this.botaoComprarSuperPremium = criarBotao(
-            centroDireitaX, altura * 0.75,
-            "botaoComprarSuperPremium", "botaoComprarSuperPremiumPressionado",
-            0.15, 0.16, 0.14,
-            () => {
-                // Validação 1: O usuário precisa ter clicado em alguma ração na prateleira
-                if (!Racao.selecionada) {
-                    this.textoFeedback.setText("SELECIONE UMA RAÇÃO PRIMEIRO!").setColor("#ff0000");
-                    return;
-                }
 
-                // Validação 2: A ração selecionada deve ser compatível com o porte/idade do pet ativo
-                if (Racao.selecionada.id !== pet.id) {
-                    this.textoFeedback.setText("ESSA RAÇÃO NÃO É IDEAL.\nESCOLHA OUTRA RAÇÃO.").setColor("#ff0000");
-                    return;
-                }
+        // =========================================================================================
+        // NOVO BOTÃO DE COMPRA COM TEXTO EMBUTIDO (USANDO CONTAINER)
+        // =========================================================================================
 
-                const valorDaRacao = Racao.selecionada.valor || 15; 
-                
-                // Validação 3: Checagem do saldo de moedas do jogador
-                if (gameState.cobasiCoins >= valorDaRacao) {
-                    // Deduz o valor e atualiza o HUD em tempo real
-                    gameState.cobasiCoins -= valorDaRacao;
-                    this.textoMoedas.setText(gameState.cobasiCoins);
+        this.containerBotaoComprar = this.add.container(centroDireitaX, altura * 0.75).setDepth(10);
+        
+        // Propriedades de escala para uso dinâmico nos Tweens e no Resize
+        this.containerBotaoComprar.escalaNormal = 0.15;
+        this.containerBotaoComprar.escalaHover = 0.16;
+        this.containerBotaoComprar.escalaPress = 0.14;
+        
+        // Inicia oculto e com a escala padrão
+        this.containerBotaoComprar.setScale(this.containerBotaoComprar.escalaNormal).setVisible(false).setAlpha(0);
 
-                    this.textoFeedback.setText(`COMPRA EFETUADA! (-${valorDaRacao} MOEDAS)\nRedirecionando...`).setColor("#006600");
+        this.botaoComprarImg = this.add.image(0, 0, "botaoComprar").setInteractive({ useHandCursor: true });
+        
+        // O texto foi configurado com um tamanho grande (150px) porque ele será comprimido pela escala 0.15 do container
+        this.textoPrecoBotao = this.add.text(100, 13, "0", {
+            fontSize: "150px", color: "#ffffff", fontFamily: '"Press Start 2P", Arial', align: "center"
+        }).setOrigin(0.5);
 
-                    // Desabilita o botão para evitar cliques múltiplos (double spend)
-                    this.botaoComprarSuperPremium.disableInteractive();
+        // Adiciona a imagem e o texto ao Container
+        this.containerBotaoComprar.add([this.botaoComprarImg, this.textoPrecoBotao]);
 
-                    // Reseta os sinalizadores de tipo de ração no estado global
-                    gameState.superPremium = false;
-                    gameState.premium = false;
-                    gameState.standard = false;
+        // Interações de mouse vinculadas ao Container
+        this.botaoComprarImg.on("pointerover", () => {
+            this.botaoComprarImg.setTexture("botaoComprando");
+            this.tweens.add({ targets: this.containerBotaoComprar, scale: this.containerBotaoComprar.escalaHover, duration: 150, ease: "Power2" });
+        });
 
-                    // Atualiza o estado global de acordo com a categoria comprada
-                    if (Racao.selecionada.tipo === "Super Premium") {
-                        gameState.superPremium = true;
-                    } else if (Racao.selecionada.tipo === "Premium") {
-                        gameState.premium = true;
-                    } else if (Racao.selecionada.tipo === "Standard") {
-                        gameState.standard = true;
-                    }
+        this.botaoComprarImg.on("pointerout", () => {
+            this.botaoComprarImg.setTexture("botaoComprar");
+            this.tweens.add({ targets: this.containerBotaoComprar, scale: this.containerBotaoComprar.escalaNormal, duration: 150, ease: "Power2" });
+        });
 
-                    // Registra o tipo e sprite exatos da ração selecionada para carregar na próxima cena
-                    gameState.racaoAtual = {
-                        tipo: Racao.selecionada.tipo,
-                        sprite: Racao.selecionada.sprite.texture.key 
-                    };
+        this.botaoComprarImg.on("pointerdown", () => {
+            this.botaoComprarImg.setTexture("botaoComprando");
+            this.tweens.add({ targets: this.containerBotaoComprar, scale: this.containerBotaoComprar.escalaPress, duration: 100, ease: "Power2" });
+        });
 
-                    // Delay estético antes de transitar para a cena do jogo de alimentação
-                    this.time.delayedCall(1500, () => {
-                        Racao.selecionada = null; // Limpa cache para a próxima vez
-                        this.transicaoPara("jogoAlimentacao"); 
-                    });
-                } else {
-                    this.textoFeedback.setText("SALDO INSUFICIENTE!").setColor("#ff0000"); 
-                }
+        this.botaoComprarImg.on("pointerup", () => {
+            this.botaoComprarImg.setTexture("botaoComprando");
+            this.tweens.add({ targets: this.containerBotaoComprar, scale: this.containerBotaoComprar.escalaHover, duration: 100, ease: "Power2" });
+            
+            // Lógica principal de Validação e Compra
+            if (!Racao.selecionada) {
+                this.textoFeedback.setText("SELECIONE UMA RAÇÃO PRIMEIRO!").setColor("#ff0000");
+                return;
             }
-        ).setVisible(false).setAlpha(0); // Começa invisível até que uma ração seja selecionada
 
-        // Montagem do painel de informações nutricionais (Escondido por padrão)
+            if (Racao.selecionada.id !== pet.id) {
+                this.textoFeedback.setText("ESSA RAÇÃO NÃO É IDEAL.\nESCOLHA OUTRA RAÇÃO.").setColor("#ff0000");
+                return;
+            }
+
+            const valorDaRacao = Racao.selecionada.valor || 15; 
+            
+            if (gameState.cobasiCoins >= valorDaRacao) {
+                gameState.cobasiCoins -= valorDaRacao;
+                this.textoMoedas.setText(gameState.cobasiCoins);
+
+                this.textoFeedback.setText(`COMPRA EFETUADA! (-${valorDaRacao} MOEDAS)\nRedirecionando...`).setColor("#006600");
+
+                this.botaoComprarImg.disableInteractive();
+
+                gameState.superPremium = false;
+                gameState.premium = false;
+                gameState.standard = false;
+
+                if (Racao.selecionada.tipo === "Super Premium") {
+                    gameState.superPremium = true;
+                } else if (Racao.selecionada.tipo === "Premium") {
+                    gameState.premium = true;
+                } else if (Racao.selecionada.tipo === "Standard") {
+                    gameState.standard = true;
+                }
+
+                gameState.racaoAtual = {
+                    tipo: Racao.selecionada.tipo,
+                    sprite: Racao.selecionada.sprite.texture.key 
+                };
+
+                this.time.delayedCall(1500, () => {
+                    Racao.selecionada = null; 
+                    this.transicaoPara("jogoAlimentacao"); 
+                });
+            } else {
+                this.textoFeedback.setText("SALDO INSUFICIENTE!").setColor("#ff0000"); 
+            }
+        });
+
+
+        // Montagem do painel de informações nutricionais
         this.containerInfo = this.add.container(centroDireitaX, altura * 0.47)
             .setScale(altura * 0.0009)
             .setVisible(false).setAlpha(0);
@@ -296,20 +301,17 @@ export class cenaEstanteRacao extends Phaser.Scene {
         this.composicaoRacao = this.add.image(35, 10, "composicaoRacao").setScale(0.75);
         this.imagemRacaoInfo = this.add.image(-160, -70, "").setScale(0.5);
 
-        // Textos descritivos (Tipo, Porte e Características Especiais)
         this.textoTipo = this.add.text(0, -217, "", { fontSize: "32px", color: "#005e64", fontFamily: '"Press Start 2P"', align: "center" }).setOrigin(0.5);
         this.textoPorte = this.add.text(150, -150, "", { fontSize: "22px", color: "#006600", fontFamily: '"Press Start 2P"' }).setOrigin(0, 0.5);
         this.textoChar1 = this.add.text(120, -60, "", { fontSize: "16px", color: "#000", fontFamily: '"Press Start 2P"', align: "center", wordWrap: { width: 300 } }).setOrigin(0.5);
         this.textoChar2 = this.add.text(120, 15, "", { fontSize: "16px", color: "#000", fontFamily: '"Press Start 2P"', align: "center", wordWrap: { width: 300 } }).setOrigin(0.5);
 
-        // Porcentagens Nutricionais
         const porcentagem = { fontSize: "16px", color: "#8B4513", fontFamily: '"Press Start 2P"' };
         this.textoTrigo = this.add.text(-180, 208, "", porcentagem).setOrigin(0.5);
         this.textoCarne = this.add.text(-53, 208, "", porcentagem).setOrigin(0.5);
         this.textoOsso = this.add.text(78, 208, "", porcentagem).setOrigin(0.5);
         this.textoGordura = this.add.text(197, 208, "", porcentagem).setOrigin(0.5);
 
-        // Acoplando todos os elementos ao contêiner de informações
         this.containerInfo.add([
             this.composicaoRacao, this.imagemRacaoInfo, this.textoTipo, this.textoPorte, 
             this.textoChar1, this.textoChar2, this.textoTrigo, this.textoCarne, this.textoOsso, this.textoGordura
@@ -318,14 +320,12 @@ export class cenaEstanteRacao extends Phaser.Scene {
         
         // Configuração de eventos para os sacos de ração na estante
         this.racoes.forEach((racao, index) => {
-            // Remove listeners antigos atrelados na criação inicial da classe, garantindo prioridade para este fluxo
             racao.sprite.removeAllListeners('pointerover');
             racao.sprite.removeAllListeners('pointerout');
 
             let tamanhoNormal = 0.3;
             let tamanhoHover = 0.32;
 
-            // Define escalas levemente diferentes dependendo da prateleira (Standard x Premium)
             if (index >= 0 && index <= 2) {
                 tamanhoNormal = 0.3; 
                 tamanhoHover = 0.35;
@@ -337,27 +337,23 @@ export class cenaEstanteRacao extends Phaser.Scene {
                 tamanhoHover = 0.35;
             }
 
-            // Injeta as propriedades customizadas para a lógica do Tween
             racao.sprite.escalaNormal = tamanhoNormal;
             racao.sprite.escalaHover = tamanhoHover;
 
             racao.sprite.setScale(tamanhoNormal).setVisible(true).setInteractive({ useHandCursor: true });
             
-            // Recriando eventos de hover com as novas proporções configuradas
             racao.sprite.on("pointerover", () => this.tweens.add({ targets: racao.sprite, scale: racao.sprite.escalaHover, duration: 100, ease: "Power2" }));
             racao.sprite.on("pointerout", () => this.tweens.add({ targets: racao.sprite, scale: racao.sprite.escalaNormal, duration: 100, ease: "Power2" }));
 
-            // Clique na ração (Seleção e atualização do painel de leitura nutricional)
+            // Clique na ração
             racao.sprite.on("pointerup", () => {
                 Racao.selecionada = racao; 
                 
-                // Oculta gradualmente a mensagem de boas vindas inicial "Compre sua ração"
                 this.tweens.add({
                     targets: this.containerTexto, alpha: 0, duration: 200, ease: "Power2",
                     onComplete: () => this.containerTexto.setVisible(false)
                 });
 
-                // Atualiza em tempo real as referências de texto com as informações do pacote clicado
                 this.textoTipo.setText(racao.tipo || "Super Premium");
                 this.textoPorte.setText(racao.porte || "-");
                 this.textoChar1.setText(racao.caracteristicas ? racao.caracteristicas[0] : "");
@@ -370,22 +366,22 @@ export class cenaEstanteRacao extends Phaser.Scene {
 
                 if (this.textoFeedback) this.textoFeedback.setText("");
 
-                // Mostra a janela detalhada de composição e o botão de compra associado
+                const valorRacaoAtual = racao.valor || 15;
+                this.textoPrecoBotao.setText(`${valorRacaoAtual}`);
+
+                // Revela o container de informações e o container do botão de compra
                 this.composicaoRacao.setVisible(true);
                 this.containerInfo.setAlpha(0).setVisible(true);
-                this.botaoComprarSuperPremium.setVisible(true);
+                this.containerBotaoComprar.setVisible(true);
                 
-                this.tweens.add({ targets: [this.containerInfo, this.botaoComprarSuperPremium], alpha: 1, duration: 250, ease: "Power2" });
+                this.tweens.add({ targets: [this.containerInfo, this.containerBotaoComprar], alpha: 1, duration: 250, ease: "Power2" });
             });
         });
 
-        // Se o usuário ainda não tiver visto o tutorial de como usar a interface, ele é invocado aqui.
         if (!gameState.instrucaoDescricaoRacaoVista) {
             this.mostrarInstrucaoDescricaoRacao(largura, altura);
         }
 
-        // Essa função garante que a UI permaneça responsiva, recalculando a posição e a escala de todos 
-        // os GameObjects dinamicamente caso o jogador minimize ou altere a janela do browser.
         const handleResizeRacaoSuperPremium = (gameSize) => {
             const w = gameSize.width;
             const h = gameSize.height;
@@ -413,10 +409,8 @@ export class cenaEstanteRacao extends Phaser.Scene {
                 gameState.bilhete.setScale(gameState.bilhete.escalaNormal);
             }
 
-            // Fundo principal da estante
             this.estante.setPosition(w * 0.30, h * 0.6).setScale(h * 0.0016);
 
-            // Containeres da Direita (Textos Iniciais e Template)
             this.fundoTemplateRacao.setPosition(w * 0.70, h * 0.56).setScale(h * 0.00075);
             this.containerTexto.setPosition(w * 0.70, h * 0.55);
             
@@ -425,16 +419,15 @@ export class cenaEstanteRacao extends Phaser.Scene {
 
             this.containerInfo.setPosition(w * 0.70, h * 0.47).setScale(h * 0.0009);
             
-            // Botão de Confirmação e Textos
-            this.botaoComprarSuperPremium.setPosition(w * 0.70, h * 0.75);
-            this.botaoComprarSuperPremium.escalaNormal = h * 0.00025; 
-            this.botaoComprarSuperPremium.escalaHover = h * 0.00026;  
-            this.botaoComprarSuperPremium.escalaPress = h * 0.00023;  
-            this.botaoComprarSuperPremium.setScale(this.botaoComprarSuperPremium.escalaNormal);
+            // Atualiza posição e escalas do novo botão via Container
+            this.containerBotaoComprar.setPosition(w * 0.70, h * 0.75);
+            this.containerBotaoComprar.escalaNormal = h * 0.00025; 
+            this.containerBotaoComprar.escalaHover = h * 0.00026;  
+            this.containerBotaoComprar.escalaPress = h * 0.00023;  
+            this.containerBotaoComprar.setScale(this.containerBotaoComprar.escalaNormal);
 
             this.textoFeedback.setPosition(w * 0.70, h * 0.93).setScale(h * 0.001);
 
-            // Recalculando a malha/grid das Rações na estante
             const novasColunas = [w * 0.18, w * 0.30, w * 0.42];
             const novasLinhas = [h * 0.37, h * 0.605, h * 0.845];
             
@@ -447,14 +440,13 @@ export class cenaEstanteRacao extends Phaser.Scene {
                         let escalaBase = h * 0.0005;
                         let escalaHover = h * 0.00053;
 
-                        // Condicionais baseadas nos índices para adaptar os pacotes conforme prateleiras
-                        if (index >= 0 && index <= 2) { // Rações Standard
+                        if (index >= 0 && index <= 2) { 
                             escalaBase = h * 0.0005;
                             escalaHover = h * 0.00053;
-                        } else if (index >= 3 && index <= 5) { // Rações Premium
+                        } else if (index >= 3 && index <= 5) { 
                             escalaBase = h * 0.0006;
                             escalaHover = h * 0.00063;
-                        } else if (index >= 6 && index <= 8) { // Rações Super Premium
+                        } else if (index >= 6 && index <= 8) { 
                             escalaBase = h * 0.0007;
                             escalaHover = h * 0.00073;
                         }
@@ -467,7 +459,6 @@ export class cenaEstanteRacao extends Phaser.Scene {
                 }
             }
 
-            // Atualização do Modal Tutorial caso este ainda esteja aberto
             if (this.fundoEscuroInstrucao && this.fundoEscuroInstrucao.active) {
                 this.fundoEscuroInstrucao.setSize(w, h);
                 this.fundoEscuroInstrucao.setPosition(w / 2, h / 2);
@@ -483,37 +474,27 @@ export class cenaEstanteRacao extends Phaser.Scene {
             }
         };
 
-        // Adiciona o listener de resize à câmera atual da cena
         this.scale.on("resize", handleResizeRacaoSuperPremium);
 
-        // Cleanup: remove o listener de resize quando a cena for destruída para evitar vazamento de memória
         this.events.on('shutdown', () => {
             this.scale.off("resize", handleResizeRacaoSuperPremium);
         });
     }
 
-    /**
-     * @method mostrarInstrucaoDescricaoRacao
-     * @description Exibe uma sobreposição (overlay) de tutorial na primeira vez que o jogador entra na cena.
-     * @param {number} largura - Largura do canvas em pixels
-     * @param {number} altura - Altura do canvas em pixels
-     */
     mostrarInstrucaoDescricaoRacao(largura, altura) {
         const centroX = largura / 2;
         const centroY = altura / 2;
 
-        // Máscara escura cobrindo todo o fundo para destacar o tutorial (Profundidade 1000)
         this.fundoEscuroInstrucao = this.add.rectangle(centroX, centroY, largura, altura, 0x000000, 0.7)
             .setDepth(1000)
             .setInteractive(); 
 
-        this.imgInstrucao = this.add.image(centroX, centroY, "instrucaoDescricaoRacao")
+        this.imgInstrucao = this.add.image(centroX, centroY, "instrucaoEscolhaRacao")
             .setDepth(1001)
             .setScale(0.5); 
 
         const posicaoTextoY = centroY + (this.imgInstrucao.displayHeight / 2) + 30;
 
-        // Texto com efeito blink (piscando) para incentivar o clique
         this.txtContinuarInstrucao = this.add.text(centroX, posicaoTextoY, "[ Clique para continuar ]", {
             fontFamily: '"Press Start 2P", Arial',
             fontSize: "15px",
@@ -530,13 +511,11 @@ export class cenaEstanteRacao extends Phaser.Scene {
             loop: -1
         });
 
-        // Ao clicar no fundo escuro, destrói os elementos do tutorial e marca como lido no estado global
         this.fundoEscuroInstrucao.on("pointerdown", () => {
             this.fundoEscuroInstrucao.destroy();
             this.imgInstrucao.destroy();
             this.txtContinuarInstrucao.destroy();
             
-            // Removendo referências para o Garbage Collector
             this.fundoEscuroInstrucao = null;
             this.imgInstrucao = null;
             this.txtContinuarInstrucao = null;
@@ -545,22 +524,13 @@ export class cenaEstanteRacao extends Phaser.Scene {
         });
     }
 
-    /**
-     * @method transicaoPara
-     * @description Função padronizada para efetuar a mudança de cenas com animação suave de fade out.
-     * Impede disparos simultâneos utilizando uma flag de controle.
-     * @param {string} chaveCena - A chave (key) da próxima cena (ex: 'cenaComida')
-     */
     transicaoPara(chaveCena) {
-        // Bloqueia execução caso uma transição já esteja em andamento
         if (this.transicao) return;
 
         this.transicao = true;
         this.cameras.main.fadeOut(this.duracaoFade, 0, 0, 0);
         
-        // Listener aguardando a finalização da transição visual
         this.cameras.main.once("camerafadeoutcomplete", () => {
-            // Fecha qualquer HUD secundário, como a Ficha, para não transbordar para a próxima cena
             if (this.scene.isActive("ficha")) {
                 this.scene.stop("ficha");
             }

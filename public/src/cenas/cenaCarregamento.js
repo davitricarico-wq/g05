@@ -80,26 +80,17 @@ export class cenaCarregamento extends Phaser.Scene {
         this.load.image("estanteVazia", "assets/tela-alimentacao/estanteVazia.png");
         this.load.image("racaoVazia", "assets/tela-alimentacao/racaoVazia.png");
         this.load.image("estanteRacao", "assets/tela-alimentacao/estanteRacao.png");
-        this.load.image("estanteStandard", "assets/tela-alimentacao/estanteStandard.png");
         this.load.image("fundoTemplateRacao", "assets/fundoTemplateRacao.png");
         this.load.image("composicaoRacao", "assets/tela-racao/composicaoRacao.png");
 
         // Botões de categorias e compra de ração
-        this.load.image("botaoStandard", "assets/botaoStandardNormal.png");
-        this.load.image("botaoStandardPressionado", "assets/botaoStandardPressionado.png");
-        this.load.image("botaoSuperPremium", "assets/botaoSuperPremiumNormal.png");
-        this.load.image("botaoSuperPremiumPressionado", "assets/botaoSuperPremiumPressionado.png");
-        this.load.image("botaoComprarSuperPremium", "assets/botaoComprarSuperPremium.png");
-        this.load.image("botaoComprarSuperPremiumPressionado", "assets/botaoComprarSuperPremiumPressionado.png");
-        this.load.image("botaoComprarStandard", "assets/botaoComprarStandard.png");
-        this.load.image("botaoComprarStandardPressionado", "assets/botaoComprarStandardPressionado.png");
+        this.load.image("botaoComprar", "assets/botaoComprar.png");
+        this.load.image("botaoComprando", "assets/botaoComprando.png");
 
         // JOGO DE ALIMENTAÇÃO (PEGA-PEGA DA COMIDA) 
         this.load.image('bgFoodScene', 'assets/tela-alimentacao/fundoracao.png');
         this.load.image('dogPlayer', 'assets/dogPlayer.png'); // Sprite fixo do cachorro de boca aberta
         this.load.image("cachorroHeroiBoca", "assets/cachorroHeroiBoca.png"); // Versão Herói
-        this.load.image('foodNormal', 'assets/foodNormal.png');
-        this.load.image('foodSuperPremium', 'assets/foodSuperPremium.png');
         this.load.image('foodChocolate', 'assets/foodChocolate.png'); // Obstáculo / Item negativo
         this.load.image('heart', 'assets/heart.png'); // Ícone de vida
         this.load.image('retornoInicio', 'assets/retornoInicio.png'); // (Duplicado com a linha 39, verifique se o caminho é igual)
@@ -115,7 +106,6 @@ export class cenaCarregamento extends Phaser.Scene {
         
         // CENA DE LAZER (PARQUE/BRINCADEIRA) 
         this.load.image("bgLazer", "assets/tela-lazer/bgLazer.png");
-        this.load.image("bolaLaranja","assets/bolaLaranja.png");
         this.load.image("petisco", "assets/tela-lazer/petisco.png");
         this.load.image("petiscoEstragado", "assets/tela-lazer/petiscoestragado.png");
         this.load.image("obstaculo", "assets/tela-lazer/obstaculo.png"); 
@@ -157,13 +147,11 @@ export class cenaCarregamento extends Phaser.Scene {
         this.load.image("feedback1estrela", "assets/feedback/feedbackMineGame3.png");
 
         // Placas e pop-ups de instrução ("Como Jogar" e Conclusões)
-        this.load.image("instrucaoDescricaoBanho", "assets/feedback/instrucaoBanho.png"); // (Aviso: Duplicado na linha 144)
+        this.load.image("instrucaoDescricaoBanho", "assets/feedback/instrucaoBanho.png"); 
         this.load.image("conclusaoPrimeiroRound", "assets/feedback/conclusaoPrimeiroRound.png");
         this.load.image("conclusaoSegundoRound", "assets/feedback/conclusaoSegundoRound.png");
         this.load.image("conclusaoTerceiroRound", "assets/feedback/conclusaoTerceiroRound.png");
-        this.load.image("instrucaoSegundoRound", "assets/feedback/instrucaoSegundoRound.png");
         this.load.image("instrucaoTerceiroRound", "assets/feedback/instrucaoTerceiroRound.png");
-        this.load.image("instrucaoDescricaoRacao", "assets/feedback/instrucaoDescricaoRacao.png");
         this.load.image("instrucaoLazer", "assets/feedback/instrucaoLazer.png");
         this.load.image("instrucaoBanho", "assets/feedback/instrucaoBanho.png");
         this.load.image("instrucaoMissao", "assets/feedback/instrucaoMissao.png");
@@ -175,8 +163,8 @@ export class cenaCarregamento extends Phaser.Scene {
         this.load.image("comoJogarRacao", "assets/feedback/comoJogarRacao.png");
         this.load.image("instrucaoQuiz", "assets/feedback/instrucaoQuiz.png");
         this.load.image("final", "assets/feedback/final.png");
-        this.load.image("direcaoJogador", "assets/feedback/direcaoJogador.png");
-       
+        this.load.image("direcaoJogador", "assets/feedback/direcaoJogador.png");       
+        this.load.image("instrucaoEscolhaRacao", "assets/tela-racao/instrucaoEscolhaRacao.png");
         // ASSETS: ÁUDIO (MÚSICAS E EFEITOS)
         this.load.audio("lazerDespreocupado", "assets/sons/lazerDespreocupado.mp3");
         this.load.audio("menuPrincipal", "assets/sons/menuPrincipal.mp3");
