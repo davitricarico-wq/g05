@@ -763,38 +763,38 @@ O tempo estimado de gameplay para o Cobasi Shelter, considerando a destreza com 
 <div align="center">
   <p>Figura 9: Diagrama de Cenas Completo</p>
   <a href="https://miro.com/app/board/uXjVGlD-iZU=/?share_link_id=746686012773">
-    <img src="other/diagramacenas.png" width="800">
+    <img src="other/diagramacenas.jpg" width="800">
   </a>
   <p>Feito pela própria equipe(2026)</p>
 
 
   <p>Figura 10: Diagrama de Cenas - Parte 1</p>
   <a href="https://miro.com/app/board/uXjVGlD-iZU=/?share_link_id=746686012773">
-    <img src="other/diagrama1.png" width="800">
+    <img src="other/diagrama1.jpg" width="800">
   </a>
   <p>Feito pela própria equipe(2026)</p>
 
    <p>Figura 11: Diagrama de Cenas - Parte 2</p>
   <a href="https://miro.com/app/board/uXjVGlD-iZU=/?share_link_id=746686012773">
-    <img src="other/diagrama2.png" width="800">
+    <img src="other/diagrama2.jpg" width="800">
   </a>
   <p>Feito pela própria equipe(2026)</p>
 
    <p>Figura 12: Diagrama de Cenas - Parte 3</p>
   <a href="https://miro.com/app/board/uXjVGlD-iZU=/?share_link_id=746686012773">
-    <img src="other/diagrama3.png" width="800">
+    <img src="other/diagrama3.jpg" width="800">
   </a>
   <p>Feito pela própria equipe(2026)</p>
 
    <p>Figura 13: Diagrama de Cenas - Parte 4</p>
   <a href="https://miro.com/app/board/uXjVGlD-iZU=/?share_link_id=746686012773">
-    <img src="other/diagrama4.png" width="800">
+    <img src="other/diagrama4.jpg" width="800">
   </a>
   <p>Feito pela própria equipe(2026)</p>
 
    <p>Figura 14: Diagrama de Cenas- Parte 5</p>
   <a href="https://miro.com/app/board/uXjVGlD-iZU=/?share_link_id=746686012773">
-    <img src="other/diagrama5.png" width="800">
+    <img src="other/diagrama5.jpg" width="800">
   </a>
   <p>Feito pela própria equipe(2026)</p>
 
