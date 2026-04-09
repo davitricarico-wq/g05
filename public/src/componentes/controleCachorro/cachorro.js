@@ -1,99 +1,131 @@
-// Importa o estado global do jogo para acessar variáveis importantes
+// Importa o estado global do jogo, permitindo acesso a variáveis de progresso e persistência
 import { gameState } from "../../main.js";
 
-// Importa a lista de estados possíveis que o cachorro pode ter (sujo, limpo, etc.)
+// Importa o dicionário/enum de estados possíveis do cachorro. 
+// Manter isso em um arquivo separado ajuda a evitar erros de digitação e centraliza as regras.
 import { ESTADOS_CACHORRO } from "./estadosCachorro.js";
 
-// Define e exporta a classe Cachorro para criar os pets no jogo
+/**
+ * @class Cachorro
+ * @description Entidade principal que representa o pet no jogo. 
+ * Esta classe é responsável por gerenciar a renderização visual do cachorro, 
+ * suas animações baseadas em estados (sujo, feliz, etc.) e sua evolução visual.
+ */
 export class Cachorro {
-  
-  // O construtor é executado sempre que um novo cachorro é criado na tela
-  constructor(scene, x, y, pet, dados) {
-    // Salva a referência da cena atual onde o cachorro vai aparecer
-    this.scene = scene
-    
-    // Guarda o identificador do sprite (a imagem) do pet
-    this.pet = pet
-    
-    // Cria uma cópia independente dos dados do cachorro (status, níveis, etc.)
-    this.dados = { ...dados }
-    
-    // Guarda as posições iniciais X e Y na tela
-    this.x = x
-    this.y = y
+    /**
+     * @constructor
+     * @param {Phaser.Scene} scene - A cena do Phaser onde o cachorro será renderizado.
+     * @param {number} x - Posição inicial X na tela.
+     * @param {number} y - Posição inicial Y na tela.
+     * @param {string} pet - A chave (key) do spritesheet carregado no Phaser (ex: "cachorroCaramelo").
+     * @param {object} dados - Objeto contendo os status atuais do pet (níveis, estado atual, etc).
+     */
+    constructor(scene, x, y, pet, dados) {
+        // Armazena a referência da cena para acessar sistemas do Phaser (física, animações, etc.)
+        this.scene = scene;
+        
+        // Guarda a chave da imagem/spritesheet base atual
+        this.pet = pet;
+        
+        // Cópia independente (Shallow Copy) dos dados do pet.
+        // O uso do spread operator (...) previne que alterações nesta instância mutem acidentalmente 
+        // os dados originais passados por referência, protegendo a integridade do estado global.
+        this.dados = { ...dados };
+        
+        // Coordenadas espaciais
+        this.x = x;
+        this.y = y;
 
-    // Adiciona efetivamente a imagem do cachorro na tela do jogo
-    this.sprite = scene.add.sprite(x, y, pet)
+        // Instancia o sprite visual do pet na cena
+        this.sprite = scene.add.sprite(x, y, pet);
 
-    // Prepara todas as animações de movimento do cachorro
-    this.criarAnimacoes()
-    
-    // Roda a animação inicial dependendo de como o cachorro está no momento
-    this.atualizarAnimacao()
-  }
-
-  // Configura os quadros (frames) de animação para cada situação do cachorro
-  criarAnimacoes() {
-    // Atalho para acessar o gerenciador de animações da cena do Phaser
-    const anims = this.scene.anims
-
-    // Mapeia quais quadros da folha de sprites (spritesheet) pertencem a cada estado
-    const configAnimacoes = {
-        [ESTADOS_CACHORRO.FELIZ]: { start: 6, end: 7 },
-        [ESTADOS_CACHORRO.SUJO]: { start: 2, end: 3 },
-        [ESTADOS_CACHORRO.LIMPO]: { start: 0, end: 1 },
-        [ESTADOS_CACHORRO.ENSABOADO]: { start: 4, end: 5 }
+        // Gera e registra todas as animações possíveis para o spritesheet atual
+        this.criarAnimacoes();
+        
+        // Sincroniza o visual na tela com o estado lógico inicial passado no construtor
+        this.atualizarAnimacao();
     }
 
-    // Percorre todos os estados configurados acima para registrá-los no jogo
-    Object.entries(configAnimacoes).forEach(([estado, frames]) => {
-      
-      // Cria um nome único para a animação juntando o nome do cachorro e o estado dele
-      const key = `cachorro_${this.pet}_${estado}`
+    /**
+     * @method criarAnimacoes
+     * @description Mapeia os frames do spritesheet para criar animações em loop.
+     * Implementa um sistema de cache inteligente para não sobrecarregar a memória do jogo.
+     */
+    criarAnimacoes() {
+        // Atalho para o gerenciador global de animações da cena
+        const anims = this.scene.anims;
 
-      // Se essa animação já foi criada antes, ignora para não gastar memória à toa
-      if (anims.exists(key)) return
+        // Dicionário que mapeia qual estado lógico corresponde a quais frames na imagem.
+        // Por exemplo: O estado "LIMPO" usa o frame 0 (parado) e 1 (movimento).
+        const configAnimacoes = {
+            [ESTADOS_CACHORRO.FELIZ]: { start: 6, end: 7 },
+            [ESTADOS_CACHORRO.SUJO]: { start: 2, end: 3 },
+            [ESTADOS_CACHORRO.LIMPO]: { start: 0, end: 1 },
+            [ESTADOS_CACHORRO.ENSABOADO]: { start: 4, end: 5 }
+        };
 
-      // Cria a animação definindo os quadros, a velocidade (frameRate) e o loop infinito (repeat: -1)
-      anims.create({
-        key: key,
-        frames: anims.generateFrameNumbers(this.pet, frames),
-        frameRate: 4,
-        repeat: -1
-      })
-    })
-  }
+        // Percorre a configuração e registra cada animação no motor do Phaser
+        Object.entries(configAnimacoes).forEach(([estado, frames]) => {
+            
+            // Cria uma chave de animação única dinâmica (ex: "cachorro_cachorroCaramelo_SUJO")
+            const key = `cachorro_${this.pet}_${estado}`;
 
-  // Troca a animação que está rodando na tela para bater com o estado atual do pet
-  atualizarAnimacao() {
-    // Verifica qual é o estado atual do cachorro nos dados
-    const estado = this.dados.estado
-    
-    // Toca a animação correspondente no sprite visual
-    this.sprite.play(`cachorro_${this.pet}_${estado}`)
-  }
+            // PREVENÇÃO DE MEMORY LEAK:
+            // O Phaser guarda animações globalmente. Se a animação já existir (ex: o jogador 
+            // saiu e voltou para a cena), ignoramos a criação para não duplicar dados em memória.
+            if (anims.exists(key)) return;
 
-  // Altera a condição do cachorro (ex: de sujo para limpo) e já atualiza o visual
-  mudarEstado(novoEstado) {
-    // Salva o novo estado nos dados do cachorro
-    this.dados.estado = novoEstado
-    
-    // Chama a função que atualiza a animação na tela
-    this.atualizarAnimacao()
-  }
+            // Registra a animação
+            anims.create({
+                key: key,
+                frames: anims.generateFrameNumbers(this.pet, frames),
+                frameRate: 4, // Velocidade tranquila, 4 quadros por segundo
+                repeat: -1    // Loop infinito
+            });
+        });
+    }
 
-  // Troca completamente a imagem base do cachorro (usado quando ele cresce ou evolui)
-  mudarSprite(novoSprite) {
-    // Atualiza a variável que guarda o nome do sprite
-    this.pet = novoSprite
-    
-    // Troca a textura visual do objeto no jogo pela nova imagem
-    this.sprite.setTexture(novoSprite)
-    
-    // Recria as animações para garantir que os quadros da nova imagem funcionem
-    this.criarAnimacoes()
-    
-    // Volta a tocar a animação correta, agora com a aparência nova
-    this.atualizarAnimacao()
-  }
+    /**
+     * @method atualizarAnimacao
+     * @description Sincroniza o sprite renderizado na tela com o estado lógico atual contido em `this.dados`.
+     */
+    atualizarAnimacao() {
+        const estado = this.dados.estado;
+        
+        // Dá o play na animação montando a chave exata que foi registrada em `criarAnimacoes`
+        this.sprite.play(`cachorro_${this.pet}_${estado}`);
+    }
+
+    /**
+     * @method mudarEstado
+     * @description Atualiza o status lógico do pet (Máquina de Estados) e já reflete no visual.
+     * @param {string} novoEstado - O novo estado que o pet deve assumir (ex: passando de LIMPO para SUJO).
+     */
+    mudarEstado(novoEstado) {
+        // Atualiza a fonte da verdade local
+        this.dados.estado = novoEstado;
+        
+        // Dispara a troca visual
+        this.atualizarAnimacao();
+    }
+
+    /**
+     * @method mudarSprite
+     * @description Altera o arquivo base de imagem do pet. 
+     * * Regra de Negócio: Essencial para mecânicas de EVOLUÇÃO, CRESCIMENTO ou SKIN do pet.
+     * @param {string} novoSprite - A chave do novo spritesheet (ex: de "cachorroFilhote" para "cachorroAdulto").
+     */
+    mudarSprite(novoSprite) {
+        // Atualiza a referência da chave do sprite
+        this.pet = novoSprite;
+        
+        // Troca a textura gráfica no objeto físico da tela sem precisar destruir e recriar o objeto
+        this.sprite.setTexture(novoSprite);
+        
+        // Como a imagem mudou, precisamos registrar as animações para essa nova chave de textura
+        this.criarAnimacoes();
+        
+        // Restaura a animação adequada ao estado atual, agora utilizando a nova arte
+        this.atualizarAnimacao();
+    }
 }

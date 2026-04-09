@@ -1,448 +1,281 @@
 // Importa o gerenciador responsável pela lógica e criação dos sprites dos pets
-import { GerenciadorCachorros } from "../componentes/controleCachorro/gerenciadorCachorros.js"
+import { GerenciadorCachorros } from "../componentes/controleCachorro/gerenciadorCachorros.js";
 // Importa as configurações base (raças, atributos) dos cachorros
-import { cachorrosBase } from "../componentes/controleCachorro/cachorrosBase.js"
+import { cachorrosBase } from "../componentes/controleCachorro/cachorrosBase.js";
 // Importa o objeto de estado global para persistência de dados entre cenas
 import { gameState, iniciarMusicaAleatoria } from "../main.js";
 
-// Exporta a cena responsável pela área de alimentação e visualização da ficha do pet
+/**
+ * @class cenaComida
+ * @extends Phaser.Scene
+ * @description Gerencia a área de alimentação, ficha técnica do pet e o fluxo de onboarding (tutorial).
+ * Lida com profundidade de camadas (z-index) para destacar elementos e responsividade dinâmica.
+ */
 export class cenaComida extends Phaser.Scene {
     
     constructor() {
-        // Define a chave identificadora da cena no motor Phaser
         super({ key: "cenaComida" });
-        // Flag para controle de transição de cenas
+        /** @type {boolean} Controla o estado de transição para evitar cliques duplicados */
         this.transicao = false;
     }
 
+    /**
+     * @method create
+     * @description Inicializa os elementos visuais, configura eventos de input e define a hierarquia de camadas.
+     */
     create() {
-        // Reseta o estado de transição ao iniciar a cena
         this.transicao = false;
 
-        // Gerenciamento da HUD: garante que a interface esteja ativa e visível sobre a cena atual
+        // Garante que a HUD esteja ativa e sincronizada com a cena de gameplay
         if (!this.scene.isActive("HUD")) {
             this.scene.launch("HUD");
         } else if (this.scene.isSleeping("HUD")) {
             this.scene.wake("HUD");
         }
-        // Por padrão, a HUD começa no topo.
         this.scene.bringToTop("HUD");
 
         if (gameState.musicaLigada) {
             iniciarMusicaAleatoria(this);
         }
 
-        // Definição da área útil de gameplay, reservando espaço para a barra lateral da HUD (20%)
-        const posicaoX = (this.scale.width - this.scale.width * 0.2);
-        const posicaoY = this.scale.height;
+        // Reserva 20% da largura para a HUD lateral, definindo a área útil de jogo
+        const areaUtilX = (this.scale.width - this.scale.width * 0.2);
+        const areaUtilY = this.scale.height;
 
         /**
-         * Função utilitária para aplicar efeitos visuais de feedback (Hover e Click)
-         * @param {Phaser.GameObjects.GameObject} alvo - O objeto que receberá os eventos
-         * @param {number} escalaNormal - Escala padrão do objeto
-         * @param {number} escalaPassar - Escala ao passar o mouse (hover)
+         * @function passarPressionarEfeito
+         * @description Cria micro-interações de feedback visual (Hover/Click) via Tweens.
+         * @param {Phaser.GameObjects.GameObject} alvo - Objeto interativo.
+         * @param {number} escalaNormal - Escala de repouso.
+         * @param {number} escalaPassar - Escala de destaque (hover).
          */
-
-        // Remove listeners anteriores para evitar acúmulo de eventos em objetos reutilizados
         const passarPressionarEfeito = (alvo, escalaNormal, escalaPassar) => {
             alvo.removeAllListeners();
 
-            // Efeito de aumento suave ao passar o mouse
             alvo.on("pointerover", () => {
                 this.tweens.add({ targets: alvo, scaleX: escalaPassar, scaleY: escalaPassar, duration: 200 });
             });
 
-            // Efeito de "aperto" (squash) ao clicar
             alvo.on("pointerdown", () => {
                 this.tweens.add({ targets: alvo, scaleX: escalaNormal * 0.9, scaleY: escalaNormal * 0.9, duration: 150, yoyo: true });
             });
 
-            // Retorno à escala original ao retirar o mouse
             alvo.on("pointerout", () => {
                 this.tweens.add({ targets: alvo, scaleX: escalaNormal, scaleY: escalaNormal, duration: 200 });
             });
         };
 
-        // Renderização do cenário de fundo centralizado na área útil
-        this.fundo = this.add.image(posicaoX / 2, posicaoY / 2, "bgRacao")
-            .setDisplaySize(posicaoX, posicaoY)
+        // --- ELEMENTOS DO CENÁRIO ---
+        this.fundo = this.add.image(areaUtilX / 2, areaUtilY / 2, "bgRacao")
+            .setDisplaySize(areaUtilX, areaUtilY)
             .setDepth(-1);
 
-        // Instanciação da estante de rações com interatividade para troca de cena
-        this.estante = this.add.image(posicaoX * 0.25, posicaoY * 0.68, "estanteRacao")
-            .setScale(posicaoY * 0.0006)
+        // Estante: Ponto de entrada para o minigame de escolha de ração
+        this.estante = this.add.image(areaUtilX * 0.25, areaUtilY * 0.68, "estanteRacao")
+            .setScale(areaUtilY * 0.0006)
             .setInteractive({ useHandCursor: true });
-            
-        // Armazena a profundidade original da estante
+        
         this.profundidadeOriginalEstante = this.estante.depth;
-
-        // Aplica os efeitos de hover e click na estante
         passarPressionarEfeito(this.estante, this.estante.scaleX, this.estante.scaleX * 1.1);
 
-        // Lógica de navegação para a cena de seleção de ração específica
         this.estante.on("pointerdown", () => {
-            
-            // Limpa o overlay da estante, caso ele esteja ativo
-            if (this.overlayEstante) {
-                this.overlayEstante.destroy();
-                this.overlayEstante = null;
-                if (this.txtCliqueEstante) this.txtCliqueEstante.destroy();
-                
-                // Restaura a profundidade original da estante para que ela volte a ficar atrás da HUD
-                this.estante.setDepth(this.profundidadeOriginalEstante);
-                gameState.enfaseEstanteVista = true; 
-                
-                // Retorna a HUD para o topo de tudo, já que o tutorial da estante acabou
-                this.scene.bringToTop("HUD");
-            }
-
-            const cenaHUD = this.scene.manager.getScene("HUD");
-            if (cenaHUD && cenaHUD.transicionarPara) {
-                cenaHUD.transicionarPara("cenaEstanteRacao");
-            } else {
-                this.scene.start("cenaEstanteRacao");
-            }
+            this.encerrarTutorialEstante();
+            this.navegarParaEstante();
         });
 
-        // Adição da ficha (bilhete) de informações do cachorro na parede
-        gameState.bilhete = this.add.image(
-            this.scale.width * 0.7, 
-            this.scale.height * 0.25,
-            'mineFicha')
-        .setScale(0.15)
-        .setInteractive({ useHandCursor:true });
+        // Ficha (Bilhete): Acesso aos detalhes técnicos e progresso do pet
+        gameState.bilhete = this.add.image(this.scale.width * 0.7, areaUtilY * 0.25, 'mineFicha')
+            .setScale(0.15)
+            .setInteractive({ useHandCursor: true })
+            .setDepth(10);
         
-        // Armazena a profundidade para restaurar após efeitos de destaque/overlay
-        gameState.bilhete.setDepth(10); 
         this.profundidadeOriginalBilhete = gameState.bilhete.depth;
-        
-        // Aplica os efeitos de hover e click na ficha
         passarPressionarEfeito(gameState.bilhete, 0.15, 0.18);
 
-        // Lógica de abertura da Ficha: limpa overlays de tutorial e lança a cena de detalhes
-        gameState.bilhete.on('pointerdown', () => {
-            // Limpa o overlay da ficha
-            if (this.overlayFicha) {
-                this.overlayFicha.destroy();
-                this.overlayFicha = null;
+        gameState.bilhete.on('pointerdown', () => this.abrirFichaDetatilhada());
 
-                // Restaura a profundidade original da ficha para que ela volte a ficar atrás da HUD
-                if (this.txtCliqueFicha) this.txtCliqueFicha.destroy();
-                
-                // Restaura a profundidade original da ficha para que ela volte a ficar atrás da HUD
-                gameState.bilhete.setDepth(this.profundidadeOriginalBilhete);
-                gameState.enfaseFichaVista = true; 
-            }
+        // Tigela decorativa
+        this.racaoVazia = this.add.image((areaUtilX / 2) + (areaUtilX / 2) * 0.1, areaUtilY / 2 + areaUtilY * 0.4, "racaoVazia")
+            .setScale(areaUtilY * 0.0002);
 
-            // Verifica se a cena da ficha já está ativa para evitar múltiplas instâncias
-            if(this.scene.isActive('ficha')) {
-                this.scene.stop('ficha')
-            } else {
-                this.scene.launch('ficha');
+        // Configurações do pet
+        this.gerenciadorCachorros = new GerenciadorCachorros(this);
+        const indiceAtivo = gameState.pets.cachorroJoao ? 2 : (gameState.pets.cachorroHeroi ? 1 : 0);
+        this.cachorro = this.gerenciadorCachorros.criarCachorro(0, 0, cachorrosBase[indiceAtivo]);
 
-                // Força a cena da ficha a ficar na frente de TUDO (cenaComida e HUD)
-                this.scene.bringToTop('ficha');
+        // Pulgas: Sistema de partículas/animação de estado negativo
+        this.configurarAnimacaoPulgas();
+        this.pulgas = this.add.sprite(0, 0, "pulgas").setOrigin(0.5).setScale(areaUtilY * 0.0015);
+        this.pulgas.play("pulgaAnim").setVisible(gameState.pulga);
 
-                // Pega a referência da cena da ficha que acabou de ser aberta
-                const cenaFicha = this.scene.manager.getScene('ficha');
-                
-                // Faz a cena atual esperar a cena da ficha ser fechada para destacar a estante ou retornar a HUD
-                cenaFicha.events.once('shutdown', () => {
-                    this.scene.bringToTop("HUD");
-                    // Se o tutorial da estante ainda não foi visto, destaca a estante após fechar a ficha
-                    if (!gameState.enfaseEstanteVista) {
-                        this.destacarEstante(posicaoX, posicaoY);
-                    }
-                });
+        // Agrupamento em container para facilitar transformações globais (X, Y, Escala)
+        this.containerCachorro = this.add.container(
+            (areaUtilX / 2) + (areaUtilX / 2) * 0.4, 
+            (areaUtilY / 2) + (areaUtilY / 2) * 0.25, 
+            [this.cachorro.sprite, this.pulgas]
+        ).setScale(areaUtilY * 0.0007);
 
-                // Caso a cena da ficha use um evento de "sleep" ao invés de "shutdown" para fechar, também escuta esse evento para garantir que o destaque da estante ocorra mesmo se a ficha for apenas "dormida" e não completamente encerrada.
-                cenaFicha.events.once('sleep', () => {
-                    this.scene.bringToTop("HUD");
-                    if (!gameState.enfaseEstanteVista) {
-                        this.destacarEstante(posicaoX, posicaoY);
-                    }
-                });
-            }
-        });
+        // Fluxo de onboarding
+        this.gerenciarTutorialInicial(areaUtilX, areaUtilY);
 
-        // Objeto visual da tigela vazia no chão
-        const racaoVazia = this.add.image((posicaoX / 2) + (posicaoX / 2) * 0.1, posicaoY / 2 + posicaoY * 0.4, "racaoVazia")
-            .setScale(posicaoY * 0.0002);
+        // Sistema de responsividade
+        const handleResize = () => this.ajustarElementosParaNovaTela();
+        this.scale.on("resize", handleResize);
+        this.events.on('shutdown', () => this.scale.off("resize", handleResize));
+    }
 
-        // Configuração do Pet e Parasitas (Pulgas)
-        this.gerenciadorCachorros = new GerenciadorCachorros(this)
+    /** Sincroniza o estado das pulgas e troca de pet em tempo real */
+    update() {
+        if (this.pulgas) this.pulgas.setVisible(gameState.pulga);
+        if (gameState.trocar) {
+            this.gerenciadorCachorros.mudarParaCachorroAtivo();
+            gameState.trocar = false;
+        }
+    }
 
-        // Determina qual cachorro deve ser exibido com base no estado global (ordem de prioridade: João > Herói > Padrão)
-        const indiceAtivo = gameState.pets.cachorroJoao ? 2 : (gameState.pets.cachorroHeroi ? 1 : 0)
-        // Instancia o cachorro (posição 0,0 relativa ao container pai)
-        this.cachorro = this.gerenciadorCachorros.criarCachorro(0, 0, cachorrosBase[indiceAtivo])
-        const elementosContainer = [this.cachorro.sprite];
+    /** * Centraliza a lógica de abertura da cena de ficha. 
+     * @private
+     */
+    abrirFichaDetatilhada() {
+        if (this.overlayFicha) {
+            this.overlayFicha.destroy();
+            if (this.txtCliqueFicha) this.txtCliqueFicha.destroy();
+            gameState.bilhete.setDepth(this.profundidadeOriginalBilhete);
+            gameState.enfaseFichaVista = true; 
+        }
 
-        // Registro global da animação das pulgas (se não houver no cache)
+        if(!this.scene.isActive('ficha')) {
+            this.scene.launch('ficha');
+            this.scene.bringToTop('ficha');
+
+            const cenaFicha = this.scene.manager.getScene('ficha');
+            // Eventos de encadeamento: após fechar a ficha, destaca a estante
+            const finalizarFicha = () => {
+                this.scene.bringToTop("HUD");
+                if (!gameState.enfaseEstanteVista) this.destacarEstante();
+            };
+            cenaFicha.events.once('shutdown', finalizarFicha);
+            cenaFicha.events.once('sleep', finalizarFicha);
+        }
+    }
+
+    /** Garante a animação cíclica das pulgas no cache global */
+    configurarAnimacaoPulgas() {
         if (!this.anims.exists("pulgaAnim")) {
             this.anims.create({
                 key: "pulgaAnim",
                 frames: this.anims.generateFrameNumbers("pulgas", { start: 0, end: 1 }), 
-                frameRate: 1,  
-                repeat: -1     
+                frameRate: 1, repeat: -1     
             });
         }
+    }
 
-        // Adição das pulgas com escala proporcional e controle de visibilidade
-        this.pulgas = this.add.sprite(0, 0, "pulgas")
-            .setOrigin(0.5)
-            .setScale(posicaoY * 0.0015);
-
-        // Inicia a animação das pulgas e define a visibilidade inicial com base no estado global
-        this.pulgas.play("pulgaAnim");
-        this.pulgas.setVisible(gameState.pulga); 
-        elementosContainer.push(this.pulgas); 
-
-        // Cálculo da posição absoluta do pet no cenário
-        const dogX = (posicaoX / 2) + (posicaoX / 2) * 0.4;
-        const dogY = (posicaoY / 2) + (posicaoY / 2) * 0.25;
-
-        // Container agrupa pet + pulgas para transformações (escala/posição) unificadas
-        this.containerCachorro = this.add.container(dogX, dogY, elementosContainer);
-        this.containerCachorro.setScale(posicaoY * 0.0007);
-
-        // Controle de fluxo de onboarding: decide qual popup de instrução exibir ao carregar a cena
-        if (!gameState.instrucaoRacaoVista) {
-            this.mostrarInstrucaoRacao(posicaoX, posicaoY);
-        } else if (!gameState.enfaseFichaVista) {
-            this.destacarFicha(posicaoX, posicaoY);
-        } else if (!gameState.enfaseEstanteVista) { 
-            this.destacarEstante(posicaoX, posicaoY);
+    /** Limpa overlays de tutorial da estante antes da navegação */
+    encerrarTutorialEstante() {
+        if (this.overlayEstante) {
+            this.overlayEstante.destroy();
+            if (this.txtCliqueEstante) this.txtCliqueEstante.destroy();
+            this.estante.setDepth(this.profundidadeOriginalEstante);
+            gameState.enfaseEstanteVista = true; 
+            this.scene.bringToTop("HUD");
         }
+    }
 
-        // Listener de Responsividade: reajusta todos os elementos caso a janela mude de tamanho
-        const handleResizeComida = () => {
-            if (!this.scene.isActive() || !this.cameras || !this.cameras.main) return;
+    /** Navegação com suporte a transições personalizadas da HUD */
+    navegarParaEstante() {
+        const cenaHUD = this.scene.manager.getScene("HUD");
+        if (cenaHUD && cenaHUD.transicionarPara) {
+            cenaHUD.transicionarPara("cenaEstanteRacao");
+        } else {
+            this.scene.start("cenaEstanteRacao");
+        }
+    }
 
-            // Recalcula as dimensões e posições com base na nova escala da tela
-            const novaLargura = (this.scale.width - this.scale.width * 0.2);
-            const novaAltura = this.scale.height;
-            const novoCentroX = novaLargura / 2;
-            const novoCentroY = novaAltura / 2;
-            const centroTelaInteiraX = this.scale.width / 2;
-            const centroTelaInteiraY = this.scale.height / 2;
+    /** * Controla a ordem de exibição dos tutoriais. 
+     * @private
+     */
+    gerenciarTutorialInicial(areaX, areaY) {
+        if (!gameState.instrucaoRacaoVista) {
+            this.mostrarInstrucaoRacao(areaX, areaY);
+        } else if (!gameState.enfaseFichaVista) {
+            this.destacarFicha();
+        } else if (!gameState.enfaseEstanteVista) { 
+            this.destacarEstante();
+        }
+    }
 
-            // Reposiciona e redimensiona os elementos principais do cenário
-            this.fundo.setPosition(novoCentroX, novoCentroY).setDisplaySize(novaLargura, novaAltura);
-            this.estante.setPosition(novaLargura * 0.25, novaAltura * 0.68).setScale(novaAltura * 0.0006);
-            gameState.bilhete.setPosition(this.scale.width * 0.7, novaAltura * 0.25).setScale(0.15);
-            racaoVazia.setPosition(novoCentroX + novoCentroX * 0.1, novoCentroY + novaAltura * 0.4).setScale(novaAltura * 0.0002);
-            
+    /** * Método central de redimensionamento. Recalcula âncoras e escalas 
+     * para manter a proporção independente da resolução.
+     */
+    ajustarElementosParaNovaTela() {
+        if (!this.scene.isActive() || !this.cameras.main) return;
 
-            // Reposiciona e redimensiona o container do cachorro e as pulgas, mantendo a proporção e a posição relativa ao cenário
-            const novoDogX = novoCentroX + novoCentroX * 0.4;
-            const novoDogY = novoCentroY + novoCentroY * 0.25;
-            this.containerCachorro.setPosition(novoDogX, novoDogY).setScale(novaAltura * 0.0007);
-            this.pulgas.setScale(novaAltura * 0.0015);
+        const novaAreaX = (this.scale.width - this.scale.width * 0.2);
+        const novaAreaY = this.scale.height;
+        const centroX = novaAreaX / 2;
+        const centroY = novaAreaY / 2;
 
-            // Reajuste de modais de instrução para cobrir 100% da tela durante o resize
-            if (this.fundoEscuroInstrucao && this.fundoEscuroInstrucao.active) {
-                this.fundoEscuroInstrucao.setSize(this.scale.width, this.scale.height);
-                this.fundoEscuroInstrucao.setPosition(centroTelaInteiraX, centroTelaInteiraY);
-                if (this.imgInstrucao && this.imgInstrucao.active) {
-                    this.imgInstrucao.setPosition(centroTelaInteiraX, centroTelaInteiraY);
-                    if (this.txtContinuarInstrucao && this.txtContinuarInstrucao.active) {
-                        const novoPosicaoTextoY = centroTelaInteiraY + (this.imgInstrucao.displayHeight / 2) + 30;
-                        this.txtContinuarInstrucao.setPosition(centroTelaInteiraX, novoPosicaoTextoY);
-                    }
-                }
-            }
+        this.fundo.setPosition(centroX, centroY).setDisplaySize(novaAreaX, novaAreaY);
+        this.estante.setPosition(novaAreaX * 0.25, novaAreaY * 0.68).setScale(novaAreaY * 0.0006);
+        gameState.bilhete.setPosition(this.scale.width * 0.7, novaAreaY * 0.25);
+        this.racaoVazia.setPosition(centroX + centroX * 0.1, centroY + novaAreaY * 0.4).setScale(novaAreaY * 0.0002);
+        
+        this.containerCachorro.setPosition(centroX + centroX * 0.4, centroY + centroY * 0.25).setScale(novaAreaY * 0.0007);
+        this.pulgas.setScale(novaAreaY * 0.0015);
 
-            // Reajuste dos overlays de destaque da ficha e estante, caso estejam ativos
-            if (this.overlayFicha && this.overlayFicha.active) {
-                this.overlayFicha.setSize(this.scale.width, this.scale.height);
-                this.overlayFicha.setPosition(centroTelaInteiraX, centroTelaInteiraY);
-            }
-
-            // Reposiciona o texto de clique na ficha, mantendo a posição relativa à ficha
-            if (this.txtCliqueFicha && this.txtCliqueFicha.active) {
-                this.txtCliqueFicha.setPosition(this.scale.width * 0.7, (novaAltura * 0.25) + 60);
-            }
-
-            // Reposiciona o overlay e o texto de clique na estante, mantendo a posição relativa à estante
-            if (this.overlayEstante && this.overlayEstante.active) {
-                this.overlayEstante.setSize(this.scale.width, this.scale.height);
-                this.overlayEstante.setPosition(centroTelaInteiraX, centroTelaInteiraY);
-            }
-
-            // Reposiciona o texto de clique na estante, mantendo a posição relativa à estante
-            if (this.txtCliqueEstante && this.txtCliqueEstante.active) {
-                this.txtCliqueEstante.setPosition(novaLargura * 0.25, (novaAltura * 0.68) - 100);
-            }
-        };
-
-        // Registra o listener de resize para a cena atual
-        this.scale.on("resize", handleResizeComida);
-
-        // Limpeza do listener ao encerrar a cena para evitar vazamento de memória
-        this.events.on('shutdown', () => {
-            this.scale.off("resize", handleResizeComida);
+        // Reajusta modais de overlay ativos (Fundo Escuro e Textos de destaque)
+        [this.fundoEscuroInstrucao, this.overlayFicha, this.overlayEstante].forEach(ov => {
+            if(ov && ov.active) ov.setSize(this.scale.width, this.scale.height).setPosition(this.scale.width/2, this.scale.height/2);
         });
     }
 
-    // Atualização contínua da cena, chamada a cada frame
-    update() {
-        // Atualização em tempo real da visibilidade das pulgas conforme estado global
-        if (this.pulgas) {
-            this.pulgas.setVisible(gameState.pulga);
-        }
-
-        // Sincronização: troca o pet exibido se houver comando no estado global
-        if (gameState.trocar) {
-            this.gerenciadorCachorros.mudarParaCachorroAtivo()
-            gameState.trocar = false
-        }
-    }
-
-    // Função para mostrar o popup de instrução da ração, cobrindo toda a tela e colocando esta cena na frente da HUD   
-    mostrarInstrucaoRacao(areaUtilLargura, alturaTotal) {
-        // Traz esta cena especificamente para a frente da HUD enquanto o popup estiver ativo
+    /** Exibe o guia visual principal da cena de alimentação */
+    mostrarInstrucaoRacao() {
         this.scene.bringToTop("cenaComida");
+        const cx = this.scale.width / 2;
+        const cy = this.scale.height / 2;
 
-        // Usar 100% das dimensões da tela para cobrir tudo (inclusive a HUD)
-        const telaTotalLargura = this.scale.width;
-        const telaTotalAltura = this.scale.height;
-        const centroTelaX = telaTotalLargura / 2;
-        const centroTelaY = telaTotalAltura / 2;
+        this.fundoEscuroInstrucao = this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.7).setDepth(9999).setInteractive(); 
+        this.imgInstrucao = this.add.image(cx, cy, "instrucaoRacao").setDepth(10000).setScale(0.5);
 
-        // Overlay de fundo cobrindo 100% da tela
-        this.fundoEscuroInstrucao = this.add.rectangle(centroTelaX, centroTelaY, telaTotalLargura, telaTotalAltura, 0x000000, 0.7)
-            .setDepth(9999)
-            .setInteractive(); 
-
-        // Centraliza a imagem no centro absoluto da tela
-        this.imgInstrucao = this.add.image(centroTelaX, centroTelaY, "instrucaoRacao")
-            .setDepth(10000)
-            .setScale(0.5);
-
-        // Posiciona o texto de continuar logo abaixo da imagem, centralizado horizontalmente
-        const posicaoTextoY = centroTelaY + (this.imgInstrucao.displayHeight / 2) + 30;
-        this.txtContinuarInstrucao = this.add.text(centroTelaX, posicaoTextoY, "[ Clique para continuar ]", {
-            fontFamily: '"Press Start 2P", Arial',
-            fontSize: "15px",
-            color: "#ffffff",
-            stroke: "#000000",
-            strokeThickness: 4
+        this.txtContinuarInstrucao = this.add.text(cx, cy + (this.imgInstrucao.displayHeight / 2) + 30, "[ Clique para continuar ]", {
+            fontFamily: '"Press Start 2P", Arial', fontSize: "15px", color: "#ffffff", stroke: "#000000", strokeThickness: 4
         }).setOrigin(0.5).setDepth(10000);
 
-        // Animação de "piscar" para o texto de continuar, indicando que o usuário deve clicar
-        this.tweens.add({
-            targets: this.txtContinuarInstrucao, 
-            alpha: 0.4, 
-            duration: 800, 
-            yoyo: true, 
-            loop: -1
-        });
+        this.tweens.add({ targets: this.txtContinuarInstrucao, alpha: 0.4, duration: 800, yoyo: true, loop: -1 });
 
-        // Evento para fechar modal e encadear o próximo tutorial (Destaque da Ficha)
         this.fundoEscuroInstrucao.on("pointerdown", () => {
             this.fundoEscuroInstrucao.destroy();
             this.imgInstrucao.destroy();
             this.txtContinuarInstrucao.destroy();
-            
-            this.fundoEscuroInstrucao = null;
-            this.imgInstrucao = null;
-            this.txtContinuarInstrucao = null;
-            
             gameState.instrucaoRacaoVista = true; 
-            
-            if (!gameState.enfaseFichaVista) {
-                this.destacarFicha(areaUtilLargura, alturaTotal);
-            } else if (!gameState.enfaseEstanteVista) { 
-                this.destacarEstante(areaUtilLargura, alturaTotal);
-            } else {
-                // Caso não haja mais nenhum tutorial para mostrar, devolve a HUD para o topo
-                this.scene.bringToTop("HUD");
-            }
+            this.gerenciarTutorialInicial();
         });
     }
 
-    // Função para destacar a ficha do pet, criando um overlay escuro e um texto de instrução
-    destacarFicha(areaUtilLargura, alturaTotal) {
-        // Traz esta cena para o topo, colocando-a na frente da HUD
+    /** Cria um "foco" visual no objeto de Ficha técnica */
+    destacarFicha() {
         this.scene.bringToTop("cenaComida");
-
-        // Usar 100% das dimensões da tela para cobrir tudo (inclusive a HUD)
-        const telaTotalLargura = this.scale.width;
-        const telaTotalAltura = this.scale.height;
-        const centroTelaX = telaTotalLargura / 2;
-        const centroTelaY = telaTotalAltura / 2;
-
-        // Overlay escuro com depth extrema cobrindo toda a tela
-        this.overlayFicha = this.add.rectangle(centroTelaX, centroTelaY, telaTotalLargura, telaTotalAltura, 0x000000, 0.7)
-            .setDepth(9999)
-            .setInteractive(); 
-
-        // Eleva a profundidade do bilhete para ficar acima do overlay
+        this.overlayFicha = this.add.rectangle(this.scale.width/2, this.scale.height/2, this.scale.width, this.scale.height, 0x000000, 0.7).setDepth(9999).setInteractive(); 
         gameState.bilhete.setDepth(10000);
 
-        // Posiciona o texto em cima da ficha
-        this.txtCliqueFicha = this.add.text(
-            this.scale.width * 0.7, 
-            (this.scale.height * 0.25) + 60, 
-            "Clique na ficha!", {
-            fontFamily: '"Press Start 2P", Arial',
-            fontSize: "12px",
-            color: "#ffffff",
-            align: "center",
-            stroke: "#000000",
-            strokeThickness: 3
+        this.txtCliqueFicha = this.add.text(gameState.bilhete.x, gameState.bilhete.y + 60, "Clique na ficha!", {
+            fontFamily: '"Press Start 2P", Arial', fontSize: "12px", color: "#ffffff", stroke: "#000000", strokeThickness: 3
         }).setOrigin(0.5).setDepth(10000);
 
-        // Animação de "piscar" para o texto de clique na ficha, indicando que o usuário deve clicar
-        this.tweens.add({
-            targets: this.txtCliqueFicha,
-            alpha: 0.4,
-            duration: 600,
-            yoyo: true,
-            loop: -1
-        });
+        this.tweens.add({ targets: this.txtCliqueFicha, alpha: 0.4, duration: 600, yoyo: true, loop: -1 });
     }
 
-    // Função para destacar a estante de rações, criando um overlay escuro e um texto de instrução  
-    destacarEstante(areaUtilLargura, alturaTotal) {
-        // Traz esta cena para o topo, colocando-a na frente da HUD
+    /** Cria um "foco" visual na estante para guiar o jogador ao minigame */
+    destacarEstante() {
         this.scene.bringToTop("cenaComida");
-
-        // Usar 100% das dimensões da tela para cobrir tudo (inclusive a HUD)
-        const telaTotalLargura = this.scale.width;
-        const telaTotalAltura = this.scale.height;
-        const centroTelaX = telaTotalLargura / 2;
-        const centroTelaY = telaTotalAltura / 2;
-
-        // Overlay escuro com depth extrema cobrindo toda a tela
-        this.overlayEstante = this.add.rectangle(centroTelaX, centroTelaY, telaTotalLargura, telaTotalAltura, 0x000000, 0.7)
-            .setDepth(9999)
-            .setInteractive(); 
-
-        // Eleva a profundidade da estante para ficar acima do overlay extremo
+        this.overlayEstante = this.add.rectangle(this.scale.width/2, this.scale.height/2, this.scale.width, this.scale.height, 0x000000, 0.7).setDepth(9999).setInteractive(); 
         this.estante.setDepth(10000);
 
-        // Posiciona o texto em cima da estante
-        this.txtCliqueEstante = this.add.text(
-            this.estante.x, 
-            this.estante.y - 100, 
-            "Clique na estante!", {
-            fontFamily: '"Press Start 2P", Arial',
-            fontSize: "12px",
-            color: "#ffffff",
-            align: "center",
-            stroke: "#000000",
-            strokeThickness: 3
+        this.txtCliqueEstante = this.add.text(this.estante.x, this.estante.y - 100, "Clique na estante!", {
+            fontFamily: '"Press Start 2P", Arial', fontSize: "12px", color: "#ffffff", stroke: "#000000", strokeThickness: 3
         }).setOrigin(0.5).setDepth(10000);
 
-        // Animação de "piscar" para o texto de clique na estante, indicando que o usuário deve clicar
-        this.tweens.add({
-            targets: this.txtCliqueEstante,
-            alpha: 0.4,
-            duration: 600,
-            yoyo: true,
-            loop: -1
-        });
+        this.tweens.add({ targets: this.txtCliqueEstante, alpha: 0.4, duration: 600, yoyo: true, loop: -1 });
     }
 }

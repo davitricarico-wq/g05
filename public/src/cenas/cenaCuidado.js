@@ -1,54 +1,61 @@
-// o objeto global gameState do arquivo principal
+// Importa o estado global para persistência de dados (moedas, status de recompensas, pets ativos)
+// e a função utilitária para gerenciar a trilha sonora
 import { gameState, iniciarMusicaAleatoria } from "../main.js";
 
-// Cena responsável pelo minigame de remover pulgas
+/**
+ * @class cenaCuidado
+ * @extends Phaser.Scene
+ * @description Cena responsável pelo minigame de "Cuidado Veterinário" (Remoção de Pulgas).
+ * O jogador deve usar duas ferramentas sequencialmente (Espirrador para abater, Pinça para recolher)
+ * dentro de um limite de tempo. Possui design responsivo e mecânicas de "Drag and Drop" customizadas.
+ */
 export class cenaCuidado extends Phaser.Scene {
     constructor() {
-        // Chave da cena
+        // Define a chave de identificação única da cena no Phaser
         super({ key: "cenaCuidado" });
 
-        // Variáveis de controle do minigame
-        this.totalPulgas = 12;          
-        this.pulgasRemovidas = 0;       
-        this.pontuacao = 0;             
-        this.minigameFinalizado = false;
+        this.totalPulgas = 12;          // Quantidade de pulgas a serem geradas
+        this.pulgasRemovidas = 0;       // Contador de progresso atual
+        this.pontuacao = 0;             // Pontuação bruta acumulada
+        this.minigameFinalizado = false;// Flag de estado para travar interações no fim do jogo
         
-        // Controle de ferramentas
-        this.ferramentaEquipada = null; // Pode ser 'espirrador' ou 'pinca'
-        this.pulgaSegurada = null; 
-        this.bonusMeioGanho = false;    
+        this.ferramentaEquipada = null; // Guarda a string da ferramenta ativa ('espirrador' ou 'pinca')
+        this.pulgaSegurada = null;      // Referência ao sprite da pulga que está sendo arrastada
+        this.bonusMeioGanho = false;    // Flag para evitar múltiplos disparos do evento de 50% concluído
 
-        // Variáveis de tempo
-        this.tempoLimite = 50;
-        this.tempoRestante = 50;
+        this.tempoLimite = 50;          // Tempo total em segundos
+        this.tempoRestante = 50;        // Tempo decrescente em tempo real
 
-        // Variável para saber se as instruções foram fechadas
-        this.instrucoesLidas = false;
+        this.instrucoesLidas = false;   // Bloqueia o jogo até o usuário fechar o tutorial inicial
     }
 
-    // Função de criação da cena, chamada quando a cena é iniciada
+    /**
+     * @method create
+     * @description Inicializa os componentes visuais, física, eventos de input e UI da cena.
+     */
     create() {
-        // Para garantir que a HUD não fique ativa ao iniciar
+        
+        // Desativa a cena de HUD principal para focar exclusivamente na UI do minigame
         this.scene.stop("HUD");
         this.transicao = false;
 
-        // Inicia a música de fundo se estiver ligada
+        // Inicia a música de fundo se o jogador habilitou nas configurações
         if (gameState.musicaLigada) {
             iniciarMusicaAleatoria(this);
         }
 
-        // Configura o background e os elementos iniciais do minigame
         const largura = this.scale.width;
         const altura = this.scale.height;
 
-        // Define o background com base no cachorro ativo
-        const bgAtivo = gameState.pets.cachorroJoao ? "bgCuidadoJoao" : (gameState.pets.cachorroHeroi ? "bgCuidadoHeroi" : "bgCuidado");
+        // Seleciona a imagem de fundo correspondente ao cachorro ativo no estado global
+        const bgAtivo = gameState.pets.cachorroJoao ? "bgCuidadoJoao" : 
+                       (gameState.pets.cachorroHeroi ? "bgCuidadoHeroi" : "bgCuidado");
 
-        // Fundo
+        // Renderiza e dimensiona o fundo para preencher toda a tela
         this.fundo = this.add.image(largura / 2, altura / 2, bgAtivo)
             .setDisplaySize(largura, altura); 
 
-        // Reset variáveis
+        // Garante que os estados voltem ao padrão caso a cena seja reiniciada
         this.pulgasRemovidas = 0;
         this.pontuacao = 0; 
         this.minigameFinalizado = false;
@@ -57,136 +64,112 @@ export class cenaCuidado extends Phaser.Scene {
         this.pulgaSegurada = null;
         this.instrucoesLidas = false;
         this.tempoRestante = this.tempoLimite;
-
         gameState.cobasiCoins = gameState.cobasiCoins ?? 0;
 
-        // Posição da Bandeja (Responsiva: Centro inferior)
+        // Bandeja de coleta de pulgas (posicionada na base da tela)
         this.bandeja = this.add.image(largura / 2, altura * 0.85, "bandeja")
             .setDepth(5)
             .setScale(0.5); 
 
-        // Grupo de pulgas
+        // Grupo de física para as pulgas (facilita iteração e gerenciamento em massa)
         this.pulgas = this.physics.add.group({
             classType: Phaser.Physics.Arcade.Sprite,
             maxSize: this.totalPulgas
         });
 
-        // Animação do Espirrador 
+        // Configuração de animação do Espirrador (Feedback visual de uso)
         if (!this.anims.exists('anim_spray')) {
             this.anims.create({
                 key: 'anim_spray',
                 frames: this.anims.generateFrameNumbers('espirradorPulgas', { start: 1, end: 2 }),
                 frameRate: 10,
-                yoyo: true 
+                yoyo: true // Faz a animação "ir e voltar" suavemente
             });
         }
 
-        // Elementos discretos de info no topo
+        // Constrói a UI da cena (Textos, Ícones e Botões)
         this.criarTextosInfo();
-        
-        // Cria as ferramentas na interface (espirrador e pinça)
         this.criarFerramentasUI();
-        
-        // Cria pulgas
         this.spawnPulgasIniciais();
 
-        // Eventos de clique para interagir com as pulgas
+        // Evento global de clique/toque na tela
         this.input.on('pointerdown', (pointer) => {
-
-            // Se as instruções não foram lidas ou o minigame já acabou, não faz nada ao clicar
+            // Early return: Ignora interações se o jogo estiver bloqueado, finalizado ou se já estiver arrastando
             if (!this.instrucoesLidas || !this.ferramentaEquipada || this.minigameFinalizado || this.pulgaSegurada) return;
             
-            // Encontra a pulga mais próxima do clique dentro de um raio de 60 pixels
             let pulgaMaisProxima = null;
-            let menorDistancia = 60; 
+            let menorDistancia = 60; // Raio máximo de hit-detection (60 pixels)
             
-            // Itera sobre as pulgas ativas para encontrar a mais próxima do clique
+            // Busca a pulga mais próxima do cursor dentro do raio estipulado
             this.pulgas.children.iterate((pulga) => {
-                // Verifica se a pulga existe e está ativa antes de calcular a distância
                 if (!pulga || !pulga.active) return;
                 const distancia = Phaser.Math.Distance.Between(pointer.x, pointer.y, pulga.x, pulga.y);
-                // Se a distância for menor que a menor distância encontrada até agora, atualiza a pulga mais próxima
+                
                 if (distancia < menorDistancia) {
                     menorDistancia = distancia;
                     pulgaMaisProxima = pulga;
                 }
             });
 
-            // Lógica do Espirrador (Matar pulga)
+            // Lógica de abate (Espirrador)
             if (this.ferramentaEquipada === 'espirrador') {
-                // Toca a animação do espirrador no clique
                 this.cursorEspirrador.play('anim_spray');
-
-                // Quando a animação do espirrador terminar, volta para o frame inicial
                 this.cursorEspirrador.once('animationcomplete', () => {
                     this.cursorEspirrador.setFrame(0);
                 });
 
-                // Se houver uma pulga próxima e ela estiver viva, mata a pulga
+                // Abate a pulga se estiver viva
                 if (pulgaMaisProxima && pulgaMaisProxima.getData('estado') === 'viva') {
                     pulgaMaisProxima.setData('estado', 'morta');
-                    this.tweens.killTweensOf(pulgaMaisProxima); 
-                    pulgaMaisProxima.setFlipY(true); 
-                    pulgaMaisProxima.setTint(0xcccccc); 
+                    this.tweens.killTweensOf(pulgaMaisProxima); // Interrompe o movimento caótico
+                    pulgaMaisProxima.setFlipY(true);            // Feedback visual: vira de cabeça para baixo
+                    pulgaMaisProxima.setTint(0xcccccc);         // Feedback visual: escurece a textura
                 }
             } 
-            // Lógica da Pinça (Pegar pulga morta)
+            // Lógica de coleta (Pinça)
             else if (this.ferramentaEquipada === 'pinca') {
+                // Só permite agarrar pulgas previamente abatidas
                 if (pulgaMaisProxima && pulgaMaisProxima.getData('estado') === 'morta') {
                     this.pulgaSegurada = pulgaMaisProxima;
-                    this.pulgaSegurada.setScale(0.15); 
+                    this.pulgaSegurada.setScale(0.15); // Aumenta levemente para dar sensação de destaque
                 }
             }
         });
 
-        // Evento de soltar a pulga quando o jogador solta o clique
+        // Evento de liberação de clique/toque (Drop)
         this.input.on('pointerup', (pointer) => {
-
-            // Se o jogador não estiver segurando uma pulga ou não tiver a pinça equipada, não faz nada ao soltar
             if (this.pulgaSegurada && this.ferramentaEquipada === 'pinca') {
-
-                // Verifica se a pulga foi solta dentro da bandeja
                 const areaBandeja = this.bandeja.getBounds();
 
-                // Se a pulga for solta dentro da bandeja, ela é capturada (removida do jogo e contada como recolhida)
+                // Hit-detection geométrico para checar se soltou em cima da bandeja
                 if (Phaser.Geom.Rectangle.ContainsPoint(areaBandeja, pointer)) {
                     this.capturarPulga(this.pulgaSegurada);
                 } else {
-                    // Se soltar fora da bandeja, ela apenas cai no lugar de volta
+                    // Se errou a bandeja, restaura a escala original
                     this.pulgaSegurada.setScale(0.12); 
                 }
-                this.pulgaSegurada = null;
+                this.pulgaSegurada = null; // Limpa a referência
             }
         });
 
-        // Função para lidar com o redimensionamento da tela, reposicionando os elementos de forma responsiva
+        // --- SISTEMA DE RESPONSIVIDADE ---
         const handleResize = (gameSize) => {
-
-            // Calcula as novas dimensões da tela
             const novaLargura = gameSize.width;
             const novaAltura = gameSize.height;
 
-            // Redimensiona a câmera para as novas dimensões
             this.cameras.resize(novaLargura, novaAltura);
             
-            // Redimensiona e reposiciona o fundo para cobrir toda a tela
             if (this.fundo) {
                 this.fundo.setDisplaySize(novaLargura, novaAltura).setPosition(novaLargura / 2, novaAltura / 2); 
             }
 
-            // Reposiciona os textos de tempo e progresso
             if (this.textoTempo) this.textoTempo.setPosition(20, 30);
             if (this.textoProgresso) this.textoProgresso.setPosition(novaLargura - 20, 30);
-
-            // Reposiciona a bandeja
-            if (this.bandeja) {
-                this.bandeja.setPosition(novaLargura / 2, novaAltura * 0.85);
-            }
-
-            // Reposiciona ícones de ferramentas caso não estejam equipadas
+            if (this.bandeja) this.bandeja.setPosition(novaLargura / 2, novaAltura * 0.85);
             if (this.iconeEspirrador) this.iconeEspirrador.setPosition(novaLargura * 0.2, novaAltura * 0.85);
             if (this.iconePinca) this.iconePinca.setPosition(novaLargura * 0.8, novaAltura * 0.85);
 
+            // Mantém as pulgas dentro dos limites visuais da tela em caso de rotação de dispositivo
             this.pulgas.children.iterate((pulga) => {
                 if (pulga && pulga.active && pulga !== this.pulgaSegurada) {
                     pulga.x = Phaser.Math.Clamp(pulga.x, 50, novaLargura - 50);
@@ -194,7 +177,7 @@ export class cenaCuidado extends Phaser.Scene {
                 }
             });
 
-            // Resize das instruções, se estiverem abertas
+            // Responsividade dos modais/instruções
             if (this.fundoInstrucao && this.fundoInstrucao.active) {
                 this.fundoInstrucao.setPosition(novaLargura / 2, novaAltura / 2).setSize(novaLargura, novaAltura);
                 if (this.imgInstrucao && this.imgInstrucao.active) {
@@ -208,34 +191,43 @@ export class cenaCuidado extends Phaser.Scene {
 
         this.scale.on("resize", handleResize);
 
+        // Limpeza de eventos globais ao destruir a cena
         this.events.on('shutdown', () => {
             this.scale.off("resize", handleResize);
             this.input.keyboard.removeListener('keydown-SPACE'); 
         });
 
+        // Dispara o overlay de tutorial
         this.mostrarInstrucoes();
     }
 
+    /**
+     * @method update
+     * @description Game Loop - Atualiza a lógica frame a frame.
+     * Utilizado primariamente para vincular o cursor customizado à posição real do mouse/touch.
+     */
     update() {
         if (!this.instrucoesLidas || !this.ferramentaEquipada || this.minigameFinalizado) return;
 
         const ponteiro = this.input.activePointer;
         
-        // Move o cursor customizado de acordo com a ferramenta equipada
+        // Aplica offset aos cursores visuais para que a "ponta" da ferramenta alinhe com o clique real
         if (this.ferramentaEquipada === 'espirrador' && this.cursorEspirrador) {
             this.cursorEspirrador.setPosition(ponteiro.x + 30, ponteiro.y + 30);
         } else if (this.ferramentaEquipada === 'pinca' && this.cursorPinca) {
             this.cursorPinca.setPosition(ponteiro.x + 18, ponteiro.y + 14);
         }
 
+        // Lógica de arrasto em tempo real
         if (this.pulgaSegurada) {
             this.pulgaSegurada.setPosition(ponteiro.x, ponteiro.y);
         }
     }
 
-    // ==========================================
-    //       FUNÇÕES DE INÍCIO / INSTRUÇÕES
-    // ==========================================
+    /**
+     * @method mostrarInstrucoes
+     * @description Exibe o painel flutuante inicial ensinando o jogador.
+     */
     mostrarInstrucoes() {
         const cx = this.scale.width / 2;
         const cy = this.scale.height / 2;
@@ -246,6 +238,7 @@ export class cenaCuidado extends Phaser.Scene {
         this.imgInstrucao = this.add.image(cx, cy, "comoJogarPulgas")
             .setDepth(201).setScrollFactor(0).setInteractive();
 
+        // Escala a imagem do tutorial garantindo margens
         const limiteLargura = this.scale.width * 0.8;
         const limiteAltura = this.scale.height * 0.8;
         const escalaX = limiteLargura / this.imgInstrucao.width;
@@ -256,10 +249,12 @@ export class cenaCuidado extends Phaser.Scene {
             fontFamily: '"Press Start 2P", Arial', fontSize: "15px", color: "#ffffff"
         }).setOrigin(0.5).setDepth(201).setScrollFactor(0);
         
+        // Efeito de "Blink/Piscar" para o texto de iniciar
         this.tweens.add({
             targets: this.textoIniciar, alpha: 0.5, duration: 600, yoyo: true, loop: -1
         });
 
+        // Callback de fechamento do modal
         const comecarJogo = () => {
             this.fundoInstrucao.destroy();
             this.imgInstrucao.destroy();
@@ -272,13 +267,20 @@ export class cenaCuidado extends Phaser.Scene {
         this.input.keyboard.once('keydown-SPACE', comecarJogo);
     }
     
+    /**
+     * @method iniciarMinigameAposInstrucoes
+     * @description Dispara o fluxo lógico do jogo de fato, ativando timer e movimento.
+     */
     iniciarMinigameAposInstrucoes() {
         this.instrucoesLidas = true;
         this.tempoInicialMs = this.time.now;
+        
+        // Cria o laço do cronômetro (Roda a cada 100ms para alta precisão de UI)
         this.timerEvent = this.time.addEvent({
             delay: 100, callback: this.atualizarTextoTempo, callbackScope: this, loop: true
         });
         
+        // Inicia as rotinas de patrulha/movimentação das pulgas
         this.pulgas.children.iterate((pulga) => {
             if (pulga && pulga.active) this.moverPulga(pulga);
         });
@@ -286,9 +288,10 @@ export class cenaCuidado extends Phaser.Scene {
         this.mostrarPopupInstrucaoFerramentas();
     }
 
-    // ==========================================
-    //           MECÂNICAS DO JOGO
-    // ==========================================
+    /**
+     * @method mostrarPopupInstrucaoFerramentas
+     * @description Exibe um lembrete visual de 3 segundos no centro da tela.
+     */
     mostrarPopupInstrucaoFerramentas() {
         const cx = this.scale.width / 2;
         const cy = this.scale.height / 2;
@@ -300,6 +303,10 @@ export class cenaCuidado extends Phaser.Scene {
         this.time.delayedCall(3000, () => { textoPopup.destroy(); });
     }
 
+    /**
+     * @method criarTextosInfo
+     * @description Cria o cabeçalho contendo HUD de tempo e progresso.
+     */
     criarTextosInfo() {
         this.textoTempo = this.add.text(20, 30, `Tempo: ${this.tempoLimite}s`, {
             fontFamily: '"Press Start 2P", Arial', fontSize: "20px", color: "#ffffff",
@@ -312,6 +319,10 @@ export class cenaCuidado extends Phaser.Scene {
         }).setOrigin(1, 0).setDepth(50);
     }
 
+    /**
+     * @method criarFerramentasUI
+     * @description Cria as ferramentas clicáveis e prepara os cursores visuais (invisíveis por padrão).
+     */
     criarFerramentasUI() {
         const altura = this.scale.height;
         const largura = this.scale.width;
@@ -322,6 +333,7 @@ export class cenaCuidado extends Phaser.Scene {
         this.iconePinca = this.add.image(largura * 0.8, altura * 0.85, 'pinca')
             .setDepth(60).setScale(0.3); 
 
+        // Definição de HitAreas circulares para melhor UX nos ícones
         const raioEspirrador = this.iconeEspirrador.width * 0.3; 
         this.iconeEspirrador.setInteractive({
             hitArea: new Phaser.Geom.Circle(this.iconeEspirrador.width / 2, this.iconeEspirrador.height / 2, raioEspirrador),
@@ -336,100 +348,129 @@ export class cenaCuidado extends Phaser.Scene {
             useHandCursor: true
         });
 
-        // Cursores customizados escondidos inicialmente
+        // Sprites que seguirão o mouse (cursores customizados)
         this.cursorEspirrador = this.add.sprite(0, 0, 'espirradorPulgas', 0)
             .setDepth(100).setScale(0.5).setVisible(false); 
             
         this.cursorPinca = this.add.image(0, 0, 'pinca')
             .setDepth(100).setScale(0.3).setVisible(false); 
 
-        // Eventos de clique para trocar a ferramenta
+        // Bindings de botões
         this.iconeEspirrador.on("pointerdown", () => this.equiparFerramenta('espirrador'));
         this.iconePinca.on("pointerdown", () => this.equiparFerramenta('pinca'));
     }
 
+    /**
+     * @method desequiparFerramentas
+     * @description Limpa a seleção atual, restaura cursores padrão e reseta alphas.
+     */
     desequiparFerramentas() {
         this.ferramentaEquipada = null;
         this.input.setDefaultCursor("default");
         
-        // Esconde os cursores
         if (this.cursorEspirrador) this.cursorEspirrador.setVisible(false);
         if (this.cursorPinca) this.cursorPinca.setVisible(false);
         
-        // Retorna a opacidade dos botões
         if (this.iconeEspirrador) this.iconeEspirrador.setAlpha(1);
         if (this.iconePinca) this.iconePinca.setAlpha(1);
 
-        // Se o jogador estiver segurando a pulga e clicar para soltar a ferramenta
+        // Se o jogador desequipar no meio de um arrasto, solta a pulga
         if (this.pulgaSegurada) {
             this.pulgaSegurada.setScale(0.12);
             this.pulgaSegurada = null;
         }
     }
 
+    /**
+     * @method equiparFerramenta
+     * @description Alterna entre o uso do Spray ou Pinça. Esconde o cursor do SO.
+     * @param {string} nomeFerramenta - Chave de identificação da ferramenta desejada.
+     */
     equiparFerramenta(nomeFerramenta) {
-        // Se a ferramenta clicada for a que já está equipada, desequipa.
+        // Toggle (Clica na equipada = desequipa)
         if (this.ferramentaEquipada === nomeFerramenta) {
             this.desequiparFerramentas();
             return;
         }
 
         this.ferramentaEquipada = nomeFerramenta;
-        this.input.setDefaultCursor("none"); 
+        this.input.setDefaultCursor("none"); // Oculta o mouse do sistema operacional
 
         if (nomeFerramenta === 'espirrador') {
             this.cursorEspirrador.setVisible(true);
             this.cursorPinca.setVisible(false);
-            // Destaca o ícone do espirrador e opaca a pinça
+            // Alpha 0.5 atua como feedback de interface de "botão pressionado"
             this.iconeEspirrador.setAlpha(0.5);
             this.iconePinca.setAlpha(1);
         } else if (nomeFerramenta === 'pinca') {
             this.cursorEspirrador.setVisible(false);
             this.cursorPinca.setVisible(true);
-            // Destaca o ícone da pinça e opaca o espirrador
             this.iconePinca.setAlpha(0.5);
             this.iconeEspirrador.setAlpha(1);
         }
     }
 
+    /**
+     * @method spawnPulgasIniciais
+     * @description Delegação estruturada para criação do grupo original.
+     */
     spawnPulgasIniciais() {
         for (let i = 0; i < this.totalPulgas; i++) this.spawnPulga();
     }
 
+    /**
+     * @method spawnPulga
+     * @description Instancia um sprite de pulga no grupo físico e define seu estado inicial.
+     */
     spawnPulga() {
         const x = Phaser.Math.Between(50, this.scale.width - 50);
         const y = Phaser.Math.Between(80, this.scale.height - 80); 
         const pulga = this.pulgas.get(x, y, "pulga1");
+        
         if (!pulga) return;
+        
         pulga.setActive(true).setVisible(true);
-        pulga.body.setAllowGravity(false);
+        pulga.body.setAllowGravity(false); // O minigame é top-down/abstrato, não usa gravidade
         pulga.setScale(0.12).setDepth(10); 
-        pulga.setData('estado', 'viva'); 
+        pulga.setData('estado', 'viva'); // Chave customizada crucial para a lógica do jogo
     }
 
+    /**
+     * @method capturarPulga
+     * @description Trata a lógica ao colocar uma pulga na bandeja com sucesso.
+     * @param {Phaser.GameObjects.Sprite} pulga - Sprite que foi coletado.
+     */
     capturarPulga(pulga) {
         if (!pulga.active) return;
+        
+        // Remove totalmente a pulga da cena e da física
         this.tweens.killTweensOf(pulga);
         pulga.setActive(false).setVisible(false);
         if (pulga.body) pulga.body.enable = false;
 
         this.pulgasRemovidas++;
         this.pontuacao += 50; 
-
         this.textoProgresso.setText(`Bandeja: ${this.pulgasRemovidas}/${this.totalPulgas}`);
 
+        // Milestone de Metade (Aumenta o status de saúde do cachorro e exibe aviso)
         if (this.pulgasRemovidas === 6 && !this.bonusMeioGanho) {
             this.bonusMeioGanho = true;
+            // O valor de 'saude' parece operar no formato "quanto menor = mais saudável"
             gameState.barras.saude = Phaser.Math.Clamp(gameState.barras.saude - 5, 0, 11);
             this.mostrarPopupMetade();
         }
 
+        // Condição de Vitória Completa
         if (this.pulgasRemovidas >= this.totalPulgas) {
             gameState.barras.saude = Phaser.Math.Clamp(gameState.barras.saude - 11, 0, 11);
             this.finalizarMinigame();
         }
     }
 
+    /**
+     * @method mostrarPopupMetade
+     * @description Overlay visual confirmando progresso de 50%.
+     */
     mostrarPopupMetade() {
         const cx = this.scale.width / 2;
         const cy = this.scale.height / 5;
@@ -437,6 +478,7 @@ export class cenaCuidado extends Phaser.Scene {
 
         const fundo = this.add.rectangle(cx, cy, larguraFundo, 50, 0x000000, 0.8)
             .setStrokeStyle(4, 0x9be564).setDepth(20);
+            
         const texto = this.add.text(cx, cy, "Metade das\npulgas recolhidas!", {
             fontFamily: '"Press Start 2P", Arial', fontSize: "15px", color: "#ffffff", align: "center"
         }).setOrigin(0.5).setDepth(81);
@@ -444,15 +486,27 @@ export class cenaCuidado extends Phaser.Scene {
         this.time.delayedCall(2000, () => { fundo.destroy(); texto.destroy(); });
     }
 
+    /**
+     * @method moverPulga
+     * @description Rotina recursiva utilizando Tweens para mover a pulga viva aleatoriamente pela tela.
+     * @param {Phaser.GameObjects.Sprite} pulga - Sprite que deve iniciar a patrulha.
+     */
     moverPulga(pulga) {
+        // Bloqueia movimento se estiver morta
         if (pulga.getData('estado') !== 'viva') return; 
 
+        // Garante que não empilhemos múltiplos tweens
         this.tweens.killTweensOf(pulga);
+        
         const x = Phaser.Math.Between(50, this.scale.width - 50);
         const y = Phaser.Math.Between(80, this.scale.height - 80);
+        
         this.tweens.add({
-            targets: pulga, x, y, duration: Phaser.Math.Between(1800, 3200), ease: "Sine.easeInOut",
+            targets: pulga, x, y, 
+            duration: Phaser.Math.Between(1800, 3200), // Duração variante traz naturalidade/aleatoriedade
+            ease: "Sine.easeInOut",
             onComplete: () => { 
+                // Chamada recursiva ao finalizar o movimento, perpetuando o ciclo enquanto o jogo rodar
                 if (pulga.active && !this.minigameFinalizado && pulga.getData('estado') === 'viva') {
                     this.moverPulga(pulga); 
                 }
@@ -460,6 +514,10 @@ export class cenaCuidado extends Phaser.Scene {
         });
     }
 
+    /**
+     * @method atualizarTextoTempo
+     * @description Callback atrelado ao evento de tempo contínuo que calcula o relógio decrescente.
+     */
     atualizarTextoTempo() {
         if (!this.instrucoesLidas || this.minigameFinalizado) return;
         
@@ -468,15 +526,16 @@ export class cenaCuidado extends Phaser.Scene {
         
         this.textoTempo.setText(`Tempo: ${this.tempoRestante}s`);
 
+        // Condição de Derrota Total
         if (this.tempoRestante === 0) {
             this.perderMinigame();
         }
     }
 
-    // ==========================================
-    //        FUNÇÕES DE TELA FINAL
-    // ==========================================
-
+    /**
+     * @method perderMinigame
+     * @description Manipula a transição para Game Over (falta de tempo).
+     */
     perderMinigame() {
         if (this.minigameFinalizado) return;
         this.minigameFinalizado = true;
@@ -485,13 +544,19 @@ export class cenaCuidado extends Phaser.Scene {
         if (this.cursorEspirrador) this.cursorEspirrador.setVisible(false);
         if (this.cursorPinca) this.cursorPinca.setVisible(false);
 
+        // Congela todas as pulgas
         this.pulgas.children.iterate((pulga) => {
             this.tweens.killTweensOf(pulga);
         });
 
+        // Exibe 0 estrelas / 0 moedas
         this.mostrarPainelResultado(0, 0, 0); 
     }
 
+    /**
+     * @method finalizarMinigame
+     * @description Conclui com sucesso. Atribui pontuações, grava estado global e limpa entidades físicas.
+     */
     finalizarMinigame() {
         if (this.minigameFinalizado) return;
         this.minigameFinalizado = true;
@@ -500,64 +565,89 @@ export class cenaCuidado extends Phaser.Scene {
         if(this.cursorEspirrador) this.cursorEspirrador.setVisible(false);
         if(this.cursorPinca) this.cursorPinca.setVisible(false);
 
+        // Atualiza a máquina de estado global curando o pet atual
         gameState.pulga = false;
         gameState.cachorroTemPulga = false;
+        
         this.pulgas.children.iterate((pulga) => {
             if (!pulga) return;
             pulga.setVisible(false);
             pulga.setActive(false);
             if (pulga.body) pulga.body.enable = false;
+            this.tweens.killTweensOf(pulga);
         });
 
         const estrelas = this.calcularEstrelas(this.tempoRestante);
         const moedas = this.calcularMoedas(estrelas);
 
+        // Atribui recompensas baseado no pet selecionado (Apenas se já não recebeu antes)
         const cachorroAtivo = gameState.pets.cachorroJoao ? 'joao' : (gameState.pets.cachorroHeroi ? 'heroi' : 'caramelo');
         if (!gameState.recompensas.cuidado[cachorroAtivo]) {
             gameState.cobasiCoins += moedas;
             gameState.recompensas.cuidado[cachorroAtivo] = true;
         }
 
+        // Fluxo narrativo condicional (Trigger de evento)
         if (gameState.pets.cachorroJoao && !gameState.exibirQuiz) {
             gameState.exibirQuiz = true;
         }
 
-        this.pulgas.children.iterate((pulga) => {
-            this.tweens.killTweensOf(pulga);
-        });
-
         this.mostrarPainelResultado(estrelas, moedas, this.tempoRestante); 
     }
 
+    /**
+     * @method calcularEstrelas
+     * @description Sistema dinâmico de pontuação 3 estrelas baseado no tempo ágil.
+     * @param {number} tempoRestante 
+     * @returns {number} Quantidade de estrelas conquistadas.
+     */
     calcularEstrelas(tempoRestante) {
         if (tempoRestante >= 25) return 3; 
         if (tempoRestante >= 10) return 2; 
         return 1; 
     }
 
+    /**
+     * @method calcularMoedas
+     * @description Retorno monetário in-game associado ao nível de estrela.
+     * @param {number} estrelas 
+     * @returns {number} Quantidade de moedas.
+     */
     calcularMoedas(estrelas) {
         if (estrelas === 3) return 20;
         if (estrelas === 2) return 10;
         return 0; 
     }
 
+    /**
+     * @method mostrarPainelResultado
+     * @description Instancia o modal final de feedback informando estrelas e recompensas recebidas.
+     * E gerencia o roteamento dinâmico de cenas ao concluir o minigame.
+     * @param {number} estrelas 
+     * @param {number} moedas 
+     * @param {number} segundos 
+     */
     mostrarPainelResultado(estrelas, moedas, segundos) {
         const cx = this.scale.width / 2;
         const cy = this.scale.height / 2;
 
+        // Seleção de asset por qualidade da vitória
         const imagemFeedback = estrelas === 3 ? "feeedback3estrelas" : 
-                               estrelas === 2 ? "feedback2estrelas" : "feedback1estrela"; // Obs: se não tiver imagem "feedback0estrelas", ele vai usar a de 1 estrela ao perder.
+                               estrelas === 2 ? "feedback2estrelas" : "feedback1estrela"; // O fallback cobre 1 estrela ou Game Over (0)
 
+        // Backdrop negro opaco
         const fundoFeedback = this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.8)
             .setDepth(100).setInteractive(); 
 
         const telaFeedback = this.add.image(cx, cy, imagemFeedback).setDepth(101);
 
+        // Garante que o popup não estoure os limites da tela (Responsividade)
         const limiteLargura = this.scale.width * 0.8;
         const limiteAltura = this.scale.height * 0.8;
         const escalaFinal = Math.min(limiteLargura / telaFeedback.width, limiteAltura / telaFeedback.height);
         telaFeedback.setScale(escalaFinal); 
 
+        // Rótulos de recompensas dinamicamente calculados em cima do popup gerado
         let posMoedasY = cy + (telaFeedback.displayHeight * 0.12);
         this.add.text(cx-12, posMoedasY, `${moedas} Moedas`, {
             fontFamily: '"Press Start 2P", Arial', fontSize: "22px", color: "#005e64"
@@ -574,13 +664,17 @@ export class cenaCuidado extends Phaser.Scene {
         
         this.tweens.add({ targets: textoContinuar, alpha: 0.5, duration: 600, yoyo: true, loop: -1 });
 
+        // Transição de cenas com base no cachorro equipado (Branching Narrative)
         const fecharPainel = () => { 
             if (gameState.pets.cachorroJoao) {
                 this.scene.start("cenaPrincipal");
             } else {
+                // A maioria dos cachorros retorna à cena do veterinário
                 this.scene.start("cenaVeterinario");
             }
         };
+        
+        // Finaliza ao clicar em qualquer lugar da tela
         fundoFeedback.on('pointerdown', fecharPainel);
         telaFeedback.setInteractive().on('pointerdown', fecharPainel);
     }

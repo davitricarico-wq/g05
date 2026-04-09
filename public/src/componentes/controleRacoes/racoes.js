@@ -1,36 +1,70 @@
+/**
+ * @class Racao
+ * @description Representa o componente visual e interativo de um item de ração na loja ou inventário.
+ * Ele mescla os dados brutos do catálogo (nome, valor, nutrientes) com o objeto de jogo do Phaser (Sprite).
+ */
 export class Racao {
 
-    // Variável estática: guarda qual ração está selecionada no momento
+    /**
+     * @static
+     * @property {Racao|null} selecionada
+     * @description Gerencia o estado global de seleção da ração.
+     * * Padrão de Arquitetura: Sendo estática, essa variável pertence à Classe, e não às instâncias. 
+     * Isso permite que todos os objetos 'Racao' criados saibam qual item está selecionado no momento, 
+     * facilitando a criação de um comportamento de "Radio Button" (selecionar um desmarca o outro) 
+     * sem precisar de um Gerenciador extra só para cuidar da UI.
+     */
     static selecionada = null;
 
+    /**
+     * @constructor
+     * @param {Phaser.Scene} scene - A cena do Phaser onde o item será renderizado (ex: CenaLoja).
+     * @param {number} x - Posição horizontal (X) na tela.
+     * @param {number} y - Posição vertical (Y) na tela.
+     * @param {Object} dados - O objeto de dados importado do catálogo (ex: racaoPremiumPequeno).
+     */
     constructor(scene, x, y, dados) {
-        // Cena onde a ração será exibida
+        // Armazena a referência da cena para comunicação posterior
         this.scene = scene;
 
-        // Copia todas as informações do objeto "dados" para a instância
+        // "Hydration" (Hidratação) do objeto:
+        // Copia dinamicamente todas as propriedades do objeto 'dados' (nome, preco, nutrientes) 
+        // diretamente para esta instância (this). Isso evita ter que escrever `this.nome = dados.nome`, etc.
         Object.assign(this, dados);
 
-        // Cria sprite da ração na tela
+        // Instancia o sprite visual do item
         this.sprite = scene.add
-            .image(x, y, dados.sprite)      // Usa imagem definida em "dados.sprite"
-            .setDisplaySize(144, 209)       // Define tamanho fixo
-            .setInteractive({ useHandCursor: true }); // Torna clicável
+            // Usa a chave de imagem que veio junto no objeto 'dados'
+            .image(x, y, dados.sprite)      
+            // Padroniza o tamanho do card na loja para alinhar o grid perfeitamente, 
+            // independente do tamanho original da imagem importada.
+            .setDisplaySize(144, 209)       
+            // Habilita eventos de input (clique/toque) e altera o cursor do mouse para a "mãozinha"
+            .setInteractive({ useHandCursor: true }); 
 
-        // Evento de clique na ração
+        // Registra o evento de clique/toque no item
         this.sprite.on("pointerdown", () => {
 
-            // Remove destaque da ração anterior, se houver
+            // 1. Lógica de Deseleção (Radio Button):
+            // Se já existe uma ração selecionada no jogo, nós removemos o filtro de cor (Tint) dela
+            // para que ela volte à aparência original.
             if (Racao.selecionada) {
                 Racao.selecionada.sprite.clearTint();
             }
 
-            // Define esta ração como a selecionada
+            // 2. Atualização do Estado:
+            // Define esta própria instância atual como a nova ração selecionada globalmente.
             Racao.selecionada = this;
 
-            // Aplica destaque visual (tinta amarela)
+            // 3. Feedback Visual:
+            // Aplica um filtro de cor amarela (0xffff00) sobre este sprite para indicar ao jogador 
+            // que este é o item ativo no momento.
             this.sprite.setTint(0xffff00);
 
-            // Atualiza painel lateral com informações da ração
+            // 4. Comunicação com a Cena (Baixo Acoplamento):
+            // Em vez da classe Racao tentar manipular o painel de texto diretamente, ela apenas 
+            // verifica se a Cena possui uma função 'atualizarPainel' e passa a si mesma (this) como argumento.
+            // Isso significa que o card da ração não precisa saber como o painel funciona por dentro.
             if (scene.atualizarPainel) {
                 scene.atualizarPainel(this);
             }
