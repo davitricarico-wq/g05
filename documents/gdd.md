@@ -1492,6 +1492,23 @@ Essas alterações atendem aos requisitos RF12, RF13 e RF14, além de contribuí
 Após a finalização de cada minigame, o jogador passou a receber orientações para prosseguir para as próximas atividades. Essa melhoria foi implementada com base nos resultados dos testes realizados, visando reduzir dúvidas e melhorar o fluxo de progressão.
 Essa funcionalidade reforça os requisitos RF5, RF6 e RF7, além de atender ao requisito não funcional RNF3, relacionado à interface intuitiva.
 
+
+**Implementação do Quiz Educativo Final**
+
+Como parte da etapa final do desenvolvimento, foi implementado um quiz educativo ao término do jogo, que é desbloqueado após o jogador concluir o cuidado dos três animais disponíveis. Essa funcionalidade tem como objetivo revisar e reforçar os conceitos apresentados ao longo da experiência, especialmente relacionados à alimentação, higiene e cuidados gerais com os animais.
+
+O quiz atua como um mecanismo de consolidação do aprendizado, promovendo a retenção do conhecimento de forma interativa e alinhada à proposta educativa do projeto.
+
+Essa implementação atende diretamente ao requisito RF18, relacionado à presença de um quiz educativo na área de alimentação, além de reforçar os requisitos RF7 e RF8, que tratam do cuidado com os animais como mecânica central do jogo. Também contribui para o requisito não funcional RNF3, ao manter a interface intuitiva e de fácil compreensão.
+
+**Reformulação do Minigame de Cuidados (Pulgas)**
+
+O minigame da área de cuidados passou por uma reformulação significativa em sua mecânica, tornando o processo mais detalhado e realista. Agora, antes de remover as pulgas, o jogador deve utilizar um spray antipulgas, que paralisa os parasitas. Após essa etapa, o jogador deve utilizar a pinça para remover as pulgas e depositá-las em uma bandeja.
+
+Além disso, foi implementado um limite de tempo de 50 segundos para a conclusão da atividade, incentivando agilidade e precisão por parte do jogador. Ao completar o desafio dentro do tempo estipulado, o jogador é recompensado com moedas do jogo.
+
+Essas alterações atendem aos requisitos RF23, RF24 e RF25, relacionados à área de cuidados, à mecânica de remoção de pulgas e à avaliação baseada em desempenho. Também reforçam o requisito RF11, referente ao sistema de recompensas, e o requisito não funcional RNF7, relacionado à responsividade das interações.
+
 **Melhorias no Minigame de Alimentação**
 
 O minigame de alimentação também foi reformulado visualmente e funcionalmente. Os modelos das rações foram redesenhados e a estante passou a contar com uma nova organização, dividida em categorias: standard, premium e super premium.
