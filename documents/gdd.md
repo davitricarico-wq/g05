@@ -11,7 +11,7 @@ Davi Viana Tricarico
 Gustavo Luz Fantasia Barbosa  
 Isaac Nicolas Alves Silva  
 João Pedro Fuzzo Poveda  
-Pedro Lemos Negri.    
+Pedro Lemos Negri                         
 Valter Lucas Garcia de Lima
 
 # Sumário
@@ -117,8 +117,9 @@ Neste projeto, utilizamos esse modelo para compreender melhor o mercado pet onde
 
 &ensp;A Ameaça de Novos Entrantes analisa o nível de dificuldade para novas empresas ingressarem no setor e competirem com os players já estabelecidos.
 
-&ensp;O mercado pet brasileiro movimentou cerca de R$77,2 bilhões em 2025, com projeção de R$80 bilhões em 2026 (ABRAS, 2025), sendo um setor atrativo e em expansão. Embora a abertura de pequenos pet shops seja acessível, competir em escala nacional exige alto investimento em infraestrutura, logística, marketing e construção de marca (NEOFEED, 2024; CONSUMIDOR MODERNO, 2024). Grandes grupos como Petz e Cobasi possuem forte poder de negociação, capilaridade e estratégia omnichannel, dificultando a entrada de novos concorrentes relevantes (CADE, 2024).
-Assim, a ameaça é considerada baixa a moderada, restrita principalmente a nichos específicos ou modelos digitais inovadores.
+&ensp;O mercado pet brasileiro movimentou cerca de R$77,2 bilhões em 2025, com projeção de R$80 bilhões em 2026 (ABRAS, 2025), sendo um setor atrativo e em expansão. Embora a abertura de pequenos pet shops seja acessível, competir em escala nacional exige alto investimento em infraestrutura, logística, marketing e construção de marca (NEOFEED, 2024; CONSUMIDOR MODERNO, 2024). Grandes grupos como Petz e Cobasi possuem forte poder de negociação, capilaridade e estratégia omnichannel, dificultando a entrada de novos concorrentes relevantes (CADE, 2024). Assim, a ameaça é considerada baixa a moderada, restrita principalmente a nichos específicos ou modelos digitais inovadores.
+
+&ensp;Esse cenário favorece a Cobasi, que já possui estrutura consolidada e forte presença nacional, tornando mais difícil para novos concorrentes ameaçarem sua posição de forma relevante no curto prazo.
 
 
 ##### 1.1.1.3 Ameaça de Produtos ou Serviços Substitutos
@@ -126,6 +127,8 @@ Assim, a ameaça é considerada baixa a moderada, restrita principalmente a nich
 &ensp;A Ameaça de Produtos ou Serviços Substitutos analisa a possibilidade de os consumidores atenderem à mesma necessidade por meio de alternativas diferentes das oferecidas pelas empresas do setor, podendo reduzir sua demanda ou pressionar preços, conforme o modelo das Cinco Forças (PORTER, 2008).
 
 &ensp;No varejo pet, os principais substitutos estão relacionados a canais alternativos de compra, como supermercados, marketplaces generalistas, como Amazon, Shopee e Mercado Livre, e compras diretas de fabricantes, ampliadas pelo avanço do comércio eletrônico no Brasil (E-COMMERCE BRASIL, 2023). Esses canais oferecem produtos básicos, especialmente ração e acessórios, muitas vezes com preços mais competitivos e maior transparência de comparação (SBVC, 2024). Além disso, pequenas lojas de bairro também competem por conveniência local, oferecendo entregas rápidas em regiões específicas.  Entretanto, a Cobasi reduz essa ameaça ao investir em diferenciação por meio de ampla variedade de produtos, serviços especializados, como banho e tosa, e logística de entrega rápida, que exige infraestrutura, tecnologia e capilaridade nacional, especialmente após o movimento de consolidação com a Petz (CONSELHO ADMINISTRATIVO DE DEFESA ECONÔMICA – CADE, 2025). Dessa forma, embora existam alternativas disponíveis ao consumidor, a ameaça de substitutos é considerada moderada, sendo mais relevante no segmento de produtos padronizados e sensível a preço.
+
+&ensp;Assim, a principal estratégia da Cobasi para se diferenciar dos substitutos reside em oferecer uma experiência de compra completa e especializada, que vai além do produto em si — algo que marketplaces generalistas dificilmente conseguem replicar.
 
 
 ##### 1.1.1.4 Poder de Barganha dos Fornecedores
@@ -136,6 +139,8 @@ Assim, a ameaça é considerada baixa a moderada, restrita principalmente a nich
 
 &ensp;Dessa forma, embora os fornecedores sejam relevantes e detenham marcas consolidadas, seu poder de barganha é considerado baixo a moderado, uma vez que grande parte das compras está concentrada em poucos varejistas de grande porte.
 
+&ensp;Com isso, a Cobasi mantém posição vantajosa nas negociações com fornecedores, o que se reflete em melhores condições comerciais e maior controle sobre a cadeia de suprimentos.
+
 
 ##### 1.1.1.5 Poder de Barganha dos Clientes
 
@@ -144,6 +149,8 @@ Assim, a ameaça é considerada baixa a moderada, restrita principalmente a nich
 &ensp;No mercado pet brasileiro, observa-se ampla presença de micro e pequenas empresas, que representam cerca de 98% do setor, sendo os microempreendedores individuais responsáveis por grande parcela da movimentação econômica. Pequenos e médios pet shops concentram aproximadamente 49% da receita do setor, enquanto grandes redes representam cerca de 9%. Clínicas e hospitais veterinários detêm 18% (Receita Federal, 2023). Esse cenário evidencia a elevada oferta de estabelecimentos e amplia as opções disponíveis aos consumidores finais, aumentando seu poder de escolha e sensibilidade a preço e qualidade.
 
 &ensp;Por outro lado, a recente fusão entre Cobasi e Petz, que juntas somam mais de 500 lojas no país, representa uma estratégia para ampliar escala, fortalecer a marca e reduzir a influência do cliente por meio de diferenciação, conveniência e integração omnichannel. Ainda assim, diante da concorrência de lojas virtuais como Shopee e Amazon, o poder de barganha dos clientes pode ser considerado moderado, pois há diversas alternativas disponíveis no mercado.
+
+&ensp;Diante desse cenário, a Cobasi precisa investir continuamente em diferenciação, conveniência e experiência do cliente para reduzir a sensibilidade ao preço e fidelizar seu público em um mercado com muitas opções disponíveis.
 
 
 ##### 1.1.1.6 Rivalidade entre os Concorrentes Existentes
@@ -155,8 +162,12 @@ Os marketplaces digitais, como Mercado Livre, Amazon, Shopee e TikTok Shop, exer
 
 &ensp;Por fim, os pet shops de bairro competem fortemente no mercado local, com foco em relacionamento, flexibilidade de preços e oferta de serviços como banho e tosa. Apesar de não possuírem a escala das grandes redes, mantêm relevância regional. A rivalidade no setor é alta, especialmente no e-commerce e na venda de produtos padronizados, exigindo diferenciação estratégica por parte das grandes redes.
 
+&ensp;Nesse contexto, iniciativas como o Cobasi Shelter ganham relevância, pois reforçam o posicionamento da marca por meio de experiências digitais que competidores generalistas não oferecem, criando um diferencial difícil de ser replicado.
+
 
 ### 1.1.2. Análise SWOT 
+
+&ensp;A Análise SWOT é uma ferramenta estratégica que mapeia os pontos fortes e fracos internos de uma organização, bem como as oportunidades e ameaças externas do mercado em que ela atua. Neste projeto, ela foi utilizada para entender o cenário competitivo em que a Cobasi está inserida, identificando fatores que influenciam diretamente as decisões estratégicas do jogo.
 
 &ensp;Inserida em um mercado que projeta R$ 80 bilhões para 2026 (ABRAS, 2025; MANZONI NEWS, 2026), a Cobasi compete em três frentes simultâneas: a Petlove avança no e-commerce especializado com assinaturas e serviços veterinários; Amazon e Mercado Livre pressionam preços e dominam o alcance digital; e os pet shops de bairro mantêm competitividade local por relacionamento e conveniência. É nesse cenário que a análise SWOT posiciona a Cobasi, mapeando os fatores internos (Forças e Fraquezas) e externos (Oportunidades e Ameaças) que moldam sua estratégia, e que diretamente fundamentam a proposta do Cobasi Shelter como ferramenta de diferenciação por experiência e propósito (Figura 1).
 
@@ -208,6 +219,8 @@ Os marketplaces digitais, como Mercado Livre, Amazon, Shopee e TikTok Shop, exer
 ---
 
 &ensp;A cultura organizacional da Cobasi evidencia forte orientação para a experiência do consumidor aliada a princípios éticos consistentes. Esses pilares sustentam a credibilidade da marca e direcionam a equipe na entrega de um atendimento de qualidade, favorecendo a fidelização do público pet.
+
+&ensp;Em conjunto, missão, visão e valores formam a base que orienta não apenas as decisões de negócio da Cobasi, mas também o desenvolvimento do jogo Cobasi Shelter, que busca traduzir esses princípios em uma experiência interativa acessível e significativa para o público.
 
 ### 1.1.4. Proposta de Valor 
 
@@ -290,6 +303,8 @@ Principais tarefas identificadas:
 
 ### 1.1.5. Descrição da Solução Desenvolvida
 
+&ensp;Esta seção apresenta, de forma objetiva, qual é o produto desenvolvido, qual problema ele busca resolver e de que maneira se propõe a solucioná-lo. Trata-se de um resumo executivo da solução, contextualizando sua relevância dentro do cenário do mercado pet e dos objetivos da Cobasi.
+
 &ensp;A solução desenvolvida consiste em um jogo digital educativo voltado à conscientização de tutores sobre os cuidados adequados com cães, alinhado ao propósito da Cobasi de promover o bem-estar animal e a adoção responsável. O problema central abordado refere-se à falta de conhecimento prático sobre as necessidades específicas dos pets, especialmente no caso de animais resgatados ou recém-adotados. Essa lacuna contribui para situações de negligência involuntária e abandono, ainda frequentes no Brasil e reconhecidas como desafios para a proteção e o bem-estar animal (Organização Mundial da Saúde Animal, 2022).
 
 &ensp;Nesse contexto, o jogo busca transformar informação em experiência prática, permitindo que o usuário aprenda por meio da simulação de situações reais de cuidado. O mercado pet brasileiro apresenta crescimento contínuo e alta relevância econômica, o que reforça a importância de iniciativas que promovam educação do consumidor e uso responsável de produtos e serviços voltados aos animais (Instituto Pet Brasil, 2024). Assim, a proposta integra conscientização e engajamento, aproximando o público das práticas recomendadas e do universo da marca parceira.
@@ -300,8 +315,12 @@ Principais tarefas identificadas:
 
 &ensp;Entre os principais benefícios da solução destacam-se a promoção da educação sobre cuidados responsáveis, a conscientização sobre os impactos do abandono e o incentivo à tomada de decisões informadas por parte dos tutores. Dessa forma, o jogo atua simultaneamente como ferramenta de aprendizagem e sensibilização, contribuindo para a formação de usuários mais preparados para a adoção e para o cuidado contínuo com os animais, ao mesmo tempo em que fortalece a conexão com os valores institucionais da Cobasi.
 
+&ensp;Dessa forma, o Cobasi Shelter posiciona-se não apenas como um jogo, mas como uma ferramenta estratégica de comunicação e educação, capaz de aproximar o público da marca de maneira lúdica, empática e socialmente relevante
+
 
 ### 1.1.6. Matriz de Riscos 
+
+&ensp;A Matriz de Riscos é uma ferramenta de gestão que identifica os possíveis problemas que podem surgir ao longo do desenvolvimento do projeto, classificando cada risco por sua probabilidade de ocorrência e pelo impacto que causaria caso acontecesse. Ela permite que a equipe se prepare com antecedência, definindo ações preventivas para os riscos mais críticos.
 
 <br>
 <div align="center">
@@ -365,10 +384,13 @@ Principais tarefas identificadas:
 
 **Ação de mitigação:** reservar tempo no final do projeto para polimento visual e organização das informações na tela.
 
+&ensp;A identificação e categorização desses riscos permite que a equipe atue de forma preventiva ao longo do desenvolvimento, priorizando esforços nas áreas de maior impacto e garantindo que o produto final seja entregue com o menor número possível de falhas críticas.
 
 ### 1.1.7. Objetivos, Metas e Indicadores 
 
-&ensp;Para garantir que o jogo não seja apenas uma experiência de entretenimento, mas também uma extensão estratégica do pilar social **Cobasi Cuida**, os objetivos do projeto foram definidos com base na metodologia SMART (Específico, Mensurável, Alcançável, Relevante e Temporal). As metas estão organizadas em três eixos centrais: Impacto Social, Engajamento com a Marca e Qualidade Técnica.
+&ensp;Esta seção estabelece, de forma estruturada, o que o projeto pretende alcançar, como esse progresso será medido e em qual prazo. A metodologia SMART é utilizada para garantir que cada objetivo seja específico, mensurável, alcançável, relevante e com prazo definido — evitando metas vagas e facilitando a avaliação dos resultados.
+
+&ensp;Para garantir que o jogo não seja apenas uma experiência de entretenimento, mas também uma extensão estratégica do pilar social *Cobasi Cuida*, os objetivos do projeto foram definidos com base na metodologia SMART (Específico, Mensurável, Alcançável, Relevante e Temporal). As metas estão organizadas em três eixos centrais: Impacto Social, Engajamento com a Marca e Qualidade Técnica.
 
 **Objetivo 1: Impacto Social e Educação (Alinhado ao Cobasi Cuida)**
 * **Específico (S):** Promover a conscientização dos usuários sobre as responsabilidades no cuidado animal e a importância da adoção responsável, por meio de mecânicas interativas de higiene, alimentação e saúde.
@@ -406,6 +428,8 @@ Principais tarefas identificadas:
 * **Indicadores (KPIs):**
   * Pontuação na escala SUS (Meta: > 80/100).
   * Quantidade de bugs críticos na versão final (Meta: 0).
+
+&ensp;O conjunto desses três objetivos reflete o equilíbrio que o projeto busca alcançar entre impacto social, engajamento com a marca e solidez técnica — garantindo que o Cobasi Shelter entregue valor tanto para o jogador quanto para a Cobasi enquanto empresa.
 
 
 ## 1.2. Requisitos do Jogo
@@ -477,6 +501,8 @@ Descrevem as funcionalidades, ações e comportamentos esperados.
 
 &ensp;Os requisitos não operam de forma isolada, mas de maneira articulada. A definição das espécies estabelece o escopo temático; a mecânica de cuidado estrutura a jogabilidade; os cenários organizam as ações; o sistema de moedas promove progressão; a indicação visual aprimora a interação; e o momento de conscientização consolida o propósito social do projeto. O desenvolvimento será realizado de forma incremental nas sprints iniciais, priorizando a implementação da mecânica central e das interações básicas, e posteriormente incorporando o sistema de recompensas e o evento educativo, garantindo viabilidade técnica e coerência na evolução do jogo.
 
+&ensp;A definição clara dos requisitos funcionais e não funcionais é o que permite à equipe desenvolver com foco e consistência, assegurando que cada funcionalidade entregue contribua diretamente para a experiência do jogador e para os objetivos do projeto.
+
 ## 1.3. Público-alvo do Projeto
 
 &ensp;O público-alvo do projeto é composto por indivíduos interessados em aprender e proporcionar melhor qualidade de vida aos seus animais de estimação, indo além de uma segmentação exclusivamente demográfica. Nesse sentido, o jogo busca atender usuários que valorizam experiências interativas, educativas e práticas, com potencial de aplicação no cuidado real com pets.
@@ -489,9 +515,13 @@ Descrevem as funcionalidades, ações e comportamentos esperados.
 
 &ensp;Dessa forma, o projeto procura alinhar suas funcionalidades às expectativas desse público, oferecendo uma experiência que combina engajamento, aprendizado e relevância prática, contribuindo para a conscientização sobre o cuidado responsável com animais.
 
+&ensp;Ao compreender profundamente quem são os usuários do jogo, a equipe pôde tomar decisões de design mais assertivas, desde o estilo visual até as mecânicas de interação, garantindo que a experiência seja relevante, acessível e significativa para o público ao qual se destina.
+
 --- 
 
 # 2. Visão Geral do Jogo 
+
+&ensp;Esta seção descreve como o jogo deve funcionar de uma maneira generalizada, passando por objetivos e características.
 
 ## 2.1. Objetivos do Jogo
 
@@ -503,8 +533,11 @@ Descrevem as funcionalidades, ações e comportamentos esperados.
 
 &ensp;Dessa forma, os objetivos do jogo se dividem em duas frentes principais: A primeira é garantir garantir o cuidado adequado dos animais, mantendo a barra de felicidade sempre elevada. A segunda é acumular moedas para investir em melhorias, acessórios e desbloqueios, tornando a jornada mais dinâmica e recompensadora.
 
+&ensp;Com essa estrutura dupla de objetivos — cuidar bem dos animais e gerenciar recursos estrategicamente —, o jogo mantém o jogador engajado tanto pelo apelo emocional quanto pela progressão mecânica, reforçando de forma natural a mensagem de responsabilidade e cuidado que está no centro do projeto.
 
 ## 2.2. Características do Jogo
+
+&ensp;As características do jogo reúnem as definições fundamentais sobre o tipo de experiência que está sendo criada — como seu gênero, a plataforma em que será jogado, o número de jogadores e os títulos que serviram de inspiração. Essas decisões moldam todas as escolhas de design e desenvolvimento feitas ao longo do projeto.
 
 ### 2.2.1. Gênero do Jogo
 
@@ -514,6 +547,8 @@ Descrevem as funcionalidades, ações e comportamentos esperados.
 
 &ensp;Além disso, o jogo pode ser classificado como casual, pois apresenta minigames acessíveis e intuitivos, voltados para públicos diversos, sem exigir domínio de controles complexos ou estratégias avançadas. O foco está na diversão, na sensação de responsabilidade e na recompensa emocional de ver os animais felizes.
 
+&ensp;A combinação entre simulação, progressão leve e minigames casuais torna o Cobasi Shelter acessível a diferentes perfis de jogadores, sem abrir mão de uma proposta com profundidade emocional e propósito educativo.
+
 ### 2.2.2. Plataforma do Jogo
 
 &ensp;O jogo será disponibilizado para desktop, com execução diretamente em navegadores web modernos, como Google Chrome, Microsoft Edge, Safari e Opera. Essa escolha de plataforma garante maior acessibilidade e praticidade, já que não será necessário instalar programas adicionais nem realizar downloads complexos.
@@ -522,13 +557,19 @@ Descrevem as funcionalidades, ações e comportamentos esperados.
 
 &ensp;Outro ponto importante é que a execução em navegadores torna o jogo mais inclusivo e acessível, permitindo que seja jogado em computadores com diferentes níveis de desempenho, sem exigir configurações avançadas de hardware.
 
+&ensp;A escolha pelo navegador web como plataforma reflete o compromisso do projeto com a acessibilidade, garantindo que qualquer pessoa com um computador e conexão à internet possa vivenciar a experiência do Cobasi Shelter sem barreiras técnicas ou financeiras.
+
 ### 2.2.3. Número de jogadores
 
 &ensp;O jogo foi projetado para apenas um jogador, com o objetivo de fortalecer o vínculo individual entre o cuidador e os animais. Essa escolha garante um maior senso de responsabilidade, já que cada decisão e ação realizada impacta diretamente o bem-estar dos cães.
 
 &ensp;A experiência single-player também permite que o jogador se envolva de forma mais imersiva e pessoal, sem distrações externas, reforçando a proposta central do projeto Cobasi Cuida: estimular a empatia, o cuidado e a dedicação aos animais.
 
+&ensp;A experiência individual também permite que o ritmo do jogo se adapte ao estilo de cada jogador, tornando cada sessão mais pessoal e significativa.
+
 ### 2.2.4. Títulos semelhantes e inspirações
+
+&ensp;Analisar jogos com propostas semelhantes é uma etapa essencial do design, pois permite identificar mecânicas bem-sucedidas, entender o que o público espera do gênero e encontrar oportunidades de diferenciação. Os títulos a seguir serviram como referências diretas para o desenvolvimento do Cobasi Shelter.
 
 #### 2.2.4.1 Meu Talking Tom - Android ou iOS
 
@@ -558,6 +599,8 @@ Descrevem as funcionalidades, ações e comportamentos esperados.
 * Loop de tarefas, como higiene, alimentação e rotina.
 * Progressão por meio de desbloqueios e expansão.
 
+&ensp;A análise desses títulos permitiu à equipe identificar as melhores práticas do gênero e adaptá-las à proposta do Cobasi Shelter, criando uma experiência original que combina elementos já consagrados com uma identidade visual e narrativa próprias, alinhadas ao contexto da marca.
+
 ### 2.2.5 Tempo estimado de jogo
 
 &ensp;O tempo estimado de gameplay para o *Cobasi Shelter*, considerando a familiaridade do público-alvo com videogames, varia entre quatro e dez minutos. É provável, no entanto, que, com futuras alterações e melhorias, a complexidade do jogo aumente e, consequentemente, o tempo de gameplay também seja ampliado.
@@ -567,6 +610,8 @@ Descrevem as funcionalidades, ações e comportamentos esperados.
 # 3. Game Design
 
 ## 3.1. Enredo do Jogo
+
+&ensp;O enredo é a história que dá contexto e significado às ações do jogador dentro do jogo. Ele conecta as mecânicas à proposta educativa do projeto, criando uma narrativa que justifica cada etapa do cuidado com os animais e reforça o tema central da adoção responsável.
 
 &ensp;O jogo se passa no contexto de uma unidade da Cobasi, onde o jogador assume o papel de um cuidador responsável por animais resgatados. A experiência se inicia quando o usuário chega ao local com um cachorro abandonado, sendo recepcionado por Maycon, o Personal Pet, que introduz o jogador às atividades e responsabilidades dentro do ambiente.
 
@@ -611,8 +656,11 @@ Descrevem as funcionalidades, ações e comportamentos esperados.
 
 &ensp;Esse momento simboliza a recuperação do animal e o fortalecimento do vínculo com o cuidador, além de trazer dinamismo e diversão para a experiência.
 
+&ensp;Ao encadear esses quatro momentos em uma narrativa coesa, o jogo conduz o jogador por uma jornada completa de resgate e cuidado, tornando cada minigame não apenas um desafio mecânico, mas também uma etapa significativa na história do animal e na formação do jogador como cuidador responsável.
 
 ## 3.2. Personagens
+
+&ensp;Os personagens são os elementos centrais que dão vida ao universo do jogo. Esta seção apresenta tanto os personagens controlados pelo jogador quanto os NPCs (personagens não jogáveis), descrevendo suas funções, características e o papel que cada um desempenha na experiência.
 
 ### 3.2.1. Controláveis
 
@@ -647,6 +695,8 @@ Descrevem as funcionalidades, ações e comportamentos esperados.
 * Também presente na plataforma Cobasi Cuida;
 * Não possui nenhuma deficiência física;
 * Representa um perfil mais comum de animal disponível para adoção.
+
+&ensp;A variedade entre os personagens — do avatar do jogador aos diferentes cães com histórias e características próprias — enriquece a experiência e reforça a mensagem central do jogo: cada animal resgatado é único e merece cuidado individualizado.
  
 ### 3.2.2. Non-Playable Characters (NPC)
 
@@ -674,10 +724,15 @@ Descrevem as funcionalidades, ações e comportamentos esperados.
 
 &ensp;Dessa forma, o impacto esperado é duplo: fortalecer o vínculo emocional com o público-alvo e posicionar o jogo como uma experiência transformadora que reflete a pluralidade da sociedade brasileira e os valores de responsabilidade, cuidado e inclusão associados à marca.
 
+&ensp;Embora o jogo conte com apenas um NPC principal, a presença de Maycon é suficiente para estabelecer o tom acolhedor da experiência e criar um ponto de referência humano dentro de um universo centrado nos animais.
 
 ## 3.3. Mundo do jogo
 
+&ensp;O mundo do jogo define o ambiente em que toda a experiência acontece — seus cenários, formas de navegação e as condições que afetam a jogabilidade. Compreender esse universo é essencial para entender como o jogador se movimenta e interage com os diferentes espaços disponíveis.
+
 ### 3.3.1. Locações Principais e/ou Mapas 
+
+&ensp;As locações são os cenários físicos em que cada atividade do jogo acontece. Cada área foi projetada para representar um ambiente real de cuidado com animais, conectando visualmente a jogabilidade à proposta educativa do projeto.
 
 &ensp;O jogo se passa em uma unidade da Cobasi adaptada para o cuidado de animais resgatados. O ambiente é dividido em diferentes áreas funcionais, cada uma representando uma etapa essencial da recuperação do pet, diretamente conectada aos minigames do jogo.
 
@@ -699,8 +754,11 @@ Descrevem as funcionalidades, ações e comportamentos esperados.
 
 &ensp;Espaço destinado à interação e recreação com o animal. Esse ambiente é inteiro inspirado no espaço Pet da loja da Cobasi, colocamos a logo da empresa no fundo da tela, fazendo com que ele apareça sempre durante a corrida de obstáculos. Representa a fase final da jornada, onde o jogador participa de um Mini Game interativo, simbolizando a recuperação e bem-estar do pet.
 
+&ensp;A diversidade entre as quatro locações garante que cada etapa do jogo ofereça um ambiente visualmente distinto, reforçando a sensação de progressão e mantendo o interesse do jogador ao longo de toda a experiência.
 
 ### 3.3.2. Navegação pelo mundo 
+
+&ensp;A navegação descreve como o jogador se desloca entre os diferentes ambientes do jogo e quais controles utiliza para interagir com cada um deles. Um sistema de navegação bem planejado garante que a experiência seja intuitiva e fluida, sem exigir explicações complexas.
 
 &ensp;A navegação no jogo ocorre por meio de uma interface central (HUD), onde o jogador seleciona os Mini Games disponíveis.
 
@@ -716,8 +774,11 @@ Descrevem as funcionalidades, ações e comportamentos esperados.
 
 &ensp;Esse sistema garante uma progressão guiada, intuitiva e alinhada com a narrativa do jogo.
 
+&ensp;Ao combinar navegação por menu com controles variados dentro dos minigames, o jogo oferece uma experiência coerente e acessível, sem impor ao jogador uma curva de aprendizado desnecessariamente longa.
 
-### 3.3.3. Condições climáticas e temporais 
+### 3.3.3. Condições climáticas e temporais
+
+&ensp;As condições climáticas e temporais dizem respeito ao ambiente e ao tempo como elementos que influenciam a jogabilidade. Nesta seção, é explicado como esses fatores foram pensados — ou intencionalmente ausentes — no design do jogo.
 
 &ensp;O jogo não apresenta variações climáticas, pois todas as atividades ocorrem em ambientes internos controlados.
 
@@ -729,6 +790,7 @@ Descrevem as funcionalidades, ações e comportamentos esperados.
 
 &ensp;Dessa forma, o tempo atua como um mecanismo de dificuldade e engajamento, incentivando o jogador a melhorar sua performance.
 
+&ensp;Essa abordagem garante que o tempo seja sentido como um elemento de desafio natural, sem comprometer a acessibilidade do jogo para públicos com diferentes níveis de habilidade.
 
 ### 3.3.4. Concept Art 
 
@@ -780,7 +842,9 @@ Descrevem as funcionalidades, ações e comportamentos esperados.
 
 ### 3.3.5. Trilha Sonora
 
-&ensp; A trilha sonora do jogo é composta por faixas originais criadas exclusivamente para o projeto, garantindo uma identidade sonora autêntica e perfeitamente alinhada à atmosfera do jogo. O foco atual da composição é estabelecer o tom correto nos primeiros contatos do jogador com a obra, criando imersão desde o menu inicial e ajudando a contar a história durante a introdução narrativa. As faixas presentes até o momento estão organizadas na tabela abaixo:
+&ensp;A trilha sonora é responsável por criar a atmosfera emocional do jogo, reforçando a narrativa e tornando a experiência mais imersiva. Esta seção apresenta as faixas desenvolvidas para o projeto, indicando onde cada uma é utilizada e quem as compôs.
+
+&ensp;A trilha sonora do jogo é composta por faixas originais criadas exclusivamente para o projeto, garantindo uma identidade sonora autêntica e perfeitamente alinhada à atmosfera do jogo. O foco atual da composição é estabelecer o tom correto nos primeiros contatos do jogador com a obra, criando imersão desde o menu inicial e ajudando a contar a história durante a introdução narrativa. As faixas presentes até o momento estão organizadas na tabela abaixo:
 
 <div align="center">
 
@@ -791,8 +855,11 @@ Descrevem as funcionalidades, ações e comportamentos esperados.
 
 </div>
 
+&ensp;A expansão da trilha sonora para os demais momentos do jogo, como os minigames e as transições entre fases, está prevista para etapas futuras do desenvolvimento, com o objetivo de oferecer uma experiência sonora tão completa quanto a visual.
+
 ## 3.4. Inventário e Bestiário
-*Não se aplica ao projeto*
+
+**Não se aplica ao projeto**
 
 ## 3.5. Gameflow
 
@@ -841,7 +908,11 @@ Descrevem as funcionalidades, ações e comportamentos esperados.
 
 </div>
 
+&ensp;O diagrama de cenas evidencia a clareza e a lógica da estrutura do jogo, garantindo que o fluxo de navegação seja compreensível tanto para a equipe de desenvolvimento quanto para qualquer pessoa que precise entender como a experiência está organizada.
+
 ## 3.6 Regras do Jogo 
+
+&ensp;As regras do jogo definem o que o jogador pode e não pode fazer em cada situação, estabelecendo os limites e objetivos de cada atividade. Elas são a base que garante consistência na experiência e permitem que o jogador compreenda como progredir ao longo do jogo.
 
 &ensp;O jogo é composto por diferentes minigames que simulam atividades de cuidado com um animal doméstico. Em cada minigame, o jogador deve executar ações específicas para cumprir os objetivos propostos. Ao concluir cada atividade com sucesso, o jogador recebe CobasiCoins, que funcionam como indicador de progresso e incentivam a continuidade da experiência.
 
@@ -895,8 +966,11 @@ Descrevem as funcionalidades, ações e comportamentos esperados.
 
 &ensp;Ao final da fase, o jogador deve coletar um item especial que encerra o minigame. O desempenho obtido influencia diretamente o preenchimento da barra de felicidade, sendo total quando a pontuação é igual ou superior a cinco pontos, e parcial quando inferior a esse valor.
 
+&ensp;O conjunto de regras dos quatro minigames foi projetado para ser progressivamente compreendido pelo jogador, sem sobrecarregá-lo com informações de uma só vez, garantindo uma curva de aprendizado gradual e uma experiência justa e satisfatória do início ao fim.
 
 ## 3.7 Mecânicas do Jogo
+
+&ensp;As mecânicas são os sistemas que definem como o jogador interage com o jogo — os controles, as ações disponíveis e as regras que regem cada interação. Esta seção detalha como cada minigame funciona na prática, explicando os recursos utilizados pelo jogador e os feedbacks que recebe.
 
 ### 3.7.1 Descrição Geral das Mecânicas
 
@@ -905,6 +979,8 @@ Descrevem as funcionalidades, ações e comportamentos esperados.
 &ensp;O sistema apresenta feedback visual contínuo, incluindo animações, alterações de escala e exibição de elementos informativos, com o objetivo de orientar o jogador durante a execução das atividades.
 
 &ensp;O progresso do jogador é apresentado por meio de um HUD (Heads-Up Display), que exibe as CobasiCoins e as barras de bem-estar do animal, compreendendo os indicadores de higiene, alimentação, saúde e felicidade.
+
+&ensp;Essa estrutura de feedback contínuo garante que o jogador sempre saiba o que está acontecendo e o que precisa fazer a seguir, tornando a experiência intuitiva mesmo para quem tem pouca familiaridade com jogos digitais.
 
 ### 3.7.2 Mecânicas do Minigame de Banho
 
@@ -942,7 +1018,11 @@ Descrevem as funcionalidades, ações e comportamentos esperados.
 
 &ensp;As mecânicas permanecem inalteradas no novo ciclo, garantindo a continuidade da experiência.
 
+&ensp;Esse modelo de progressão cíclica, em que cada animal concluído abre espaço para um novo desafio, mantém o engajamento do jogador e reforça, a cada ciclo, a mensagem de que o cuidado com animais é uma responsabilidade contínua e recompensadora.
+
 ## 3.8. Implementação Matemática de Animação/Movimento
+
+&ensp;Esta seção descreve a base matemática utilizada para programar o movimento de um personagem durante uma animação específica do jogo. Em vez de usar recursos prontos do motor de jogo, a trajetória foi calculada manualmente por meio de equações da física clássica, garantindo controle preciso sobre o comportamento do elemento na tela.
 
 ### 3.8.1 Parâmetros de entrada
 
@@ -1221,6 +1301,7 @@ update(time, delta) {
 
 &ensp;Os comandos console.log() permitem validar experimentalmente os valores calculados pela modelagem matemática, conforme exigido.
 
+&ensp;A implementação manual das equações, sem depender de funções prontas da engine, demonstra a capacidade da equipe de aplicar conhecimentos matemáticos diretamente no desenvolvimento do jogo, resultando em um comportamento de animação mais controlado e previsível.
 
 ---
 
@@ -1602,6 +1683,8 @@ Após completar essa interação, o jogador conclui sua missão e é direcionado
 
 &ensp;Apesar dos obstáculos, os problemas foram superados, contribuindo para o aprimoramento técnico e organizacional do grupo.
 
+&ensp;Com a entrega desta sprint, o Cobasi Shelter alcança o estágio de MVP funcional, reunindo todas as mecânicas centrais, o arco narrativo completo e os elementos educativos propostos desde o início do projeto — consolidando uma base sólida para as evoluções futuras descritas na seção de conclusões.
+
 --- 
 
 # 5. Testes
@@ -1703,6 +1786,8 @@ Após completar essa interação, o jogador conclui sua missão e é direcionado
 <div align="center">
   <p>Feito pela própria equipe (2026)</p>
 </div>
+
+&ensp;A cobertura abrangente dos casos de teste garante que os principais fluxos do jogo sejam verificados de forma sistemática, aumentando a confiança da equipe na qualidade do produto entregue e facilitando a identificação de eventuais regressões nas próximas versões.
 
 ## 5.2. Testes de jogabilidade (playtests)
 
@@ -1806,6 +1891,7 @@ Após completar essa interação, o jogador conclui sua missão e é direcionado
 
 </div>
 
+&ensp;De forma geral, os testes evidenciaram que o jogo possui boa aceitação e clareza de mecânicas, com pontos de melhoria concentrados principalmente no minigame de lazer e na intuitividade da sequência de tarefas — aspectos que foram priorizados na etapa de revisão do MVP.
 
 ### 5.2.2 Melhorias
 
@@ -1829,15 +1915,19 @@ Após completar essa interação, o jogador conclui sua missão e é direcionado
 * Adicionar um terceiro cachorro;
 * Adicionar informações reais dos cachorros das ONGs parceiras da Cobasi.
 
+&ensp;A aplicação dessas melhorias, orientada diretamente pelo feedback dos testadores, reflete o comprometimento da equipe com a qualidade da experiência do usuário e com a entrega de um produto que seja não apenas funcional, mas genuinamente agradável e intuitivo de jogar.
+
 ---
 
 
 # 6. Conclusões e trabalhos futuros
 
+&ensp;Esta seção apresenta uma análise reflexiva sobre o que foi desenvolvido ao longo do projeto, avaliando em que medida os objetivos foram alcançados, quais foram os pontos fortes e as limitações identificadas, e quais melhorias e expansões podem ser realizadas futuramente para tornar o jogo ainda mais completo.
 
 &ensp;O desenvolvimento do jogo Cobasi Shelter permitiu atingir de forma consistente os objetivos propostos na Seção 1 deste documento, especialmente no que se refere à conscientização sobre os cuidados com animais domésticos e ao alinhamento com o propósito social da marca Cobasi.
 A solução desenvolvida conseguiu integrar educação e entretenimento, utilizando mecânicas interativas que simulam situações reais de cuidado com pets, como higiene, alimentação, saúde e lazer. Dessa forma, o jogo atende diretamente ao objetivo de transformar o aprendizado em uma experiência prática, permitindo que o usuário compreenda, na prática, as responsabilidades envolvidas na adoção e manutenção de um animal.
-Além disso, o projeto se mostrou eficaz ao incorporar elementos da identidade da Cobasi, utilizando produtos, ambientação e narrativa alinhados à missão, visão e valores da empresa. Esse fator contribui para o fortalecimento da marca e para a criação de uma experiência imersiva, aproximando o jogador do contexto real do cuidado animal.
+
+&ensp;Além disso, o projeto se mostrou eficaz ao incorporar elementos da identidade da Cobasi, utilizando produtos, ambientação e narrativa alinhados à missão, visão e valores da empresa. Esse fator contribui para o fortalecimento da marca e para a criação de uma experiência imersiva, aproximando o jogador do contexto real do cuidado animal.
 
 &ensp;Outro ponto relevante foi a proposta inclusiva do jogo, com a escolha de uma protagonista jovem, representando o público-alvo da Geração Z, o que contribui para maior identificação e engajamento dos usuários. Também se destaca o caráter educativo do jogo, reforçado pelos minigames e pelo sistema de feedback, que orienta o jogador durante sua jornada.
 
