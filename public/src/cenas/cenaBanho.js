@@ -44,7 +44,7 @@ export class cenaBanho extends Phaser.Scene {
 
         const indiceAtivo = gameState.pets.cachorroJoao ? 2 : (gameState.pets.cachorroHeroi ? 1 : 0);
         
-        // Usa o estado salvo do cachorro ativo para não resetar para \"sujo\" a cada abertura da cena.
+        // Usa o estado salvo do cachorro ativo para não resetar para "sujo" a cada abertura da cena.
         const estadoPersistido = cachorrosBase[indiceAtivo].estado || "sujo";
         this.estadoCachorro = estadoPersistido;
         cachorrosBase[indiceAtivo].estado = this.estadoCachorro;
@@ -472,13 +472,16 @@ export class cenaBanho extends Phaser.Scene {
     }
 
     /**
-     * Exibe o painel de resultado com estrelas, moedas e tempo. Clique reinicia a cena.
+     * Exibe o painel de resultado com estrelas, moedas e tempo. Clique exibe direcionamento.
      * @param {number} estrelas
      * @param {number} moedas
      * @param {number} segundos
      */
     mostrarPainelResultado(estrelas, moedas, segundos) {
-        this.scene.bringToTop();
+        // [NOVO] Garante que a cena atual passe por cima da HUD
+        this.time.delayedCall(50, () => {
+            this.scene.bringToTop("cenaBanho");
+        });
 
         let imagemFeedback = "feedback1estrela";
         if (estrelas === 3) imagemFeedback = "feeedback3estrelas";
@@ -487,34 +490,79 @@ export class cenaBanho extends Phaser.Scene {
         const cx = this.scale.width / 2;
         const cy = this.scale.height / 2;
 
-        const fundoFeedback = this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.8)
+        this.fundoFeedback = this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.8)
             .setDepth(200).setScrollFactor(0).setInteractive();
-        const telaFeedback = this.add.image(cx, cy, imagemFeedback)
+        this.telaFeedback = this.add.image(cx, cy, imagemFeedback)
             .setDepth(201).setScrollFactor(0).setInteractive();
 
         const escalaFinal = Math.min(
-            (this.scale.width * 0.8) / telaFeedback.width,
-            (this.scale.height * 0.8) / telaFeedback.height
+            (this.scale.width * 0.8) / this.telaFeedback.width,
+            (this.scale.height * 0.8) / this.telaFeedback.height
         );
-        telaFeedback.setScale(escalaFinal);
+        this.telaFeedback.setScale(escalaFinal);
 
-        this.add.text(cx - 12, cy + (telaFeedback.displayHeight * 0.12), `${moedas} Moedas`, {
+        this.textoMoedas = this.add.text(cx - 12, cy + (this.telaFeedback.displayHeight * 0.12), `${moedas} Moedas`, {
             fontFamily: '"Press Start 2P", Arial', fontSize: "22px", color: "#005e64"
         }).setOrigin(0.5).setDepth(202);
 
-        this.add.text(cx - 20, cy + (telaFeedback.displayHeight * 0.35), `${segundos}s`, {
+        this.textoTempo = this.add.text(cx - 20, cy + (this.telaFeedback.displayHeight * 0.35), `${segundos}s`, {
             fontFamily: '"Press Start 2P", Arial', fontSize: "22px", color: "#005e64"
         }).setOrigin(0.5).setDepth(202);
 
-        const textoContinuar = this.add.text(cx, cy + (telaFeedback.displayHeight / 2) + 40, "[ Clique para Sair ]", {
+        this.textoContinuar = this.add.text(cx, cy + (this.telaFeedback.displayHeight / 2) + 40, "[ Clique para Sair ]", {
             fontFamily: '"Press Start 2P", Arial', fontSize: "15px", color: "#ffffff"
         }).setOrigin(0.5).setDepth(202).setScrollFactor(0);
 
-        this.tweens.add({ targets: textoContinuar, alpha: 0.5, duration: 600, yoyo: true, loop: -1 });
+        this.tweens.add({ targets: this.textoContinuar, alpha: 0.5, duration: 600, yoyo: true, loop: -1 });
 
-        const voltarCena = () => this.scene.restart();
-        fundoFeedback.on('pointerdown', voltarCena);
-        telaFeedback.on('pointerdown', voltarCena);
+        const voltarCena = () => {
+            // Destruir elementos do popup de estrelas
+            if (this.fundoFeedback) this.fundoFeedback.destroy();
+            if (this.telaFeedback) this.telaFeedback.destroy();
+            if (this.textoMoedas) this.textoMoedas.destroy();
+            if (this.textoTempo) this.textoTempo.destroy();
+            if (this.textoContinuar) this.textoContinuar.destroy();
+            this.exibirDirecaoJogador();
+        };
+        this.fundoFeedback.on('pointerdown', voltarCena);
+        this.telaFeedback.on('pointerdown', voltarCena);
+    }
+
+    /** Exibe o popup de direcionamento para voltar à cena principal */
+    exibirDirecaoJogador() {
+        // [NOVO] Garante que o popup fique por cima da HUD
+        this.time.delayedCall(50, () => {
+            this.scene.bringToTop("cenaBanho");
+        });
+
+        const cx = this.scale.width / 2;
+        const cy = this.scale.height / 2;
+
+        const fundoEscuro = this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.8)
+            .setDepth(200).setScrollFactor(0).setInteractive();
+        const imgDirecao = this.add.image(cx, cy, "direcaoJogador")
+            .setDepth(201).setScrollFactor(0).setInteractive({ useHandCursor: true });
+
+        const escalaFinal = Math.min(
+            (this.scale.width * 0.8) / imgDirecao.width,
+            (this.scale.height * 0.8) / imgDirecao.height
+        );
+        imgDirecao.setScale(escalaFinal);
+
+        const txtContinuar = this.add.text(cx, cy + (imgDirecao.displayHeight / 2) + 40, "[ Clique para Continuar ]", {
+            fontFamily: '"Press Start 2P", Arial', fontSize: "15px", color: "#ffffff"
+        }).setOrigin(0.5).setDepth(202).setScrollFactor(0);
+
+        this.tweens.add({ targets: txtContinuar, alpha: 0.5, duration: 600, yoyo: true, loop: -1 });
+
+        const voltarCena = () => {
+            // [NOVO] Devolve o topo para a HUD antes de reiniciar ou transicionar
+            this.scene.bringToTop("HUD");
+            this.scene.restart();
+        };
+        
+        fundoEscuro.on('pointerdown', voltarCena);
+        imgDirecao.on('pointerdown', voltarCena);
     }
 
     /** Retorna a ferramenta à posição original com animação Back.easeOut. */
@@ -658,7 +706,11 @@ export class cenaBanho extends Phaser.Scene {
      * @param {Function} callbackInicio Chamado ao fechar as instruções.
      */
     mostrarInstrucoes(callbackInicio) {
-        this.scene.bringToTop();
+        // [NOVO] Atraso sutil para garantir que a cena atual passe por cima da HUD no Scene Manager
+        this.time.delayedCall(50, () => {
+            this.scene.bringToTop("cenaBanho");
+        });
+
         const centroX = this.scale.width / 2;
         const centroY = this.scale.height / 2;
 
@@ -677,6 +729,8 @@ export class cenaBanho extends Phaser.Scene {
             fundoEscuro.destroy();
             telaInstrucao.destroy();
             gameState.instrucoesBanhoVistas = true;
+            
+            // [MANTIDO] Restaura a HUD como camada mais alta
             this.scene.bringToTop("HUD");
             if (callbackInicio) callbackInicio();
         };

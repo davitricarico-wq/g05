@@ -146,22 +146,20 @@ export class cenaComida extends Phaser.Scene {
      * @description Cria um efeito INTENSO de chuva de petiscos para aumentar a dificuldade.
      */
     fazerChoverPetiscos() {
-        // Altere 'petisco' para a chave da imagem que você quer que caia (ex: 'racao', 'biscoito')
         const emitter = this.add.particles(0, 0, 'petisco', {
-            x: { min: 0, max: this.scale.width }, // Cai por toda a tela
-            y: -50, // Nasce fora da tela
-            speedY: { min: 400, max: 800 }, // Velocidade muito mais alta (cai rápido)
-            speedX: { min: -100, max: 100 }, // Movimento lateral errático
-            rotate: { min: 0, max: 360 }, // Gira enquanto cai
-            scale: { start: 0.1, end: 0.1 }, // Ajuste conforme o tamanho da sua imagem
-            lifespan: 2000, // Tempo de vida menor, já que estão caindo mais rápido
-            quantity: 8, // Nasce muitos de uma vez (aumenta o volume)
-            frequency: 50 // Intervalo super curto entre os nascimentos (chuva densa)
+            x: { min: 0, max: this.scale.width }, 
+            y: -50, 
+            speedY: { min: 400, max: 800 }, 
+            speedX: { min: -100, max: 100 }, 
+            rotate: { min: 0, max: 360 }, 
+            scale: { start: 0.1, end: 0.1 }, 
+            lifespan: 2000, 
+            quantity: 8, 
+            frequency: 50 
         });
 
         emitter.setDepth(5);
 
-        // Para o efeito após 10 segundos de chuva intensa
         this.time.delayedCall(10000, () => {
             emitter.stop();
         });
@@ -171,26 +169,49 @@ export class cenaComida extends Phaser.Scene {
      * @private
      */
     abrirFichaDetatilhada() {
+        // LÓGICA DE TOGGLE: Se a ficha já estiver aberta, clicar no ícone a fecha
+        if (this.scene.isActive('ficha')) {
+            this.scene.stop('ficha');
+            return; 
+        }
+
+        // Remove os destaques visuais do tutorial antes de abrir a ficha, se existirem
         if (this.overlayFicha) {
             this.overlayFicha.destroy();
-            if (this.txtCliqueFicha) this.txtCliqueFicha.destroy();
+            this.overlayFicha = null;
+            if (this.txtCliqueFicha) {
+                this.txtCliqueFicha.destroy();
+                this.txtCliqueFicha = null;
+            }
             gameState.bilhete.setDepth(this.profundidadeOriginalBilhete);
             gameState.enfaseFichaVista = true; 
         }
 
-        if(!this.scene.isActive('ficha')) {
-            this.scene.launch('ficha');
-            this.scene.bringToTop('ficha');
+        // Inicia a cena da ficha
+        this.scene.launch('ficha');
+        this.scene.bringToTop('ficha');
 
-            const cenaFicha = this.scene.manager.getScene('ficha');
-            // Eventos de encadeamento: após fechar a ficha, destaca a estante
-            const finalizarFicha = () => {
-                this.scene.bringToTop("HUD");
-                if (!gameState.enfaseEstanteVista) this.destacarEstante();
-            };
-            cenaFicha.events.once('shutdown', finalizarFicha);
-            cenaFicha.events.once('sleep', finalizarFicha);
-        }
+        const cenaFicha = this.scene.manager.getScene('ficha');
+        
+        // Eventos de encadeamento: após fechar a ficha, limpa sobreposições e destaca a estante
+        const finalizarFicha = () => {
+            if (this.overlayFicha) {
+                this.overlayFicha.destroy();
+                this.overlayFicha = null;
+            }
+            if (this.txtCliqueFicha) {
+                this.txtCliqueFicha.destroy();
+                this.txtCliqueFicha = null;
+            }
+            
+            gameState.bilhete.setDepth(this.profundidadeOriginalBilhete);
+            
+            this.scene.bringToTop("HUD");
+            if (!gameState.enfaseEstanteVista) this.destacarEstante();
+        };
+        
+        cenaFicha.events.once('shutdown', finalizarFicha);
+        cenaFicha.events.once('sleep', finalizarFicha);
     }
 
     /** Garante a animação cíclica das pulgas no cache global */
@@ -199,7 +220,7 @@ export class cenaComida extends Phaser.Scene {
             this.anims.create({
                 key: "pulgaAnim",
                 frames: this.anims.generateFrameNumbers("pulgas", { start: 0, end: 1 }), 
-                frameRate: 1, repeat: -1     
+                frameRate: 1, repeat: -1    
             });
         }
     }
@@ -265,7 +286,12 @@ export class cenaComida extends Phaser.Scene {
 
     /** Exibe o guia visual principal da cena de alimentação */
     mostrarInstrucaoRacao() {
-        this.scene.bringToTop("cenaComida");
+        // Atraso sutil para dar tempo à HUD de ser registrada no Scene Manager e, 
+        // assim, garantimos que cenaComida vai ficar realmente por cima da HUD
+        this.time.delayedCall(50, () => {
+            this.scene.bringToTop("cenaComida");
+        });
+
         const cx = this.scale.width / 2;
         const cy = this.scale.height / 2;
 
@@ -283,13 +309,19 @@ export class cenaComida extends Phaser.Scene {
             this.imgInstrucao.destroy();
             this.txtContinuarInstrucao.destroy();
             gameState.instrucaoRacaoVista = true; 
+            
+            // Traz a HUD de volta pro topo quando fecha o alerta
+            this.scene.bringToTop("HUD");
             this.gerenciarTutorialInicial();
         });
     }
 
     /** Cria um "foco" visual no objeto de Ficha técnica */
     destacarFicha() {
-        this.scene.bringToTop("cenaComida");
+        this.time.delayedCall(50, () => {
+            this.scene.bringToTop("cenaComida");
+        });
+
         this.overlayFicha = this.add.rectangle(this.scale.width/2, this.scale.height/2, this.scale.width, this.scale.height, 0x000000, 0.7).setDepth(9999).setInteractive(); 
         gameState.bilhete.setDepth(10000);
 
@@ -302,7 +334,10 @@ export class cenaComida extends Phaser.Scene {
 
     /** Cria um "foco" visual na estante para guiar o jogador ao minigame */
     destacarEstante() {
-        this.scene.bringToTop("cenaComida");
+        this.time.delayedCall(50, () => {
+            this.scene.bringToTop("cenaComida");
+        });
+
         this.overlayEstante = this.add.rectangle(this.scale.width/2, this.scale.height/2, this.scale.width, this.scale.height, 0x000000, 0.7).setDepth(9999).setInteractive(); 
         this.estante.setDepth(10000);
 
@@ -311,5 +346,40 @@ export class cenaComida extends Phaser.Scene {
         }).setOrigin(0.5).setDepth(10000);
 
         this.tweens.add({ targets: this.txtCliqueEstante, alpha: 0.4, duration: 600, yoyo: true, loop: -1 });
+    }
+
+    /** Exibe o popup de direcionamento para voltar à cena principal */
+    exibirDirecaoJogadorVoltar() {
+        this.time.delayedCall(50, () => {
+            this.scene.bringToTop("cenaComida");
+        });
+
+        const cx = this.scale.width / 2;
+        const cy = this.scale.height / 2;
+
+        const fundoEscuro = this.add.rectangle(cx, cy, this.scale.width, this.scale.height, 0x000000, 0.8)
+            .setDepth(200).setInteractive();
+        const imgDirecao = this.add.image(cx, cy, "direcaoJogador")
+            .setDepth(201).setInteractive({ useHandCursor: true });
+
+        const escalaFinal = Math.min(
+            (this.scale.width * 0.8) / imgDirecao.width,
+            (this.scale.height * 0.8) / imgDirecao.height
+        );
+        imgDirecao.setScale(escalaFinal);
+
+        const txtContinuar = this.add.text(cx, cy + (imgDirecao.displayHeight / 2) + 40, "[ Clique para Continuar ]", {
+            fontFamily: '"Press Start 2P", Arial', fontSize: "15px", color: "#ffffff"
+        }).setOrigin(0.5).setDepth(202);
+
+        this.tweens.add({ targets: txtContinuar, alpha: 0.5, duration: 600, yoyo: true, loop: -1 });
+
+        const voltarCena = () => {
+            this.scene.bringToTop("HUD");
+            this.scene.start("cenaPrincipal");
+        };
+        
+        fundoEscuro.on('pointerdown', voltarCena);
+        imgDirecao.on('pointerdown', voltarCena);
     }
 }
