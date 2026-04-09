@@ -4,6 +4,7 @@ import { gameState, iniciarMusicaAleatoria } from "../main.js";
 // Cena responsável pelo minigame de remover pulgas
 export class cenaCuidado extends Phaser.Scene {
     constructor() {
+        // Chave da cena
         super({ key: "cenaCuidado" });
 
         // Variáveis de controle do minigame
@@ -25,15 +26,18 @@ export class cenaCuidado extends Phaser.Scene {
         this.instrucoesLidas = false;
     }
 
+    // Função de criação da cena, chamada quando a cena é iniciada
     create() {
         // Para garantir que a HUD não fique ativa ao iniciar
         this.scene.stop("HUD");
         this.transicao = false;
 
+        // Inicia a música de fundo se estiver ligada
         if (gameState.musicaLigada) {
             iniciarMusicaAleatoria(this);
         }
 
+        // Configura o background e os elementos iniciais do minigame
         const largura = this.scale.width;
         const altura = this.scale.height;
 
@@ -86,16 +90,22 @@ export class cenaCuidado extends Phaser.Scene {
         // Cria pulgas
         this.spawnPulgasIniciais();
 
-        // --- LÓGICA DE INTERAÇÃO COM AS PULGAS E FERRAMENTAS ---
+        // Eventos de clique para interagir com as pulgas
         this.input.on('pointerdown', (pointer) => {
+
+            // Se as instruções não foram lidas ou o minigame já acabou, não faz nada ao clicar
             if (!this.instrucoesLidas || !this.ferramentaEquipada || this.minigameFinalizado || this.pulgaSegurada) return;
             
+            // Encontra a pulga mais próxima do clique dentro de um raio de 60 pixels
             let pulgaMaisProxima = null;
             let menorDistancia = 60; 
             
+            // Itera sobre as pulgas ativas para encontrar a mais próxima do clique
             this.pulgas.children.iterate((pulga) => {
+                // Verifica se a pulga existe e está ativa antes de calcular a distância
                 if (!pulga || !pulga.active) return;
                 const distancia = Phaser.Math.Distance.Between(pointer.x, pointer.y, pulga.x, pulga.y);
+                // Se a distância for menor que a menor distância encontrada até agora, atualiza a pulga mais próxima
                 if (distancia < menorDistancia) {
                     menorDistancia = distancia;
                     pulgaMaisProxima = pulga;
@@ -104,11 +114,15 @@ export class cenaCuidado extends Phaser.Scene {
 
             // Lógica do Espirrador (Matar pulga)
             if (this.ferramentaEquipada === 'espirrador') {
+                // Toca a animação do espirrador no clique
                 this.cursorEspirrador.play('anim_spray');
+
+                // Quando a animação do espirrador terminar, volta para o frame inicial
                 this.cursorEspirrador.once('animationcomplete', () => {
                     this.cursorEspirrador.setFrame(0);
                 });
 
+                // Se houver uma pulga próxima e ela estiver viva, mata a pulga
                 if (pulgaMaisProxima && pulgaMaisProxima.getData('estado') === 'viva') {
                     pulgaMaisProxima.setData('estado', 'morta');
                     this.tweens.killTweensOf(pulgaMaisProxima); 
@@ -125,9 +139,16 @@ export class cenaCuidado extends Phaser.Scene {
             }
         });
 
+        // Evento de soltar a pulga quando o jogador solta o clique
         this.input.on('pointerup', (pointer) => {
+
+            // Se o jogador não estiver segurando uma pulga ou não tiver a pinça equipada, não faz nada ao soltar
             if (this.pulgaSegurada && this.ferramentaEquipada === 'pinca') {
+
+                // Verifica se a pulga foi solta dentro da bandeja
                 const areaBandeja = this.bandeja.getBounds();
+
+                // Se a pulga for solta dentro da bandeja, ela é capturada (removida do jogo e contada como recolhida)
                 if (Phaser.Geom.Rectangle.ContainsPoint(areaBandeja, pointer)) {
                     this.capturarPulga(this.pulgaSegurada);
                 } else {
@@ -138,20 +159,26 @@ export class cenaCuidado extends Phaser.Scene {
             }
         });
 
-        // --- LÓGICA DE RESPONSIVIDADE (RESIZE) ---
+        // Função para lidar com o redimensionamento da tela, reposicionando os elementos de forma responsiva
         const handleResize = (gameSize) => {
+
+            // Calcula as novas dimensões da tela
             const novaLargura = gameSize.width;
             const novaAltura = gameSize.height;
 
+            // Redimensiona a câmera para as novas dimensões
             this.cameras.resize(novaLargura, novaAltura);
             
+            // Redimensiona e reposiciona o fundo para cobrir toda a tela
             if (this.fundo) {
                 this.fundo.setDisplaySize(novaLargura, novaAltura).setPosition(novaLargura / 2, novaAltura / 2); 
             }
 
+            // Reposiciona os textos de tempo e progresso
             if (this.textoTempo) this.textoTempo.setPosition(20, 30);
             if (this.textoProgresso) this.textoProgresso.setPosition(novaLargura - 20, 30);
 
+            // Reposiciona a bandeja
             if (this.bandeja) {
                 this.bandeja.setPosition(novaLargura / 2, novaAltura * 0.85);
             }
@@ -472,6 +499,15 @@ export class cenaCuidado extends Phaser.Scene {
         
         if(this.cursorEspirrador) this.cursorEspirrador.setVisible(false);
         if(this.cursorPinca) this.cursorPinca.setVisible(false);
+
+        gameState.pulga = false;
+        gameState.cachorroTemPulga = false;
+        this.pulgas.children.iterate((pulga) => {
+            if (!pulga) return;
+            pulga.setVisible(false);
+            pulga.setActive(false);
+            if (pulga.body) pulga.body.enable = false;
+        });
 
         const estrelas = this.calcularEstrelas(this.tempoRestante);
         const moedas = this.calcularMoedas(estrelas);
