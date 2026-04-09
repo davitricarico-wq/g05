@@ -1606,129 +1606,130 @@ Essas melhorias atendem aos requisitos RF16, RF17, RF19, RF20, RF21 e RF22, alé
 
 ## 5.2. Testes de jogabilidade (playtests)
 
-&ensp;O teste de jogabilidade é uma metodologia sistemática de avaliação qualitativa e quantitativa, conduzida durante o ciclo de desenvolvimento de um software de entretenimento. Enquanto o Controle de Qualidade (QA) foca na integridade técnica do código, o playtesting concentra-se na validação da experiência do usuário (UX) e na eficácia do game design.
+ O teste de jogabilidade é uma metodologia sistemática de avaliação qualitativa e quantitativa, conduzida durante o ciclo de desenvolvimento de um software de entretenimento. Enquanto o Controle de Qualidade (QA) foca na integridade técnica do código, o playtesting concentra-se na validação da experiência do usuário (UX) e na eficácia do game design.
 
 **Referências (Seção 7):** Unity Technologies; San Francisco: Game Developer
 
 ### 5.2.1 Registros de testes
 
-&ensp;Os testes de jogabilidade são cruciais para este projeto pois funcionam como a principal ferramenta de validação do game design, garantindo que as mecânicas planejadas sejam intuitivas e divertidas para o público-alvo, e não apenas para os desenvolvedores. Ao observar a interação real de usuários externos, é possível identificar falhas na curva de aprendizado e pontos de frustração que a "cegueira do desenvolvedor" costuma ocultar, permitindo ajustes precisos no equilíbrio entre desafio e recompensa.
+&ensp;Os testes de jogabilidade são cruciais para este projeto, pois funcionam como a principal ferramenta de validação do game design, garantindo que as mecânicas planejadas sejam intuitivas e divertidas para o público-alvo, e não apenas para os desenvolvedores. Ao observar a interação real de usuários externos, é possível identificar falhas na curva de aprendizado e pontos de frustração que a "cegueira do desenvolvedor" costuma ocultar, permitindo ajustes precisos no equilíbrio entre desafio e recompensa.
 
-&ensp;Além do aspecto criativo, o playtesting atua como uma estratégia de mitigação de riscos e custos, detectando problemas de usabilidade e fluxo antes que recursos significativos sejam investidos em polimento ou marketing. Em última análise, ele assegura que o produto final entregue uma experiência de usuário (UX) consistente e envolvente, aumentando drasticamente as chances de retenção de jogadores e o sucesso comercial do jogo no mercado.
+&ensp;Além do aspecto criativo, o playtesting atua como uma estratégia de mitigação de riscos e custos, detectando problemas de usabilidade e de fluxo antes que recursos significativos sejam investidos em polimento ou marketing. Em última análise, ele assegura que o produto final entregue uma experiência de usuário (UX) consistente e envolvente, aumentando drasticamente as chances de retenção de jogadores e o sucesso comercial do jogo no mercado.
 
-&ensp;A aplicação dos testes seguiu um padrão para cada pessoa que quis testar o jogo. Numa sala movimentada, um computador de um integrante do grupo foi disponibilizado com o jogo funcionando, tanto com mouse quanto com fones de ouvido disponíveis. Primeiro, o contexto e objetivos a serem atingidos foram apresentados ao 'tester'. Depois disso ele(a) foi instruido apenas a jogar, sem nunhuma explicação, tanto prévia, quanto se solicitada. Por fim, o usuário foi submetido a uma série de perguntas sobre a visão geral sobre o jogo e um formulário de questionamentos, semelhante ao levantamento presente a seguir. O processo de teste do jogo foi conduzido, dia 31/03/2026, por três integrantes do grupo, um contextualizando, outro gravando e outro para preencher o formulário.
+&ensp;A aplicação dos testes seguiu um padrão para cada pessoa que quis testar o jogo. Em uma sala movimentada, um computador de um integrante do grupo foi disponibilizado com o jogo funcionando, tanto com mouse quanto com fones de ouvido disponíveis. Primeiro, o contexto e os objetivos a serem atingidos foram apresentados ao tester. Depois disso, ele(a) foi instruído(a) apenas a jogar, sem nenhuma explicação, tanto prévia quanto solicitada. Por fim, o usuário foi submetido a uma série de perguntas sobre a visão geral do jogo e a um formulário de questionamentos, semelhante ao levantamento apresentado a seguir. O processo de teste do jogo foi conduzido, no dia 31/03/2026, por três integrantes do grupo: um contextualizando, outro gravando e outro preenchendo o formulário.
 
 <div align="center">
 
-Nome | Soraya
---- | ---
-Idade | 18 anos
-Curso | Ciência da Computação
-Tem ou já teve algum pet? | Sim, possuo
-Já possuía experiência prévia com games? | Sim, mas pouca
-Conseguiu iniciar o jogo? | Sim
-Entendeu as regras e mecânicas do jogo? | Entendeu com poucas dúvidas
-Conseguiu progredir no jogo? | Sim, mas não conseguiu concluir 
-Apresentou dificuldades? | Sim, no mini game de lazer
-Que nota deu ao jogo? | 9.0
-Qual mini game mais gostou? | Banho
-O que poderia melhorar no jogo? | Dificuldade alta e salto duplo no mini game de lazer
+| Nome                                     | Soraya                                              |
+| ---------------------------------------- | --------------------------------------------------- |
+| Idade                                    | 18 anos                                             |
+| Curso                                    | Ciência da Computação                               |
+| Tem ou já teve algum pet?                | Sim, possuo                                         |
+| Já possuía experiência prévia com games? | Sim, mas pouca                                      |
+| Conseguiu iniciar o jogo?                | Sim                                                 |
+| Entendeu as regras e mecânicas do jogo?  | Entendeu com poucas dúvidas                         |
+| Conseguiu progredir no jogo?             | Sim, mas não conseguiu concluir                     |
+| Apresentou dificuldades?                 | Sim, no minigame de lazer                           |
+| Que nota deu ao jogo?                    | 9.0                                                 |
+| Qual minigame mais gostou?               | Banho                                               |
+| O que poderia melhorar no jogo?          | Dificuldade alta e salto duplo no minigame de lazer |
 
-Nome | Anthony
---- | ---
-Idade | 19 anos
-Curso | Engenharia de Computação
-Tem ou já teve algum pet? | Não, mas tem vontade 
-Já possuía experiência prévia com games? | Sim, muita
-Conseguiu iniciar o jogo? | Sim
-Entendeu as regras e mecânicas do jogo? | Não teve dúvidas
-Conseguiu progredir no jogo? |  Sim. Concluiu com facilidade
-Apresentou dificuldades? | Sim, no mini game de cuidados (pegar pulgas)
-Que nota deu ao jogo? | 9.0
-Qual mini game mais gostou? | Cuidados
-O que poderia melhorar no jogo? | Hitbox dos ossos e obstáculos no mini game de lazer; Hitbox da pinça no mini game de cuidados
+| Nome                                     | Anthony                                                                                     |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------- |
+| Idade                                    | 19 anos                                                                                     |
+| Curso                                    | Engenharia de Computação                                                                    |
+| Tem ou já teve algum pet?                | Não, mas tem vontade                                                                        |
+| Já possuía experiência prévia com games? | Sim, muita                                                                                  |
+| Conseguiu iniciar o jogo?                | Sim                                                                                         |
+| Entendeu as regras e mecânicas do jogo?  | Não teve dúvidas                                                                            |
+| Conseguiu progredir no jogo?             | Sim. Concluiu com facilidade                                                                |
+| Apresentou dificuldades?                 | Sim, no minigame de cuidados (pegar pulgas)                                                 |
+| Que nota deu ao jogo?                    | 9.0                                                                                         |
+| Qual minigame mais gostou?               | Cuidados                                                                                    |
+| O que poderia melhorar no jogo?          | Hitbox dos ossos e obstáculos no minigame de lazer; hitbox da pinça no minigame de cuidados |
 
-Nome | Pedro
---- | ---
-Idade | 18 anos
-Curso | Engenharia de Computação
-Tem ou já teve algum pet? | Sim, possuo
-Já possuía experiência prévia com games? | Sim
-Conseguiu iniciar o jogo? | Sim
-Entendeu as regras e mecânicas do jogo? | Não teve dúvidas
-Conseguiu progredir no jogo? | Sim, concluiu com facilidade
-Apresentou dificuldades? | Não, nenhuma
-Que nota deu ao jogo? | 9.0
-Qual mini game mais gostou? | Lazer
-O que poderia melhorar no jogo? | Intuitividade na sequência de tarefas; Hitbox da pinça no mini game de cuidados
+| Nome                                     | Pedro                                                                          |
+| ---------------------------------------- | ------------------------------------------------------------------------------ |
+| Idade                                    | 18 anos                                                                        |
+| Curso                                    | Engenharia de Computação                                                       |
+| Tem ou já teve algum pet?                | Sim, possuo                                                                    |
+| Já possuía experiência prévia com games? | Sim                                                                            |
+| Conseguiu iniciar o jogo?                | Sim                                                                            |
+| Entendeu as regras e mecânicas do jogo?  | Não teve dúvidas                                                               |
+| Conseguiu progredir no jogo?             | Sim, concluiu com facilidade                                                   |
+| Apresentou dificuldades?                 | Não, nenhuma                                                                   |
+| Que nota deu ao jogo?                    | 9.0                                                                            |
+| Qual minigame mais gostou?               | Lazer                                                                          |
+| O que poderia melhorar no jogo?          | Intuitividade na sequência de tarefas; hitbox da pinça no minigame de cuidados |
 
-Nome | Ludmilla
---- | ---
-Idade | 20 anos
-Curso |  Engenharia de Software
-Tem ou já teve algum pet? | Não, mas já possuí
-Já possuía experiência prévia com games? | Sim, mas pouca
-Conseguiu iniciar o jogo? | Sim
-Entendeu as regras e mecânicas do jogo? | Entendeu com poucas dúvidas
-Conseguiu progredir no jogo? | Sim, concluiu com dificuldade 
-Apresentou dificuldades? | Sim, no jogo de lazer
-Que nota deu ao jogo? | 9.0
-Qual mini game mais gostou? | Alimentação
-O que poderia melhorar no jogo? | Intuitividade na sequência de tarefas;
+| Nome                                     | Ludmilla                              |
+| ---------------------------------------- | ------------------------------------- |
+| Idade                                    | 20 anos                               |
+| Curso                                    | Engenharia de Software                |
+| Tem ou já teve algum pet?                | Não, mas já possuí                    |
+| Já possuía experiência prévia com games? | Sim, mas pouca                        |
+| Conseguiu iniciar o jogo?                | Sim                                   |
+| Entendeu as regras e mecânicas do jogo?  | Entendeu com poucas dúvidas           |
+| Conseguiu progredir no jogo?             | Sim, concluiu com dificuldade         |
+| Apresentou dificuldades?                 | Sim, no jogo de lazer                 |
+| Que nota deu ao jogo?                    | 9.0                                   |
+| Qual minigame mais gostou?               | Alimentação                           |
+| O que poderia melhorar no jogo?          | Intuitividade na sequência de tarefas |
 
-Nome | Vitor
---- | ---
-Idade | 18 anos
-Curso |  Engenharia de Software
-Tem ou já teve algum pet? | Sim, possui
-Já possuía experiência prévia com games? | Sim
-Conseguiu iniciar o jogo? | Sim
-Entendeu as regras e mecânicas do jogo? | Entendeu com poucas dúvidas
-Conseguiu progredir no jogo? | Sim, concluiu com facilidade
-Apresentou dificuldades? | Sim, no jogo de lazer
-Que nota deu ao jogo? | 9.0
-Qual mini game mais gostou? | Cuidados
-O que poderia melhorar no jogo? | Hitbox dos ossos e obstáculos no mini game de lazer
+| Nome                                     | Vitor                                              |
+| ---------------------------------------- | -------------------------------------------------- |
+| Idade                                    | 18 anos                                            |
+| Curso                                    | Engenharia de Software                             |
+| Tem ou já teve algum pet?                | Sim, possui                                        |
+| Já possuía experiência prévia com games? | Sim                                                |
+| Conseguiu iniciar o jogo?                | Sim                                                |
+| Entendeu as regras e mecânicas do jogo?  | Entendeu com poucas dúvidas                        |
+| Conseguiu progredir no jogo?             | Sim, concluiu com facilidade                       |
+| Apresentou dificuldades?                 | Sim, no jogo de lazer                              |
+| Que nota deu ao jogo?                    | 9.0                                                |
+| Qual minigame mais gostou?               | Cuidados                                           |
+| O que poderia melhorar no jogo?          | Hitbox dos ossos e obstáculos no minigame de lazer |
 
-Nome | Henrique
---- | ---
-Idade | 17 anos
-Curso | Ciência da Computação
-Tem ou já teve algum pet? | Sim, possui
-Já possuía experiência prévia com games? | Sim
-Conseguiu iniciar o jogo? | Sim
-Entendeu as regras e mecânicas do jogo? | Não teve dúvidas 
-Conseguiu progredir no jogo? | Sim, concluiu com facilidade
-Apresentou dificuldades? | Poucas, no jogo de lazer
-Que nota deu ao jogo? | 9.0
-Qual mini game mais gostou? | Lazer
-O que poderia melhorar no jogo? | Cores das rações
+| Nome                                     | Henrique                     |
+| ---------------------------------------- | ---------------------------- |
+| Idade                                    | 17 anos                      |
+| Curso                                    | Ciência da Computação        |
+| Tem ou já teve algum pet?                | Sim, possui                  |
+| Já possuía experiência prévia com games? | Sim                          |
+| Conseguiu iniciar o jogo?                | Sim                          |
+| Entendeu as regras e mecânicas do jogo?  | Não teve dúvidas             |
+| Conseguiu progredir no jogo?             | Sim, concluiu com facilidade |
+| Apresentou dificuldades?                 | Poucas, no jogo de lazer     |
+| Que nota deu ao jogo?                    | 9.0                          |
+| Qual minigame mais gostou?               | Lazer                        |
+| O que poderia melhorar no jogo?          | Cores das rações             |
 
 </div>
 
 ### 5.2.2 Melhorias
 
-&ensp;Após uma extensa seção de testes, a equipe levantou todos os relatos de bugs e sugestões para revisar rigorosamente a qualidade do jogo para o usuário. Sendo assim, as melhorias a serem aplicadas são: 
+&ensp;Após uma extensa seção de testes, a equipe levantou todos os relatos de bugs e sugestões para revisar rigorosamente a qualidade do jogo para o usuário. Sendo assim, as melhorias a serem aplicadas são:
 
-* Aprimoramento final dos sprites das rações, pinça e cachorro correndo;
+* Aprimoramento final dos sprites das rações, da pinça e do cachorro correndo;
 * Aprimoramento da intuitividade na sequência de atividades a serem feitas;
 * Aprimoramento da interface do usuário;
-* Diminução da dificuldade do mini game de lazer;
-* Substituição da pinça por um remédio; 
+* Diminuição da dificuldade do minigame de lazer;
+* Substituição da pinça por um remédio;
 * Ajuste na ordem das barras de status;
 * Ajuste na ordem da mecânica de limpeza do cachorro;
-* Ajuste dos pop-up's de feedback;
+* Ajuste dos pop-ups de feedback;
 * Ajuste da intuitividade da sequência de tarefas para o usuário;
 * Ajuste da distribuição das rações (Standard, Premium, Super Premium) em uma cena;
-* Ajuste no sprite presente o mini game de alimentação (adicionar o mesmo que é comprado)
-* Ajuste nas hitboxes do cachorro, ossos e obstáculos no mini game de lazer
-* Ajuste na posição dos ossos no mini game de lazer;
+* Ajuste no sprite presente no minigame de alimentação (adicionar o mesmo que é comprado);
+* Ajuste nas hitboxes do cachorro, dos ossos e dos obstáculos no minigame de lazer;
+* Ajuste na posição dos ossos no minigame de lazer;
 * Ajuste no balanço do rabo dos cachorros;
-* Adicionar um temporizador em todos os mini games;
+* Adicionar um temporizador em todos os minigames;
 * Adicionar um terceiro cachorro;
 * Adicionar informações reais dos cachorros das ONGs parceiras da Cobasi.
 
 ---
+
 
 # 6. Conclusões e trabalhos futuros
 
