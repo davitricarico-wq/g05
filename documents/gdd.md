@@ -465,7 +465,11 @@ Descrevem as funcionalidades, ações e comportamentos esperados.
 
 ## 1.3. Público-alvo do Projeto
 
-&ensp;O Público alvo do nosso projeto é qualquer um que tenha interesse em aprender e dar uma qualidade de vida melhor ao seu Pet. Apesar de ser acessível para qualquer um, é previsto que a Geração Z tenha mais contato com o jogo pela seu apreço com jogos e pela crescente onda de pais de pets entre essa geração.
+&ensp;O público-alvo do projeto é composto por indivíduos interessados em aprender e proporcionar melhor qualidade de vida aos seus animais de estimação, indo além de uma segmentação exclusivamente demográfica. Nesse sentido, o jogo busca atender usuários que valorizam experiências interativas, educativas e práticas, com potencial de aplicação no cuidado real com pets.
+&ensp;Do ponto de vista comportamental, o público-alvo caracteriza-se pela familiaridade com tecnologias digitais, preferência por conteúdos dinâmicos e interativos e engajamento com propostas que integram entretenimento e aprendizado. Esses usuários tendem a valorizar experiências que ofereçam autonomia, feedback imediato e progressão clara, aspectos diretamente incorporados nas mecânicas do jogo, como minigames, sistema de recompensas e indicadores visuais de evolução.
+Quanto ao contexto de uso, o jogo foi projetado para ser utilizado em ambientes cotidianos, como residências ou espaços educacionais, podendo ser acessado em sessões de curta ou média duração. Dessa forma, o sistema se apresenta tanto como uma ferramenta de entretenimento quanto como um recurso complementar para a aprendizagem sobre cuidados com animais domésticos.
+&ensp;Embora o jogo seja acessível a diferentes perfis de usuários, observa-se maior aderência por parte da Geração Z. Esse grupo apresenta maior proximidade com jogos digitais, além de forte inserção na cultura de cuidado com animais de estimação. As características dessa geração, como a busca por experiências rápidas, interativas e personalizadas, estão diretamente relacionadas às mecânicas propostas no jogo, como a progressão por tarefas, feedback visual imediato e interação constante.
+&ensp;Dessa forma, o projeto procura alinhar suas funcionalidades às expectativas desse público, oferecendo uma experiência que combina engajamento, aprendizado e relevância prática, contribuindo para a conscientização sobre o cuidado responsável com animais.
 
 --- 
 # 2. Visão Geral do Jogo 
