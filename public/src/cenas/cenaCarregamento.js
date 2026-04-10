@@ -146,6 +146,28 @@ export class cenaCarregamento extends Phaser.Scene {
         this.load.image("feedback2estrelas", "./assets/feedback/feedbackMineGame2.png");
         this.load.image("feedback1estrela", "./assets/feedback/feedbackMineGame3.png");
 
+<<<<<<< HEAD
+        // Placas e pop-ups de instrução ("Como Jogar" e Conclusões)
+        this.load.image("instrucaoDescricaoBanho", "assets/feedback/instrucaoBanho.png"); 
+        this.load.image("conclusaoPrimeiroRound", "assets/feedback/conclusaoPrimeiroRound.png");
+        this.load.image("conclusaoSegundoRound", "assets/feedback/conclusaoSegundoRound.png");
+        this.load.image("conclusaoTerceiroRound", "assets/feedback/conclusaoTerceiroRound.png");
+        this.load.image("instrucaoTerceiroRound", "assets/feedback/instrucaoTerceiroRound.png");
+        this.load.image("instrucaoLazer", "assets/feedback/instrucaoLazer.png");
+        this.load.image("instrucaoBanho", "assets/feedback/instrucaoBanho.png");
+        this.load.image("instrucaoMissao", "assets/feedback/instrucaoMissao.png");
+        this.load.image("instrucaoPulgas", "assets/feedback/instrucaoPulgas.png");
+        this.load.image("instrucaoRacao", "assets/feedback/instrucaoRacao.png");
+        this.load.image("instrucaoSegundaFase", "assets/feedback/instrucaoSegundaFase.png");
+        this.load.image("comoJogarLazer", "assets/feedback/comoJogarLazer.png");
+        this.load.image("comoJogarPulgas", "assets/feedback/comoJogarPulgas.png");
+        this.load.image("comoJogarRacao", "assets/feedback/comoJogarRacao.png");
+        this.load.image("instrucaoQuiz", "assets/feedback/instrucaoQuiz.png");
+        this.load.image("final", "assets/feedback/final.png");
+        this.load.image("direcaoJogador", "assets/feedback/direcaoJogador.png");       
+        this.load.image("instrucaoEscolhaRacao", "assets/tela-racao/instrucaoEscolhaRacao.png");
+        
+=======
         this.load.image("instrucaoDescricaoBanho", "./assets/feedback/instrucaoBanho.png"); 
         this.load.image("conclusaoPrimeiroRound", "./assets/feedback/conclusaoPrimeiroRound.png");
         this.load.image("conclusaoSegundoRound", "./assets/feedback/conclusaoSegundoRound.png");
@@ -166,6 +188,7 @@ export class cenaCarregamento extends Phaser.Scene {
         this.load.image("instrucaoEscolhaRacao", "./assets/tela-racao/instrucaoEscolhaRacao.png");
         
         // CORREÇÃO 3: Adicionado o ?v=1 para forçar o download do áudio
+>>>>>>> 3b547761e9eb725f49d26eb9f5d2a2e8461beb14
         // ASSETS: ÁUDIO (MÚSICAS E EFEITOS)
         this.load.audio("lazerDespreocupado", "./assets/sons/lazerDespreocupado.ogg?v=1");
         this.load.audio("menuPrincipal", "./assets/sons/menuPrincipal.ogg?v=1");
