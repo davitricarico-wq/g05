@@ -166,11 +166,11 @@ export class cenaCarregamento extends Phaser.Scene {
         this.load.image("direcaoJogador", "assets/feedback/direcaoJogador.png");       
         this.load.image("instrucaoEscolhaRacao", "assets/tela-racao/instrucaoEscolhaRacao.png");
         // ASSETS: ÁUDIO (MÚSICAS E EFEITOS)
-        this.load.audio("lazerDespreocupado", "assets/sons/lazerDespreocupado.mp3");
-        this.load.audio("menuPrincipal", "assets/sons/menuPrincipal.mp3");
-        this.load.audio("musicaCutscene", "assets/sons/musicaCutscene.mp3");
-        this.load.audio("novoHorizonte", "assets/sons/novoHorizonte.mp3");
-        this.load.audio("pegadasCrescidas", "assets/sons/pegadasCrescidas.mp3");
+        this.load.audio("lazerDespreocupado", "./assets/sons/lazerDespreocupado.mp3?v=1");
+        this.load.audio("menuPrincipal", "./assets/sons/menuPrincipal.mp3?v=1");
+        this.load.audio("musicaCutscene", "./assets/sons/musicaCutscene.mp3?v=1");
+        this.load.audio("novoHorizonte", "./assets/sons/novoHorizonte.mp3?v=1");
+        this.load.audio("pegadasCrescidas", "./assets/sons/pegadasCrescidas.mp3?v=1");
 
         // ASSETS: SPRITESHEETS (ANIMAÇÕES)
         // Spritesheets são imagens que contêm múltiplos quadros de uma animação.
