@@ -20,7 +20,7 @@ export class cenaCarregamento extends Phaser.Scene {
     preload() {
         
         // CORREÇÃO 1: Limita os downloads simultâneos para não assustar o servidor
-        this.load.maxParallelDownloads = 3;
+        this.load.maxParallelDownloads = 1;
 
         // CORREÇÃO 2: Adicionado "./" em TODOS os caminhos para resolver os erros 404
 
