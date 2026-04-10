@@ -77,10 +77,6 @@ export class cenaEstanteRacao extends Phaser.Scene {
         // Reseta a flag de transição sempre que a cena é recarregada
         this.transicao = false;
 
-        // =========================================================================================
-        // FUNÇÕES AUXILIARES (HELPERS) INTERNAS
-        // =========================================================================================
-
         /**
          * Cria um botão interativo padronizado com animações (tweens) para feedback visual.
          * @param {number} x - Posição no eixo X
@@ -414,7 +410,7 @@ export class cenaEstanteRacao extends Phaser.Scene {
             racao.sprite.on("pointerover", () => this.tweens.add({ targets: racao.sprite, scale: racao.sprite.escalaHover, duration: 100, ease: "Power2" }));
             racao.sprite.on("pointerout", () => this.tweens.add({ targets: racao.sprite, scale: racao.sprite.escalaNormal, duration: 100, ease: "Power2" }));
 
-            // --- LÓGICA DE SELEÇÃO DO PRODUTO (ON CLICK) ---
+            // Logica principal de clique: Ao clicar em uma embalagem, ela se torna a "selecionada" globalmente e o painel de informações é atualizado com os dados daquela ração específica.
             racao.sprite.on("pointerup", () => {
                 Racao.selecionada = racao; // Grava em nível de classe/estado global a ração clicada
                 
