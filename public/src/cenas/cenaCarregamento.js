@@ -167,11 +167,11 @@ export class cenaCarregamento extends Phaser.Scene {
         
         // CORREÇÃO 3: Adicionado o ?v=1 para forçar o download do áudio
         // ASSETS: ÁUDIO (MÚSICAS E EFEITOS)
-        this.load.audio("lazerDespreocupado", "./assets/sons/lazerDespreocupado.mp3?v=1");
-        this.load.audio("menuPrincipal", "./assets/sons/menuPrincipal.mp3?v=1");
-        this.load.audio("musicaCutscene", "./assets/sons/musicaCutscene.mp3?v=1");
-        this.load.audio("novoHorizonte", "./assets/sons/novoHorizonte.mp3?v=1");
-        this.load.audio("pegadasCrescidas", "./assets/sons/pegadasCrescidas.mp3?v=1");
+        this.load.audio("lazerDespreocupado", "./assets/sons/lazerDespreocupado.ogg?v=1");
+        this.load.audio("menuPrincipal", "./assets/sons/menuPrincipal.oggv=1");
+        this.load.audio("musicaCutscene", "./assets/sons/musicaCutscene.ogg?v=1");
+        this.load.audio("novoHorizonte", "./assets/sons/novoHorizonte.ogg?v=1");
+        this.load.audio("pegadasCrescidas", "./assets/sons/pegadasCrescidas.ogg?v=1");
 
         // ASSETS: SPRITESHEETS (ANIMAÇÕES)
         this.load.spritesheet("pulgas", "./assets/pulgaCachorro.png", {
