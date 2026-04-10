@@ -150,7 +150,7 @@ O projeto busca:
 
 ### Opção 2 — GitLab Pages (sem instalação)
 
-Obs: essa opção apresenta lentidão para ser iniciada, por esse motivo a alternativa acima é mais recomendada
+**Obs:** essa opção apresenta lentidão para ser iniciada, e ausência de algumas trilhas sonoras. Por isso, a alternativa acima é mais recomendada
 
 Abra o link: 
 https://graduacao.pages.git.inteli.edu.br/2026-1a/t25/g05
@@ -161,13 +161,18 @@ https://graduacao.pages.git.inteli.edu.br/2026-1a/t25/g05
 Casos de teste documentados cobrem as principais funcionalidades:
 
 - Responsividade visual em diferentes resoluções de tela
-- Funcionamento dos botões da tela inicial (Jogar, Tutorial, Configurações, Sair)
-- Sistema de áudio (ativar e desativar)
-- Sequenciamento obrigatório das ferramentas no banho (sabão → chuveiro → toalha)
-- Feedback visual nas interações (bolhas ao ensaboar, gotas ao enxaguar, brilhos ao concluir)
-- Lógica de pontuação, vidas e dificuldade progressiva no minigame de alimentação
-- Remoção de pulgas e sistema de estrelas no minigame veterinário
-- Comportamento do cursor em áreas interativas e não interativas
+- Funcionamento dos botões da tela inicial (Jogar, Tutorial, Configurações, Sair);
+- Sistema de áudio (ativar e desativar);
+- Feedback visual nas interações;
+- Comportamento do cursor em áreas interativas e não interativas;
+- Lógica de pontuação, vidas e dificuldade progressiva nos minigames;
+- Sequenciamento obrigatório das ferramentas no banho (chuveiro → sabão → chuveiro → toalha);
+- Lógica de compra de ração adequada na alimentação;
+- Remoção de pulgas e sistema de estrelas no minigame de cuidados;
+- Jogabilidade mais dificultada em lazer;
+- Lógica de continuidade entre três fases (três cachorros);
+- Quiz sobre rações de validação de conhecimentos adiquiridos.
+
 
 Testes de jogabilidade com usuários externos confirmaram boa acessibilidade e progressão natural de dificuldade, com apontamentos para melhoria na responsividade dos controles.
 
