@@ -66,44 +66,74 @@ O projeto busca:
 ## 📁 Estrutura de Pastas
 
 ```
-cobasi-shelter/
+📁 cobasi-shelter/
 │
-├── index.html                          # Ponto de entrada — importa Phaser via CDN e src/main.js
+├── README.md
+├── .gitlab-ci.yml
 │
-├── src/
-│   ├── main.js                         # Config do Phaser, gameState global, registro de cenas
-│   │
-│   ├── Cenas/                          # Cenas do jogo
-│   │   ├── cenaCarregamento.js
-│   │   ├── cenaInicial.js
-│   │   ├── cenaTutorial.js
-│   │   ├── cenaConfiguracoes.js
-│   │   ├── cenaPrincipal.js
-│   │   ├── cenaComida.js
-│   │   ├── cenaCuidado.js
-│   │   ├── cenaBanho.js
-│   │   ├── jogoRacao.js
-│   │   ├── jogoAlimentacao.js
-│   │   └── jogoLazer.js
-│   │
-│   └── componentes/                    # Componentes reutilizáveis entre cenas
-│       ├── cenaHUD.js                  # HUD sobreposta (barras + moedas)
-│       ├── ficha.js                    # Ficha do pet
-│       ├── controleCachorro/
-│       │   ├── cachorroAnimacao.js     # Classe Cachorro (sprite + animações)
-│       │   └── cachorroGeral.js        # Dados do pet atual (porte, fase de vida)
-│       └── controleRacoes/
-│           ├── racoes.js               # Classe Racao (seleção e exibição)
-│           └── dadosRacoes.js          # Dados das 9 rações (3 portes × 3 fases de vida)
+├── 📁 documents/
+│   ├── gdd.md                          # Game Design Document completo
+│   └── 📁 other/                          # Imagens e diagramas complementares
+│       ├── diagrama1.jpg ~ diagrama5.jpg
+│       ├── diagramacenas.jpg
+│       ├── canvasdevalor.png
+│       ├── matrizDeRisco.png
+│       ├── swot.png
+│       └── ...                         # Demais capturas de tela e referências visuais
 │
-├── assets/                             # Sprites, fundos, ícones e áudio
-│   ├── tela-alimentação/
-│   ├── Personagens/
-│   └── ...
-│
-└── document/
-    ├── GDD.md                          # Game Design Document completo
-    └── other/                          # Imagens e diagramas complementares
+└── 📁 public/
+    ├── index.html                      # Ponto de entrada — importa Phaser via CDN e src/main.js
+    │
+    ├── 📁 src/
+    │   ├── main.js                     # Config do Phaser, gameState global, registro de cenas
+    │   │
+    │   ├── 📁 cenas/                      # Cenas do jogo
+    │   │   ├── cenaCarregamento.js
+    │   │   ├── cenaInicial.js
+    │   │   ├── cenaTutorial.js
+    │   │   ├── cenaConfiguracoes.js
+    │   │   ├── cenaPrincipal.js
+    │   │   ├── cenaComida.js
+    │   │   ├── cenaCuidado.js
+    │   │   ├── cenaBanho.js
+    │   │   ├── cenaEstanteRacao.js
+    │   │   ├── cenaLazer.js
+    │   │   ├── cenaVeterinario.js
+    │   │   ├── jogoAlimentacao.js
+    │   │   └── jogoLazer.js
+    │   │
+    │   └── 📁 componentes/                # Componentes reutilizáveis entre cenas
+    │       ├── HUD.js                  # HUD sobreposta (barras + moedas)
+    │       ├── popups.js               # Sistema de popups e feedback
+    │       ├── ficha.js                # Ficha do pet
+    │       ├── gerenciadorQuiz.js      # Lógica do quiz de rações
+    │       ├── 📁 barras/
+    │       │   └── barras.js           # Barras de status (fome, saúde, felicidade, sujeira)
+    │       ├── 📁 controleCachorro/
+    │       │   ├── cachorro.js         # Classe Cachorro (sprite + animações)
+    │       │   ├── cachorrosBase.js    # Dados base dos cachorros
+    │       │   ├── estadosCachorro.js  # Estados e transições do cachorro
+    │       │   └── gerenciadorCachorros.js  # Gerencia os cachorros disponíveis
+    │       └── 📁 controleRacoes/
+    │           ├── racoes.js           # Classe Racao (seleção e exibição)
+    │           └── dadosRacoes.js      # Dados das 9 rações (3 portes × 3 fases de vida)
+    │
+    └── 📁 assets/                         # Sprites, fundos, ícones e áudio
+        ├── 📁 Personagens/                # Sprites dos personagens
+        ├── 📁 feedback/                   # Telas de instrução e conclusão
+        ├── 📁 icones/                     # Ícones de status do HUD
+        ├── 📁 racoes/                     # Imagens das rações (Standard, Premium, SuperPremium × P/M/G)
+        ├── 📁 sons/                       # Trilhas sonoras e efeitos
+        ├── 📁 tela-alimentacao/           # Assets da cena de alimentação
+        ├── 📁 tela-banho/                 # Assets da cena de banho
+        ├── 📁 tela-configuracoes/         # Assets da cena de configurações
+        ├── 📁 tela-cuidado/               # Assets da cena de cuidado (pulgas)
+        ├── 📁 tela-inicial/               # Assets da tela inicial
+        ├── 📁 tela-lazer/                 # Assets da cena de lazer
+        ├── 📁 tela-principal/             # Assets da tela principal
+        ├── 📁 tela-racao/                 # Assets da cena de ração
+        ├── 📁 tela-veterinario/           # Assets da cena do veterinário
+        └── tutorial1.png ~ tutorial11.png  # Assets restantes
 ```
 
 ---
@@ -120,7 +150,7 @@ cobasi-shelter/
 
 ### Opção 2 — GitLab Pages (sem instalação)
 
-Obs: essa opção apresenta lentidão para ser iniciada, por esse motivo a alternativa acima é mais recomendada
+**Obs:** essa opção apresenta lentidão para ser iniciada, e ausência de algumas trilhas sonoras. Por isso, a alternativa acima é mais recomendada
 
 Abra o link: 
 https://graduacao.pages.git.inteli.edu.br/2026-1a/t25/g05
@@ -131,13 +161,18 @@ https://graduacao.pages.git.inteli.edu.br/2026-1a/t25/g05
 Casos de teste documentados cobrem as principais funcionalidades:
 
 - Responsividade visual em diferentes resoluções de tela
-- Funcionamento dos botões da tela inicial (Jogar, Tutorial, Configurações, Sair)
-- Sistema de áudio (ativar e desativar)
-- Sequenciamento obrigatório das ferramentas no banho (sabão → chuveiro → toalha)
-- Feedback visual nas interações (bolhas ao ensaboar, gotas ao enxaguar, brilhos ao concluir)
-- Lógica de pontuação, vidas e dificuldade progressiva no minigame de alimentação
-- Remoção de pulgas e sistema de estrelas no minigame veterinário
-- Comportamento do cursor em áreas interativas e não interativas
+- Funcionamento dos botões da tela inicial (Jogar, Tutorial, Configurações, Sair);
+- Sistema de áudio (ativar e desativar);
+- Feedback visual nas interações;
+- Comportamento do cursor em áreas interativas e não interativas;
+- Lógica de pontuação, vidas e dificuldade progressiva nos minigames;
+- Sequenciamento obrigatório das ferramentas no banho (chuveiro → sabão → chuveiro → toalha);
+- Lógica de compra de ração adequada na alimentação;
+- Remoção de pulgas e sistema de estrelas no minigame de cuidados;
+- Jogabilidade mais dificultada em lazer;
+- Lógica de continuidade entre três fases (três cachorros);
+- Quiz sobre rações de validação de conhecimentos adiquiridos.
+
 
 Testes de jogabilidade com usuários externos confirmaram boa acessibilidade e progressão natural de dificuldade, com apontamentos para melhoria na responsividade dos controles.
 
@@ -147,7 +182,7 @@ Testes de jogabilidade com usuários externos confirmaram boa acessibilidade e p
 
 | Versão | Descrição | Data |
 |---|---|---|
-| 0.5.0 | Revisão final do MVP: refinamentos de UX, correção de bugs e otimizações de desempenho | NA
+| 0.5.0 | Revisão final do MVP: refinamentos de UX, correção de bugs e otimizações de desempenho | 30/03/2026 - 09/04/2026
 | 0.4.0 | MVP completo: CobasiCoins integrado, quiz de rações e melhorias de navegação entre cenas | 16/03/2026 - 27/03/2026
 | 0.3.0 | Implementação dos três minigames (banho, alimentação e veterinário) com sistema de recompensas | 02/03/2026 - 13/03/2026
 | 0.2.0 | HUD de status, cena de banho interativa e sprites dos personagens | 16/02/2026 - 27/02/2026

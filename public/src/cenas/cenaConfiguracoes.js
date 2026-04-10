@@ -70,7 +70,7 @@ export class cenaConfiguracoes extends Phaser.Scene {
                 // Callback ao ligar: retoma a música pausada ou inicia uma nova
                 gameState.musicaLigada = true;
                 if (gameState.musica) {
-                    if (gameState.musica.paused) {
+                    if (gameState.musica.isPaused) { // CORREÇÃO AQUI
                         gameState.musica.resume();
                     }
                 } else {
@@ -163,7 +163,7 @@ export class cenaConfiguracoes extends Phaser.Scene {
      * @method criarAlternar
      * @description Cria um componente visual customizado de botão "Liga/Desliga" (Toggle).
      * Renderiza ambos os sprites e alterna a visibilidade e lógica entre eles ao clicar.
-     * * @param {number} x - Posição X central do botão.
+     * @param {number} x - Posição X central do botão.
      * @param {number} y - Posição Y central do botão.
      * @param {boolean} estadoInicial - Define qual botão deve aparecer primeiro (true = ligado).
      * @param {function} aoLigar - Callback executado quando o usuário muda para o estado ON.

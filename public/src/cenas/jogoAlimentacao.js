@@ -26,8 +26,12 @@ export class jogoAlimentacao extends Phaser.Scene {
         
         // Controle de Dificuldade
         this.velocidadeQueda = 220;
-        this.intervaloSpawn = 1200;
-        this.intervaloMinimoSpawn = 420; // Limite máximo de dificuldade (itens caem rápido)
+        this.intervaloSpawn = 900; // Reduzido de 1200 para chover mais itens desde o começo
+        this.intervaloMinimoSpawn = 300; // Limite máximo de dificuldade (itens caem MUITO rápido)
+        
+        // Controle de Dificuldade do Chocolate
+        // Começa com 45% de chance de ser chocolate e aumenta até um limite de 85%
+        this.chanceChocolateAtual = 45; 
         
         // Flags de controle de estado
         this.partidaEncerrada = false;
@@ -80,7 +84,16 @@ export class jogoAlimentacao extends Phaser.Scene {
         this.jogador.setCollideWorldBounds(true); // Impede que o pet saia da tela
         this.jogador.body.allowGravity = true;
         this.jogador.setGravityY(1200); // Dá um "peso" realista caso ele saia do chão
-        this.jogador.setScale(0.15);
+        
+        // Ajuste de escala individual para os cachorros
+        if (gameState.pets.cachorroHeroi && !gameState.pets.cachorroJoao) {
+            // O segundo cachorro (Herói) fica menor que o padrão
+            this.jogador.setScale(0.4); 
+        } else {
+            // Mantém a escala padrão para os outros cachorros
+            this.jogador.setScale(0.15); 
+        }
+
         this.velocidadeJogador = 560;
 
         // Sincroniza as bordas da física com o tamanho atual da tela
@@ -258,16 +271,24 @@ export class jogoAlimentacao extends Phaser.Scene {
         
         this.criarEventoSpawn(); // Começa a chover comida
 
-        // Loop de Aumento Progressivo de Dificuldade (A cada 8s)
+        // Loop de Aumento Progressivo de Dificuldade (A cada 6s agora para ficar mais frenético)
         this.eventoDificuldade = this.time.addEvent({
-            delay: 8000,
+            delay: 6000,
             loop: true,
             callback: () => {
                 if (this.partidaEncerrada) return;
-                // Aumenta a velocidade da queda até o limite de 700
-                this.velocidadeQueda = Math.min(this.velocidadeQueda + 30, 700);
-                // Diminui o tempo entre spawns até o mínimo permitido
-                this.intervaloSpawn = Math.max(this.intervaloSpawn - 90, this.intervaloMinimoSpawn);
+                
+                // Aumenta a velocidade de queda consideravelmente
+                // Aumenta em 40 a cada ciclo, limite máximo de 800 (muito rápido)
+                this.velocidadeQueda = Math.min(this.velocidadeQueda + 40, 800);
+                
+                // Diminui o tempo entre spawns (caem mais itens simultâneos)
+                this.intervaloSpawn = Math.max(this.intervaloSpawn - 120, this.intervaloMinimoSpawn);
+                
+                // Aumenta a porcentagem de chocolate na chuva
+                // Sobe a chance em 8% a cada ciclo, até o limite insano de 85%
+                this.chanceChocolateAtual = Math.min(this.chanceChocolateAtual + 8, 85);
+
                 this.criarEventoSpawn(); // Recria o evento com os novos tempos
             }
         });
@@ -322,14 +343,18 @@ export class jogoAlimentacao extends Phaser.Scene {
     /**
      * @method sortearTipoItem
      * @description Sistema de RNG (Random Number Generator). 
-     * Define 75% de chance de ser ração boa e 25% de ser o chocolate venenoso.
+     * Usa a dificuldade atual para decidir se joga ração ou chocolate.
      * @returns {Object} Item sorteado.
      */
     sortearTipoItem() {
         const chance = Phaser.Math.Between(1, 100);
-        if (chance <= 75) return this.determinarRacaoEscolhida();
         
-        return { tipo: 'chocolate', key: 'foodChocolate', pontos: 0, penalidade: 0, dano: 1, escala: 0.19 };
+        // Comparamos a chance de chocolate atual progressiva
+        if (chance <= this.chanceChocolateAtual) {
+            return { tipo: 'chocolate', key: 'foodChocolate', pontos: 0, penalidade: 0, dano: 1, escala: 0.19 };
+        }
+        
+        return this.determinarRacaoEscolhida();
     }
 
     /**
@@ -348,8 +373,11 @@ export class jogoAlimentacao extends Phaser.Scene {
 
         // Define a física do item (não afeta pela gravidade para ter velocidade constante controlada)
         item.body.allowGravity = false;
-        // Adiciona um pouco de aleatoriedade na velocidade para não ficar robótico
-        item.setVelocityY(this.velocidadeQueda + Phaser.Math.Between(-25, 25));
+        
+        // Aleatoriedade na velocidade de cada item individualmente
+        // Alguns itens vão "disparar" na frente dos outros para confundir o jogador
+        const aceleracaoExtra = Phaser.Math.Between(0, 80); 
+        item.setVelocityY(this.velocidadeQueda + aceleracaoExtra);
         
         // Acopla variáveis de regra de negócio diretamente no Game Object
         item.setData('tipo', tipoSorteado.tipo);
